@@ -1,0 +1,490 @@
+//* Krece da se smanjuje od 720px
+$f-size1: clamp(80%, 40% + 1.5vw, 115%);
+$f-size2: clamp(75%, 40% + 1.5vw, 105%);
+
+//* Nav Mixins
+$upnav-height: 30px;
+$nav-height: 40px;
+$br: 3px;
+
+
+//* Upnav ~ krece da se smanjuje oko/od 1024px
+$up-increment: 32px;
+$up-decrement: 2.5vw;
+$up-minw: 19px;
+$up-maxw: 24px;
+
+
+//* Nav Tools
+$tools-increment: 32px;
+$tools-decrement: 2.5vw;
+$tools-minw: 24px;
+$tools-maxw: 26px;
+
+
+
+
+
+$base-width: 1.5vw;
+$decrement: 0.5vw;
+$min-width: 24px;
+$max-width: 40px;
+
+
+
+
+
+@mixin cloud-modal($top) {
+  position: absolute;
+  z-index: 9998;
+  top: $top;
+  opacity: 0;
+  visibility: hidden;
+  border-radius: $br;
+  transition: top ease .22s, opacity ease-out .2s, visibility ease .2s;
+}
+@mixin active-cloud-modal($top-active) {
+  top: $top-active;
+  opacity: 1;
+  visibility: visible;
+}
+
+@mixin hideBtn {
+  opacity: 0;
+  width: 0;
+  margin: 0;
+  height: 0;
+}
+@mixin flex-full($j-content, $a-items, $f-direction) {
+  display: flex;
+  justify-content: $j-content;
+  align-items: $a-items;
+  flex-direction: $f-direction;
+}
+@mixin flex-center() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@mixin flex-custom($j-content, $a-items) {
+  display: flex;
+  justify-content: $j-content;
+  align-items: $a-items;
+}
+@mixin align-items($a-items) {
+  display: flex;
+  align-items: $a-items;
+}
+
+@mixin toggleButton() {
+  $toggleButton: (
+    "light": (
+      tglbtn: #ffffff,
+      tglbs: #d6ad6b80,
+      tglin: $font2,
+    ),
+
+    "dark": (
+      tglbtn: #111111,
+      tglbs: #262626,
+      tglin: $font2dark,
+    ),
+  );
+  @include setColors($toggleButton);
+  $width: 35px;
+  $height: 20px;
+  $s-height: 16px;
+  position: relative;
+  width: 100%;
+  @include flex-custom(flex-start, flex-start);
+  height: $height;
+
+  .span {
+    width: $width;
+    height: $height;
+    position: relative;
+    padding: 0px 1px;
+
+    background: clr(tglbtn);
+    border-radius: 33px;
+    font-weight: 500;
+    box-shadow: 1px 2px 10px 1px clr(tglbs);
+    transition: all ease-out 0.15s;
+    display: flex;
+    justify-content: flex-end;
+  }
+  &:hover {
+    .span {
+      box-shadow: 0px 0px 15px 3px clr(tglbs);
+    }
+    //transform: scale(.97);
+  }
+  &.active {
+    .span {
+      box-shadow: 0px 0px 15px 3px clr(tglbs);
+      transform: scale(1.05);
+      span {
+        transform: translate(-100%, -50%);
+      }
+    }
+    .p-one-two {
+      padding: 0px 8px;
+      width: 100%;
+
+      display: flex;
+      align-items: center;
+      p {
+        text-align: left;
+        font-size: $f-size2;
+        .one {
+          transform: translate(-200%, -50%);
+          opacity: 0;
+        }
+        .two {
+          transform: translate(-100%, -50%);
+          opacity: 1;
+        }
+      }
+    }
+  }
+  .span {
+    span {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(0%, -50%);
+      width: $width - 18px;
+      height: $width - 18px;
+      border-radius: 50%;
+      min-height: 10px;
+      min-width: 10px;
+      background: clr(tglin);
+      transition: all ease 0.3s;
+    }
+  }
+  .p-one-two {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(0, -50%);
+    padding: 0px 8px;
+    width: 100%;
+    line-height: $height - 5px;
+    p {
+      @include flex-center();
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translate(-100%, -50%);
+      white-space: nowrap;
+      color: clr(tglin);
+      transition: all ease 0.2s;
+      &.one {
+        transform: translate(-100%, -50%);
+        opacity: 1;
+      }
+      &.two {
+        transform: translate(-150%, -50%);
+        opacity: 0;
+      }
+    }
+  }
+
+  &.right {
+    .p-one-two {
+      width: 100%;
+      @include align-items(flex-start);
+
+      p {
+        text-align: left;
+        font-size: $f-size2;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translate(100%, -50%);
+        white-space: nowrap;
+        color: clr(tglin);
+
+        &.one {
+          transform: translate($width + 7px, -50%);
+          opacity: 1;
+        }
+        &.two {
+          transform: translate(100%, -50%);
+          opacity: 0;
+        }
+      }
+    }
+
+    &.active {
+      .p-one-two {
+        width: 100%;
+        @include align-items(center);
+        p {
+          @include flex-center();
+          &.one {
+            transform: translate(200%, -50%);
+            opacity: 0;
+          }
+          &.two {
+            transform: translate($width + 7px, -50%);
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+
+  &.rel {
+    @include flex-full(flex-start, flex-start, row-reverse);
+    .p-one-two {
+      position: relative;
+      /* overflow: auto hidden; */
+      @include align-items(center);
+      p {
+        direction: ltr;
+        position: relative;
+        text-align: left;
+        font-size: $f-size2;
+        padding-right: 0px;
+        @include flex-custom(flex-start, center);
+        white-space: wrap;
+        color: clr(tglin);
+        transform: translateX(0%);
+
+        &.one {
+          transform: translateX(0%);
+          opacity: 1;
+          height: auto;
+          width: auto;
+          white-space: wrap;
+          transition: opacity ease 0.2s, width ease 0.3s, height ease 0.1s,
+            transform ease 0.2s, white-space ease 0.1s;
+            transition-delay: 0s, 0s, 0s, 0s, 0s;
+        }
+        &.two {
+          transform: translateX(100%);
+          @include hideBtn();
+          white-space: nowrap;
+          transition: opacity ease 0.3s, width ease 0.2s, height ease 0.1s,
+            transform ease 0.2s, white-space ease 0.1s;
+            transition-delay: 0s, 0s, 0s, 0s, 0s;
+        }
+      }
+    }
+    &.active {
+      .span {
+        span {
+          transform: translate(-100%, -50%);
+        }
+      }
+      .p-one-two {
+        p {
+          justify-content: flex-start;
+          &.one {
+            transform: translateX(100%);
+            @include hideBtn();
+            white-space: nowrap;
+            transition: opacity ease 0.2s, width ease 0.1s, height ease 0.1s,
+              transform ease 0.2s, white-space ease 0.1s;
+            transition-delay: 0s, 0s, 0s, 0s, 0s;
+          }
+          &.two {
+            transform: translate(0);
+            opacity: 1;
+            width: auto;
+            height: $height;
+            white-space: wrap;
+            transition: opacity ease 0.2s, width ease 0.3s, height ease 0.1s,
+              transform ease 0.2s, white-space ease 0.1s;
+              transition-delay: 0s, 0s, 0s, 0s, 0s;
+          }
+        }
+      }
+    }
+
+    &.right {
+      flex-direction: row;
+      &.active {
+        .span {
+          span {
+            transform: translate(-100%, -50%);
+          }
+        }
+      }
+    }
+  }
+  @include px(600) {
+    .span {
+      height: $s-height;
+
+      span {
+        width: $s-height - 3px;
+        height: $s-height - 3px;
+      }
+    }
+    .p-one-two {
+      height: $s-height;
+      line-height: $s-height - 2;
+      p {
+        height: auto;
+      }
+    }
+
+    &.rel {
+      &.right {
+        .p-one-two {
+          align-items: baseline;
+          height: auto;
+          p {
+            height: auto;
+          }
+        }
+        &.active {
+          .p-one-two {
+            height: auto;
+            p {
+              height: auto;
+            }
+          }
+        }
+      }
+    }
+  }
+  @include px(500) {
+    .span {
+      height: $s-height;
+
+      span {
+        width: $s-height - 3px;
+        height: $s-height - 3px;
+      }
+    }
+    .p-one-two {
+      height: $s-height;
+      line-height: $s-height - 5;
+
+      p {
+        height: auto;
+        white-space: nowrap;
+      }
+    }
+
+    &.rel {
+      &.right {
+        .p-one-two {
+          align-items: baseline;
+          height: auto;
+          p {
+            height: auto;
+          }
+        }
+        &.active {
+          .p-one-two {
+            height: auto;
+            p {
+              height: auto;
+              white-space: nowrap;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+//* Sections
+$section-increment: 32px;
+$section-decrement: 2.5vw;
+$section-minw: 80%;
+$section-maxw: 95%;
+@mixin sections($width,$padding,$margin) {
+  position: relative;
+  width: $width;
+  height: 100%;
+  overflow: hidden;
+  padding: $padding;
+  margin: $margin;
+  max-height: $section-maxw;
+  min-height: $section-minw;
+  margin-inline: auto;
+  /* border: 1px solid green; */
+}
+@mixin allSections() {
+  position: relative;
+  width: 100%;
+  padding: 50px 0px;
+}
+@mixin section1() {
+
+}
+@mixin section2() {
+  
+}
+@mixin section3() {
+  
+}
+@mixin section4() {
+  
+}
+@mixin section5() {
+  
+}
+@mixin section6() {
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@mixin slidermenu {
+  .slider-modal-menu {
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 0px 30px 0px rgba($color: #3c3c3c, $alpha: 0.3);
+
+    &.active {
+      margin-top: 5px;
+      background: white;
+      opacity: 1;
+    }
+  }
+}
+
+
+
+@mixin sliderbtn {
+  .slider-modal-btn {
+    position: relative;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 18px;
+    height: 18px;
+    svg {
+      width: 18px;
+      height: 18px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      fill: red;
+    }
+  }
+}

@@ -1,0 +1,215 @@
+{
+  "Pocetna": "Početna",
+  "O nama": "O nama",
+  "Kontakt": "Kontakt",
+  "Usluge": "Usluge",
+  "Menu": "Jelovnik",
+  "Cenovnik": "Cenovnik",
+  "Galerija": "Galerija",
+
+  "o-nama": "o-nama",
+  "usluge": "usluge",
+  "hirurgija": "hirurgija",
+  "infuzije": "infuzije",
+  "kontakt": "kontakt",
+
+  "marketing": "marketing",
+  "ip": "ip",
+  "country": "country",
+  "timezone": "timezone",
+  "time": "time",
+  "spenttime": "spenttime",
+  "performance": "performance",
+
+  "Marketing": "Marketing",
+  "mk": "Marketing kolačići",
+  "mone": "Zabrani marketing kolacice",
+  "mtwo": "Dozvoli marketing kolacice",
+  "timezoneone": "Zabranjena vremenska zona",
+  "timezonetwo": "Dozvoljena vremenska zona",
+  "timeone": "Zabranjeno vreme",
+  "timetwo": "Dozvoljeno vreme",
+  "spenttimeone": "Zabranjeno provedeno vreme",
+  "spenttimetwo": "Dozvoljeno provedeno vreme",
+  "ipone": "Zabranjena ip adresa",
+  "iptwo": "Dozvoljena ip adresa",
+  "countryone": "Zabranjena lokacija",
+  "countrytwo": "Dozvoljena lokacija",
+
+  "Performance": "Performance",
+  "pk": "Marketing kolačići",
+  "pone": "Zabrani performance kolačiće",
+  "ptwo": "Dozvoli performance kolačiće",
+  "themesdone": "Zabranjene teme uređaja",
+  "themesdtwo": "Dozvoljene teme uređaja",
+  "themesone": "Zabranjene teme",
+  "themestwo": "Dozvoljene teme",
+  "langsone": "Zabranjeni jezici",
+  "langstwo": "Dozvoljeni jezici",
+  "listenersone": "Zabranjeni osluškivači",
+  "listenerstwo": "Dozvoljeni osluškivači",
+  "animationsone": "Zabranjene animacije",
+  "animationstwo": "Dozvoljene animacije",
+  "transitionsone": "Zabranjene tranzicije",
+  "transitionstwo": "Dozvoljene tranzicije",
+  "blurone": "Zabranjen blur",
+  "blurtwo": "Dozvoljen blur",
+
+  "btnmone": "dugme zabrani marketing kolacice",
+  "btnmtwo": "dugme dozvoli marketing kolacice",
+  "btntimezoneone": "dugme zabranjena vremenska zona",
+  "btntimezonetwo": "dugme dozvoljena vremenska zona",
+  "btntimeone": "dugme zabranjeno vreme",
+  "btntimetwo": "dugme dozvoljeno vreme",
+  "btnspenttimeone": "dugme zabranjeno provedeno vreme",
+  "btnspenttimetwo": "dugme dozvoljeno provedeno vreme",
+  "btnipone": "dugme zabranjena ip adresa",
+  "btniptwo": "dugme dozvoljena ip adresa",
+  "btncountryone": "dugme zabranjena lokacija",
+  "btncountrytwo": "dugme dozvoljena lokacija",
+
+  "btnpone": "dugme zabrani performance kolačiće",
+  "btnptwo": "dugme dozvoli performance kolačiće",
+  "btnthemesdone": "dugme zabranjene teme uređaja",
+  "btnthemesdtwo": "dugme dozvoljene teme uređaja",
+  "btnthemesone": "dugme zabranjene teme",
+  "btnthemestwo": "dugme dozvoljene teme",
+  "btnlangsone": "dugme zabranjeni jezici",
+  "btnlangstwo": "dugme dozvoljeni jezici",
+  "btnlistenersone": "dugme zabranjeni osluškivači",
+  "btnlistenerstwo": "dugme dozvoljeni osluškivači",
+  "btnanimationsone": "dugme zabranjene animacije",
+  "btnanimationstwo": "dugme dozvoljene animacije",
+  "btntransitionsone": "dugme zabranjene tranzicije",
+  "btntransitionstwo": "dugme dozvoljene tranzicije",
+  "btnblurone": "dugme zabranjen blur",
+  "btnblurtwo": "dugme dozvoljen blur",
+
+  "all": "Dozvoli sve kolačiće",
+  "none": "Zabrani sve kolačiće",
+  "allbtn": "Dugme dozvoli sve kolačiće",
+  "nonebtn": "Dugme zabrani sve kolačiće",
+
+  "closemenu": "Zatvori meni",
+  "closesidemenu": "Dugme zatvori meni linkova",
+
+  "fbprofile": "Link to facebook profile medicaltime_rs",
+  "igprofile": "Link to instagram profile medicaltime_rs",
+  "waphone": "Link to call Medical Time Hospital via WhatsApp",
+  "phone": "Link to call Medical Time Hospital via phone device",
+  "vibphone": "Link to call Medical Time Hospital via Viber",
+  "mail": "Link to send us mail",
+
+
+  "Odaberi stranicu koja vas zanima":"Odaberi stranicu koja vas zanima",
+  "Idi na stranicu":"Idi na stranicu",
+  "Sinhronizuj slajder": "Sinhronizuj slajder",
+  "Slajder": "Slajder",
+  "slider": "slider",
+  "Desinhronizuj slajder": "Desinhronizuj slajder",
+  "Zatvori slajder": "Zatvori slajder",
+  "Zatvori kartice": "Zatvori kartice",
+
+
+
+  "Pauziraj": "Pauziraj",
+  "Sledeci slajd": "Sledeći slajd",
+  "Prethodni slajd": "Prethodni slajd",
+  "ytprofile": "ytprofile",
+  "Specijaliteti": "Specijaliteti",
+  "Iskustvo": "Iskustvo",
+  "Infuzije": "Infuzije",
+  "Hirurgija": "Hirurgija",
+  "Patronaza": "Patronaza",
+  "Pozovite nas": "Pozovite nas",
+  "Vesti": "Vesti",
+  "Pusti": "Pusti",
+  "Bolnicki smestaj": "Bolnički smeštaj",
+
+  
+  
+  
+  
+  "slide1-h": "Medical Time Hopsital",
+  "slide1-sh": "Interna medicina & Hirurgija",
+  "slide1-des": "Mi smo specijalna bolnica iz oblasti interne medicine i hirurgije. \n Nudimo veliki broj usluga: \n - Infuzije \n - Hirurgija \n - Hirurške intervencije \n - Mikronidling \n - Pregledi lekara \n - Dijagnostika \n - Bolnički smeštaj \n - Patronaža \n - Transport pacijenata",
+
+  "slide2-h": "",
+  "slide2-sh": "",
+  "slide2-des": "",
+
+  "slide3-h": "",
+  "slide3-sh": "",
+  "slide3-des": "",
+
+  "slide4-h": "",
+  "slide4-sh": "",
+  "slide4-des": "",
+
+  "slide5-h": "",
+  "slide5-sh": "",
+  "slide5-des": "",
+
+  "slide6-h": "",
+  "slide6-sh": "",
+  "slide6-des": "",
+
+  "slide7-h": "",
+  "slide7-sh": "",
+  "slide7-des": "",
+
+  "slide8-h": "",
+  "slide8-sh": "",
+  "slide8-des": "",
+
+  "slide9-h": "",
+  "slide9-sh": "",
+  "slide9-des": "",
+
+  "slide10-h": "",
+  "slide10-sh": "",
+  "slide10-des": "",
+
+
+
+  "card1-h": "Medical Time",
+  "card1-sh": "Odaberite svoju uslugu",
+  "card1-des": "Nudimo veliki broj usluga: \n - Infuzije \n - Hirurgija \n - Hirurške intervencije \n - Mikronidling \n - Pregledi lekara \n - Dijagnostika \n - Bolnički smeštaj \n - Patronaža \n - Transport pacijenata",
+
+  "card2-h": "",
+  "card2-sh": "",
+  "card2-des": "",
+
+  "card3-h": "",
+  "card3-sh": "",
+  "card3-des": "",
+
+  "card4-h": "",
+  "card4-sh": "",
+  "card4-des": "",
+
+  "card5-h": "",
+  "card5-sh": "",
+  "card5-des": "",
+
+  "card6-h": "",
+  "card6-sh": "",
+  "card6-des": "",
+
+  "card7-h": "",
+  "card7-sh": "",
+  "card7-des": "",
+
+  "card8-h": "",
+  "card8-sh": "",
+  "card8-des": "",
+
+  "card9-h": "",
+  "card9-sh": "",
+  "card9-des": "",
+
+  "card10-h": "",
+  "card10-sh": "",
+  "card10-des": ""
+
+}

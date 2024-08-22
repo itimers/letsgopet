@@ -66,7 +66,7 @@ export default defineNuxtConfig({
   },
   
   modules: [
-    //'@pinia-plugin-persistedstate/nuxt',
+    '@pinia-plugin-persistedstate/nuxt',
     '@pinia/nuxt',
     '@nuxtjs/i18n'
   ],

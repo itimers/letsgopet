@@ -1,0 +1,63 @@
+$font: #8c473e;
+$fontdark: #fff;
+
+$font-primary: #c17255;
+$font-primary-light: #dc9176;
+
+$font2: #3d3d3d;
+$font2dark: #2292e2;
+
+$primary: #fff;
+$primary2: #c17255;
+$secondary: #0b0b0b;
+
+$svg-primary: #a76c57;
+$svg-primaryactive: #c17255;
+
+$themes: (
+    "light": (
+        primary: $primary2,
+        font: $font,
+        font-primary: $font-primary,
+        font-primary-light: $font-primary-light,
+        app: $primary
+    ),
+
+    "dark": (
+        font: $fontdark,
+        app: $secondary
+    ),
+);
+
+@function clr($color-name) {
+    @return var(--color-#{$color-name});
+}
+@mixin setColors($themes) {
+    @each $theme, $theme-map in $themes {
+        .#{$theme} & {
+            @include setThemeColors($theme-map);
+        }
+    }
+}
+@mixin setThemeColors($theme-map) {
+    @each $name, $color in $theme-map {
+        --color-#{$name}: #{$color};
+    }
+}
+
+@mixin themeStyles($theme) {
+    @include setThemeColors(map-get($themes, $theme));
+    --theme: #{$theme};
+}
+
+
+
+html,.app,.app-viewport {
+    &.light {
+        @include themeStyles("light");
+    }
+
+    &.dark {
+        @include themeStyles("dark");
+    }
+}

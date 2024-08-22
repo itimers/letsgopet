@@ -10,7 +10,17 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@nuxt/types": "^2.18.1",
+    "@pinia/nuxt": "^0.5.4",
     "nuxt": "^3.12.4",
-    "vue": "latest"
+    "pinia": "^2.2.2",
+    "vue": "latest",
+    "vue-i18n": "^9.14.0"
+  },
+  "devDependencies": {
+    "@nuxtjs/i18n": "^8.5.0",
+    "sass": "^1.77.8",
+    "sass-loader": "^16.0.1",
+    "vite": "^5.4.2"
   }
 }

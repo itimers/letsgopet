@@ -1,0 +1,147 @@
+<template>
+  <div
+    class="locales"
+    :class="
+    currentLanguage,
+    (
+      {
+        active: page.states.find(
+          (el) => el.btn === 'locales' && el.activemenu
+        ),
+      })
+    "
+  >
+    <div
+      class="locale-btn"
+      @click.stop="page.toggleElementVisibility('locales')"
+    ></div>
+
+    <div
+     @click.stop="updateZindex"
+      class="locales-cloud-modal"
+      v-if="page.states.find((el) => el.btn === 'locales' && el.activebtn)"
+      :style="{
+        zIndex: page.states.find((el) => el.menu === 'localesdiv')?.zIndex,
+      }"
+      :class="{
+        active: page.states.find(
+          (el) => el.menu === 'localesdiv' && el.activemenu
+        ),
+      }"
+    >
+      <button @click.stop="updateZindex"
+        @click="changeLanguage('sr')"
+        :class="{
+          active:
+            currentLanguage === 'sr' &&
+            !['en', 'ru', 'de','tr','es','cn','fr','it'].includes(currentLanguage),
+        }"
+      >
+        Srpski
+      </button>
+      <button @click.stop="updateZindex"
+        @click="changeLanguage('ru')"
+        :class="{
+          active:
+            currentLanguage === 'ru' &&
+            !['sr', 'en', 'de','tr','es','cn','fr','it'].includes(currentLanguage),
+        }"
+      >
+        Русский
+      </button>
+      <button @click.stop="updateZindex"
+        @click="changeLanguage('de')"
+        :class="{
+          active:
+            currentLanguage === 'de' &&
+            !['sr', 'en', 'ru','tr','es','cn','fr','it'].includes(currentLanguage),
+        }"
+      >
+        Deutsch
+      </button>
+      <button @click.stop="updateZindex"
+        @click="changeLanguage('tr')"
+        :class="{
+          active:
+            currentLanguage === 'tr' &&
+            !['sr', 'en', 'ru', 'de','fr','it','cn','es'].includes(currentLanguage),
+        }"
+      >
+        Francais
+      </button>
+      <button @click.stop="updateZindex"
+        @click="changeLanguage('en')"
+        :class="{
+          active:
+            currentLanguage === 'en' &&
+            !['sr', 'ru', 'de','tr','es','cn','fr','it'].includes(currentLanguage),
+        }"
+      >
+        English
+      </button>
+      <button @click.stop="updateZindex"
+        @click="changeLanguage('it')"
+        :class="{
+          active:
+            currentLanguage === 'it' &&
+            !['sr', 'en', 'ru', 'de','tr','es','cn','fr'].includes(currentLanguage),
+        }"
+      >
+        Italiano
+      </button>
+      <button @click.stop="updateZindex"
+        @click="changeLanguage('es')"
+        :class="{
+          active:
+            currentLanguage === 'es' &&
+            !['sr', 'en', 'ru', 'de','tr','it','cn','fr'].includes(currentLanguage),
+        }"
+      >
+        Espanol
+      </button>
+      <button @click.stop="updateZindex"
+        @click="changeLanguage('cn')"
+        :class="{
+          active:
+            currentLanguage === 'cn' &&
+            !['sr', 'en', 'ru', 'de','tr','it','es','fr'].includes(currentLanguage),
+        }"
+      >
+        Chinaese
+      </button>
+      <button @click.stop="updateZindex"
+        @click="changeLanguage('fr')"
+        :class="{
+          active:
+            currentLanguage === 'fr' &&
+            !['sr', 'en', 'ru', 'de','tr','it','cn','es'].includes(currentLanguage),
+        }"
+      >
+        Francais
+      </button>
+    </div>
+  </div>
+</template>
+
+<script lang="ts" setup>
+const router = useRouter();
+const i18n = useI18n();
+
+const page = usePagesStore();
+const currentLanguage = computed(() => page.language);
+const updateZindex = () => {
+    page.bringToFront(page.states.find(el => el.menu === 'localesdiv'))
+}
+
+const changeLanguage = (language: string) => {
+  page.changeLanguage(language);
+  if (language === "sr") {
+    router.push("/");
+  } else {
+    const newPath = `/${language}`;
+    router.push(newPath);
+  }
+
+  i18n.locale.value = language;
+};
+</script>

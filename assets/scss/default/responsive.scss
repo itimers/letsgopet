@@ -1,0 +1,74 @@
+$bp: (
+    0: 0,
+    200: 200px,
+    220: 220px,
+    250: 250px,
+    280: 280px,
+    300: 300px,
+    320: 320px,
+    350: 350px,
+    390: 390px,
+    420: 420px,
+    480: 480px,
+    550: 550px,
+    600: 600px,
+    720: 720px,
+    750: 750px,
+    768: 768px,
+    840: 840px,
+    884: 884px,
+    960: 960px,
+    1024: 1024px,
+    1280: 1280px,
+    1366: 1366px,
+    1450: 1450px,
+    1550: 1550px,
+    1650: 1650px,
+    1750: 1750px,
+);
+
+@mixin bp($key) {
+    $value: map-get($bp, $key);
+    @if $value {
+        @media (max-width: #{$value}) {
+            @content;
+        }
+    } @else {
+        @warn "Breakpoint #{$key} not found in \$breakpoints map.";
+    }
+}
+
+@mixin px($size) {
+    @media (max-width: #{$size}px) {
+        @content;
+    }
+}
+
+
+
+
+
+
+
+@mixin px1750 {
+    @media (max-width: map-get($bp, 1750)) {
+        @content;
+    }
+}
+
+
+@include px1750 {
+    //& .app {
+    //&     background: green;
+    //& }
+}
+@include bp(1650) {
+    //& .app {
+    //&     background: red;
+    //& }
+}
+@include px(1550) {
+    //& .app {
+    //&     background: yellow;
+    //& }
+}
