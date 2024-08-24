@@ -17,20 +17,26 @@ const sections = [
   },
   {
     id: 3,
-    sectionName: i18n.t("O nama"),
+    sectionName: i18n.t("Cenovnik"),
     slotName: "section3",
-    idtag: i18n.t("o-nama"),
+    idtag: i18n.t("cenovnik"),
   },
   {
     id: 4,
-    sectionName: i18n.t("Pet Transport"),
+    sectionName: i18n.t("Pet transport"),
     slotName: "section4",
     idtag: i18n.t("pet-transport"),
   },
   {
     id: 5,
-    sectionName: i18n.t("Kontakt"),
+    sectionName: i18n.t("O nama"),
     slotName: "section5",
+    idtag: i18n.t("o-nama"),
+  },
+  {
+    id: 6,
+    sectionName: i18n.t("Kontakt"),
+    slotName: "section6",
     idtag: i18n.t("kontakt"),
   },
 ];
@@ -266,8 +272,9 @@ onBeforeUnmount(() => {
             </div>
           </article>
           <div class="boxshadow"></div>
-          <aside>
-            <img src="/assets/img/dogs/4-ps.jpg" />
+          <aside :class="{ scroll: page.isScrolled }">
+            <div class="img-dog"></div>
+            <!-- <img src="/assets/img/dogs/4-ps.jpg" /> -->
           </aside>
         </section>
 
@@ -288,43 +295,7 @@ onBeforeUnmount(() => {
           <article>
             <h2>Usluge</h2>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque
-              debitis nesciunt consequuntur voluptatum provident? Laborum quam
-              perspiciatis ducimus? Repellat voluptatem mollitia adipisci
-              suscipit autem, earum dignissimos, tempora optio blanditiis
-              voluptatibus libero eligendi omnis nobis non et totam quam quidem,
-              ullam ipsam officiis sed reprehenderit aut ducimus. Maiores
-              mollitia pariatur fugit rem velit. Aperiam ullam temporibus
-              voluptate natus hic et vero nihil explicabo repudiandae aliquid
-              totam, mollitia libero placeat voluptatibus quae nemo eveniet
-              minima dicta error quia. Et ut sint non a necessitatibus libero
-              quasi cupiditate, hic deleniti, iure blanditiis! Dignissimos quos
-              non omnis reiciendis repellendus sunt, earum at. Similique, omnis
-              nulla sint nobis inventore blanditiis deserunt quod ea sit dolore
-              repellat numquam aliquam minima eos, impedit aperiam quasi tempora
-              beatae incidunt soluta repudiandae. Officia placeat ipsam modi
-              sequi, quisquam excepturi nostrum harum esse assumenda numquam
-              ipsa quas temporibus sapiente, voluptatum nemo ad quae fuga amet
-              cumque. Consequatur velit perspiciatis consequuntur recusandae
-              temporibus impedit aut laboriosam vero, nemo, rem, culpa hic quae
-              nulla itaque aliquam corrupti placeat iusto ducimus? Voluptates
-              exercitationem et, quod saepe, vel molestiae totam, fuga maxime
-              obcaecati sed ipsa! At delectus dicta numquam, suscipit aliquam
-              nesciunt ad harum quo unde in labore doloribus sequi dolores
-              dignissimos, nostrum commodi inventore laboriosam. Blanditiis ad
-              assumenda similique eius. Fugiat illum quibusdam repudiandae
-              aliquam laudantium accusantium, aliquid repellat placeat magni,
-              repellendus sunt a incidunt amet velit dicta. Temporibus excepturi
-              iusto, illo optio totam inventore officiis molestiae reiciendis
-              amet voluptatem, corrupti ipsa blanditiis, dolore sint molestias
-              mollitia voluptates distinctio reprehenderit quod. Ducimus
-              veritatis veniam facilis? Consectetur maxime vel quisquam dolor
-              perferendis minus neque repudiandae deleniti, ab nobis. Debitis
-              perferendis veritatis dignissimos amet ad tenetur inventore nisi
-              quasi eum, ipsum, aspernatur, sapiente officia corrupti possimus
-              adipisci. Quasi officiis et id ullam modi eaque quia facilis
-              maxime rerum, perferendis praesentium, architecto, sint soluta
-              voluptas quam?
+              {{ $t("Usluge tekst") }}
             </p>
           </article>
         </section>
@@ -344,46 +315,83 @@ onBeforeUnmount(() => {
           :id="`${sections[2].idtag}`"
         >
           <article>
-            <h2>O nama</h2>
+            <h2>{{ $t("Cenovnik") }}</h2>
+
+            <figure>
+              <figcaption>
+                <div class="box-1 style">
+                  <div class="box-header">
+                    <p>Jednostavan paket</p>
+
+                    <div class="discount-img">
+                      <img src="/assets/img/2.png" />
+                      <p>85 €</p>
+                    </div>
+                  </div>
+                  <span>Za sve uzraste</span>
+                  <ul>
+                    <li>Samo kupanje i sušenje</li>
+                  </ul>
+                </div>
+                <div class="box-2 style">
+                  <div class="box-header">
+                    <p>Osnovni higijenski paket</p>
+                    <div class="discount-img">
+                      <img src="/assets/img/2.png" />
+                      <p>100 €</p>
+                    </div>
+                  </div>
+                  <span
+                    >Za štence do 6 meseci Bath & Dry - kupanje i sušenje</span
+                  >
+                  <ul>
+                    <li>Nail Trim - skraćivanje noktića</li>
+                    <li>Ear Cleaning - Higijena ušiju Light Trimming</li>
+                    <li>Oblikovanje dlake</li>
+                  </ul>
+                </div>
+                <div class="box-3 style">
+                  <div class="box-header">
+                    <p>Paket za male pse do 10 kg</p>
+                    <div class="discount-img">
+                      <img src="/assets/img/2.png" />
+                      <p>100 €</p>
+                    </div>
+                  </div>
+                  <ul>
+                    <li>Bath & Dry - Kupanje i sušenje</li>
+                    <li>Full Body Haircut - šišanje</li>
+                    <li>Nail Trim - skraćivanje noktića</li>
+                    <li>Ear Cleaning - higijena ušiju</li>
+                    <li>Teeth Brushing - pranje zubića</li>
+                  </ul>
+                </div>
+                <div class="box-4 style">
+                  <div class="box-header">
+                    <p>Specijalni tretmani</p>
+                    <div class="discount-img">
+                      <img src="/assets/img/2.png" />
+                      <p>25 €</p>
+                    </div>
+                  </div>
+                  <ul>
+                    <li>
+                      Spa medical treatment: seboreja, suva koža, masna koža,
+                      perut
+                    </li>
+                  </ul>
+                </div>
+              </figcaption>
+            </figure>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque
-              debitis nesciunt consequuntur voluptatum provident? Laborum quam
-              perspiciatis ducimus? Repellat voluptatem mollitia adipisci
-              suscipit autem, earum dignissimos, tempora optio blanditiis
-              voluptatibus libero eligendi omnis nobis non et totam quam quidem,
-              ullam ipsam officiis sed reprehenderit aut ducimus. Maiores
-              mollitia pariatur fugit rem velit. Aperiam ullam temporibus
-              voluptate natus hic et vero nihil explicabo repudiandae aliquid
-              totam, mollitia libero placeat voluptatibus quae nemo eveniet
-              minima dicta error quia. Et ut sint non a necessitatibus libero
-              quasi cupiditate, hic deleniti, iure blanditiis! Dignissimos quos
-              non omnis reiciendis repellendus sunt, earum at. Similique, omnis
-              nulla sint nobis inventore blanditiis deserunt quod ea sit dolore
-              repellat numquam aliquam minima eos, impedit aperiam quasi tempora
-              beatae incidunt soluta repudiandae. Officia placeat ipsam modi
-              sequi, quisquam excepturi nostrum harum esse assumenda numquam
-              ipsa quas temporibus sapiente, voluptatum nemo ad quae fuga amet
-              cumque. Consequatur velit perspiciatis consequuntur recusandae
-              temporibus impedit aut laboriosam vero, nemo, rem, culpa hic quae
-              nulla itaque aliquam corrupti placeat iusto ducimus? Voluptates
-              exercitationem et, quod saepe, vel molestiae totam, fuga maxime
-              obcaecati sed ipsa! At delectus dicta numquam, suscipit aliquam
-              nesciunt ad harum quo unde in labore doloribus sequi dolores
-              dignissimos, nostrum commodi inventore laboriosam. Blanditiis ad
-              assumenda similique eius. Fugiat illum quibusdam repudiandae
-              aliquam laudantium accusantium, aliquid repellat placeat magni,
-              repellendus sunt a incidunt amet velit dicta. Temporibus excepturi
-              iusto, illo optio totam inventore officiis molestiae reiciendis
-              amet voluptatem, corrupti ipsa blanditiis, dolore sint molestias
-              mollitia voluptates distinctio reprehenderit quod. Ducimus
-              veritatis veniam facilis? Consectetur maxime vel quisquam dolor
-              perferendis minus neque repudiandae deleniti, ab nobis. Debitis
-              perferendis veritatis dignissimos amet ad tenetur inventore nisi
-              quasi eum, ipsum, aspernatur, sapiente officia corrupti possimus
-              adipisci. Quasi officiis et id ullam modi eaque quia facilis
-              maxime rerum, perferendis praesentium, architecto, sint soluta
-              voluptas quam?
+              {{ $t("Napomena") }}
             </p>
+
+            <aside>
+              <p>
+                {{ $t("Zakazite") }}
+              </p>
+            </aside>
           </article>
           <!-- <div
             class="bg-img"
@@ -419,46 +427,8 @@ onBeforeUnmount(() => {
           :id="`${sections[3].idtag}`"
         >
           <article>
-            <h2>Pet Transport</h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque
-              debitis nesciunt consequuntur voluptatum provident? Laborum quam
-              perspiciatis ducimus? Repellat voluptatem mollitia adipisci
-              suscipit autem, earum dignissimos, tempora optio blanditiis
-              voluptatibus libero eligendi omnis nobis non et totam quam quidem,
-              ullam ipsam officiis sed reprehenderit aut ducimus. Maiores
-              mollitia pariatur fugit rem velit. Aperiam ullam temporibus
-              voluptate natus hic et vero nihil explicabo repudiandae aliquid
-              totam, mollitia libero placeat voluptatibus quae nemo eveniet
-              minima dicta error quia. Et ut sint non a necessitatibus libero
-              quasi cupiditate, hic deleniti, iure blanditiis! Dignissimos quos
-              non omnis reiciendis repellendus sunt, earum at. Similique, omnis
-              nulla sint nobis inventore blanditiis deserunt quod ea sit dolore
-              repellat numquam aliquam minima eos, impedit aperiam quasi tempora
-              beatae incidunt soluta repudiandae. Officia placeat ipsam modi
-              sequi, quisquam excepturi nostrum harum esse assumenda numquam
-              ipsa quas temporibus sapiente, voluptatum nemo ad quae fuga amet
-              cumque. Consequatur velit perspiciatis consequuntur recusandae
-              temporibus impedit aut laboriosam vero, nemo, rem, culpa hic quae
-              nulla itaque aliquam corrupti placeat iusto ducimus? Voluptates
-              exercitationem et, quod saepe, vel molestiae totam, fuga maxime
-              obcaecati sed ipsa! At delectus dicta numquam, suscipit aliquam
-              nesciunt ad harum quo unde in labore doloribus sequi dolores
-              dignissimos, nostrum commodi inventore laboriosam. Blanditiis ad
-              assumenda similique eius. Fugiat illum quibusdam repudiandae
-              aliquam laudantium accusantium, aliquid repellat placeat magni,
-              repellendus sunt a incidunt amet velit dicta. Temporibus excepturi
-              iusto, illo optio totam inventore officiis molestiae reiciendis
-              amet voluptatem, corrupti ipsa blanditiis, dolore sint molestias
-              mollitia voluptates distinctio reprehenderit quod. Ducimus
-              veritatis veniam facilis? Consectetur maxime vel quisquam dolor
-              perferendis minus neque repudiandae deleniti, ab nobis. Debitis
-              perferendis veritatis dignissimos amet ad tenetur inventore nisi
-              quasi eum, ipsum, aspernatur, sapiente officia corrupti possimus
-              adipisci. Quasi officiis et id ullam modi eaque quia facilis
-              maxime rerum, perferendis praesentium, architecto, sint soluta
-              voluptas quam?
-            </p>
+            <h2>{{ $t("Pet transport") }}</h2>
+            <p></p>
           </article>
         </section>
 
@@ -477,46 +447,30 @@ onBeforeUnmount(() => {
           :id="`${sections[4].idtag}`"
         >
           <article>
-            <h2>Kontakt</h2>
+            <h2>{{ $t("O nama") }}</h2>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque
-              debitis nesciunt consequuntur voluptatum provident? Laborum quam
-              perspiciatis ducimus? Repellat voluptatem mollitia adipisci
-              suscipit autem, earum dignissimos, tempora optio blanditiis
-              voluptatibus libero eligendi omnis nobis non et totam quam quidem,
-              ullam ipsam officiis sed reprehenderit aut ducimus. Maiores
-              mollitia pariatur fugit rem velit. Aperiam ullam temporibus
-              voluptate natus hic et vero nihil explicabo repudiandae aliquid
-              totam, mollitia libero placeat voluptatibus quae nemo eveniet
-              minima dicta error quia. Et ut sint non a necessitatibus libero
-              quasi cupiditate, hic deleniti, iure blanditiis! Dignissimos quos
-              non omnis reiciendis repellendus sunt, earum at. Similique, omnis
-              nulla sint nobis inventore blanditiis deserunt quod ea sit dolore
-              repellat numquam aliquam minima eos, impedit aperiam quasi tempora
-              beatae incidunt soluta repudiandae. Officia placeat ipsam modi
-              sequi, quisquam excepturi nostrum harum esse assumenda numquam
-              ipsa quas temporibus sapiente, voluptatum nemo ad quae fuga amet
-              cumque. Consequatur velit perspiciatis consequuntur recusandae
-              temporibus impedit aut laboriosam vero, nemo, rem, culpa hic quae
-              nulla itaque aliquam corrupti placeat iusto ducimus? Voluptates
-              exercitationem et, quod saepe, vel molestiae totam, fuga maxime
-              obcaecati sed ipsa! At delectus dicta numquam, suscipit aliquam
-              nesciunt ad harum quo unde in labore doloribus sequi dolores
-              dignissimos, nostrum commodi inventore laboriosam. Blanditiis ad
-              assumenda similique eius. Fugiat illum quibusdam repudiandae
-              aliquam laudantium accusantium, aliquid repellat placeat magni,
-              repellendus sunt a incidunt amet velit dicta. Temporibus excepturi
-              iusto, illo optio totam inventore officiis molestiae reiciendis
-              amet voluptatem, corrupti ipsa blanditiis, dolore sint molestias
-              mollitia voluptates distinctio reprehenderit quod. Ducimus
-              veritatis veniam facilis? Consectetur maxime vel quisquam dolor
-              perferendis minus neque repudiandae deleniti, ab nobis. Debitis
-              perferendis veritatis dignissimos amet ad tenetur inventore nisi
-              quasi eum, ipsum, aspernatur, sapiente officia corrupti possimus
-              adipisci. Quasi officiis et id ullam modi eaque quia facilis
-              maxime rerum, perferendis praesentium, architecto, sint soluta
-              voluptas quam?
+              {{ $t("O nama tekst") }}
             </p>
+          </article>
+        </section>
+
+        <section
+          ref="section6Ref"
+          :data-section-id="6"
+          :class="[
+            'section section-6',
+            {
+              active: page.activeSectionsByPage[page.page]
+                ? page.activeSectionsByPage[page.page].includes(6)
+                : false,
+            },
+          ]"
+          :slot="sections[5].slotName"
+          :id="`${sections[5].idtag}`"
+        >
+          <article>
+            <h2>Kontakt</h2>
+            <p></p>
           </article>
         </section>
       </div>
@@ -549,6 +503,8 @@ section {
   padding: 0px calc((10px + 4vw) - 20px) 0px calc((10px + 4vw) - 20px);
 }
 $section-1-height: 700px;
+$section-1-height-sm: 500px;
+$section-1-height-smm: 300px;
 .section-1 {
   position: relative;
   width: 100%;
@@ -556,10 +512,12 @@ $section-1-height: 700px;
   overflow: hidden;
   @include flex-full(center, center, column);
   @include px(1024) {
-    min-height: calc($section-1-height - 0px);
-  @include flex-full(flex-start, center, column);
+    min-height: $section-1-height-sm;
+    @include flex-full(flex-start, center, column);
     padding-top: 50px;
-
+  }
+  @include px(600) {
+    min-height: $section-1-height-smm + 60px;
   }
   article {
     position: relative;
@@ -634,46 +592,48 @@ $section-1-height: 700px;
     @include px(1024) {
       top: 0;
       left: unset;
-      box-shadow: 0px -900px 500px 500px rgba($color: #fff, $alpha: 0.95);
-      height: calc($section-1-height - 0px);
+      box-shadow: 0px -1400px 500px 1200px rgba($color: #fff, $alpha: 1);
+      height: $section-1-height-sm;
     }
   }
   $img-height: 500px;
   aside {
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    min-height: 100%;
-    object-fit: cover;
-    img {
-      float: right;
-      object-fit: cover;
+    transition: all ease 0.1s;
+    @include px(1024) {
+      max-height: $section-1-height-sm;
+    }
+    .img-dog {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      right: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-attachment: fixed;
+      background-position: calc(-2700px + 12.5vw * 7) 0px;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-image: url("/assets/img/dogs/4-ps.jpg");
       @include px(1024) {
-        min-height: calc($section-1-height - 0px);
-        height: calc($section-1-height - 0px);
+        max-height: $section-1-height-sm;
+        background-image: url("/assets/img/dogs/4-ps-sh.jpg");
+        background-size: auto $section-1-height-sm + 200px;
+        background-position: calc(-1850px + 12.5vw * 7) 0px;
       }
-      @include px(720) {
-        object-fit: cover;
-        min-height: calc($section-1-height - 0px);
+      @include px(600) {
+        max-height: $section-1-height-sm;
+        background-image: url("/assets/img/dogs/4-ps-sh.jpg");
+        background-size: auto $section-1-height-sm + 0px;
+        background-position: calc(-1250px + 12.5vw * 7) 0px;
+      }
+      @include px(360) {
+        max-height: $section-1-height-sm;
+        background-image: url("/assets/img/dogs/4-ps-sh.jpg");
+        background-size: auto $section-1-height-sm + 0px;
+        background-position: calc(-1250px + 12.5vw * 7) 0px;
       }
     }
-    /*position: relative;
-    width: 60%;
-    height: $img-height;
-    overflow: hidden;
-    margin-right: -100px;
-    margin-left: calc(40% - 15vw);
-    border-top-left-radius: calc($img-height / 2 + 20px);
-    border-bottom-left-radius: calc($img-height / 2 + 20px);
-    box-shadow: 0px 0px 20px 0px rgba($color: #000000, $alpha: .2);
-    @include flex-custom(center, flex-start);
-    img {
-      width: 100%;
-      height: calc($img-height + 150px);
-      object-fit: cover;
-    }*/
   }
 }
 .section-2 {
@@ -681,11 +641,112 @@ $section-1-height: 700px;
 }
 .section-3 {
   padding: 100px 100px;
+
+  article {
+    h2 {
+      text-align: center;
+    }
+    figure {
+      margin-top: 80px;
+      figcaption {
+        display: grid;
+        grid-template-columns: 0.25fr 0.25fr;
+        justify-content: center;
+        gap: 50px;
+        @include px(600) {
+          grid-template-columns: 1fr;
+        }
+        .style {
+          min-width: calc(200px + 4.5vw);
+          border-radius: 9px;
+          box-shadow: 0px 0px 20px 0px rgba($color: #000000, $alpha: 0.2);
+          .box-header {
+            position: relative;
+            padding: 8px 10px;
+            border-bottom: 1px solid #c1725546;
+            background: clr(font-primary-light);
+            border-top-left-radius: 9px;
+            border-top-right-radius: 9px;
+            p {
+              font-family: "Concert One", sans-serif;
+              font-family: "Lilita One", sans-serif;
+              font-family: "Passion One", sans-serif;
+              font-weight: 500;
+              text-align: center;
+              color: clr(font);
+              font-size: clamp(120%, 40% + 1.5vw, 160%);
+            }
+
+            .discount-img {
+              position: absolute;
+              top: -35px;
+              right: -35px;
+              width: calc(50px + 2.5vw);
+              height: calc(50px + 2.5vw);
+              min-width: 70px;
+              min-height: 70px;
+              transition: all ease 0.3s;
+              img {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: calc(50px + 2.5vw);
+                height: calc(50px + 2.5vw);
+                min-width: 70px;
+                min-height: 70px;
+                transition: all ease 0.3s;
+              }
+              p {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) rotate(10deg);
+                color: white;
+                white-space: nowrap;
+                font-family: "Lilita One", sans-serif;
+              }
+            }
+          }
+          span {
+            font-family: "Passion One", sans-serif;
+            @include flex-center();
+            padding: 5px 20px;
+            font-weight: 500;
+            color: clr(font-primary-light);
+            font-size: clamp(100%, 30% + 1.1vw, 120%);
+          }
+          ul {
+            padding: 20px;
+            list-style-type: none;
+            li {
+              font-size: clamp(80%, 30% + 1.1vw, 120%);
+            }
+          }
+        }
+        .box1 {
+          .box-1 {
+          }
+          .box-2 {
+          }
+        }
+        .box2 {
+          .box-3 {
+          }
+          .box-4 {
+          }
+        }
+      }
+    }
+  }
 }
 .section-4 {
   padding: 100px 100px;
 }
 .section-5 {
+  padding: 100px 100px;
+}
+.section-6 {
   padding: 100px 100px;
 }
 </style>

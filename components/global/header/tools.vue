@@ -28,11 +28,11 @@ $tools: (
   ),
 );
 .tools {
-  @include setColors($tools);
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
+  @include setColors($tools);
 }
 
 .locales {

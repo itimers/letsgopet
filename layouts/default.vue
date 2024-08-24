@@ -310,7 +310,6 @@ main {
   position: relative;
   width: 100%;
   height: 100%;
-  margin-top: -$upnav-height - $nav-height;
   overflow: hidden auto;
   &.scrolled {
     margin-top: 0;

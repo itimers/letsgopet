@@ -1,16 +1,14 @@
 {
+  "Let's Go Pet":"Let's Go Pet",
   "Pocetna": "Početna",
   "O nama": "O nama",
   "Kontakt": "Kontakt",
   "Usluge": "Usluge",
-  "Menu": "Jelovnik",
   "Cenovnik": "Cenovnik",
   "Galerija": "Galerija",
 
   "o-nama": "o-nama",
   "usluge": "usluge",
-  "hirurgija": "hirurgija",
-  "infuzije": "infuzije",
   "kontakt": "kontakt",
 
   "marketing": "marketing",
@@ -21,6 +19,9 @@
   "spenttime": "spenttime",
   "performance": "performance",
 
+  "cenovnik":"cenovnik",
+  "uvod":"uvod",
+  "Uvod":"Uvod",
   "Marketing": "Marketing",
   "mk": "Marketing kolačići",
   "mone": "Zabrani marketing kolacice",
@@ -93,123 +94,35 @@
   "closemenu": "Zatvori meni",
   "closesidemenu": "Dugme zatvori meni linkova",
 
-  "fbprofile": "Link to facebook profile medicaltime_rs",
-  "igprofile": "Link to instagram profile medicaltime_rs",
-  "waphone": "Link to call Medical Time Hospital via WhatsApp",
-  "phone": "Link to call Medical Time Hospital via phone device",
-  "vibphone": "Link to call Medical Time Hospital via Viber",
+  "fbprofile": "Link to facebook profile kupanjepasa",
+  "igprofile": "Link to instagram profile kupanjepasa",
+  "ytprofile": "Link to youtube channel kupanjepasa",
+  "waphone": "Link to call Let's Go Pet via WhatsApp",
+  "phone": "Link to call Let's Go Pet via phone device",
+  "vibphone": "Link to call Let's Go Pet via Viber",
   "mail": "Link to send us mail",
 
+  "Gde god da se nalazite, mi dolazimo do vas.":"Gde god da se nalazite, mi dolazimo do vas.",
+  "Pozovite nas, vaš ljubimac je naša briga": "Pozovite nas, vaš ljubimac je naša briga",
+  "Od vas, do nas, vaš ljubimac!":"Od vas, do nas, vaš ljubimac!",
+  "Pozovite nas":"Pozovite nas",
+  "Transport i održavanje vašeg psa!":"Transport i održavanje vašeg psa!",
+  "Zakazite":"Zakažite termin i omogućite svom ljubimcu vrhunski tretman koji će ga učiniti srećnim i zdravim!",
+  "Napomena": "Napomena: Svi tretmani se izvode sa pažljivo odabranom, organskom kozmetikom, kako bi vaši ljubimci uživali u najkvalitetnijoj nezi bez štetnih hemikalija.",
+  "Pet transport": "Pet transport",
+  "pet-transport": "pet-transport",
+  "Usluge tekst": "LET'S GO Pet Grooming Salon sa ponosom vam predstavlja naše vrhunske usluge šišanja i kupanja pasa, koristeći isključivo organsku kozmetiku za maksimalnu negu vaših ljubimaca! Pružamo kompletnu brigu o vašim ljubimcima, a uz to nudimo i uslugu prevoza – dolazimo po vašeg ljubimca i vraćamo ga nazad. Vaš ljubimac će biti u sigurnim i stručnim rukama tokom celog tretmana!",
+  "O nama tekst": "LET'S GO Pet Grooming Salon pruža vrhunsku negu za vaše ljubimce više od 25 godina! Naše dugogodišnje iskustvo i stručnost potiču iz Francuske, gde smo usavršili sve tajne profesionalnog groominga. Osim što vašim ljubimcima pružamo najkvalitetniju negu, nudimo i uslugu prevoza – dolazimo po vašeg ljubimca kod vas i vraćamo ga nazad posle tretmana. Vaš ljubimac je u sigurnim rukama, a vi možete biti potpuno opušteni dok mi brinemo o njegovom izgledu i zdravlju! Zakažite termin već danas i dozvolite nam da vašem ljubimcu pružimo tretman kakav zaslužuje!"
 
-  "Odaberi stranicu koja vas zanima":"Odaberi stranicu koja vas zanima",
-  "Idi na stranicu":"Idi na stranicu",
-  "Sinhronizuj slajder": "Sinhronizuj slajder",
-  "Slajder": "Slajder",
-  "slider": "slider",
-  "Desinhronizuj slajder": "Desinhronizuj slajder",
-  "Zatvori slajder": "Zatvori slajder",
-  "Zatvori kartice": "Zatvori kartice",
 
 
 
-  "Pauziraj": "Pauziraj",
-  "Sledeci slajd": "Sledeći slajd",
-  "Prethodni slajd": "Prethodni slajd",
-  "ytprofile": "ytprofile",
-  "Specijaliteti": "Specijaliteti",
-  "Iskustvo": "Iskustvo",
-  "Infuzije": "Infuzije",
-  "Hirurgija": "Hirurgija",
-  "Patronaza": "Patronaza",
-  "Pozovite nas": "Pozovite nas",
-  "Vesti": "Vesti",
-  "Pusti": "Pusti",
-  "Bolnicki smestaj": "Bolnički smeštaj",
+
 
   
   
   
   
-  "slide1-h": "Medical Time Hopsital",
-  "slide1-sh": "Interna medicina & Hirurgija",
-  "slide1-des": "Mi smo specijalna bolnica iz oblasti interne medicine i hirurgije. \n Nudimo veliki broj usluga: \n - Infuzije \n - Hirurgija \n - Hirurške intervencije \n - Mikronidling \n - Pregledi lekara \n - Dijagnostika \n - Bolnički smeštaj \n - Patronaža \n - Transport pacijenata",
-
-  "slide2-h": "",
-  "slide2-sh": "",
-  "slide2-des": "",
-
-  "slide3-h": "",
-  "slide3-sh": "",
-  "slide3-des": "",
-
-  "slide4-h": "",
-  "slide4-sh": "",
-  "slide4-des": "",
-
-  "slide5-h": "",
-  "slide5-sh": "",
-  "slide5-des": "",
-
-  "slide6-h": "",
-  "slide6-sh": "",
-  "slide6-des": "",
-
-  "slide7-h": "",
-  "slide7-sh": "",
-  "slide7-des": "",
-
-  "slide8-h": "",
-  "slide8-sh": "",
-  "slide8-des": "",
-
-  "slide9-h": "",
-  "slide9-sh": "",
-  "slide9-des": "",
-
-  "slide10-h": "",
-  "slide10-sh": "",
-  "slide10-des": "",
-
-
-
-  "card1-h": "Medical Time",
-  "card1-sh": "Odaberite svoju uslugu",
-  "card1-des": "Nudimo veliki broj usluga: \n - Infuzije \n - Hirurgija \n - Hirurške intervencije \n - Mikronidling \n - Pregledi lekara \n - Dijagnostika \n - Bolnički smeštaj \n - Patronaža \n - Transport pacijenata",
-
-  "card2-h": "",
-  "card2-sh": "",
-  "card2-des": "",
-
-  "card3-h": "",
-  "card3-sh": "",
-  "card3-des": "",
-
-  "card4-h": "",
-  "card4-sh": "",
-  "card4-des": "",
-
-  "card5-h": "",
-  "card5-sh": "",
-  "card5-des": "",
-
-  "card6-h": "",
-  "card6-sh": "",
-  "card6-des": "",
-
-  "card7-h": "",
-  "card7-sh": "",
-  "card7-des": "",
-
-  "card8-h": "",
-  "card8-sh": "",
-  "card8-des": "",
-
-  "card9-h": "",
-  "card9-sh": "",
-  "card9-des": "",
-
-  "card10-h": "",
-  "card10-sh": "",
-  "card10-des": ""
+  
 
 }
