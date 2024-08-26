@@ -1,8 +1,8 @@
 <template>
   <div class="tools">
     <ModalsCloudLocales v-if="cookie.isCookieActive('langs')" />
-    <!-- <ModalsCloudThemes v-if="isThemesOrPrefersActive" /> -->
-    <!-- <ModalsCloudSettings /> -->
+    <ModalsCloudThemes v-if="isThemesOrPrefersActive" />
+    <ModalsCloudSettings />
     <ModalsCloudBurger />
   </div>
 </template>
@@ -27,14 +27,16 @@ $tools: (
     toolsfillactive: $svg-primaryactive,
   ),
 );
+
 .tools {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
+}
+.tools {
   @include setColors($tools);
 }
-
 .locales {
   position: relative;
   width: 100%;

@@ -521,7 +521,6 @@ $cookie: (
 );
 
 .cookie {
-  @include setColors($cookie);
   position: fixed;
   z-index: 9999;
   width: 100%;
@@ -532,6 +531,7 @@ $cookie: (
   background: clr(cookie);
   box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
   transition: bottom ease 0.2s, opacity ease 0.2s, visibility ease 0.2s;
+  @include setColors($cookie);
 }
 
 .cookie-wrapper {

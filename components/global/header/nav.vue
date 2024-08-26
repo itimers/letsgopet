@@ -73,6 +73,11 @@ header {
 .header-wrapper {
   max-width: calc(90% + 50px);
   margin-inline: auto;
+  //na 14
+  @include px(1024) {
+    width: 100%;
+    padding: 0px 20px;
+  }
 }
 .nav-wrapper {
   position: relative;
@@ -91,6 +96,9 @@ nav {
   position: relative;
   height: 100%;
   @include flex-custom(center, stretch);
+  @include px(1024) {
+    display: none;
+  }
   //height: $nav-height;
   div {
     position: absolute;

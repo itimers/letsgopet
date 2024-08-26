@@ -311,6 +311,8 @@ main {
   width: 100%;
   height: 100%;
   overflow: hidden auto;
+  scrollbar-gutter: stable;
+
   &.scrolled {
     margin-top: 0;
   }
@@ -326,7 +328,6 @@ main {
   &::-webkit-scrollbar-thumb:hover {
     opacity: .3;
   }
-  scrollbar-gutter: stable;
 }
 
 .section-pagination {

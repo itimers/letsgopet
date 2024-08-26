@@ -10,6 +10,9 @@
   "o-nama": "o-nama",
   "usluge": "usluge",
   "kontakt": "kontakt",
+  "vip": "vip",
+  "Vip": "Vip",
+  "Vip tekst": "Viptekslorem01501023401rnmoSNDgkljnaLSKJdfgnlakjsdfngkaadasdasd asdasdasd asdasdasd asdasdas dasdasdasdasd asdasdasdasd asdasdasdas dasdasdasda asdasdasd asdasdasd a asdasdasdasd asdasdasdas asdasd as",
 
   "marketing": "marketing",
   "ip": "ip",
@@ -102,6 +105,9 @@
   "vibphone": "Link to call Let's Go Pet via Viber",
   "mail": "Link to send us mail",
 
+  "Zakazite ig":"Zakažite",
+  "Zakazivanje isključivo preko DM poruke":"Zakazivanje isključivo preko DM poruke",
+
   "Gde god da se nalazite, mi dolazimo do vas.":"Gde god da se nalazite, mi dolazimo do vas.",
   "Pozovite nas, vaš ljubimac je naša briga": "Pozovite nas, vaš ljubimac je naša briga",
   "Od vas, do nas, vaš ljubimac!":"Od vas, do nas, vaš ljubimac!",
@@ -111,9 +117,10 @@
   "Napomena": "Napomena: Svi tretmani se izvode sa pažljivo odabranom, organskom kozmetikom, kako bi vaši ljubimci uživali u najkvalitetnijoj nezi bez štetnih hemikalija.",
   "Pet transport": "Pet transport",
   "pet-transport": "pet-transport",
-  "Usluge tekst": "LET'S GO Pet Grooming Salon sa ponosom vam predstavlja naše vrhunske usluge šišanja i kupanja pasa, koristeći isključivo organsku kozmetiku za maksimalnu negu vaših ljubimaca! Pružamo kompletnu brigu o vašim ljubimcima, a uz to nudimo i uslugu prevoza – dolazimo po vašeg ljubimca i vraćamo ga nazad. Vaš ljubimac će biti u sigurnim i stručnim rukama tokom celog tretmana!",
-  "O nama tekst": "LET'S GO Pet Grooming Salon pruža vrhunsku negu za vaše ljubimce više od 25 godina! Naše dugogodišnje iskustvo i stručnost potiču iz Francuske, gde smo usavršili sve tajne profesionalnog groominga. Osim što vašim ljubimcima pružamo najkvalitetniju negu, nudimo i uslugu prevoza – dolazimo po vašeg ljubimca kod vas i vraćamo ga nazad posle tretmana. Vaš ljubimac je u sigurnim rukama, a vi možete biti potpuno opušteni dok mi brinemo o njegovom izgledu i zdravlju! Zakažite termin već danas i dozvolite nam da vašem ljubimcu pružimo tretman kakav zaslužuje!"
-
+  "Usluge tekst": "LET'S GO Pet Grooming Salon sa ponosom vam predstavlja naše vrhunske usluge šišanja i kupanja pasa, koristeći isključivo organsku kozmetiku za maksimalnu negu vaših ljubimaca! Pružamo kompletnu brigu o vašim ljubimcima, a uz to nudimo i uslugu prevoza – dolazimo po vašeg ljubimca i vraćamo ga nazad tamo gde ste vi. Vaš ljubimac će biti u sigurnim i stručnim rukama tokom celog tretmana!",
+  "O nama tekst": "LET'S GO Pet Grooming Salon pruža vrhunsku negu za vaše ljubimce više od 25 godina! Naše dugogodišnje iskustvo i stručnost potiču iz Francuske, gde smo usavršili sve tajne profesionalnog groominga. Osim što vašim ljubimcima pružamo najkvalitetniju negu, nudimo i uslugu prevoza – dolazimo po vašeg ljubimca kod vas i vraćamo ga nazad posle tretmana. Vaš ljubimac je u sigurnim rukama, a vi možete biti potpuno opušteni dok mi brinemo o njegovom izgledu i zdravlju! Zakažite termin već danas i dozvolite nam da vašem ljubimcu pružimo tretman kakav zaslužuje!",
+  "Zakazite uvek":"Uvek možete zakazati dolazak kod nas.",
+  "Postani VIP član":"Postani VIP član"
 
 
 

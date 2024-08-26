@@ -17,26 +17,32 @@ const sections = [
   },
   {
     id: 3,
-    sectionName: i18n.t("Cenovnik"),
+    sectionName: i18n.t("Vip"),
     slotName: "section3",
-    idtag: i18n.t("cenovnik"),
+    idtag: i18n.t("vip"),
   },
   {
     id: 4,
-    sectionName: i18n.t("Pet transport"),
+    sectionName: i18n.t("Cenovnik"),
     slotName: "section4",
-    idtag: i18n.t("pet-transport"),
+    idtag: i18n.t("cenovnik"),
   },
   {
     id: 5,
-    sectionName: i18n.t("O nama"),
+    sectionName: i18n.t("Pet transport"),
     slotName: "section5",
-    idtag: i18n.t("o-nama"),
+    idtag: i18n.t("pet-transport"),
   },
   {
     id: 6,
-    sectionName: i18n.t("Kontakt"),
+    sectionName: i18n.t("O nama"),
     slotName: "section6",
+    idtag: i18n.t("o-nama"),
+  },
+  {
+    id: 7,
+    sectionName: i18n.t("Kontakt"),
+    slotName: "section7",
     idtag: i18n.t("kontakt"),
   },
 ];
@@ -267,9 +273,13 @@ onBeforeUnmount(() => {
               </figcaption>
             </figure>
             <div class="link-box">
-              <LinksClassicContact />
-              <p>{{ $t("Pozovite nas, vaš ljubimac je naša briga") }}</p>
+              <LinksTosocialIg />
+              <p>{{ $t("Zakazivanje isključivo preko DM poruke") }}</p>
+              <div class="touch-container">
+                <IconsDefaultTouch class="touch" />
+              </div>
             </div>
+            <p class="press-here">{{ $t("Klikni ovde") }}</p>
           </article>
           <div class="boxshadow"></div>
           <aside :class="{ scroll: page.isScrolled }">
@@ -293,11 +303,14 @@ onBeforeUnmount(() => {
           :id="`${sections[1].idtag}`"
         >
           <article>
-            <h2>Usluge</h2>
+            <h2>{{ $t("Usluge") }}</h2>
             <p>
               {{ $t("Usluge tekst") }}
             </p>
           </article>
+          <aside>
+            <p>{{ $t("Zakazite uvek") }}</p>
+          </aside>
         </section>
 
         <section
@@ -315,6 +328,55 @@ onBeforeUnmount(() => {
           :id="`${sections[2].idtag}`"
         >
           <article>
+            <h2>{{ $t("Postani VIP član") }}</h2>
+
+            <figure>
+              <figcaption>
+                <p>{{ $t("Vip tekst") }}</p> 
+              </figcaption>
+            </figure>
+            
+
+            <aside>
+              <!-- <p>
+                {{ $t("Zakazite") }}
+              </p> -->
+            </aside>
+          </article>
+          <!-- <div
+            class="bg-img"
+            :style="{
+              width: page.widthofMain + 'px',
+              height: page.sectionHeights[3] + 'px',
+            }"
+          >
+            <div
+              class="bg-paralax"
+              :style="{
+                width: page.widthofMain + 100 + 'px',
+                height: page.sectionHeights[3] + 100 + 'px',
+              }"
+            >
+              <div class="bg"></div>
+            </div>
+          </div> -->
+        </section>
+
+        <section
+          ref="section4Ref"
+          :data-section-id="4"
+          :class="[
+            'section section-4',
+            {
+              active: page.activeSectionsByPage[page.page]
+                ? page.activeSectionsByPage[page.page].includes(4)
+                : false,
+            },
+          ]"
+          :slot="sections[3].slotName"
+          :id="`${sections[3].idtag}`"
+        >
+          <article>
             <h2>{{ $t("Cenovnik") }}</h2>
 
             <figure>
@@ -324,7 +386,7 @@ onBeforeUnmount(() => {
                     <p>Jednostavan paket</p>
 
                     <div class="discount-img">
-                      <img src="/assets/img/2.png" />
+                      <img src="/assets/img/paw.png" />
                       <p>85 €</p>
                     </div>
                   </div>
@@ -337,13 +399,11 @@ onBeforeUnmount(() => {
                   <div class="box-header">
                     <p>Osnovni higijenski paket</p>
                     <div class="discount-img">
-                      <img src="/assets/img/2.png" />
+                      <img src="/assets/img/paw.png" />
                       <p>100 €</p>
                     </div>
                   </div>
-                  <span
-                    >Za štence do 6 meseci Bath & Dry - kupanje i sušenje</span
-                  >
+                  <span>Za štence do 6 meseci Bath & Dry - kupanje i sušenje</span>
                   <ul>
                     <li>Nail Trim - skraćivanje noktića</li>
                     <li>Ear Cleaning - Higijena ušiju Light Trimming</li>
@@ -354,7 +414,7 @@ onBeforeUnmount(() => {
                   <div class="box-header">
                     <p>Paket za male pse do 10 kg</p>
                     <div class="discount-img">
-                      <img src="/assets/img/2.png" />
+                      <img src="/assets/img/paw.png" />
                       <p>100 €</p>
                     </div>
                   </div>
@@ -370,7 +430,7 @@ onBeforeUnmount(() => {
                   <div class="box-header">
                     <p>Specijalni tretmani</p>
                     <div class="discount-img">
-                      <img src="/assets/img/2.png" />
+                      <img src="/assets/img/paw.png" />
                       <p>25 €</p>
                     </div>
                   </div>
@@ -413,26 +473,6 @@ onBeforeUnmount(() => {
         </section>
 
         <section
-          ref="section4Ref"
-          :data-section-id="4"
-          :class="[
-            'section section-4',
-            {
-              active: page.activeSectionsByPage[page.page]
-                ? page.activeSectionsByPage[page.page].includes(4)
-                : false,
-            },
-          ]"
-          :slot="sections[3].slotName"
-          :id="`${sections[3].idtag}`"
-        >
-          <article>
-            <h2>{{ $t("Pet transport") }}</h2>
-            <p></p>
-          </article>
-        </section>
-
-        <section
           ref="section5Ref"
           :data-section-id="5"
           :class="[
@@ -447,10 +487,8 @@ onBeforeUnmount(() => {
           :id="`${sections[4].idtag}`"
         >
           <article>
-            <h2>{{ $t("O nama") }}</h2>
-            <p>
-              {{ $t("O nama tekst") }}
-            </p>
+            <h2>{{ $t("Pet transport") }}</h2>
+            <p></p>
           </article>
         </section>
 
@@ -467,6 +505,28 @@ onBeforeUnmount(() => {
           ]"
           :slot="sections[5].slotName"
           :id="`${sections[5].idtag}`"
+        >
+          <article>
+            <h2>{{ $t("O nama") }}</h2>
+            <p>
+              {{ $t("O nama tekst") }}
+            </p>
+          </article>
+        </section>
+
+        <section
+          ref="section7Ref"
+          :data-section-id="7"
+          :class="[
+            'section section-7',
+            {
+              active: page.activeSectionsByPage[page.page]
+                ? page.activeSectionsByPage[page.page].includes(7)
+                : false,
+            },
+          ]"
+          :slot="sections[6].slotName"
+          :id="`${sections[6].idtag}`"
         >
           <article>
             <h2>Kontakt</h2>
@@ -558,6 +618,7 @@ $section-1-height-boxs: 500px;
       }
     }
     .link-box {
+      position: relative;
       @include px(1024) {
         flex-direction: column-reverse;
         justify-content: center;
@@ -584,6 +645,81 @@ $section-1-height-boxs: 500px;
         font-size: clamp(70%, 50% + 1.1vw, 110%);
       }
     }
+    .press-here {
+      margin-left: 65px;
+      font-size: 70%;
+    }
+
+
+    $touch-top: 20px;
+    $touch-margin-top: 20px;
+    $touch-right: 25px;
+    $right0ffset: 10px;
+    $touch-width: 150px;
+    $touch-height: 150px;
+    $touch-min-width: 90px;
+    $touch-min-height: 90px;
+    $touch-zindex: 16;
+    $touch-fill: $primary;
+    $moveright: 70%;
+    $moveup: -80%;
+    $touch-transform: translate($moveright, $moveup) rotate(0deg);
+    $touch-animation: touch 2s infinite;
+    @mixin touchStay() {
+      $moveright: 80%;
+      $moveup: -50%;
+      $right0ffset: 70px;
+      $touch-transform: translate($moveright, $moveup) rotate(0deg);
+      $touch-animation: touch2 2s infinite;
+
+      right: 45px;
+      width: 60px;
+      height: 60px;
+      min-width: 30px;
+      min-height: 30px;
+      transform: $touch-transform;
+      animation: $touch-animation;
+
+      @keyframes touch2 {
+        0% {
+          top: 0px;
+          right: $right0ffset + 35px;
+          margin-top: 30px;
+          transform: translate($moveright, $moveup) scale(0.9) rotate(-20deg);
+        }
+
+        50% {
+          top: 0px;
+          right: $right0ffset + 15px;
+          transform: translate($moveright, $moveup) scale(1.07) rotate(0deg);
+          margin-top: 20px;
+        }
+
+        80% {
+          top: 25px;
+          right: $right0ffset + 30px;
+          transform: translate($moveright, $moveup) scale(1.25) rotate(0deg);
+          margin-top: 15px;
+        }
+
+        100% {
+          top: 0px;
+          right: $right0ffset + 35px;
+          transform: translate($moveright, $moveup) scale(0.9) rotate(-20deg);
+          margin-top: 30px;
+        }
+      }
+    }
+    .touch-container {
+      position: absolute;
+      bottom: 50%;
+      left: 0%;
+      transform: translate(-160%, 100%);
+    }
+    .touch {
+      fill: clr(primary);
+      @include touchStay();
+    }
   }
   .boxshadow {
     position: absolute;
@@ -609,7 +745,7 @@ $section-1-height-boxs: 500px;
     right: 0;
     width: 100%;
     height: $section-1-height-sm;
-    @include flex-full(flex-end,flex-end, row);
+    @include flex-full(flex-end, flex-end, row);
     transition: all ease 0.1s;
     @include px(1024) {
       height: $section-1-height-sm;
@@ -650,9 +786,41 @@ $section-1-height-boxs: 500px;
   }
 }
 .section-2 {
-  padding: 100px 100px;
+  width: calc(70% + 150px);
+  margin-inline: auto;
+  padding: 100px 0px;
+  @include px(1024) {
+    width: 98%;
+    padding: 100px 10px;
+  }
+  article {
+    h2 {
+      font-size: clamp(90%, 110% + 1.5vw, 300%);
+    }
+    p {
+      font-size: clamp(90%, 50% + 1.1vw, 140%);
+    }
+  }
 }
 .section-3 {
+  position: relative;
+  width: calc(70% + 150px);
+  margin-inline: auto;
+  padding: 100px 0px;
+  article {
+    position: relative;
+    width: 100%;
+    h2 {
+      text-align: center;
+      font-size: clamp(90%, 110% + 1.5vw, 300%);
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: clamp(90%, 50% + 1.1vw, 140%);
+    }
+  }
+}
+.section-4 {
   padding: 100px 100px;
 
   article {
@@ -672,12 +840,12 @@ $section-1-height-boxs: 500px;
         .style {
           min-width: calc(200px + 4.5vw);
           border-radius: 9px;
-          box-shadow: 0px 0px 20px 0px rgba($color: #000000, $alpha: 0.2);
+          box-shadow: 0px 0px 20px 0px rgba($color: #646464, $alpha: 0.2);
           .box-header {
             position: relative;
-            padding: 8px 10px;
+            padding: 12px 10px;
             border-bottom: 1px solid #c1725546;
-            background: clr(font-primary-light);
+            //background: clr(font-primary-light);
             border-top-left-radius: 9px;
             border-top-right-radius: 9px;
             p {
@@ -703,20 +871,21 @@ $section-1-height-boxs: 500px;
                 position: absolute;
                 top: 50%;
                 left: 50%;
-                transform: translate(-50%, -50%);
-                width: calc(50px + 2.5vw);
-                height: calc(50px + 2.5vw);
-                min-width: 70px;
-                min-height: 70px;
+                transform: translate(-50%, -50%) rotate(-10deg);
+                width: calc(60px + 2.5vw);
+                height: calc(60px + 2.5vw);
+                min-width: 80px;
+                min-height: 80px;
                 transition: all ease 0.3s;
               }
               p {
                 position: absolute;
                 top: 50%;
                 left: 50%;
-                transform: translate(-50%, -50%) rotate(10deg);
+                transform: translate(-40%, 0%) rotate(10deg);
                 color: white;
                 white-space: nowrap;
+                font-size: clamp(100%, 40% + 1.2vw, 150%);
                 font-family: "Lilita One", sans-serif;
               }
             }
@@ -753,13 +922,16 @@ $section-1-height-boxs: 500px;
     }
   }
 }
-.section-4 {
-  padding: 100px 100px;
-}
 .section-5 {
   padding: 100px 100px;
 }
 .section-6 {
+  padding: 100px 100px;
+}
+.section-7 {
+  padding: 100px 100px;
+}
+.section-8 {
   padding: 100px 100px;
 }
 </style>

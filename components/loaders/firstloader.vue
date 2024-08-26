@@ -33,6 +33,7 @@ $loader-bg: clr(loaderbg);
 $loader-border-bg: clr(spinnercolor);
 $loader-border-bg2: clr(spinnercolor2);
 $loader-border-bg3: clr(spinnercolor3);
+
 $laoder: (
   "light": (
     loaderbg: $primary,
@@ -48,8 +49,10 @@ $laoder: (
     spinnercolor3: #d0f7ff,
   ),
 );
+
 .loader {
-  @include setColors($laoder);
+  transform: all ease 0.3s;
+
   position: fixed;
   z-index: -1;
   width: 100%;
@@ -58,8 +61,11 @@ $laoder: (
   justify-content: center;
   align-items: center;
   opacity: 0;
-  @include fadeInUpBig(0.3s, ease, none);
-  transform: all ease 0.3s;
+  
+  & {
+    @include fadeInUpBig(0.3s, ease, none);
+    @include setColors($laoder);
+  }
 }
 article {
   width: $loader-size;
