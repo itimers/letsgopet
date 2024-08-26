@@ -4,7 +4,7 @@
     v-if="isClient"
     target="_blank"
     :aria-label="$t('igprofile')"
-    ><IconsSocialsInstagram /><p>{{ $t("Zakazite ig") }}</p></NuxtLink
+    ><IconsSocialsInstagram /><p>{{ $t("Zakazite ig") }}</p><IconsDefaultDm/></NuxtLink
   >
 </template>
 <script lang="ts" setup>

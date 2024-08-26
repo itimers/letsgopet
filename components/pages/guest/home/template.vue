@@ -273,8 +273,10 @@ onBeforeUnmount(() => {
               </figcaption>
             </figure>
             <div class="link-box">
-              <LinksTosocialIg />
-              <p>{{ $t("Zakazivanje isključivo preko DM poruke") }}</p>
+              <div class="link-btn">
+                <LinksTosocialIg />
+                <p>{{ $t("Zakazivanje isključivo preko DM poruke") }}</p>
+              </div>
               <div class="touch-container">
                 <IconsDefaultTouch class="touch" />
               </div>
@@ -607,7 +609,7 @@ $section-1-height-boxs: 500px;
         width: 100%;
         font-size: clamp(70%, 70% + 2.1vw, 250%);
         font-weight: 500;
-        color: clr(font-primary-light);
+        color: clr(font-primary-green);
       }
       figcaption {
         p {
@@ -621,7 +623,6 @@ $section-1-height-boxs: 500px;
       position: relative;
       margin-top: 20px;
       margin-left: 15px;
-      gap: 20px;
       color: clr(font-primary-light);
       @include flex-center();
       @include px(1024) {
@@ -633,21 +634,30 @@ $section-1-height-boxs: 500px;
         margin-inline: auto;
         gap: 3px;
       }
-      a {
-        padding: 5px 15px;
-        background: clr(primary);
-        font-size: clamp(70%, 50% + 1.1vw, 110%);
-        border-radius: 33px;
-        color: white;
-        margin-left: 10px;
-      }
-      p {
-        font-size: clamp(70%, 50% + 1.1vw, 110%);
+      .link-btn {
+        gap: 15px;
+        @include flex-center();
+        a {
+          padding: 5px 15px;
+          background: clr(primary-green);
+          font-size: clamp(70%, 50% + 1.1vw, 110%);
+          border-radius: 33px;
+          color: white;
+          margin-left: 10px;
+          p {
+            color: white;
+            font-size: clamp(70%, 50% + 1.1vw, 110%);
+          }
+        }
+        p {
+          color: clr(font-primary);
+        }
       }
     }
     .press-here {
-      margin-left: 65px;
+      margin-left: 79px;
       font-size: 70%;
+      color: clr(primary-green);
     }
 
 

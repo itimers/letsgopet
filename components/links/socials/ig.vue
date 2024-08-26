@@ -13,7 +13,7 @@ const igLinkParts = [
   "go",
   "_kol",
   "aci",
-];
+];0
 const igLink = ref(`${igLinkParts.join("")}`);
 const isClient = ref(false);
 onMounted(()=> {

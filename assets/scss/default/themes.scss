@@ -3,16 +3,24 @@ $fontdark: #fff;
 
 $font-primary: #c17255;
 $font-primary-light: #dc9176;
+$font-primary-green: #7aaa5f;
 
 $font2: #3d3d3d;
 $font2dark: #2292e2;
 
 $primary: #fff;
 $primary2: #c17255;
+$primary-green: #95d572;
 $secondary: #0b0b0b;
 
-$svg-primary: #a76c57;
+$svg-primary: #c17255;
 $svg-primaryactive: #c17255;
+$tools-svg-primary: #c17255;
+$tools-svg-primaryactive: #dc9176;
+
+
+$themefill-svg-primary: #c17255;
+$themefill-svg-primaryactive: #dc9176;
 
 $themes: (
     "light": (
@@ -20,6 +28,8 @@ $themes: (
         font: $font,
         font-primary: $font-primary,
         font-primary-light: $font-primary-light,
+        font-primary-green: $font-primary-green,
+        primary-green: $primary-green,
         app: $primary
     ),
 

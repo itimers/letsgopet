@@ -18,13 +18,13 @@ const isThemesOrPrefersActive = computed(() => {
 <style lang="scss">
 $tools: (
   "light": (
-    toolsfill: $svg-primary,
-    toolsfillactive: $svg-primaryactive,
+    toolsfill: $tools-svg-primary,
+    toolsfillactive: $tools-svg-primaryactive,
   ),
 
   "dark": (
-    toolsfill: $svg-primary,
-    toolsfillactive: $svg-primaryactive,
+    toolsfill: $tools-svg-primary,
+    toolsfillactive: $tools-svg-primaryactive,
   ),
 );
 
@@ -32,7 +32,7 @@ $tools: (
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 24px;
 }
 .tools {
   @include setColors($tools);
