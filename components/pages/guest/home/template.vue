@@ -503,33 +503,35 @@ section {
   padding: 0px calc((10px + 4vw) - 20px) 0px calc((10px + 4vw) - 20px);
 }
 $section-1-height: 700px;
-$section-1-height-sm: 500px;
-$section-1-height-smm: 300px;
+$section-1-height-sm: 900px;
+$section-1-height-smm: 700px;
+$section-1-height-img: 800px;
+$section-1-height-boxs: 500px;
 .section-1 {
   position: relative;
   width: 100%;
-  min-height: $section-1-height;
+  height: $section-1-height;
   overflow: hidden;
   @include flex-full(center, center, column);
   @include px(1024) {
-    min-height: $section-1-height-sm;
+    height: $section-1-height-sm;
     @include flex-full(flex-start, center, column);
-    padding-top: 50px;
   }
   @include px(600) {
-    min-height: $section-1-height-smm + 60px;
+    height: $section-1-height-smm;
   }
   article {
     position: relative;
     z-index: 2;
     width: 75%;
-    @include flex-full(flex-start, flex-start, column);
+    height: 100%;
+    @include flex-full(center, flex-start, column);
     text-align: left;
     @include px(1024) {
       width: 90%;
       text-align: center;
-      justify-content: center;
-      align-items: center;
+      padding-top: 50px;
+      @include flex-full(flex-start, center, column);
     }
     h2 {
       width: 100%;
@@ -593,45 +595,56 @@ $section-1-height-smm: 300px;
       top: 0;
       left: unset;
       box-shadow: 0px -1400px 500px 1200px rgba($color: #fff, $alpha: 1);
-      height: $section-1-height-sm;
+      height: $section-1-height-boxs;
+    }
+    @include px(600) {
+      height: $section-1-height-boxs + 100;
+      box-shadow: 0px -1400px 400px 1100px rgba($color: #fff, $alpha: 1);
     }
   }
   $img-height: 500px;
   aside {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: $section-1-height-sm;
+    @include flex-full(flex-end,flex-end, row);
     transition: all ease 0.1s;
     @include px(1024) {
-      max-height: $section-1-height-sm;
+      height: $section-1-height-sm;
+    }
+    @include px(600) {
+      height: $section-1-height-smm;
     }
     .img-dog {
-      position: absolute;
       width: 100%;
       height: 100%;
-      right: 0;
       top: 0;
+      right: 0;
       width: 100%;
       height: 100%;
+      max-width: 1920px;
+      max-height: 1024px;
       background-attachment: fixed;
       background-position: calc(-2700px + 12.5vw * 7) 0px;
       background-repeat: no-repeat;
-      background-size: cover;
+      background-size: auto $section-1-height-img + 0px;
       background-image: url("/assets/img/dogs/4-ps.jpg");
       @include px(1024) {
-        max-height: $section-1-height-sm;
-        background-image: url("/assets/img/dogs/4-ps-sh.jpg");
-        background-size: auto $section-1-height-sm + 200px;
-        background-position: calc(-1850px + 12.5vw * 7) 0px;
+        background-image: url("/assets/img/dogs/4-ps.jpg");
+        background-size: auto $section-1-height-img + 200px;
+        background-position: calc(-0px + 12.5vw * 7) 0px;
       }
       @include px(600) {
-        max-height: $section-1-height-sm;
-        background-image: url("/assets/img/dogs/4-ps-sh.jpg");
-        background-size: auto $section-1-height-sm + 0px;
-        background-position: calc(-1250px + 12.5vw * 7) 0px;
+        background-image: url("/assets/img/dogs/4-ps.jpg");
+        background-size: auto $section-1-height-img + 100px;
+        background-position: calc(-3000px + 12.5vw * 7) 0px;
       }
       @include px(360) {
-        max-height: $section-1-height-sm;
-        background-image: url("/assets/img/dogs/4-ps-sh.jpg");
-        background-size: auto $section-1-height-sm + 0px;
-        background-position: calc(-1250px + 12.5vw * 7) 0px;
+        background-image: url("/assets/img/dogs/4-ps.jpg");
+        background-size: auto $section-1-height-img + 0px;
+        background-position: calc(-0px + 12.5vw * 7) 0px;
       }
     }
   }
