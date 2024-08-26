@@ -34,7 +34,7 @@ $themes: (
 }
 @mixin setColors($themes) {
     @each $theme, $theme-map in $themes {
-        &.#{$theme} {
+        .#{$theme} & {
             @include setThemeColors($theme-map);
         }
     }

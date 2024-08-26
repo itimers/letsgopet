@@ -1466,5 +1466,5 @@ export const useSlidesStore = defineStore('slides', {
             }));
         }, */
     },
-    persist: true,
+    /* persist: true, */
 });

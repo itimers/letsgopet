@@ -765,8 +765,8 @@ $pag-maxw: 26px;
 .slider-options {
   position: relative;
   height: calc(#{$base-width} - #{$decrement});
-  @include flex-custom(flex-end, center);
   margin-left: 10px;
+  @include flex-custom(flex-end, center);
 }
 .slider-cloud-modal {
   @include cloud-modal(150px);
@@ -791,14 +791,14 @@ $pag-maxw: 26px;
   fill: clr(toolsfillactive);
 }
 
-.slider-wrapper {
+/*.slider-wrapper {
 }
 .play-btn {
 }
 .pause-btn {
 }
 .slider-pagination {
-}
+}*/
 .slider-progress {
   position: absolute;
   z-index: 2;
@@ -854,6 +854,6 @@ $pag-maxw: 26px;
     }
   }
 }
-.card-progress {
-}
+/*.card-progress {
+}*/
 </style>

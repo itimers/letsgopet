@@ -541,8 +541,8 @@ onBeforeUnmount(() => {
 <style lang="scss">
 .sections {
   max-width: 2160px;
-  @include flex-full(flex-start, flex-start, column);
   gap: 0px;
+  @include flex-full(flex-start, flex-start, column);
   @include sections(
     /* Width */ 100%,
     /* Padding */ 0px,
@@ -585,8 +585,8 @@ $section-1-height-boxs: 500px;
     z-index: 2;
     width: 75%;
     height: 100%;
-    @include flex-full(center, flex-start, column);
     text-align: left;
+    @include flex-full(center, flex-start, column);
     @include px(1024) {
       width: 90%;
       text-align: center;
@@ -619,6 +619,11 @@ $section-1-height-boxs: 500px;
     }
     .link-box {
       position: relative;
+      margin-top: 20px;
+      margin-left: 15px;
+      gap: 20px;
+      color: clr(font-primary-light);
+      @include flex-center();
       @include px(1024) {
         flex-direction: column-reverse;
         justify-content: center;
@@ -628,11 +633,6 @@ $section-1-height-boxs: 500px;
         margin-inline: auto;
         gap: 3px;
       }
-      @include flex-center();
-      margin-top: 20px;
-      margin-left: 15px;
-      gap: 20px;
-      color: clr(font-primary-light);
       a {
         padding: 5px 15px;
         background: clr(primary);
@@ -651,7 +651,7 @@ $section-1-height-boxs: 500px;
     }
 
 
-    $touch-top: 20px;
+    /*$touch-top: 20px;
     $touch-margin-top: 20px;
     $touch-right: 25px;
     $right0ffset: 10px;
@@ -664,7 +664,7 @@ $section-1-height-boxs: 500px;
     $moveright: 70%;
     $moveup: -80%;
     $touch-transform: translate($moveright, $moveup) rotate(0deg);
-    $touch-animation: touch 2s infinite;
+    $touch-animation: touch 2s infinite;*/
     @mixin touchStay() {
       $moveright: 80%;
       $moveup: -50%;
@@ -745,8 +745,8 @@ $section-1-height-boxs: 500px;
     right: 0;
     width: 100%;
     height: $section-1-height-sm;
-    @include flex-full(flex-end, flex-end, row);
     transition: all ease 0.1s;
+    @include flex-full(flex-end, flex-end, row);
     @include px(1024) {
       height: $section-1-height-sm;
     }
@@ -892,11 +892,11 @@ $section-1-height-boxs: 500px;
           }
           span {
             font-family: "Passion One", sans-serif;
-            @include flex-center();
             padding: 5px 20px;
             font-weight: 500;
             color: clr(font-primary-light);
             font-size: clamp(100%, 30% + 1.1vw, 120%);
+            @include flex-center();
           }
           ul {
             padding: 20px;
@@ -906,7 +906,7 @@ $section-1-height-boxs: 500px;
             }
           }
         }
-        .box1 {
+        /*.box1 {
           .box-1 {
           }
           .box-2 {
@@ -917,7 +917,7 @@ $section-1-height-boxs: 500px;
           }
           .box-4 {
           }
-        }
+        }*/
       }
     }
   }

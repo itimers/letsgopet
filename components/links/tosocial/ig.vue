@@ -27,15 +27,15 @@ onMounted(() => {
 </script>
 <style lang="scss" scoped>
 a {
-    @include flex-center();
-    gap: 10px;
+  gap: 10px;
+  @include flex-center();
     svg {
         fill: white;
         height: 25px;
         width: 25px;
     }
-    p {
+    /*p {
 
-    }
+    }*/
 }
 </style>

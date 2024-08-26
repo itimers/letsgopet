@@ -90,14 +90,14 @@ $max-width: 40px;
       tglin: $font2dark,
     ),
   );
-  @include setColors($toggleButton);
   $width: 35px;
   $height: 20px;
   $s-height: 16px;
   position: relative;
   width: 100%;
-  @include flex-custom(flex-start, flex-start);
   height: $height;
+  @include flex-custom(flex-start, flex-start);
+  @include setColors($toggleButton);
 
   .span {
     width: $width;
@@ -171,7 +171,6 @@ $max-width: 40px;
     width: 100%;
     line-height: $height - 5px;
     p {
-      @include flex-center();
       position: absolute;
       top: 50%;
       left: 0;
@@ -179,6 +178,7 @@ $max-width: 40px;
       white-space: nowrap;
       color: clr(tglin);
       transition: all ease 0.2s;
+      @include flex-center();
       &.one {
         transform: translate(-100%, -50%);
         opacity: 1;
@@ -247,10 +247,10 @@ $max-width: 40px;
         text-align: left;
         font-size: $f-size2;
         padding-right: 0px;
-        @include flex-custom(flex-start, center);
         white-space: wrap;
         color: clr(tglin);
         transform: translateX(0%);
+        @include flex-custom(flex-start, center);
 
         &.one {
           transform: translateX(0%);

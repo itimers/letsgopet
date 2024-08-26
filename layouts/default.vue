@@ -299,9 +299,9 @@ router.beforeEach((to, from, next) => {
   overflow: hidden;
   background: clr(app);
   opacity: 1;
-  @include flex-full(flex-start, flex-start, column);
   transition: opacity ease 0.1s;
   transition-delay: 0.1s;
+  @include flex-full(flex-start, flex-start, column);
   &.active {
     opacity: 0;
   }
@@ -368,6 +368,7 @@ main {
 
   .to-bottom {
     cursor: pointer;
+    transform: rotate(180deg);
 
     span {
       svg {
@@ -375,7 +376,6 @@ main {
       }
     }
 
-    transform: rotate(180deg);
   }
 
   .to-top {

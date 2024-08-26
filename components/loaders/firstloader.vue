@@ -52,7 +52,6 @@ $laoder: (
 
 .loader {
   transform: all ease 0.3s;
-
   position: fixed;
   z-index: -1;
   width: 100%;
@@ -61,11 +60,8 @@ $laoder: (
   justify-content: center;
   align-items: center;
   opacity: 0;
-  
-  & {
-    @include fadeInUpBig(0.3s, ease, none);
-    @include setColors($laoder);
-  }
+  @include fadeInUpBig(0.3s, ease, none);
+  @include setColors($laoder);
 }
 article {
   width: $loader-size;

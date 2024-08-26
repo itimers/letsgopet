@@ -540,16 +540,16 @@ $cookie: (
   min-width: 80%;
   padding: 20px calc(10% - 8vw); // Postavite početni padding
   margin-inline: auto;
-  @include flex-full(flex-start, flex-start, row);
   justify-items: center;
   gap: 30px;
   transition: padding ease 0.2s; // Dodajte prijelaz na padding
+  @include flex-full(flex-start, flex-start, row);
 }
 .toggle-btn {
   @include toggleButton();
 }
-.marketing-cookies {
-}
+/*.marketing-cookies {
+}*/
 .marketing-cookies,
 .performance-cookies, .all-cookies {
   position: relative;
@@ -577,9 +577,9 @@ $cookie: (
 .accept-decline {
   position: relative;
   width: 100%;
-  @include flex-full(flex-start, flex-start, column);
   padding: 10px 0px 20px 0px;
   gap: 10px;
+  @include flex-full(flex-start, flex-start, column);
 }
 .cookie.active {
   bottom: 0;

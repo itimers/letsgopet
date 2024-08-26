@@ -90,12 +90,12 @@ const updateZindex = () => {
   max-width: $max-width;
   max-height: $max-width;
   min-height: $min-width;
-  @include flex-center();
   vertical-align: middle;
   background-repeat: no-repeat;
   background-position: center;
   display: none;
   transition: fill ease 0.3s;
+  @include flex-center();
   @include px(1024) {
     display: block;
   }
@@ -161,8 +161,8 @@ const updateZindex = () => {
     height: calc(#{$base-width} - #{$decrement});
     max-height: $max-width;
     min-height: $min-width;
-    @include flex-custom(flex-end, center);
     gap: 15px;
+    @include flex-custom(flex-end, center);
     svg {
       height: calc(#{$base-width} - #{$decrement});
       min-width: $min-width;
@@ -194,10 +194,10 @@ const updateZindex = () => {
 }
 
 .bottom-side {
-  @include flex-center;
   padding: 10px 10px;
   gap: 15px;
   background: rgba($color: #000000, $alpha: 0.2);
+  @include flex-center;
   a {
     min-width: $min-width;
     max-width: $max-width;

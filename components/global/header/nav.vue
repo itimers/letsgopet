@@ -51,13 +51,13 @@ $header: (
 );
 
 header {
-  @include setColors($header);
   position: relative;
   z-index: 7000;
   //background: clr(headerbg);
   top: 0;
   width: 100%;
   transition: all ease .3s;
+  @include setColors($header);
   &.scrolled {
     position: sticky;
     background: clr(headerbg);
@@ -81,10 +81,10 @@ header {
 }
 .nav-wrapper {
   position: relative;
-  @include flex-custom(space-between, center);
   width: 100%;
   min-width: 50%;
   height: $nav-height;
+  @include flex-custom(space-between, center);
 }
 .logo {
   font-size: clamp(170%, 50% + 2.6vw, 210%);
@@ -132,18 +132,18 @@ button {
   }
 }
 .up-left {
-  @include flex-custom(flex-start, center);
   gap: 5px;
+  @include flex-custom(flex-start, center);
   a {
     &.fb,
     &.ig,
     &.yt {
       fill: clr(upsvg);
       &> * {
-        @include flex-center();
         width: calc(20px + $up-increment - $up-decrement);
         min-width: $up-minw;
         max-width: $up-maxw;
+        @include flex-center();
       }
     }
   }

@@ -1,16 +1,19 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
   pages: true,
+
   i18n: {
     vueI18n: './i18n.config.ts'
   },
+
   ssr: true,
   components: true,
+
   typescript: {
     shim: false,
   },
+
   app: {
     pageTransition: { name: 'page', mode: 'out-in' },
     head: {
@@ -64,12 +67,12 @@ export default defineNuxtConfig({
       ],*/
     }
   },
-  
+
   modules: [
-    //'@pinia-plugin-persistedstate/nuxt',
     '@pinia/nuxt',
     '@nuxtjs/i18n'
   ],
+
   vite: {
     css: {
       preprocessorOptions: {
@@ -79,4 +82,6 @@ export default defineNuxtConfig({
       }
     }
   },
+
+  compatibilityDate: '2024-08-26',
 })
