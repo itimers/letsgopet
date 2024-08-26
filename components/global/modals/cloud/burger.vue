@@ -2,19 +2,46 @@
   <div
     class="burger"
     :class="{
-      active: page.states.find(
-        (el) => el.btn === 'burger' && el.activemenu
-      ),
+      active: page.states.find((el) => el.btn === 'burger' && el.activemenu),
     }"
   >
-    <svg
+    <svg class="burger-btn"
       @click.stop="page.toggleElementVisibility('burger')"
-      class="burger-btn"
+      id="Layer_1"
+      data-name="Layer 1"
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 35 35"
+      version="1.1"
+      viewBox="0 0 44 41.56"
     >
-      <path
-        d="M34.2 5.6H.8c-.2 0-.4-.2-.4-.4V.8C.4.6.6.4.8.4h33.5c.2 0 .4.2.4.4v4.5c-.1.2-.2.3-.5.3zM34.2 20.1H.8c-.2 0-.4-.2-.4-.4v-4.5c0-.2.2-.4.4-.4h33.5c.2 0 .4.2.4.4v4.5c-.1.3-.2.4-.5.4zM34.2 34.6H.8c-.2 0-.4-.2-.4-.4v-4.5c0-.2.2-.4.4-.4h33.5c.2 0 .4.2.4.4v4.5c-.1.2-.2.4-.5.4z"
+      <rect
+        class="cls-1"
+        id="mid"
+        x="1.04"
+        y="18.5"
+        width="41.96"
+        height="5"
+        rx="2.5"
+        ry="2.5"
+      />
+      <rect
+        class="cls-1"
+        id="top"
+        x="1.02"
+        y=".78"
+        width="41.96"
+        height="4.35"
+        rx="2.17"
+        ry="2.17"
+      />
+      <rect
+      id="bottom"
+        class="cls-1"
+        x="1.02"
+        y="36.43"
+        width="41.96"
+        height="4.35"
+        rx="2.17"
+        ry="2.17"
       />
     </svg>
 
@@ -24,8 +51,7 @@
       v-if="page.states.find((el) => el.btn === 'burger' && el.activebtn)"
       :style="[
         {
-          zIndex: page.states.find((el) => el.menu === 'burgerdiv')
-            ?.zIndex,
+          zIndex: page.states.find((el) => el.menu === 'burgerdiv')?.zIndex,
         },
       ]"
       :class="{
@@ -52,7 +78,7 @@
           <div class="mid-links">
             <LinksClassicHome />
             <LinksClassicAbout />
-            <LinksClassicPricemenu/>            
+            <LinksClassicPricemenu />
             <LinksClassicContact />
           </div>
         </div>
@@ -82,22 +108,43 @@ const updateZindex = () => {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  margin-left: 10px;
+  margin-left: 0px;
 }
+
 .burger-btn {
   height: calc(#{$base-width} - #{$decrement});
   min-width: $min-width;
   max-width: $max-width;
   max-height: $max-width;
   min-height: $min-width;
-  vertical-align: middle;
-  background-repeat: no-repeat;
-  background-position: center;
   display: none;
+  transform: rotate(180deg);
   transition: fill ease 0.3s;
-  @include flex-center();
+  @include flex-full(space-between,flex-start,column);
   @include px(1024) {
     display: block;
+  }
+  #top,#mid,#bottom {
+    transition: all ease .3s;
+    @include flex-custom(flex-start,flex-start);
+  }
+  #top {
+    width: 70%;
+    transform: rotate(-180);
+    fill: clr(primary);
+  }
+  #mid {
+    width: 50%;
+    fill: clr(primary);
+  }
+  #bottom {
+    width: 80%;
+    fill: clr(primary);
+  }
+  &:hover {
+    #top,#mid,#bottom {
+      width: 100%;
+    }
   }
 }
 .burger-cloud-modal {

@@ -263,6 +263,7 @@ onBeforeUnmount(() => {
           :slot="sections[0].slotName"
           :id="`${sections[0].idtag}`"
         >
+          <IconsDefaultOrganic class="organic"/>
           <article>
             <h2>{{ $t("Let's Go Pet") }}</h2>
             <figure>
@@ -334,10 +335,9 @@ onBeforeUnmount(() => {
 
             <figure>
               <figcaption>
-                <p>{{ $t("Vip tekst") }}</p> 
+                <p>{{ $t("Vip tekst") }}</p>
               </figcaption>
             </figure>
-            
 
             <aside>
               <!-- <p>
@@ -405,7 +405,9 @@ onBeforeUnmount(() => {
                       <p>100 €</p>
                     </div>
                   </div>
-                  <span>Za štence do 6 meseci Bath & Dry - kupanje i sušenje</span>
+                  <span
+                    >Za štence do 6 meseci Bath & Dry - kupanje i sušenje</span
+                  >
                   <ul>
                     <li>Nail Trim - skraćivanje noktića</li>
                     <li>Ear Cleaning - Higijena ušiju Light Trimming</li>
@@ -574,6 +576,15 @@ $section-1-height-boxs: 500px;
   width: 100%;
   height: $section-1-height;
   overflow: hidden;
+  .organic {
+    position: absolute;
+    z-index: 2;
+    bottom: 40px;
+    right: 40px;
+    width: 100px;
+    height: 100px;
+    fill: white;
+  }
   @include flex-full(center, center, column);
   @include px(1024) {
     height: $section-1-height-sm;
@@ -659,7 +670,6 @@ $section-1-height-boxs: 500px;
       font-size: 70%;
       color: clr(primary-green);
     }
-
 
     /*$touch-top: 20px;
     $touch-margin-top: 20px;
