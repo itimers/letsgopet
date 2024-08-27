@@ -263,7 +263,9 @@ onBeforeUnmount(() => {
           :slot="sections[0].slotName"
           :id="`${sections[0].idtag}`"
         >
-          <IconsDefaultOrganic class="organic"/>
+        <div class="box-shadow-header" :class="{scrolled: page.isScrolled}"></div>
+
+          <IconsDefaultOrganic class="organic" />
           <article>
             <h2>{{ $t("Let's Go Pet") }}</h2>
             <figure>
@@ -275,14 +277,12 @@ onBeforeUnmount(() => {
             </figure>
             <div class="link-box">
               <div class="link-btn">
-                <LinksTosocialIg />
-                <p>{{ $t("Zakazivanje isključivo preko DM poruke") }}</p>
-              </div>
-              <div class="touch-container">
-                <IconsDefaultTouch class="touch" />
+                <LinksTosocialIg class="link-to" />
+                <p class="book">
+                  {{ $t("Zakazivanje isključivo preko DM poruke") }}
+                </p>
               </div>
             </div>
-            <p class="press-here">{{ $t("Klikni ovde") }}</p>
           </article>
           <div class="boxshadow"></div>
           <aside :class="{ scroll: page.isScrolled }">
@@ -568,14 +568,42 @@ section {
 }
 $section-1-height: 700px;
 $section-1-height-sm: 900px;
-$section-1-height-smm: 700px;
+$section-1-height-smm: 800px;
 $section-1-height-img: 800px;
 $section-1-height-boxs: 500px;
 .section-1 {
   position: relative;
+  z-index: 6999;
   width: 100%;
   height: $section-1-height;
   overflow: hidden;
+
+  @include flex-full(center, center, column);
+  @include px(1024) {
+    height: $section-1-height-sm;
+    @include flex-full(flex-start, center, column);
+  }
+  @include px(600) {
+    @include flex-full(center, center, column-reverse);
+    height: $section-1-height-smm;
+  }
+  .box-shadow-header {
+    position: absolute;
+    z-index: 3;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%,0%);
+    width: 100%;
+    box-shadow: 0px 0px 200px 150px rgba($color: #ffffff, $alpha: 1.0);
+    transition: box-shadow ease .3s;
+    transition-delay: .1s;
+    &.scrolled {
+      box-shadow: 0px 0px 0px 0px rgba($color: #ffffff, $alpha: 1.0);
+    }
+    @include px(1024) {
+      box-shadow: 0px 0px 0px 0px rgba($color: #ffffff, $alpha: 1.0);
+    }
+  }
   .organic {
     position: absolute;
     z-index: 2;
@@ -585,17 +613,9 @@ $section-1-height-boxs: 500px;
     height: 100px;
     fill: white;
   }
-  @include flex-full(center, center, column);
-  @include px(1024) {
-    height: $section-1-height-sm;
-    @include flex-full(flex-start, center, column);
-  }
-  @include px(600) {
-    height: $section-1-height-smm;
-  }
   article {
     position: relative;
-    z-index: 2;
+    z-index: 3;
     width: 75%;
     height: 100%;
     text-align: left;
@@ -603,8 +623,11 @@ $section-1-height-boxs: 500px;
     @include px(1024) {
       width: 90%;
       text-align: center;
-      padding-top: 50px;
+      padding-top: $nav-height + $upnav-height + 50px;
       @include flex-full(flex-start, center, column);
+    }
+    @include px(600) {
+      padding-top: 50px;
     }
     h2 {
       width: 100%;
@@ -614,19 +637,25 @@ $section-1-height-boxs: 500px;
       font-family: "Concert One", sans-serif;
       font-family: "Lilita One", sans-serif;
       font-family: "Passion One", sans-serif;
+      text-shadow: 3px 3px 4px #68482146;
     }
     figure {
       h3 {
         width: 100%;
         font-size: clamp(70%, 70% + 2.1vw, 250%);
         font-weight: 500;
-        color: clr(font-primary-green);
+        background: linear-gradient(215deg, #95d572, #5edbf8);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-size: 150% 150%;
+        text-shadow: 2px 2px 3px #7ce5ad5c;
       }
       figcaption {
         p {
           width: 100%;
           font-size: clamp(60%, 40% + 2.1vw, 160%);
           color: clr(font-primary-light);
+          text-shadow: 2px 2px 3px #68482146;
         }
       }
     }
@@ -640,7 +669,7 @@ $section-1-height-boxs: 500px;
         flex-direction: column-reverse;
         justify-content: center;
         align-items: center;
-        margin-top: 15px;
+        margin-top: 35px;
         margin-left: 0;
         margin-inline: auto;
         gap: 3px;
@@ -648,119 +677,234 @@ $section-1-height-boxs: 500px;
       .link-btn {
         gap: 15px;
         @include flex-center();
-        a {
+        @include px(1024) {
+          flex-direction: column;
+        }
+        .link-to {
+          position: relative;
           padding: 5px 15px;
-          background: clr(primary-green);
+
           font-size: clamp(70%, 50% + 1.1vw, 110%);
           border-radius: 33px;
           color: white;
-          margin-left: 10px;
+          margin-left: 0px;
+          gap: 10px;
+          box-shadow: 0 0 0 0 #7ccdff00;
+          transform: scale(1);
+
+          background: linear-gradient(215deg, #95d572, #5edbf8);
+          background-size: 200% 200%;
+          -webkit-animation: link-to-bg-anime 8s ease infinite,
+            pulsating 2s infinite;
+          -moz-animation: link-to-bg-anime 8s ease infinite,
+            pulsating 2s infinite;
+          -o-animation: link-to-bg-anime 8s ease infinite, pulsating 2s infinite;
+          animation: link-to-bg-anime 8s ease infinite, pulsating 2s infinite;
+          animation: link-to-bg-anime 8s ease infinite, pulsating 2s infinite;
+          @include flex-center();
+
+          @include px(1024) {
+            font-size: clamp(130%, 100% + 1.5vw, 250%);
+            border-radius: 50px;
+            padding: 10px 20px;
+            gap: 15px;
+          }
+
+          .ig-icon {
+            fill: white;
+            height: 25px;
+            width: 25px;
+            @include px(1024) {
+              height: 32px;
+              width: 32px;
+            }
+          }
+
+          .dm-icon {
+            position: absolute;
+            top: -10px;
+            right: 0px;
+            width: 20px;
+            height: 20px;
+            background: #7dc4fd;
+            border-radius: 50%;
+            @include flex-center();
+            @include px(1024) {
+              width: 30px;
+              height: 30px;
+              top: -15px;
+            }
+            svg {
+              position: absolute;
+              fill: white;
+              height: 12px;
+              width: 12px;
+              top: 50%;
+              left: 50%;
+              transform: translate(-55%, -45%);
+              @include flex-center();
+              @include px(1024) {
+                height: 17px;
+                width: 17px;
+              }
+            }
+          }
+
           p {
             color: white;
             font-size: clamp(70%, 50% + 1.1vw, 110%);
           }
+
+          .touch-container {
+            position: absolute;
+            bottom: 50%;
+            left: unset;
+            right: 0%;
+            transform: translate(30%, 50%);
+            @include px(1024) {
+              transform: translate(30%, 60%);
+            }
+            &.left {
+              right: unset;
+              left: 0;
+              transform: translate(-200%, 60%);
+              @include px(1024) {
+                left: unset;
+                right: 0;
+                transform: translate(30%, 70%);
+              }
+              .touch-arrow-click {
+                #touch-click-left {
+                  opacity: 0;
+                  visibility: hidden;
+                  display: none;
+                  @include px(1024) {
+                    opacity: 0;
+                    visibility: hidden;
+                    display: none;
+                  }
+                }
+                #touch-click-right {
+                  opacity: 0;
+                  visibility: hidden;
+                  display: none;
+                  @include px(1024) {
+                    opacity: 1;
+                    visibility: visible;
+                    display: block;
+                  }
+                }
+                #mouse-click {
+                  transform: rotate(0deg);
+                }
+              }
+            }
+            .touch-arrow-click {
+              fill: clr(primary);
+              transform: translate(-50%, 60%);
+              @include touchStay();
+
+              #touch-click-left {
+                width: 50px;
+                height: 50px;
+              }
+              #touch-click-right {
+                width: 50px;
+                height: 50px;
+              }
+              #mouse-click {
+                width: 35px;
+                height: 35px;
+                transform: rotate(290deg);
+                fill: clr(primary);
+              }
+
+              #touch-click-left {
+                opacity: 0;
+                visibility: hidden;
+                display: none;
+                @include px(1024) {
+                  opacity: 0;
+                  visibility: hidden;
+                  display: none;
+                }
+              }
+              #touch-click-right {
+                opacity: 0;
+                visibility: hidden;
+                display: none;
+                @include px(1024) {
+                  opacity: 1;
+                  visibility: visible;
+                  display: block;
+                }
+              }
+              #mouse-click {
+                opacity: 1;
+                visibility: visible;
+                display: block;
+                @include px(1024) {
+                  opacity: 0;
+                  visibility: hidden;
+                  display: none;
+                }
+              }
+            }
+          }
+
+          .press-here {
+            position: absolute;
+            bottom: 0%;
+            left: 50%;
+            transform: translate(-50%, 100%);
+            font-size: 70%;
+            white-space: nowrap;
+            background: linear-gradient(215deg, #95d572, #5edbf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 120% 120%;
+            -webkit-animation: link-to-bg-anime 8s ease infinite;
+            -moz-animation: link-to-bg-anime 8s ease infinite;
+            -o-animation: link-to-bg-anime 8s ease infinite;
+            animation: link-to-bg-anime 8s ease infinite;
+            animation: link-to-bg-anime 8s ease infinite;
+            
+            @include px(1024) {
+              font-size: 45%;
+            }
+          }
         }
-        p {
-          color: clr(font-primary);
+        .book {
+          @include px(1024) {
+            margin-top: 10px;
+          }
         }
       }
-    }
-    .press-here {
-      margin-left: 79px;
-      font-size: 70%;
-      color: clr(primary-green);
-    }
-
-    /*$touch-top: 20px;
-    $touch-margin-top: 20px;
-    $touch-right: 25px;
-    $right0ffset: 10px;
-    $touch-width: 150px;
-    $touch-height: 150px;
-    $touch-min-width: 90px;
-    $touch-min-height: 90px;
-    $touch-zindex: 16;
-    $touch-fill: $primary;
-    $moveright: 70%;
-    $moveup: -80%;
-    $touch-transform: translate($moveright, $moveup) rotate(0deg);
-    $touch-animation: touch 2s infinite;*/
-    @mixin touchStay() {
-      $moveright: 80%;
-      $moveup: -50%;
-      $right0ffset: 70px;
-      $touch-transform: translate($moveright, $moveup) rotate(0deg);
-      $touch-animation: touch2 2s infinite;
-
-      right: 45px;
-      width: 60px;
-      height: 60px;
-      min-width: 30px;
-      min-height: 30px;
-      transform: $touch-transform;
-      animation: $touch-animation;
-
-      @keyframes touch2 {
-        0% {
-          top: 0px;
-          right: $right0ffset + 35px;
-          margin-top: 30px;
-          transform: translate($moveright, $moveup) scale(0.9) rotate(-20deg);
-        }
-
-        50% {
-          top: 0px;
-          right: $right0ffset + 15px;
-          transform: translate($moveright, $moveup) scale(1.07) rotate(0deg);
-          margin-top: 20px;
-        }
-
-        80% {
-          top: 25px;
-          right: $right0ffset + 30px;
-          transform: translate($moveright, $moveup) scale(1.25) rotate(0deg);
-          margin-top: 15px;
-        }
-
-        100% {
-          top: 0px;
-          right: $right0ffset + 35px;
-          transform: translate($moveright, $moveup) scale(0.9) rotate(-20deg);
-          margin-top: 30px;
-        }
-      }
-    }
-    .touch-container {
-      position: absolute;
-      bottom: 50%;
-      left: 0%;
-      transform: translate(-160%, 100%);
-    }
-    .touch {
-      fill: clr(primary);
-      @include touchStay();
     }
   }
+
   .boxshadow {
     position: absolute;
-    z-index: 1;
+    z-index: 2;
     top: unset;
     left: 0;
     box-shadow: 0px 0px 500px 600px rgba($color: #fff, $alpha: 1);
     @include px(1024) {
       top: 0;
       left: unset;
-      box-shadow: 0px -1400px 500px 1200px rgba($color: #fff, $alpha: 1);
+      box-shadow: 0px -1200px 500px 1200px rgba($color: #fff, $alpha: 1);
       height: $section-1-height-boxs;
     }
     @include px(600) {
-      height: $section-1-height-boxs + 100;
-      box-shadow: 0px -1400px 400px 1100px rgba($color: #fff, $alpha: 1);
+      display: none;
+      /*height: $section-1-height-boxs + 400;
+      box-shadow: 0px -1400px 700px 1000px rgba($color: #fff, $alpha: 1);*/
     }
   }
   $img-height: 500px;
   aside {
     position: absolute;
+    z-index: 1;
     top: 0;
     right: 0;
     width: 100%;
@@ -771,7 +915,19 @@ $section-1-height-boxs: 500px;
       height: $section-1-height-sm;
     }
     @include px(600) {
-      height: $section-1-height-smm;
+      //height: $section-1-height-smm;
+      position: relative;
+      z-index: 2;
+      top: unset;
+      left: unset;
+      transform: translate(0%,0%);
+      width: 200px;
+      height: 200px;
+      min-width: 700px;
+      min-height: 500px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-top: -$nav-height - $upnav-height - 50px;
     }
     .img-dog {
       width: 100%;
@@ -783,24 +939,29 @@ $section-1-height-boxs: 500px;
       max-width: 1920px;
       max-height: 1024px;
       background-attachment: fixed;
-      background-position: calc(-2700px + 12.5vw * 7) 0px;
+      background-position: calc(-2700px + 12.5vw * 7) -50px;
       background-repeat: no-repeat;
       background-size: auto $section-1-height-img + 0px;
       background-image: url("/assets/img/dogs/4-ps.jpg");
       @include px(1024) {
-        background-image: url("/assets/img/dogs/4-ps.jpg");
-        background-size: auto $section-1-height-img + 200px;
-        background-position: calc(-0px + 12.5vw * 7) 0px;
+        background-image: url("/assets/img/dogs/4-wite.jpg");
+        background-size: auto $section-1-height-img - 100px;
+        background-position: calc(-1690px + 13.5vw * 7) 200px;
+        background-attachment: unset;
       }
       @include px(600) {
-        background-image: url("/assets/img/dogs/4-ps.jpg");
-        background-size: auto $section-1-height-img + 100px;
-        background-position: calc(-3000px + 12.5vw * 7) 0px;
+        background-image: url("/assets/img/dogs/1.jpg");
+        background-size: auto $section-1-height-img - 600px;
+        background-size: cover;
+        background-position: -00px 60px;
+        background-attachment: unset;
       }
       @include px(360) {
-        background-image: url("/assets/img/dogs/4-ps.jpg");
-        background-size: auto $section-1-height-img + 0px;
-        background-position: calc(-0px + 12.5vw * 7) 0px;
+        ackground-image: url("/assets/img/dogs/4.jpg");
+        background-size: auto $section-1-height-img - 600px;
+        background-size: cover;
+        background-position: -600px 60px;
+        background-attachment: unset;
       }
     }
   }

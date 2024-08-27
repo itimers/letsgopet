@@ -163,6 +163,8 @@ onUnmounted(() => {
     document.removeEventListener("click", page.handleClickOutside);
   }
 });
+
+
 router.afterEach(() => {
   setTimeout(() => {
     isPageScrollable();
@@ -250,7 +252,6 @@ router.beforeEach((to, from, next) => {
         </div>
         <IconsControlsTotop @click.stop="page.scrollTop" />
         <IconsDefaultCallus />
-
         <HeaderNav :class="{ scrolled: page.isScrolled }" />
         <main
           ref="isScrollable"
@@ -306,13 +307,17 @@ router.beforeEach((to, from, next) => {
     opacity: 0;
   }
 }
+
 main {
   position: relative;
+  z-index: 6998;
   width: 100%;
   height: 100%;
   overflow: hidden auto;
   scrollbar-gutter: stable;
-
+  margin-top: -$nav-height - $upnav-height;
+  transition: margin-top ease .3s;
+  transition-delay: .1s;
   &.scrolled {
     margin-top: 0;
   }

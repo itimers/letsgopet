@@ -4,8 +4,13 @@
     v-if="isClient"
     target="_blank"
     :aria-label="$t('igprofile')"
-    ><IconsSocialsInstagram /><p>{{ $t("Zakazite ig") }}</p><IconsDefaultDm/></NuxtLink
-  >
+    ><IconsSocialsInstagram class="ig-icon" /><p>{{ $t("Zakazite ig") }}</p><div class="dm-icon"><IconsDefaultDm/></div>
+    <p class="press-here">{{ $t("Klikni ovde") }}</p>
+
+    <div class="touch-container left">
+      <IconsDefaultTouch class="touch" />
+    </div>
+    </NuxtLink>
 </template>
 <script lang="ts" setup>
 const page = usePagesStore();
@@ -25,17 +30,3 @@ onMounted(() => {
   isClient.value = true;
 });
 </script>
-<style lang="scss" scoped>
-a {
-  gap: 10px;
-  @include flex-center();
-    svg {
-        fill: white;
-        height: 25px;
-        width: 25px;
-    }
-    /*p {
-
-    }*/
-}
-</style>
