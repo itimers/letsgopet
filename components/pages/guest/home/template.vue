@@ -573,19 +573,25 @@ $section-1-height-img: 800px;
 $section-1-height-boxs: 500px;
 .section-1 {
   position: relative;
-  z-index: 6999;
-  width: 100%;
-  height: $section-1-height;
-  overflow: hidden;
-
-  @include flex-full(center, center, column);
+  //width: calc(80% + 5vw);
+  //width: 1024px;
+  height: 100%;
+  min-height: 700px;
+  //padding: 180px 10px 50px 10px;
+  margin-inline: auto;
+  padding: 0 0px 0px 0px 0px;
+  gap: 20px;
+  @include flex-full(space-between, center, row);
   @include px(1024) {
-    height: $section-1-height-sm;
+    padding: 0px 10px;
+    min-height: 850px;
+    //height: $section-1-height-sm;
     @include flex-full(flex-start, center, column);
   }
   @include px(600) {
+    min-height: 100%;
     @include flex-full(center, center, column-reverse);
-    height: $section-1-height-smm;
+    //height: $section-1-height-smm;
   }
   .box-shadow-header {
     position: absolute;
@@ -603,6 +609,9 @@ $section-1-height-boxs: 500px;
     @include px(1024) {
       box-shadow: 0px 0px 0px 0px rgba($color: #ffffff, $alpha: 1.0);
     }
+    @include px(600) {
+      box-shadow: 0px 0px 80px 105px rgba($color: #ffffff, $alpha: 1.0);
+    }
   }
   .organic {
     position: absolute;
@@ -616,18 +625,22 @@ $section-1-height-boxs: 500px;
   article {
     position: relative;
     z-index: 3;
-    width: 75%;
-    height: 100%;
     text-align: left;
+    width: calc(47% + 400px);
+    height: 100%;
+    margin-inline: auto;
     @include flex-full(center, flex-start, column);
     @include px(1024) {
-      width: 90%;
+      width: 100%;
       text-align: center;
-      padding-top: $nav-height + $upnav-height + 50px;
+      padding: $nav-height + $upnav-height + 50px 0 0 0;
       @include flex-full(flex-start, center, column);
     }
     @include px(600) {
       padding-top: 50px;
+    }
+    @include px(420) {
+      padding-top: 10px;
     }
     h2 {
       width: 100%;
@@ -644,7 +657,7 @@ $section-1-height-boxs: 500px;
         width: 100%;
         font-size: clamp(70%, 70% + 2.1vw, 250%);
         font-weight: 500;
-        background: linear-gradient(215deg, #95d572, #5edbf8);
+        background: linear-gradient(215deg, #6ca14f, #4ac1dc);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-size: 150% 150%;
@@ -655,7 +668,7 @@ $section-1-height-boxs: 500px;
           width: 100%;
           font-size: clamp(60%, 40% + 2.1vw, 160%);
           color: clr(font-primary-light);
-          text-shadow: 2px 2px 3px #68482146;
+          text-shadow: 2px 2px 3px #68482123;
         }
       }
     }
@@ -704,9 +717,9 @@ $section-1-height-boxs: 500px;
           @include flex-center();
 
           @include px(1024) {
-            font-size: clamp(130%, 100% + 1.5vw, 250%);
+            font-size: clamp(130%, 100% + 1.5vw, 230%);
             border-radius: 50px;
-            padding: 10px 20px;
+            padding: 6px 15px;
             gap: 15px;
           }
 
@@ -715,17 +728,17 @@ $section-1-height-boxs: 500px;
             height: 25px;
             width: 25px;
             @include px(1024) {
-              height: 32px;
-              width: 32px;
+              height: 30px;
+              width: 30px;
             }
           }
 
           .dm-icon {
             position: absolute;
             top: -10px;
-            right: 0px;
-            width: 20px;
-            height: 20px;
+            right: -5px;
+            width: 18px;
+            height: 18px;
             background: #7dc4fd;
             border-radius: 50%;
             @include flex-center();
@@ -872,11 +885,16 @@ $section-1-height-boxs: 500px;
             @include px(1024) {
               font-size: 45%;
             }
+            @include px(600) {
+              font-size: 55%;
+              display: none;
+            }
           }
         }
         .book {
           @include px(1024) {
-            margin-top: 10px;
+            margin-top: 0px;
+            font-size: clamp(70%, 50% + 1.1vw, 110%);
           }
         }
       }
@@ -901,16 +919,16 @@ $section-1-height-boxs: 500px;
       box-shadow: 0px -1400px 700px 1000px rgba($color: #fff, $alpha: 1);*/
     }
   }
-  $img-height: 500px;
+
+  /*$img-height: 500px;
   aside {
-    position: absolute;
-    z-index: 1;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: $section-1-height-sm;
+    position: relative;
+    z-index: 99999;
+    width: 300px;
+    height: 329px;
+    transform: scale(1.4);
     transition: all ease 0.1s;
-    @include flex-full(flex-end, flex-end, row);
+    @include flex-full(center, center, row);
     @include px(1024) {
       height: $section-1-height-sm;
     }
@@ -930,19 +948,20 @@ $section-1-height-boxs: 500px;
       margin-top: -$nav-height - $upnav-height - 50px;
     }
     .img-dog {
+      position: relative;
       width: 100%;
       height: 100%;
       top: 0;
       right: 0;
-      width: 100%;
-      height: 100%;
       max-width: 1920px;
       max-height: 1024px;
+      background-image: url("/assets/img/dogs/1-ps.png");
+      background-repeat: no-repeat;
+     /~ 
       background-attachment: fixed;
       background-position: calc(-2700px + 12.5vw * 7) -50px;
       background-repeat: no-repeat;
-      background-size: auto $section-1-height-img + 0px;
-      background-image: url("/assets/img/dogs/4-ps.jpg");
+      background-size: auto $section-1-height-img + 0px;~/
       @include px(1024) {
         background-image: url("/assets/img/dogs/4-wite.jpg");
         background-size: auto $section-1-height-img - 100px;
@@ -957,10 +976,80 @@ $section-1-height-boxs: 500px;
         background-attachment: unset;
       }
       @include px(360) {
-        ackground-image: url("/assets/img/dogs/4.jpg");
+        background-image: url("/assets/img/dogs/1.jpg");
         background-size: auto $section-1-height-img - 600px;
         background-size: cover;
-        background-position: -600px 60px;
+        background-position: -00px 60px;
+        background-attachment: unset;
+      }
+    }
+  }*/
+  $img-height: 500px;
+  aside {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    transition: all ease 0.1s;
+    @include flex-full(flex-start, flex-start, row);
+    @include px(1024) {
+      //height: $section-1-height-sm;
+    }
+    @include px(600) {
+      //height: $section-1-height-smm;
+      position: relative;
+      z-index: 2;
+      top: unset;
+      left: unset;
+      transform: translate(0%,0%);
+      width: 600px;
+      height: 509px;
+      min-width: 700px;
+      border-bottom-right-radius: 50%;
+      border-bottom-left-radius: 50%;
+      overflow: hidden;
+      margin-top: -$nav-height - $upnav-height - 50px;
+    }
+    .img-dog {
+      width: 100%;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      max-height: 100%;
+      background-attachment: fixed;
+      background-position: right 0;
+      background-repeat: no-repeat;
+      background-size: auto 80%;
+      background-position-x: calc(-2050px + 15vw * 5);
+      background-image: url("/assets/img/dogs/4-ps.jpg");
+      
+      @include px(1450) {
+        background-image: url("/assets/img/dogs/4-ps.jpg");
+        background-position: 82% 0;
+        background-size: auto 100%;
+        background-attachment: unset;
+      }
+      @include px(1024) {
+        background-image: url("/assets/img/dogs/4-wite.jpg");
+        background-size: auto;
+        background-position: calc(-1450px + 15vw * 5) 200px;
+        background-attachment: unset;
+        max-height: 850px;
+      }
+     
+      @include px(600) {
+        background-image: url("/assets/img/dogs/4-short.png");
+        background-size: auto;
+        background-position: 50px 100px;
+        background-attachment: unset;
+      }
+      @include px(360) {
+        background-image: url("/assets/img/dogs/4-short.png");
+        background-size: auto;
+        background-position: 35px 100px;
         background-attachment: unset;
       }
     }

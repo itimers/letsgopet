@@ -20,17 +20,17 @@
 }
 @keyframes pulsating {
   0% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 #95d572aa;
+    transform: scale(0.92);
+    box-shadow: 0 0 0 0 #5bd596a9;
   }
 
   70% {
     transform: scale(1);
-    box-shadow: 0 0 0 10px #95d57200;
+    box-shadow: 0 0 0 15px #95d57200;
   }
 
   100% {
-    transform: scale(0.95);
+    transform: scale(0.92);
     box-shadow: 0 0 0 0 #95d57200;
   }
 }

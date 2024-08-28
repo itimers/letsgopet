@@ -38,21 +38,23 @@ const page = usePagesStore();
 <style lang="scss">
 $header: (
   "light": (
+    headerbg: #ffffffec,
     upnaviconsfill: #9f6049,
-    upnaviconsfill600: #fff,
+    upnaviconsfill600: #9f6049,
     upnaviconsfillscrolled: #9f6049,
     upnaviconsfillscrolled600: #9f6049,
     logofill: #c17255,
-    logofill600: #fff,
+    logofill600: #c17255,
   ),
 
   "dark": (
+    headerbg: #fff,
     upnaviconsfill: #9f6049,
     upnaviconsfill600: #fff,
     upnaviconsfillscrolled: #9f6049,
     upnaviconsfillscrolled600: #9f6049,
     logofill: #c17255,
-    logofill600: #fff,
+    logofill600: #c17255,
   ),
 );
 
@@ -60,29 +62,29 @@ $theme: (
   "light": (
     toolsfill: #9f6049,
     toolsfillactive: #dc9176,
-    toolsfill600: #fff,
-    toolsfill600active: #fff,
+    toolsfill600: #9f6049,
+    toolsfill600active: #dc9176,
   ),
 
   "dark": (
     toolsfill: #9f6049,
-    toolsfillactive: #9f6049,
-    toolsfill600: #fff,
-    toolsfill600active: #fff,
+    toolsfillactive: #dc9176,
+    toolsfill600: #9f6049,
+    toolsfill600active: #dc9176,
   ),
 );
 $tools: (
   "light": (
     toolsfill: #9f6049,
     toolsfillactive: #dc9176,
-    toolsfill600: #fff,
+    toolsfill600: #9f6049,
     toolsfill600active: #fff,
   ),
 
   "dark": (
     toolsfill: #9f6049,
     toolsfillactive: #9f6049,
-    toolsfill600: #fff,
+    toolsfill600: #9f6049,
     toolsfill600active: #fff,
   ),
 );
@@ -106,6 +108,7 @@ header {
   width: 100%;
   box-shadow: 0px 0px 0px 0px #7c512741;
   background: none;
+  //background: clr(headerbg);
   transition: background ease 0.3s, box-shadow ease 0.1s;
   transition-delay: 0.1s, 0.1s;
   &.scrolled {
