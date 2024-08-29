@@ -1,21 +1,52 @@
 <template>
-    <NuxtLink :to="linkTo">{{ $t("Usluge") }}</NuxtLink>
-  </template>
-  <script lang="ts" setup>
-  const page = usePagesStore();
-  const linkTo = computed(() => {
-    switch (page.currentLanguage) {
-      case "en":
-        return "/en/services";
-      case "ru":
-        return "/ru/services";
-      case "de":
-        return "/de/services";
-      case "it":
-        return "/it/services";
-      default:
-        return "/usluge";
+  <NuxtLink
+    @click="
+      updateUrlWithSectionId(page.sectionIds[1]),
+      page.changeSection(2)
+    "
+    :disabled="page.isButtonDisabled(2)"
+    class="hover-link"
+  >
+  {{ $t("Usluge") }}
+  </NuxtLink>
+</template>
+<script lang="ts" setup>
+const page = usePagesStore();
+
+
+const observeOnScroll = computed(
+  () => page.isScrolled && page.currentScroll >= 250
+);
+function addHashToLocation(sectionId: string) {
+  if (window.location.hash !== `#${sectionId}`) {
+    history.pushState(
+      {},
+      "",
+      `${window.location.pathname}#${encodeURIComponent(sectionId)}`
+    );
+    //^console.log(`URL updated to section: ${sectionId}`);
+  }
+}
+function debounce<T extends any[]>(func: (...args: T) => void, delay: number) {
+  let timeoutId: ReturnType<typeof setTimeout> | null = null;
+  return function (...args: T) {
+    if (timeoutId !== null) {
+      clearTimeout(timeoutId);
     }
-  });
-  </script>
-  
+    timeoutId = setTimeout(() => {
+      func(...args);
+    }, delay);
+  };
+}
+const updateUrlWithSectionId = debounce(
+    (sectionId: string) => {
+      if (
+        window.location.hash !== `#${sectionId}` &&
+        observeOnScroll.value
+      ) {
+        addHashToLocation(sectionId);
+      }
+    },
+    200
+  );
+</script>

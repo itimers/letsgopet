@@ -7,7 +7,7 @@ const page = usePagesStore();
 const router = useRouter();
 const scrollProgress = ref(0);
 let scrollTimeout: string | number | NodeJS.Timeout | null | undefined = null;
-let mutationObserver: MutationObserver;
+let mutationObserver: MutationObserver | undefined;
 const isScrollable = ref<HTMLElement | null>(null);
 const currentTheme = computed(() => page.currentTheme);
 const is1024 = computed(() => page.widthofHtml >= 1024);
@@ -141,6 +141,7 @@ onMounted(() => {
     document.addEventListener("click", page.handleClickOutside, {
       passive: true,
     });
+    /* window.addEventListener('scroll-target-section', handleScroll); */
     window.addEventListener("resize", handleResize, { passive: true });
   }
   setTimeout(async () => {
@@ -155,12 +156,14 @@ onMounted(() => {
 
 });
 onUnmounted(() => {
+  
   if (mutationObserver) {
     mutationObserver.disconnect();
   }
   if (cookie.isCookieActive("listeners")) {
     window.removeEventListener("resize", handleResize);
     document.removeEventListener("click", page.handleClickOutside);
+    window.removeEventListener('scroll-target-section', handleScroll);
   }
 });
 
@@ -214,14 +217,14 @@ router.beforeEach((to, from, next) => {
               :key="index"
               @click="
                 updateUrlWithSectionId(page.sectionIds[index]),
-                  page.changeSection(index + 1)
+                page.changeSection(index + 1)
               "
               :class="{ active: page.activeSection === index + 1 }"
               :disabled="page.isButtonDisabled(index + 1)"
               class="hover-link"
               :aria-label="name"
             >
-              <div class="active-pag">{{ name }}</div>
+              <div class="active-pag">{{ name }} scrl</div>
             </NuxtLink>
             <span class="to-bottom" @click.stop="page.scrollBottom">
               <!-- <IconsControlsArrow/> -->
@@ -236,7 +239,7 @@ router.beforeEach((to, from, next) => {
               :key="index"
               @click="
                 updateUrlWithSectionId(page.sectionIds[index]),
-                  page.changeSection(index + 1)
+                page.changeSection(index + 1)
               "
               :class="{ active: page.currentSection === index + 1 }"
               :disabled="page.isButtonDisabled(index + 1)"
@@ -250,6 +253,11 @@ router.beforeEach((to, from, next) => {
             </span>
           </div>
         </div>
+        
+        
+        
+        
+        
         <IconsControlsTotop @click.stop="page.scrollTop" />
         <IconsDefaultCallus />
         <HeaderNav :class="{ scrolled: page.isScrolled }" />

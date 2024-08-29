@@ -190,7 +190,8 @@ onMounted(async () => {
       );
 
       stopWatchers.push(stopWatch);
-    }
+    } 
+    
   };
 
   watch(observeOnScroll, (newValue) => {

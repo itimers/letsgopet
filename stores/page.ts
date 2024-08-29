@@ -785,11 +785,28 @@ export const usePagesStore = defineStore('pages', {
     setSectionIds(id: string[]) {
       this.sectionIds = id;
     },
+    
+    
+    changeSectionDelay(newSection: number) {
+      setTimeout(() => {
+        this.currentSection = newSection;
+        this.toggleActiveSections();
+      }, 100);
+
+      setTimeout(() => {
+        this.scrollToTargetSection(newSection.toString());
+        setTimeout(() => {
+          this.scrollToTargetSection(newSection.toString());
+        }, 500);
+      }, 1200);
+
+     
+    },
+    
     changeSection(newSection: number) {
       this.currentSection = newSection;
-
       const activeAllSections = this.sectionCount === this.activeSectionsByPage[this.page].length;
-      this.toggleActiveSections(); // Aktiviraj sve neaktivne sekcije
+      this.toggleActiveSections();
       this.activeAllSections = activeAllSections;
 
       if (this.activeAllSections) {
@@ -797,43 +814,30 @@ export const usePagesStore = defineStore('pages', {
       } else {
         setTimeout(() => {
           this.scrollToTargetSection(newSection.toString());
-        }, 700);
+        }, 300);
       }
     },
-    changeSectionDelay(newSection: number) {
-      setTimeout(() => {
-        this.currentSection = newSection;
-        this.toggleActiveSections(); // Aktiviraj sve neaktivne sekcije
-      }, 500);
 
-      setTimeout(() => {
-        this.scrollToTargetSection(newSection.toString());
-        setTimeout(() => {
-          this.scrollToTargetSection(newSection.toString());
-        }, 1500);
-      }, 1500);
-    },
     scrollToTargetSection(targetId: string) {
-      if (this.isScrolling) return; // Sprečava novi klik dok je skrolovanje u toku
+      if (this.isScrolling) return;
 
-      //if (isClientSide()) {
+      this.isScrolling = true;
       const targetSection = document.querySelector(`[data-section-id="${targetId}"]`) as HTMLElement | null;
-      this.buttonsDisabled = true; // Opcionalno: Onemogućavamo dugmad ako je potrebno za UI
-      if (!this.buttonsDisabled) {
-        this.isScrolling = true; // Postavljamo zastavicu da je skrolovanje u toku
-      }
 
       if (targetSection) {
         targetSection.scrollIntoView({ behavior: "smooth" });
         this.setActiveSection(parseInt(targetId));
+
+        // Emitovanje događaja po završetku skrolovanja
+        const event = new CustomEvent('scroll-target-section');
+        window.dispatchEvent(event);
       }
 
       setTimeout(() => {
-        this.isScrolling = false; // Resetujemo zastavicu po završetku skrolovanja
-        this.buttonsDisabled = false; // Ponovo omogućavamo dugmad
-      }, 700); // Podesite ovo vreme prema trajanju skrolovanja
-      //}
+        this.isScrolling = false;
+      }, 1500);
     },
+    
     async scrollToTargetPrice(targetId: string) {
       if (this.isScrolling) return;
       const router = useRouter();
