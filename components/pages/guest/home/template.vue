@@ -26,9 +26,6 @@ const mapLink = ref(`${mapLinkParts.join("")}`);
 const igLink = ref(`${igLinkParts.join("")}`);
 const isClient = ref(false);
 
-
-
-
 const sections = [
   {
     id: 1,
@@ -453,7 +450,6 @@ onBeforeUnmount(() => {
                     <li>{{ $t("Kupanje") }}</li>
                     <li>{{ $t("Sušenje") }}</li>
                   </ul>
-                  
 
                   <div class="prices">
                     <div class="discount-img">
@@ -642,29 +638,29 @@ onBeforeUnmount(() => {
           :slot="sections[5].slotName"
           :id="`${sections[5].idtag}`"
         >
-        <article>
-          <div class="box-pic">
-            <div class="pic-box"></div>
+          <article>
+            <div class="box-pic">
+              <div class="pic-box"></div>
 
-            <div class="box-text">
-              <h2>{{ $t("O nama") }}</h2>
-              <p>
-                {{ $t("O nama tekst") }}
-              </p>
-            </div>
-          </div>
-
-          <aside>
-            <div class="link-box">
-              <div class="link-btn">
-                <LinksTosocialIg class="link-to" />
-                <p class="book">
-                  {{ $t("Zakazite uvek") }}
+              <div class="box-text">
+                <h2>{{ $t("O nama") }}</h2>
+                <p>
+                  {{ $t("O nama tekst") }}
                 </p>
               </div>
             </div>
-          </aside>
-        </article>
+
+            <aside>
+              <div class="link-box">
+                <div class="link-btn">
+                  <LinksTosocialIg class="link-to" />
+                  <p class="book">
+                    {{ $t("Zakazite uvek") }}
+                  </p>
+                </div>
+              </div>
+            </aside>
+          </article>
         </section>
 
         <section
@@ -688,17 +684,24 @@ onBeforeUnmount(() => {
               <figcaption>
                 <div class="igpic">
                   <div class="overlay">
-                    <NuxtLink :to="mapLink" v-if="isClient" target="_blank" ></NuxtLink>
+                    <NuxtLink
+                      :to="mapLink"
+                      v-if="isClient"
+                      target="_blank"
+                    ></NuxtLink>
                     <p>{{ $t("Klikni da odes na Instagram profil") }}</p>
                   </div>
-                  
                 </div>
                 <div class="mappic">
                   <div class="overlay">
-                    <NuxtLink :to="igLink" v-if="isClient" target="_blank" :aria-label="$t('igprofile')"></NuxtLink>
+                    <NuxtLink
+                      :to="igLink"
+                      v-if="isClient"
+                      target="_blank"
+                      :aria-label="$t('igprofile')"
+                    ></NuxtLink>
                     <p>{{ $t("Klikni da odes na Google Mape") }}</p>
                   </div>
-                  
                 </div>
               </figcaption>
             </figure>
@@ -725,25 +728,17 @@ onBeforeUnmount(() => {
 .sections {
   max-width: 2160px;
   gap: 0px;
-  @include flex-full(flex-start, flex-start, column);
   @include sections(
     /* Width */ 100%,
     /* Padding */ 0px,
     /* Margin */ 0px 0px 0px 0px
-  );
-  /*@include sections(
-    /~ Width ~/ 100%,
-    /~ Padding ~/ 0px calc((10px + 4vw) - 20px) 0px calc((10px + 4vw) - 20px),
-    /~ Margin ~/ 0px 0px 0px 0px
-  );*/
-  @include px(1024) {
-    /*width: 95%;*/
-  }
+    );
+    @include flex-full(flex-start, flex-start, column);
 }
 section {
-  @include allSections();
   color: clr(font);
   padding: 0px calc((10px + 4vw) - 20px) 0px calc((10px + 4vw) - 20px);
+  @include allSections();
 }
 $section-1-height: 700px;
 $section-1-height-sm: 900px;
@@ -764,13 +759,11 @@ $section-1-height-boxs: 500px;
   @include px(1024) {
     padding: 0px 10px;
     min-height: 850px;
-    //height: $section-1-height-sm;
     @include flex-full(flex-start, center, column);
   }
   @include px(600) {
     min-height: 100%;
     @include flex-full(center, center, column-reverse);
-    //height: $section-1-height-smm;
   }
   .box-shadow-header {
     position: absolute;
@@ -782,14 +775,14 @@ $section-1-height-boxs: 500px;
     box-shadow: 0px 0px 200px 150px rgba($color: #ffffff, $alpha: 1);
     transition: box-shadow ease 0.3s;
     transition-delay: 0.1s;
-    &.scrolled {
-      box-shadow: 0px 0px 0px 0px rgba($color: #ffffff, $alpha: 1);
-    }
     @include px(1024) {
       box-shadow: 0px 0px 0px 0px rgba($color: #ffffff, $alpha: 1);
     }
     @include px(600) {
       box-shadow: 0px 0px 80px 105px rgba($color: #ffffff, $alpha: 1);
+    }
+    &.scrolled {
+      box-shadow: 0px 0px 0px 0px rgba($color: #ffffff, $alpha: 1);
     }
   }
   .organic {
@@ -836,6 +829,7 @@ $section-1-height-boxs: 500px;
         font-weight: 500;
         background: linear-gradient(215deg, #6ca14f, #4ac1dc);
         -webkit-background-clip: text;
+        background-clip: text;
         -webkit-text-fill-color: transparent;
         background-size: 150% 150%;
         text-shadow: 2px 2px 3px #7ce5ad5c;
@@ -868,75 +862,10 @@ $section-1-height-boxs: 500px;
     }
     @include px(600) {
       display: none;
-      /*height: $section-1-height-boxs + 400;
-      box-shadow: 0px -1400px 700px 1000px rgba($color: #fff, $alpha: 1);*/
     }
   }
 
-  /*$img-height: 500px;
-  aside {
-    position: relative;
-    z-index: 99999;
-    width: 300px;
-    height: 329px;
-    transform: scale(1.4);
-    transition: all ease 0.1s;
-    @include flex-full(center, center, row);
-    @include px(1024) {
-      height: $section-1-height-sm;
-    }
-    @include px(600) {
-      //height: $section-1-height-smm;
-      position: relative;
-      z-index: 2;
-      top: unset;
-      left: unset;
-      transform: translate(0%,0%);
-      width: 200px;
-      height: 200px;
-      min-width: 700px;
-      min-height: 500px;
-      border-radius: 50%;
-      overflow: hidden;
-      margin-top: -$nav-height - $upnav-height - 50px;
-    }
-    .img-dog {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      right: 0;
-      max-width: 1920px;
-      max-height: 1024px;
-      background-image: url("/assets/img/dogs/1-ps.png");
-      background-repeat: no-repeat;
-     /~ 
-      background-attachment: fixed;
-      background-position: calc(-2700px + 12.5vw * 7) -50px;
-      background-repeat: no-repeat;
-      background-size: auto $section-1-height-img + 0px;~/
-      @include px(1024) {
-        background-image: url("/assets/img/dogs/4-wite.jpg");
-        background-size: auto $section-1-height-img - 100px;
-        background-position: calc(-1690px + 13.5vw * 7) 200px;
-        background-attachment: unset;
-      }
-      @include px(600) {
-        background-image: url("/assets/img/dogs/1.jpg");
-        background-size: auto $section-1-height-img - 600px;
-        background-size: cover;
-        background-position: -00px 60px;
-        background-attachment: unset;
-      }
-      @include px(360) {
-        background-image: url("/assets/img/dogs/1.jpg");
-        background-size: auto $section-1-height-img - 600px;
-        background-size: cover;
-        background-position: -00px 60px;
-        background-attachment: unset;
-      }
-    }
-  }*/
+
   $img-height: 500px;
   aside {
     position: absolute;
@@ -947,9 +876,6 @@ $section-1-height-boxs: 500px;
     height: 100%;
     transition: all ease 0.1s;
     @include flex-full(flex-start, flex-start, row);
-    @include px(1024) {
-      //height: $section-1-height-sm;
-    }
     @include px(600) {
       //height: $section-1-height-smm;
       position: relative;
@@ -1035,8 +961,8 @@ $section-1-height-boxs: 500px;
     .box-pic {
       position: relative;
       width: 100%;
-      @include flex-full(space-between, center, row);
       gap: 15px;
+      @include flex-full(space-between, center, row);
       @include px(600) {
         @include flex-full(space-between, center, column-reverse);
       }
@@ -1067,8 +993,8 @@ $section-1-height-boxs: 500px;
 
     aside {
       .link-box {
-        @include social-btn();
         @include flex-full(flex-start, center, row);
+        @include social-btn();
       }
     }
   }
@@ -1119,6 +1045,7 @@ $section-1-height-boxs: 500px;
           font-family: "Passion One", sans-serif;
           background: linear-gradient(215deg, #6ca14f, #4ac1dc);
           -webkit-background-clip: text;
+          background-clip: text;
           -webkit-text-fill-color: transparent;
           background-size: 150% 150%;
           text-shadow: 2px 2px 3px #7ce5ad5c;
@@ -1168,8 +1095,8 @@ $section-1-height-boxs: 500px;
         width: 100%;
       }
       .link-box {
-        @include social-btn();
         @include flex-full(flex-start, center, row);
+        @include social-btn();
       }
     }
   }
@@ -1177,11 +1104,11 @@ $section-1-height-boxs: 500px;
 .section-4 {
   padding: 100px 0px;
   width: calc(90% + 50px);
+  margin-inline: auto;
   @include px(1450) {
     width: 100%;
     padding: 50px 0px;
   }
-  margin-inline: auto;
 
   article {
     h2 {
@@ -1190,6 +1117,7 @@ $section-1-height-boxs: 500px;
       font-family: "Passion One", sans-serif;
       background: linear-gradient(215deg, #6ca14f, #4ac1dc);
       -webkit-background-clip: text;
+      background-clip: text;
       -webkit-text-fill-color: transparent;
       background-size: 150% 150%;
       text-shadow: 2px 2px 3px #7ce5ad5c;
@@ -1227,13 +1155,12 @@ $section-1-height-boxs: 500px;
           position: relative;
           min-width: calc(200px + 4.5vw);
           border-radius: 33px;
-          @include px(600) {
-            border-radius: 15px;
-          }
-          //border: 2px solid #4adc9154;
           overflow: hidden;
           box-shadow: 0px 0px 20px 0px rgba($color: #94a69e, $alpha: 0.25);
           @include flex-full(space-between, space-between, column);
+          @include px(600) {
+            border-radius: 15px;
+          }
           .prices {
             @include flex-full(space-between, center, row);
             .discount-img {
@@ -1305,6 +1232,7 @@ $section-1-height-boxs: 500px;
               font-weight: 500;
               background: linear-gradient(215deg, #6ca14f, #4ac1dc);
               -webkit-background-clip: text;
+              background-clip: text;
               -webkit-text-fill-color: transparent;
               background-size: 100% 100%;
               text-shadow: 1px 1px 2px #7ce5ad5c;
@@ -1351,8 +1279,8 @@ $section-1-height-boxs: 500px;
       margin-top: 50px;
       width: 100%;
       .link-box {
-        @include social-btn();
         @include flex-full(center, center, column);
+        @include social-btn();
         .first {
           margin-top: 30px;
           margin-bottom: 20px;
@@ -1399,8 +1327,8 @@ $section-1-height-boxs: 500px;
     .box-pic {
       position: relative;
       width: 100%;
-      @include flex-full(space-between, center, row);
       gap: 15px;
+      @include flex-full(space-between, center, row);
       @include px(600) {
         @include flex-full(space-between, center, column-reverse);
       }
@@ -1438,8 +1366,8 @@ $section-1-height-boxs: 500px;
         margin-top: 0px;
       }
       .link-box {
-        @include social-btn();
         @include flex-full(flex-start, center, row);
+        @include social-btn();
       }
     }
   }
@@ -1492,6 +1420,7 @@ $section-1-height-boxs: 500px;
           font-family: "Passion One", sans-serif;
           background: linear-gradient(215deg, #6ca14f, #4ac1dc);
           -webkit-background-clip: text;
+          background-clip: text;
           -webkit-text-fill-color: transparent;
           background-size: 150% 150%;
           text-shadow: 2px 2px 3px #7ce5ad5c;
@@ -1544,8 +1473,8 @@ $section-1-height-boxs: 500px;
         width: 100%;
       }
       .link-box {
-        @include social-btn();
         @include flex-full(flex-start, center, row);
+        @include social-btn();
       }
     }
   }
@@ -1553,8 +1482,7 @@ $section-1-height-boxs: 500px;
 .section-7 {
   position: relative;
   padding: 100px 0px;
-  
-  
+
   article {
     h2 {
       font-size: clamp(90%, 110% + 1.5vw, 300%);
@@ -1573,12 +1501,12 @@ $section-1-height-boxs: 500px;
       }
       figcaption {
         position: relative;
-        @include flex-full(space-between,flex-start,row);
         overflow: hidden;
         max-height: 600px;
+        @include flex-full(space-between, flex-start, row);
         @include px(1024) {
-          @include flex-full(space-between,flex-start,column);
           max-height: unset;
+          @include flex-full(space-between, flex-start, column);
         }
         .overlay {
           position: absolute;
@@ -1587,14 +1515,14 @@ $section-1-height-boxs: 500px;
           left: 0;
           width: 100%;
           height: 100%;
-          background: rgba($color: #ffffff, $alpha: .5);
+          background: rgba($color: #ffffff, $alpha: 0.5);
           backdrop-filter: blur(10px);
           opacity: 0;
           visibility: hidden;
-          transition: all ease .3s;
+          transition: all ease 0.3s;
           p {
-            @include flex-center;
             height: 100%;
+            @include flex-center;
           }
         }
         .igpic {
@@ -1611,9 +1539,6 @@ $section-1-height-boxs: 500px;
             position: absolute;
             width: 100%;
             height: 100%;
-            img {
-    
-            }
           }
 
           &:hover {
@@ -1637,9 +1562,6 @@ $section-1-height-boxs: 500px;
             position: absolute;
             width: 100%;
             height: 100%;
-            img {
-    
-            }
           }
           &:hover {
             .overlay {
@@ -1663,8 +1585,8 @@ $section-1-height-boxs: 500px;
         flex-direction: column;
       }
       .link-box {
-        @include social-btn();
         @include flex-full(flex-start, center, row);
+        @include social-btn();
       }
       .link2 {
         .touch {
@@ -1676,5 +1598,4 @@ $section-1-height-boxs: 500px;
     }
   }
 }
-
 </style>

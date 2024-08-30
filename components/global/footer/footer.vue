@@ -57,8 +57,10 @@ $footer: (
 );
 .footer {
   background: clr(upnaviconsfill);
-  @include flex-full(space-between, center, column);
   @include setColors($footer);
+}
+.footer {
+ @include flex-full(space-between, center, column);
 }
 .copyright {
   width: 100%;
@@ -68,10 +70,10 @@ $footer: (
   color: white;
 }
 .footer-wrapper {
-  @include flex-full(space-between, flex-start, row);
   width: calc(85% + 50px);
   margin-inline: auto;
   padding: 50px 0px;
+  @include flex-full(space-between, flex-start, row);
   @include px(1024) {
     width: 95%;
     flex-direction: column;
@@ -114,14 +116,14 @@ $footer: (
     @include px(800) {
       gap: 0px;
     }
-
     @include px(600) {
       gap: 10px;
       flex-direction: column;
     }
+
     .link-box {
-      @include social-btn();
       @include flex-full(flex-start, center, row);
+      @include social-btn();
 
       .link-btn {
         .link-to {
@@ -136,10 +138,10 @@ $footer: (
             fill: clr(primary) !important;
         }
         a {
+          background: white !important;
             .dm-icon {
                 display: none !important;
             }
-            background: white !important;
             p {
                 color: clr(primary) !important;
             }
@@ -156,7 +158,6 @@ $footer: (
     }
     .link2 {
       .touch {
-        
         @include px(600) {
           display: none;
         }

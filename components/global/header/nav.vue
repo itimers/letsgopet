@@ -141,8 +141,8 @@ header {
               
             }
           }
-          .loacales {
-          }
+          /*.loacales {
+          }*/
           .theme-btn-inside {
             button {
               svg {

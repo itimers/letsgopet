@@ -584,6 +584,7 @@ $max-width: 40px;
         white-space: nowrap;
         background: linear-gradient(215deg, #95d572, #5edbf8);
         -webkit-background-clip: text;
+background-clip: text;
         -webkit-text-fill-color: transparent;
         background-size: 120% 120%;
         -webkit-animation: link-to-bg-anime 8s ease infinite;
