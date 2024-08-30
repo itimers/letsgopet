@@ -6,6 +6,7 @@
     "
     :disabled="page.isButtonDisabled(7)"
     class="hover-link"
+    :class="{active: page.currentSection === 7}"
   >
   {{ $t("Kontakt") }}
   </NuxtLink>

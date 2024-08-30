@@ -1,8 +1,8 @@
 <template>
   <div class="tools">
     <ModalsCloudLocales v-if="cookie.isCookieActive('langs')" />
-    <ModalsCloudThemes v-if="isThemesOrPrefersActive" />
-    <ModalsCloudSettings />
+   <!--  <ModalsCloudThemes v-if="isThemesOrPrefersActive" /> -->
+    <!-- <ModalsCloudSettings /> -->
     <ModalsCloudBurger />
   </div>
 </template>

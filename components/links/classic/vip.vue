@@ -1,14 +1,14 @@
 <template>
   <NuxtLink
     @click="
-      updateUrlWithSectionId(page.sectionIds[1]),
-      page.changeSection(2)
+      updateUrlWithSectionId(page.sectionIds[2]),
+      page.changeSection(3)
     "
-    :disabled="page.isButtonDisabled(2)"
-    :class="{active: page.currentSection === 2}"
+    :disabled="page.isButtonDisabled(3)"
+    :class="{active: page.currentSection === 3}"
     class="hover-link"
   >
-  {{ $t("Usluge") }}
+  {{ $t("Vip") }}
   </NuxtLink>
 </template>
 <script lang="ts" setup>

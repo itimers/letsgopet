@@ -37,16 +37,16 @@ $loader-border-bg3: clr(spinnercolor3);
 $laoder: (
   "light": (
     loaderbg: $primary,
-    spinnercolor: #d0f7ff,
-    spinnercolor2: #68c3ff,
-    spinnercolor3: #d0f7ff,
+    spinnercolor: #d0ffe3,
+    spinnercolor2: #7aaa5f,
+    spinnercolor3: #d0ffe3,
   ),
 
   "dark": (
     loaderbg: $secondary,
-    spinnercolor: #d0f7ff,
-    spinnercolor2: #68c3ff,
-    spinnercolor3: #d0f7ff,
+    spinnercolor: #d0ffe3,
+    spinnercolor2: #7aaa5f,
+    spinnercolor3: #d0ffe3,
   ),
 );
 

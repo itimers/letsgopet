@@ -30,15 +30,15 @@ function safeLocalStorageClear(): void {
 export const useCookieStore = defineStore('cookie', {
     state: () => ({
         cookies: [
-            { name: 'marketing', value: true, class: 'm' },
-            { name: 'ip', value: true, class: 'i' },
-            { name: 'country', value: true, class: 'c' },
-            { name: 'timezone', value: true, class: 't' },
-            { name: 'time', value: true, class: 'tt' },
-            { name: 'spenttime', value: true, class: 'st' },
-            { name: 'performance', value: true, class: 'p' },
+            { name: 'marketing', value: false, class: 'm' },
+            { name: 'ip', value: false, class: 'i' },
+            { name: 'country', value: false, class: 'c' },
+            { name: 'timezone', value: false, class: 't' },
+            { name: 'time', value: false, class: 'tt' },
+            { name: 'spenttime', value: false, class: 'st' },
+            { name: 'performance', value: false, class: 'p' },
             { name: 'themes', value: false, class: 'th' },
-            { name: 'prefers', value: true, class: 'pr' },
+            { name: 'prefers', value: false, class: 'pr' },
             { name: 'langs', value: true, class: 'l' },
             { name: 'listeners', value: true, class: 'li' },
             { name: 'animations', value: true, class: 'a' },

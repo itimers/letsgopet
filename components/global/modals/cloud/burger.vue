@@ -76,19 +76,17 @@
         </div>
         <div class="mid-side">
           <div class="mid-links">
-            <LinksClassicHome />
-            <LinksClassicAbout />
-            <LinksClassicPricemenu />
-            <LinksClassicContact />
+            <LinksClassicHome @click.stop="page.toggleElementVisibility('burger')"/>
+            <LinksClassicAbout @click.stop="page.toggleElementVisibility('burger')"/>
+            <LinksClassicServices @click.stop="page.toggleElementVisibility('burger')"/>
+            <LinksClassicVip @click.stop="page.toggleElementVisibility('burger')"/>
+            <LinksClassicPettransport @click.stop="page.toggleElementVisibility('burger')"/>
+            <LinksClassicPricemenu @click.stop="page.toggleElementVisibility('burger')"/>
+            <LinksClassicContact @click.stop="page.toggleElementVisibility('burger')"/>
           </div>
         </div>
         <div class="bottom-side">
-          <LinksSocialsFb />
           <LinksSocialsIg />
-          <LinksSocialsMail />
-          <LinksSocialsPhone />
-          <LinksSocialsWa />
-          <LinksSocialsVib />
         </div>
       </div>
     </div>

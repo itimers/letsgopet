@@ -1,19 +1,15 @@
 <template>
   <NuxtLink
-    @click="
-      updateUrlWithSectionId(page.sectionIds[1]),
-      page.changeSection(2)
-    "
-    :disabled="page.isButtonDisabled(2)"
-    :class="{active: page.currentSection === 2}"
+    @click="updateUrlWithSectionId(page.sectionIds[4]), page.changeSection(5)"
+    :disabled="page.isButtonDisabled(5)"
     class="hover-link"
+    :class="{active: page.currentSection === 5}"
   >
-  {{ $t("Usluge") }}
+    {{ $t("Pet transport") }}
   </NuxtLink>
 </template>
 <script lang="ts" setup>
 const page = usePagesStore();
-
 
 const observeOnScroll = computed(
   () => page.isScrolled && page.currentScroll >= 250
@@ -39,15 +35,9 @@ function debounce<T extends any[]>(func: (...args: T) => void, delay: number) {
     }, delay);
   };
 }
-const updateUrlWithSectionId = debounce(
-    (sectionId: string) => {
-      if (
-        window.location.hash !== `#${sectionId}` &&
-        observeOnScroll.value
-      ) {
-        addHashToLocation(sectionId);
-      }
-    },
-    200
-  );
+const updateUrlWithSectionId = debounce((sectionId: string) => {
+  if (window.location.hash !== `#${sectionId}` && observeOnScroll.value) {
+    addHashToLocation(sectionId);
+  }
+}, 200);
 </script>

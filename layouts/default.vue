@@ -204,13 +204,13 @@ router.beforeEach((to, from, next) => {
           ),
         }"
       >
-        <ModalsCookie
+        <!-- <ModalsCookie
           v-if="page.states.find((el) => el.btn === 'cookie' && el.activebtn)"
-        />
+        /> -->
         <div>
           <div class="section-pagination" v-if="page.isScrolling">
             <span class="to-top" @click.stop="page.scrollTop">
-              <!-- <IconsControlsArrow/> -->
+              <IconsControlsArrow/>
             </span>
             <NuxtLink
               v-for="(name, index) in page.sectionNames"
@@ -224,15 +224,15 @@ router.beforeEach((to, from, next) => {
               class="hover-link"
               :aria-label="name"
             >
-              <div class="active-pag">{{ name }} scrl</div>
+              <div class="active-pag">{{ name }}</div>
             </NuxtLink>
             <span class="to-bottom" @click.stop="page.scrollBottom">
-              <!-- <IconsControlsArrow/> -->
+              <IconsControlsArrow/>
             </span>
           </div>
           <div class="section-pagination" v-else>
             <span class="to-top" @click.stop="page.scrollTop">
-              <!-- <IconsControlsArrow/> -->
+              <IconsControlsArrow/>
             </span>
             <NuxtLink
               v-for="(name, index) in page.sectionNames"
@@ -249,7 +249,7 @@ router.beforeEach((to, from, next) => {
               <div class="active-pag">{{ name }}</div>
             </NuxtLink>
             <span class="to-bottom" @click.stop="page.scrollBottom">
-              <!-- <IconsControlsArrow/> -->
+              <IconsControlsArrow/>
             </span>
           </div>
         </div>
@@ -259,7 +259,7 @@ router.beforeEach((to, from, next) => {
         
         
         <IconsControlsTotop @click.stop="page.scrollTop" />
-        <IconsDefaultCallus />
+        <!-- <IconsDefaultCallus /> -->
         <HeaderNav :class="{ scrolled: page.isScrolled }" />
         <main
           ref="isScrollable"

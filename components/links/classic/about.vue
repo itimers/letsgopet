@@ -6,6 +6,7 @@
     "
     :disabled="page.isButtonDisabled(6)"
     class="hover-link"
+    :class="{active: page.currentSection === 6}"
   >
   {{ $t("O nama") }}
   </NuxtLink>

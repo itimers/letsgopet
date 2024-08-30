@@ -3,9 +3,7 @@
     <div class="header-wrapper">
       <div class="upnav">
         <div class="up-left">
-          <LinksSocialsFb class="fb" />
           <LinksSocialsIg class="ig" />
-          <LinksSocialsYt class="yt" />
         </div>
         <div class="up-mid"></div>
         <div class="up-right"></div>
@@ -17,6 +15,8 @@
             <LinksClassicHome />
             <LinksClassicAbout />
             <LinksClassicServices />
+            <LinksClassicVip />
+            <LinksClassicPettransport/>
             <LinksClassicPricemenu />
             <LinksClassicContact />
           </div>
@@ -195,7 +195,7 @@ header {
 nav {
   position: relative;
   height: 100%;
-  @include flex-custom(center, stretch);
+  @include flex-custom(center, center);
   @include px(1024) {
     display: none;
   }
@@ -204,18 +204,25 @@ nav {
     position: absolute;
     bottom: 0;
     height: 100%;
-    @include flex-custom(center, stretch);
+    @include flex-custom(center, center);
   }
 }
 nav a,
 button {
   position: relative;
   bottom: 0;
-  height: 100%;
-  padding: 0px 10px;
+  height: 70%;
+  padding: 0px 15px;
   white-space: nowrap;
   color: clr(font);
+  cursor: pointer;
+  transition: all ease .3s;
+  border-radius: 33px;
   @include flex-center();
+  &.active {
+    background: clr(primary);
+    color: white;
+  }
 }
 
 .upnav {
@@ -298,11 +305,21 @@ button {
 .locale-btn {
   background-repeat: no-repeat;
   background-position: center;
+  color: white;
 }
 .locales-cloud-modal {
   @include cloud-modal(150px);
-  background: red;
+  background: clr(primary);
   padding: 10px;
+  button {
+    color: white;
+    border-radius: 33px;
+    transition: all ease .3s;
+    &.active {
+      background: white;
+      color: clr(primary);
+    }
+  }
 }
 .locales.active .locales-cloud-modal {
   @include active-cloud-modal($nav-height + 3px);
@@ -318,7 +335,7 @@ button {
 }
 .themes-cloud-modal {
   @include cloud-modal(150px);
-  background: red;
+  background: clr(primary);
   padding: 10px;
 }
 
@@ -334,7 +351,6 @@ button {
 }
 .settings-cloud-modal {
   @include cloud-modal(150px);
-  background: red;
   padding: 10px;
 }
 .settings.active .settings-cloud-modal {
@@ -465,6 +481,10 @@ button {
   justify-content: flex-end;
   align-items: center;
   margin-left: 0px;
+  display: none;
+  @include px(1024) {
+    display: block
+  }
 }
 
 .burger-btn {
@@ -545,7 +565,7 @@ button {
   visibility: visible;
 }
 .burger-cloud-modal .sidemenu {
-  background: red;
+  background: clr(primary);
   width: 300px;
   transform: translateX(100%);
   height: 100%;
@@ -570,13 +590,17 @@ button {
     max-height: $max-width;
     min-height: $min-width;
     gap: 15px;
+    color: white;
     @include flex-custom(flex-end, center);
+
+    
     svg {
       height: calc(#{$base-width} - #{$decrement});
       min-width: $min-width;
       max-width: $max-width;
       max-height: $max-width;
       min-height: $min-width;
+      fill: white;
     }
   }
 }
@@ -584,21 +608,25 @@ button {
   height: 100%;
 }
 .mid-links {
+  padding: 20px 20px;
   @include flex-full(flex-start, flex-start, column);
-}
-.infusions-menu,
-.surgery-menu,
-.services-menu {
-  display: grid;
-  grid-template-rows: 0fr;
-  overflow: hidden;
-  transition: grid-template-rows ease 0.3s;
-  & > div {
-    overflow: hidden;
+  a {
+    padding: 5px 15px;
+    color: white;
+    border-radius: 33px;
+    transition: all ease .3s;
+    cursor: pointer;
+    &:hover {
+      background: white;
+      color: clr(font);
+    }
+    &.active {
+      background: white;
+      margin-left: 10px;
+      color: clr(font);
+    }
   }
-  &.active {
-    grid-template-rows: 1fr;
-  }
+
 }
 
 .bottom-side {
@@ -612,12 +640,15 @@ button {
     max-height: $max-width;
     min-height: $min-width;
     @include flex-center;
+    svg {
+      fill: white;
+    }
   }
 }
 
 .page-indicator-progress {
   position: absolute;
-  z-index: 9999;
+  z-index: 7000;
   bottom: -3px;
   left: 0;
   width: 100%;

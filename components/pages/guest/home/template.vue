@@ -1,6 +1,33 @@
 <script lang="ts" setup>
 const page = usePagesStore();
 const i18n = useI18n();
+const mapLinkParts = [
+  "htt",
+  "ps://",
+  "maps.",
+  "app.goo",
+  ".gl/mqJz",
+  "CEvyc4Z",
+  "Yez5f9?g_",
+  "st=ac",
+];
+
+const igLinkParts = [
+  "htt",
+  "ps://ww",
+  "w.insta",
+  "gram.co",
+  "m/kupa",
+  "nje",
+  "pa",
+  "sa",
+];
+const mapLink = ref(`${mapLinkParts.join("")}`);
+const igLink = ref(`${igLinkParts.join("")}`);
+const isClient = ref(false);
+
+
+
 
 const sections = [
   {
@@ -93,7 +120,7 @@ onMounted(async () => {
   const sectionIds = sections.map((section) => section.idtag);
   page.setSectionNames(sectionNames);
   page.setSectionIds(sectionIds);
-
+  isClient.value = true;
   sections.forEach((section, index) => {
     const sectionElement = document.querySelector(
       `#${section.idtag}`
@@ -190,8 +217,7 @@ onMounted(async () => {
       );
 
       stopWatchers.push(stopWatch);
-    } 
-    
+    }
   };
 
   watch(observeOnScroll, (newValue) => {
@@ -264,7 +290,10 @@ onBeforeUnmount(() => {
           :slot="sections[0].slotName"
           :id="`${sections[0].idtag}`"
         >
-        <div class="box-shadow-header" :class="{scrolled: page.isScrolled}"></div>
+          <div
+            class="box-shadow-header"
+            :class="{ scrolled: page.isScrolled }"
+          ></div>
 
           <IconsDefaultOrganic class="organic" />
           <article>
@@ -307,14 +336,27 @@ onBeforeUnmount(() => {
           :id="`${sections[1].idtag}`"
         >
           <article>
-            <h2>{{ $t("Usluge") }}</h2>
-            <p>
-              {{ $t("Usluge tekst") }}
-            </p>
+            <div class="box-pic">
+              <div class="box-text">
+                <h2>{{ $t("Usluge") }}</h2>
+                <p>
+                  {{ $t("Usluge tekst") }}
+                </p>
+              </div>
+              <div class="pic-box"></div>
+            </div>
+
+            <aside>
+              <div class="link-box">
+                <div class="link-btn">
+                  <LinksTosocialIg class="link-to" />
+                  <p class="book">
+                    {{ $t("Zakazite uvek") }}
+                  </p>
+                </div>
+              </div>
+            </aside>
           </article>
-          <aside>
-            <p>{{ $t("Zakazite uvek") }}</p>
-          </aside>
         </section>
 
         <section
@@ -332,18 +374,35 @@ onBeforeUnmount(() => {
           :id="`${sections[2].idtag}`"
         >
           <article>
-            <h2>{{ $t("Postani VIP član") }}</h2>
-
-            <figure>
-              <figcaption>
-                <p>{{ $t("Vip tekst") }}</p>
-              </figcaption>
-            </figure>
+            <div class="box-pic">
+              <div class="pic-box"></div>
+              <div class="box-text">
+                <h2>{{ $t("Postani VIP") }}</h2>
+                <h3>{{ $t("Uštedi 50% na sve usluge!") }}</h3>
+                <ul class="ul-1">
+                  <li>{{ $t("Vip1") }}</li>
+                  <li>{{ $t("Vip2") }}</li>
+                </ul>
+                <p class="solo-1">{{ $t("Vip3") }}</p>
+                <ul class="ul-2">
+                  <li>{{ $t("Vip4") }}</li>
+                  <li>{{ $t("Vip5") }}</li>
+                  <li>{{ $t("Vip6") }}</li>
+                  <li>{{ $t("Vip7") }}</li>
+                </ul>
+                <p class="solo-2">{{ $t("Vip8") }}</p>
+              </div>
+            </div>
 
             <aside>
-              <!-- <p>
-                {{ $t("Zakazite") }}
-              </p> -->
+              <div class="link-box">
+                <div class="link-btn">
+                  <LinksTosocialIg2 class="link-to" />
+                  <p class="book">
+                    {{ $t("Postani VIP, javi se u DM") }}
+                  </p>
+                </div>
+              </div>
             </aside>
           </article>
           <!-- <div
@@ -381,81 +440,135 @@ onBeforeUnmount(() => {
         >
           <article>
             <h2>{{ $t("Cenovnik") }}</h2>
-
             <figure>
               <figcaption>
                 <div class="box-1 style">
                   <div class="box-header">
-                    <p>Jednostavan paket</p>
+                    <p>{{ $t("Jednostavan") }}</p>
+                    <span>{{ $t("Za sve uzraste") }}</span>
+                  </div>
+                  <ul>
+                    <li>{{ $t("Transport") }}</li>
+                    <li>{{ $t("Šišanje") }}</li>
+                    <li>{{ $t("Kupanje") }}</li>
+                    <li>{{ $t("Sušenje") }}</li>
+                  </ul>
+                  
 
+                  <div class="prices">
                     <div class="discount-img">
-                      <img src="/assets/img/paw.png" />
+                      <IconsDefaultPaw2 />
                       <p>85 €</p>
                     </div>
+                    <div class="discount-img2">
+                      <IconsDefaultCrown />
+                      <p>43 €</p>
+                    </div>
                   </div>
-                  <span>Za sve uzraste</span>
-                  <ul>
-                    <li>Samo kupanje i sušenje</li>
-                  </ul>
                 </div>
                 <div class="box-2 style">
                   <div class="box-header">
-                    <p>Osnovni higijenski paket</p>
+                    <p>{{ $t("Osnovni") }}</p>
+                    <span>{{ $t("Za štence do 6 meseci") }}</span>
+                  </div>
+                  <ul>
+                    <li>{{ $t("Transport") }}</li>
+                    <li>{{ $t("Kupanje i sušenje") }}</li>
+                    <li>{{ $t("Skraćivanje noktića") }}</li>
+                    <li>
+                      {{ $t("Higijena ušiju Light Trimming") }}
+                    </li>
+                    <li>{{ $t("Oblikovanje dlake") }}</li>
+                  </ul>
+
+                  <div class="prices">
                     <div class="discount-img">
-                      <img src="/assets/img/paw.png" />
+                      <IconsDefaultPaw2 />
                       <p>100 €</p>
                     </div>
+                    <div class="discount-img2">
+                      <IconsDefaultCrown />
+                      <p>50 €</p>
+                    </div>
                   </div>
-                  <span
-                    >Za štence do 6 meseci Bath & Dry - kupanje i sušenje</span
-                  >
-                  <ul>
-                    <li>Nail Trim - skraćivanje noktića</li>
-                    <li>Ear Cleaning - Higijena ušiju Light Trimming</li>
-                    <li>Oblikovanje dlake</li>
-                  </ul>
                 </div>
                 <div class="box-3 style">
                   <div class="box-header">
-                    <p>Paket za male pse do 10 kg</p>
-                    <div class="discount-img">
-                      <img src="/assets/img/paw.png" />
-                      <p>100 €</p>
-                    </div>
+                    <p>{{ $t("Paket") }}</p>
+                    <span>{{ $t("Za pse do 10kg") }}</span>
                   </div>
                   <ul>
-                    <li>Bath & Dry - Kupanje i sušenje</li>
-                    <li>Full Body Haircut - šišanje</li>
-                    <li>Nail Trim - skraćivanje noktića</li>
-                    <li>Ear Cleaning - higijena ušiju</li>
-                    <li>Teeth Brushing - pranje zubića</li>
+                    <li>{{ $t("Transport") }}</li>
+                    <li>{{ $t("Kupanje i sušenje") }}</li>
+                    <li>{{ $t("Šišanje") }}</li>
+                    <li>{{ $t("Skraćivanje noktića") }}</li>
+                    <li>{{ $t("Higijena ušiju") }}</li>
+                    <li>{{ $t("Pranje zubića") }}</li>
                   </ul>
+
+                  <div class="prices">
+                    <div class="discount-img">
+                      <IconsDefaultPaw2 />
+                      <p>100 €</p>
+                    </div>
+                    <div class="discount-img2">
+                      <IconsDefaultCrown />
+                      <p>50 €</p>
+                    </div>
+                  </div>
                 </div>
                 <div class="box-4 style">
                   <div class="box-header">
-                    <p>Specijalni tretmani</p>
-                    <div class="discount-img">
-                      <img src="/assets/img/paw.png" />
-                      <p>25 €</p>
-                    </div>
+                    <p>{{ $t("Specijalni") }}</p>
+                    <span>{{ $t("MEDICAL SPA TREATMENT") }}</span>
                   </div>
                   <ul>
                     <li>
-                      Spa medical treatment: seboreja, suva koža, masna koža,
-                      perut
+                      {{ $t("Tretman protiv seboreje") }}
+                    </li>
+                    <li>
+                      {{ $t("Tretman protiv suve kože") }}
+                    </li>
+                    <li>
+                      {{ $t("Tretman protiv masne kože") }}
+                    </li>
+                    <li>
+                      {{ $t("Tretman protiv peruti") }}
                     </li>
                   </ul>
+
+                  <div class="prices">
+                    <div class="discount-img">
+                      <IconsDefaultPaw2 />
+                      <p>25 €</p>
+                    </div>
+                    <div class="discount-img2">
+                      <IconsDefaultCrown />
+                      <p>13 €</p>
+                    </div>
+                  </div>
                 </div>
               </figcaption>
             </figure>
-            <p>
-              {{ $t("Napomena") }}
-            </p>
 
             <aside>
-              <p>
-                {{ $t("Zakazite") }}
-              </p>
+              <div class="important">
+                <p class="first">
+                  {{ $t("Napomena") }}
+                </p>
+                <p class="second">
+                  {{ $t("Svi tretmani") }}
+                </p>
+              </div>
+
+              <div class="link-box">
+                <div class="link-btn">
+                  <LinksTosocialIg class="link-to" />
+                </div>
+                <p class="first">
+                  {{ $t("Zakazite") }}
+                </p>
+              </div>
             </aside>
           </article>
           <!-- <div
@@ -492,8 +605,26 @@ onBeforeUnmount(() => {
           :id="`${sections[4].idtag}`"
         >
           <article>
-            <h2>{{ $t("Pet transport") }}</h2>
-            <p></p>
+            <div class="box-pic">
+              <div class="box-text">
+                <h2>{{ $t("Pet transport") }}</h2>
+                <p>
+                  {{ $t("Pet transport tekst") }}
+                </p>
+              </div>
+              <div class="pic-box"></div>
+            </div>
+
+            <aside>
+              <div class="link-box">
+                <div class="link-btn">
+                  <LinksTosocialIg class="link-to" />
+                  <p class="book">
+                    {{ $t("Zakazite uvek") }}
+                  </p>
+                </div>
+              </div>
+            </aside>
           </article>
         </section>
 
@@ -511,12 +642,29 @@ onBeforeUnmount(() => {
           :slot="sections[5].slotName"
           :id="`${sections[5].idtag}`"
         >
-          <article>
-            <h2>{{ $t("O nama") }}</h2>
-            <p>
-              {{ $t("O nama tekst") }}
-            </p>
-          </article>
+        <article>
+          <div class="box-pic">
+            <div class="pic-box"></div>
+
+            <div class="box-text">
+              <h2>{{ $t("O nama") }}</h2>
+              <p>
+                {{ $t("O nama tekst") }}
+              </p>
+            </div>
+          </div>
+
+          <aside>
+            <div class="link-box">
+              <div class="link-btn">
+                <LinksTosocialIg class="link-to" />
+                <p class="book">
+                  {{ $t("Zakazite uvek") }}
+                </p>
+              </div>
+            </div>
+          </aside>
+        </article>
         </section>
 
         <section
@@ -534,8 +682,38 @@ onBeforeUnmount(() => {
           :id="`${sections[6].idtag}`"
         >
           <article>
-            <h2>Kontakt</h2>
-            <p></p>
+            <h2>{{ $t("Kontakt") }}</h2>
+
+            <figure>
+              <figcaption>
+                <div class="igpic">
+                  <div class="overlay">
+                    <NuxtLink :to="mapLink" v-if="isClient" target="_blank" ></NuxtLink>
+                    <p>{{ $t("Klikni da odes na Instagram profil") }}</p>
+                  </div>
+                  
+                </div>
+                <div class="mappic">
+                  <div class="overlay">
+                    <NuxtLink :to="igLink" v-if="isClient" target="_blank" :aria-label="$t('igprofile')"></NuxtLink>
+                    <p>{{ $t("Klikni da odes na Google Mape") }}</p>
+                  </div>
+                  
+                </div>
+              </figcaption>
+            </figure>
+            <aside>
+              <div class="link-box">
+                <div class="link-btn">
+                  <LinksTosocialIg2 class="link-to" />
+                </div>
+              </div>
+              <div class="link-box link2">
+                <div class="link-btn">
+                  <LinksTosocialMap class="link-to" />
+                </div>
+              </div>
+            </aside>
           </article>
         </section>
       </div>
@@ -599,19 +777,19 @@ $section-1-height-boxs: 500px;
     z-index: 3;
     top: 0;
     left: 50%;
-    transform: translate(-50%,0%);
+    transform: translate(-50%, 0%);
     width: 100%;
-    box-shadow: 0px 0px 200px 150px rgba($color: #ffffff, $alpha: 1.0);
-    transition: box-shadow ease .3s;
-    transition-delay: .1s;
+    box-shadow: 0px 0px 200px 150px rgba($color: #ffffff, $alpha: 1);
+    transition: box-shadow ease 0.3s;
+    transition-delay: 0.1s;
     &.scrolled {
-      box-shadow: 0px 0px 0px 0px rgba($color: #ffffff, $alpha: 1.0);
+      box-shadow: 0px 0px 0px 0px rgba($color: #ffffff, $alpha: 1);
     }
     @include px(1024) {
-      box-shadow: 0px 0px 0px 0px rgba($color: #ffffff, $alpha: 1.0);
+      box-shadow: 0px 0px 0px 0px rgba($color: #ffffff, $alpha: 1);
     }
     @include px(600) {
-      box-shadow: 0px 0px 80px 105px rgba($color: #ffffff, $alpha: 1.0);
+      box-shadow: 0px 0px 80px 105px rgba($color: #ffffff, $alpha: 1);
     }
   }
   .organic {
@@ -648,8 +826,6 @@ $section-1-height-boxs: 500px;
       font-size: clamp(80%, 150% + 3.1vw, 700%);
       font-weight: 600;
       color: clr(font-primary);
-      font-family: "Concert One", sans-serif;
-      font-family: "Lilita One", sans-serif;
       font-family: "Passion One", sans-serif;
       text-shadow: 3px 3px 4px #68482146;
     }
@@ -674,231 +850,7 @@ $section-1-height-boxs: 500px;
       }
     }
     .link-box {
-      position: relative;
-      margin-top: 20px;
-      margin-left: 15px;
-      color: clr(font-primary-light);
-      @include flex-center();
-      @include px(1024) {
-        flex-direction: column-reverse;
-        justify-content: center;
-        align-items: center;
-        margin-top: 35px;
-        margin-left: 0;
-        margin-inline: auto;
-        gap: 3px;
-      }
-      .link-btn {
-        gap: 15px;
-        @include flex-center();
-        @include px(1024) {
-          flex-direction: column;
-        }
-        .link-to {
-          position: relative;
-          padding: 5px 15px;
-
-          font-size: clamp(70%, 50% + 1.1vw, 110%);
-          border-radius: 33px;
-          color: white;
-          margin-left: 0px;
-          gap: 10px;
-          box-shadow: 0 0 0 0 #7ccdff00;
-          transform: scale(1);
-
-          background: linear-gradient(215deg, #95d572, #5edbf8);
-          background-size: 200% 200%;
-          -webkit-animation: link-to-bg-anime 8s ease infinite,
-            pulsating 2s infinite;
-          -moz-animation: link-to-bg-anime 8s ease infinite,
-            pulsating 2s infinite;
-          -o-animation: link-to-bg-anime 8s ease infinite, pulsating 2s infinite;
-          animation: link-to-bg-anime 8s ease infinite, pulsating 2s infinite;
-          animation: link-to-bg-anime 8s ease infinite, pulsating 2s infinite;
-          @include flex-center();
-
-          @include px(1024) {
-            font-size: clamp(130%, 100% + 1.5vw, 230%);
-            border-radius: 50px;
-            padding: 6px 15px;
-            gap: 15px;
-          }
-
-          .ig-icon {
-            fill: white;
-            height: 25px;
-            width: 25px;
-            @include px(1024) {
-              height: 30px;
-              width: 30px;
-            }
-          }
-
-          .dm-icon {
-            position: absolute;
-            top: -10px;
-            right: -5px;
-            width: 18px;
-            height: 18px;
-            background: #7dc4fd;
-            border-radius: 50%;
-            @include flex-center();
-            @include px(1024) {
-              width: 30px;
-              height: 30px;
-              top: -15px;
-            }
-            svg {
-              position: absolute;
-              fill: white;
-              height: 12px;
-              width: 12px;
-              top: 50%;
-              left: 50%;
-              transform: translate(-55%, -45%);
-              @include flex-center();
-              @include px(1024) {
-                height: 17px;
-                width: 17px;
-              }
-            }
-          }
-
-          p {
-            color: white;
-            font-size: clamp(70%, 50% + 1.1vw, 110%);
-          }
-
-          .touch-container {
-            position: absolute;
-            bottom: 50%;
-            left: unset;
-            right: 0%;
-            transform: translate(30%, 50%);
-            @include px(1024) {
-              transform: translate(30%, 60%);
-            }
-            &.left {
-              right: unset;
-              left: 0;
-              transform: translate(-200%, 60%);
-              @include px(1024) {
-                left: unset;
-                right: 0;
-                transform: translate(30%, 70%);
-              }
-              .touch-arrow-click {
-                #touch-click-left {
-                  opacity: 0;
-                  visibility: hidden;
-                  display: none;
-                  @include px(1024) {
-                    opacity: 0;
-                    visibility: hidden;
-                    display: none;
-                  }
-                }
-                #touch-click-right {
-                  opacity: 0;
-                  visibility: hidden;
-                  display: none;
-                  @include px(1024) {
-                    opacity: 1;
-                    visibility: visible;
-                    display: block;
-                  }
-                }
-                #mouse-click {
-                  transform: rotate(0deg);
-                }
-              }
-            }
-            .touch-arrow-click {
-              fill: clr(primary);
-              transform: translate(-50%, 60%);
-              @include touchStay();
-
-              #touch-click-left {
-                width: 50px;
-                height: 50px;
-              }
-              #touch-click-right {
-                width: 50px;
-                height: 50px;
-              }
-              #mouse-click {
-                width: 35px;
-                height: 35px;
-                transform: rotate(290deg);
-                fill: clr(primary);
-              }
-
-              #touch-click-left {
-                opacity: 0;
-                visibility: hidden;
-                display: none;
-                @include px(1024) {
-                  opacity: 0;
-                  visibility: hidden;
-                  display: none;
-                }
-              }
-              #touch-click-right {
-                opacity: 0;
-                visibility: hidden;
-                display: none;
-                @include px(1024) {
-                  opacity: 1;
-                  visibility: visible;
-                  display: block;
-                }
-              }
-              #mouse-click {
-                opacity: 1;
-                visibility: visible;
-                display: block;
-                @include px(1024) {
-                  opacity: 0;
-                  visibility: hidden;
-                  display: none;
-                }
-              }
-            }
-          }
-
-          .press-here {
-            position: absolute;
-            bottom: 0%;
-            left: 50%;
-            transform: translate(-50%, 100%);
-            font-size: 70%;
-            white-space: nowrap;
-            background: linear-gradient(215deg, #95d572, #5edbf8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-size: 120% 120%;
-            -webkit-animation: link-to-bg-anime 8s ease infinite;
-            -moz-animation: link-to-bg-anime 8s ease infinite;
-            -o-animation: link-to-bg-anime 8s ease infinite;
-            animation: link-to-bg-anime 8s ease infinite;
-            animation: link-to-bg-anime 8s ease infinite;
-            
-            @include px(1024) {
-              font-size: 45%;
-            }
-            @include px(600) {
-              font-size: 55%;
-              display: none;
-            }
-          }
-        }
-        .book {
-          @include px(1024) {
-            margin-top: 0px;
-            font-size: clamp(70%, 50% + 1.1vw, 110%);
-          }
-        }
-      }
+      @include social-btn();
     }
   }
 
@@ -1004,7 +956,7 @@ $section-1-height-boxs: 500px;
       z-index: 2;
       top: unset;
       left: unset;
-      transform: translate(0%,0%);
+      transform: translate(0%, 0%);
       width: 600px;
       height: 509px;
       min-width: 700px;
@@ -1024,9 +976,9 @@ $section-1-height-boxs: 500px;
       background-position: right 0;
       background-repeat: no-repeat;
       background-size: auto 80%;
-      background-position-x: calc(-2050px + 15vw * 5);
+      background-position: right 0px;
       background-image: url("/assets/img/dogs/4-ps.jpg");
-      
+
       @include px(1450) {
         background-image: url("/assets/img/dogs/4-ps.jpg");
         background-position: 82% 0;
@@ -1040,7 +992,7 @@ $section-1-height-boxs: 500px;
         background-attachment: unset;
         max-height: 850px;
       }
-     
+
       @include px(600) {
         background-image: url("/assets/img/dogs/4-short.png");
         background-size: auto;
@@ -1057,152 +1009,672 @@ $section-1-height-boxs: 500px;
   }
 }
 .section-2 {
+  position: relative;
+  z-index: 2;
   width: calc(70% + 150px);
   margin-inline: auto;
-  padding: 100px 0px;
+  padding: 200px 0px 100px 0px;
   @include px(1024) {
     width: 98%;
-    padding: 100px 10px;
+    padding: 150px 10px 150px 40px;
+  }
+  @include px(600) {
+    width: 98%;
+    padding: 100px 10px 50px 10px;
   }
   article {
     h2 {
       font-size: clamp(90%, 110% + 1.5vw, 300%);
+      margin-bottom: 30px;
+      font-family: "Passion One", sans-serif;
+      @include px(600) {
+        text-align: center;
+      }
     }
-    p {
-      font-size: clamp(90%, 50% + 1.1vw, 140%);
+
+    .box-pic {
+      position: relative;
+      width: 100%;
+      @include flex-full(space-between, center, row);
+      gap: 15px;
+      @include px(600) {
+        @include flex-full(space-between, center, column-reverse);
+      }
+      .box-text {
+        width: 65%;
+        @include px(600) {
+          width: 85%;
+        }
+        p {
+          width: 100%;
+          font-size: clamp(90%, 50% + 1.1vw, 130%);
+        }
+      }
+      .pic-box {
+        width: calc(100px + 15vw);
+        height: calc(100px + 15vw);
+        min-height: 200px;
+        min-width: 200px;
+        max-width: 400px;
+        max-height: 400px;
+        border-radius: 50%;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-image: url("/assets/img/dogs/1.jpg");
+      }
+    }
+
+    aside {
+      .link-box {
+        @include social-btn();
+        @include flex-full(flex-start, center, row);
+      }
     }
   }
 }
 .section-3 {
   position: relative;
+  z-index: 2;
   width: calc(70% + 150px);
   margin-inline: auto;
-  padding: 100px 0px;
+  padding: 50px 0px;
+  @include px(1450) {
+    width: 98%;
+    padding: 50px 10px 100px 40px;
+  }
+  @include px(1024) {
+    width: 98%;
+    padding: 50px 10px 50px 10px;
+  }
   article {
-    position: relative;
-    width: 100%;
-    h2 {
-      text-align: center;
-      font-size: clamp(90%, 110% + 1.5vw, 300%);
-      margin-bottom: 20px;
+    .box-pic {
+      position: relative;
+      width: 100%;
+      @include flex-full(space-between, center, row);
+      @include px(1450) {
+        @include flex-full(space-between, center, column);
+      }
+      .box-text {
+        width: 70%;
+        @include px(1450) {
+          width: 85%;
+        }
+        p {
+          width: 100%;
+          font-size: clamp(90%, 50% + 1.1vw, 140%);
+        }
+
+        h2 {
+          font-size: clamp(90%, 110% + 1.5vw, 300%);
+          margin-bottom: 0px;
+          font-family: "Passion One", sans-serif;
+          @include px(600) {
+            text-align: center;
+          }
+        }
+        h3 {
+          font-size: clamp(90%, 90% + 1.5vw, 200%);
+          margin-bottom: 0px;
+          font-family: "Passion One", sans-serif;
+          background: linear-gradient(215deg, #6ca14f, #4ac1dc);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-size: 150% 150%;
+          text-shadow: 2px 2px 3px #7ce5ad5c;
+          @include px(600) {
+            text-align: center;
+          }
+        }
+        li {
+          font-size: clamp(90%, 50% + 1.5vw, 110%);
+        }
+        .ul-1 {
+          margin-top: 20px;
+          margin-left: 20px;
+        }
+        .solo-1 {
+          margin-top: 20px;
+        }
+        .ul-2 {
+          margin-top: 10px;
+          margin-left: 20px;
+        }
+        .solo-2 {
+          margin-top: 20px;
+          font-size: clamp(90%, 50% + 1.5vw, 110%);
+        }
+      }
+      .pic-box {
+        width: calc(100px + 15vw);
+        height: calc(100px + 15vw);
+        min-height: 200px;
+        min-width: 200px;
+        max-width: 300px;
+        max-height: 300px;
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        margin-right: 40px;
+        background-image: url("/assets/img/vip.png");
+      }
     }
-    p {
-      font-size: clamp(90%, 50% + 1.1vw, 140%);
+
+    aside {
+      margin-top: 20px;
+      width: 70%;
+      float: right;
+      @include px(1024) {
+        width: 100%;
+      }
+      .link-box {
+        @include social-btn();
+        @include flex-full(flex-start, center, row);
+      }
     }
   }
 }
 .section-4 {
-  padding: 100px 100px;
+  padding: 100px 0px;
+  width: calc(90% + 50px);
+  @include px(1450) {
+    width: 100%;
+    padding: 50px 0px;
+  }
+  margin-inline: auto;
 
   article {
     h2 {
+      font-size: clamp(90%, 150% + 2.5vw, 300%);
+      margin-bottom: 0px;
+      font-family: "Passion One", sans-serif;
+      background: linear-gradient(215deg, #6ca14f, #4ac1dc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-size: 150% 150%;
+      text-shadow: 2px 2px 3px #7ce5ad5c;
       text-align: center;
     }
     figure {
-      margin-top: 80px;
+      margin-top: 20px;
       figcaption {
         display: grid;
-        grid-template-columns: 0.25fr 0.25fr;
+        grid-template-columns: 0.25fr 0.25fr 0.25fr 0.25fr;
         justify-content: center;
         gap: 50px;
+        @include px(1600) {
+          gap: 20px;
+        }
+        @include px(1450) {
+          grid-template-columns: 0.33fr 0.33fr;
+        }
+        @include px(1024) {
+          grid-template-columns: 0.4fr 0.4fr;
+        }
         @include px(600) {
-          grid-template-columns: 1fr;
+          grid-template-columns: 0.7fr;
+        }
+        @include px(500) {
+          grid-template-columns: 0.8fr;
+        }
+        @include px(400) {
+          grid-template-columns: 0.9fr;
+        }
+        @include px(360) {
+          grid-template-columns: 0.95fr;
         }
         .style {
+          position: relative;
           min-width: calc(200px + 4.5vw);
-          border-radius: 9px;
-          box-shadow: 0px 0px 20px 0px rgba($color: #646464, $alpha: 0.2);
-          .box-header {
-            position: relative;
-            padding: 12px 10px;
-            border-bottom: 1px solid #c1725546;
-            //background: clr(font-primary-light);
-            border-top-left-radius: 9px;
-            border-top-right-radius: 9px;
-            p {
-              font-family: "Concert One", sans-serif;
-              font-family: "Lilita One", sans-serif;
-              font-family: "Passion One", sans-serif;
-              font-weight: 500;
-              text-align: center;
-              color: clr(font);
-              font-size: clamp(120%, 40% + 1.5vw, 160%);
-            }
-
+          border-radius: 33px;
+          @include px(600) {
+            border-radius: 15px;
+          }
+          //border: 2px solid #4adc9154;
+          overflow: hidden;
+          box-shadow: 0px 0px 20px 0px rgba($color: #94a69e, $alpha: 0.25);
+          @include flex-full(space-between, space-between, column);
+          .prices {
+            @include flex-full(space-between, center, row);
             .discount-img {
-              position: absolute;
-              top: -35px;
-              right: -35px;
-              width: calc(50px + 2.5vw);
-              height: calc(50px + 2.5vw);
-              min-width: 70px;
-              min-height: 70px;
+              padding: 10px 20px;
               transition: all ease 0.3s;
-              img {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%) rotate(-10deg);
-                width: calc(60px + 2.5vw);
-                height: calc(60px + 2.5vw);
-                min-width: 80px;
-                min-height: 80px;
+              @include flex-full(center, center, column);
+              svg {
+                position: relative;
+                z-index: -1;
+                width: calc(10px + 1.5vw);
+                height: calc(10px + 1.5vw);
+                min-width: 20px;
+                min-height: 20px;
                 transition: all ease 0.3s;
+                fill: #4adcbf;
+                opacity: 0.8;
               }
               p {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-40%, 0%) rotate(10deg);
-                color: white;
+                position: relative;
+                z-index: 3;
+                color: #4adcbf;
+                white-space: nowrap;
+                font-size: clamp(100%, 40% + 1.2vw, 150%);
+                font-family: "Lilita One", sans-serif;
+              }
+            }
+            .discount-img2 {
+              padding: 10px 20px;
+              transition: all ease 0.3s;
+              @include flex-full(center, center, column);
+              svg {
+                position: relative;
+                z-index: -1;
+                width: calc(10px + 1.5vw);
+                height: calc(10px + 1.5vw);
+                min-width: 20px;
+                min-height: 20px;
+                transition: all ease 0.3s;
+                fill: #ffc774;
+                opacity: 0.8;
+              }
+              p {
+                position: relative;
+                z-index: 3;
+                color: #ffc774;
                 white-space: nowrap;
                 font-size: clamp(100%, 40% + 1.2vw, 150%);
                 font-family: "Lilita One", sans-serif;
               }
             }
           }
-          span {
-            font-family: "Passion One", sans-serif;
-            padding: 5px 20px;
-            font-weight: 500;
-            color: clr(font-primary-light);
-            font-size: clamp(100%, 30% + 1.1vw, 120%);
-            @include flex-center();
+          .box-header {
+            position: relative;
+            padding: 25px 10px 12px 10px;
+            //border-bottom: 1px solid #4adc9154;
+            //background: clr(font-primary-light);
+            border-top-left-radius: 9px;
+            border-top-right-radius: 9px;
+            p {
+              font-family: "Passion One", sans-serif;
+              font-weight: 500;
+              text-align: center;
+              color: clr(font);
+              font-size: clamp(120%, 40% + 1.5vw, 190%);
+            }
+            span {
+              font-family: "Passion One", sans-serif;
+              padding: 5px 10px;
+              font-weight: 500;
+              background: linear-gradient(215deg, #6ca14f, #4ac1dc);
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+              background-size: 100% 100%;
+              text-shadow: 1px 1px 2px #7ce5ad5c;
+              font-size: clamp(90%, 40% + 1.1vw, 150%);
+              @include flex-center();
+            }
           }
           ul {
-            padding: 20px;
             list-style-type: none;
+            background: #ffffffb2;
+            padding: 5px 20px;
             li {
               font-size: clamp(80%, 30% + 1.1vw, 120%);
+              color: clr(font-primary-light2);
             }
           }
         }
-        /*.box1 {
-          .box-1 {
+      }
+    }
+    .important {
+      margin-top: 50px;
+      text-align: center;
+      margin-bottom: 30px;
+      .first {
+        font-family: "Passion One", sans-serif;
+        font-size: clamp(100%, 70% + 3vw, 210%);
+        padding: 0px 40px;
+      }
+      .second {
+        padding: 0px 150px;
+        font-size: clamp(90%, 50% + 1.5vw, 110%);
+        @include px(800) {
+          padding: 0px 50px;
+        }
+        @include px(600) {
+          padding: 0px 40px;
+        }
+        @include px(500) {
+          padding: 0px 20px;
+        }
+      }
+    }
+    aside {
+      margin-top: 50px;
+      width: 100%;
+      .link-box {
+        @include social-btn();
+        @include flex-full(center, center, column);
+        .first {
+          margin-top: 30px;
+          margin-bottom: 20px;
+          text-align: center;
+          padding: 0px 150px;
+          @include px(800) {
+            padding: 0px 50px;
           }
-          .box-2 {
+          @include px(600) {
+            padding: 0px 40px;
+          }
+          @include px(500) {
+            padding: 0px 20px;
           }
         }
-        .box2 {
-          .box-3 {
-          }
-          .box-4 {
-          }
-        }*/
       }
     }
   }
 }
 .section-5 {
-  padding: 100px 100px;
+  position: relative;
+  z-index: 2;
+  width: calc(70% + 150px);
+  margin-inline: auto;
+  padding: 50px 0px 100px 0px;
+  @include px(1024) {
+    width: 98%;
+    padding: 50px 10px 50px 40px;
+  }
+  @include px(600) {
+    width: 98%;
+    padding: 100px 10px 50px 10px;
+  }
+  article {
+    h2 {
+      font-size: clamp(90%, 110% + 1.5vw, 300%);
+      margin-bottom: 30px;
+      font-family: "Passion One", sans-serif;
+      @include px(600) {
+        text-align: center;
+      }
+    }
+
+    .box-pic {
+      position: relative;
+      width: 100%;
+      @include flex-full(space-between, center, row);
+      gap: 15px;
+      @include px(600) {
+        @include flex-full(space-between, center, column-reverse);
+      }
+      .box-text {
+        width: 65%;
+        @include px(600) {
+          width: 85%;
+        }
+        p {
+          width: 100%;
+          font-size: clamp(90%, 50% + 1.1vw, 130%);
+        }
+      }
+      .pic-box {
+        width: calc(100px + 15vw);
+        height: calc(100px + 15vw);
+        min-height: 200px;
+        min-width: 200px;
+        max-width: 400px;
+        max-height: 400px;
+        border-radius: 50%;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-image: url("/assets/img/dogs/pettransport.jpg");
+      }
+    }
+
+    aside {
+      margin-top: -50px;
+      @include px(1450) {
+        margin-top: -20px;
+      }
+      @include px(1024) {
+        margin-top: 0px;
+      }
+      .link-box {
+        @include social-btn();
+        @include flex-full(flex-start, center, row);
+      }
+    }
+  }
 }
 .section-6 {
-  padding: 100px 100px;
+  position: relative;
+  z-index: 2;
+  width: calc(70% + 150px);
+  margin-inline: auto;
+  padding: 50px 0px;
+  @include px(1450) {
+    width: 98%;
+    padding: 50px 10px 100px 40px;
+  }
+  @include px(1024) {
+    width: 98%;
+    padding: 50px 10px 50px 10px;
+  }
+  article {
+    .box-pic {
+      position: relative;
+      width: 100%;
+      @include flex-full(space-between, center, row);
+      @include px(1450) {
+        @include flex-full(space-between, center, column);
+      }
+      .box-text {
+        width: 70%;
+        @include px(1450) {
+          width: 85%;
+        }
+        p {
+          width: 100%;
+          font-size: clamp(90%, 50% + 1.1vw, 140%);
+        }
+
+        h2 {
+          font-size: clamp(90%, 110% + 1.5vw, 300%);
+          margin-bottom: 0px;
+          font-family: "Passion One", sans-serif;
+          margin-bottom: 20px;
+          margin-top: 10px;
+          @include px(600) {
+            text-align: center;
+          }
+        }
+        h3 {
+          font-size: clamp(90%, 90% + 1.5vw, 200%);
+          margin-bottom: 0px;
+          font-family: "Passion One", sans-serif;
+          background: linear-gradient(215deg, #6ca14f, #4ac1dc);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-size: 150% 150%;
+          text-shadow: 2px 2px 3px #7ce5ad5c;
+          @include px(600) {
+            text-align: center;
+          }
+        }
+        li {
+          font-size: clamp(90%, 50% + 1.5vw, 110%);
+        }
+        .ul-1 {
+          margin-top: 20px;
+          margin-left: 20px;
+        }
+        .solo-1 {
+          margin-top: 20px;
+        }
+        .ul-2 {
+          margin-top: 10px;
+          margin-left: 20px;
+        }
+        .solo-2 {
+          margin-top: 20px;
+          font-size: clamp(90%, 50% + 1.5vw, 110%);
+        }
+      }
+      .pic-box {
+        width: calc(150px + 15vw);
+        height: calc(150px + 15vw);
+        min-height: 200px;
+        min-width: 200px;
+        max-width: 390px;
+        max-height: 390px;
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        margin-right: 40px;
+        background-image: url("/assets/img/dogs/8.jpg");
+        @include px(1450) {
+          margin-right: 0;
+        }
+      }
+    }
+
+    aside {
+      margin-top: 20px;
+      width: 70%;
+      float: right;
+      @include px(1024) {
+        width: 100%;
+      }
+      .link-box {
+        @include social-btn();
+        @include flex-full(flex-start, center, row);
+      }
+    }
+  }
 }
 .section-7 {
-  padding: 100px 100px;
+  position: relative;
+  padding: 100px 0px;
+  
+  
+  article {
+    h2 {
+      font-size: clamp(90%, 110% + 1.5vw, 300%);
+      margin-bottom: 30px;
+      font-family: "Passion One", sans-serif;
+      text-align: center;
+    }
+    figure {
+      width: calc(85% + 50px);
+      margin-inline: auto;
+      border-radius: 33px;
+      box-shadow: 0px 0px 150px 0px rgba(62, 62, 62, 0.2);
+      overflow: hidden;
+      @include px(1024) {
+        width: 96%;
+      }
+      figcaption {
+        position: relative;
+        @include flex-full(space-between,flex-start,row);
+        overflow: hidden;
+        max-height: 600px;
+        @include px(1024) {
+          @include flex-full(space-between,flex-start,column);
+          max-height: unset;
+        }
+        .overlay {
+          position: absolute;
+          z-index: 1;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba($color: #ffffff, $alpha: .5);
+          backdrop-filter: blur(10px);
+          opacity: 0;
+          visibility: hidden;
+          transition: all ease .3s;
+          p {
+            @include flex-center;
+            height: 100%;
+          }
+        }
+        .igpic {
+          position: relative;
+          background: url("/assets/img/igkupanjepasa.png");
+          width: 100%;
+          height: 100%;
+          max-height: 600px;
+          min-height: 600px;
+          background-position: 0 auto;
+          background-size: cover;
+          cursor: pointer;
+          a {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            img {
+    
+            }
+          }
+
+          &:hover {
+            .overlay {
+              opacity: 1;
+              visibility: visible;
+            }
+          }
+        }
+        .mappic {
+          position: relative;
+          background: url("/assets/img/mapa.png");
+          width: 100%;
+          height: 100%;
+          max-height: 600px;
+          min-height: 600px;
+          background-position: center;
+          background-size: cover;
+          cursor: pointer;
+          a {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            img {
+    
+            }
+          }
+          &:hover {
+            .overlay {
+              opacity: 1;
+              visibility: visible;
+            }
+          }
+        }
+      }
+    }
+    aside {
+      margin-top: 20px;
+      width: 100%;
+      gap: 100px;
+      @include flex-center;
+      @include px(800) {
+        gap: 50px;
+      }
+      @include px(600) {
+        gap: 10px;
+        flex-direction: column;
+      }
+      .link-box {
+        @include social-btn();
+        @include flex-full(flex-start, center, row);
+      }
+      .link2 {
+        .touch {
+          @include px(600) {
+            display: none;
+          }
+        }
+      }
+    }
+  }
 }
-.section-8 {
-  padding: 100px 100px;
-}
+
 </style>

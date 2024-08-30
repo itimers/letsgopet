@@ -4,6 +4,7 @@
     page.changeSection(1)
     "
     class="hover-link"
+    :class="{active: page.currentSection === 1}"
   >
   {{ $t("Pocetna") }}
   </NuxtLink>

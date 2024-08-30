@@ -770,7 +770,6 @@ $pag-maxw: 26px;
 }
 .slider-cloud-modal {
   @include cloud-modal(150px);
-  background: red;
   padding: 10px;
   white-space: nowrap;
   @include flex-full(flex-start, flex-start, column);

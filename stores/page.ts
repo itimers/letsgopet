@@ -334,9 +334,9 @@ export const usePagesStore = defineStore('pages', {
       }
     
       if (this.isMobile) {
-        console.log('Korisnik je na mobilnom uređaju');
+        //console.log('Korisnik je na mobilnom uređaju');
       } else {
-        console.log('Korisnik je na desktop uređaju');
+        //console.log('Korisnik je na desktop uređaju');
       }
     },
     setFirstLoaderState(isActive: boolean) {

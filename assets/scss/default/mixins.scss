@@ -7,13 +7,11 @@ $upnav-height: 30px;
 $nav-height: 40px;
 $br: 3px;
 
-
 //* Upnav ~ krece da se smanjuje oko/od 1024px
 $up-increment: 32px;
 $up-decrement: 2.5vw;
 $up-minw: 19px;
 $up-maxw: 24px;
-
 
 //* Nav Tools
 $tools-increment: 32px;
@@ -21,18 +19,10 @@ $tools-decrement: 2.5vw;
 $tools-minw: 24px;
 $tools-maxw: 26px;
 
-
-
-
-
 $base-width: 1.5vw;
 $decrement: 0.5vw;
 $min-width: 24px;
 $max-width: 40px;
-
-
-
-
 
 @mixin cloud-modal($top) {
   position: absolute;
@@ -41,7 +31,7 @@ $max-width: 40px;
   opacity: 0;
   visibility: hidden;
   border-radius: $br;
-  transition: top ease .22s, opacity ease-out .2s, visibility ease .2s;
+  transition: top ease 0.22s, opacity ease-out 0.2s, visibility ease 0.2s;
 }
 @mixin active-cloud-modal($top-active) {
   top: $top-active;
@@ -260,7 +250,7 @@ $max-width: 40px;
           white-space: wrap;
           transition: opacity ease 0.2s, width ease 0.3s, height ease 0.1s,
             transform ease 0.2s, white-space ease 0.1s;
-            transition-delay: 0s, 0s, 0s, 0s, 0s;
+          transition-delay: 0s, 0s, 0s, 0s, 0s;
         }
         &.two {
           transform: translateX(100%);
@@ -268,7 +258,7 @@ $max-width: 40px;
           white-space: nowrap;
           transition: opacity ease 0.3s, width ease 0.2s, height ease 0.1s,
             transform ease 0.2s, white-space ease 0.1s;
-            transition-delay: 0s, 0s, 0s, 0s, 0s;
+          transition-delay: 0s, 0s, 0s, 0s, 0s;
         }
       }
     }
@@ -297,7 +287,7 @@ $max-width: 40px;
             white-space: wrap;
             transition: opacity ease 0.2s, width ease 0.3s, height ease 0.1s,
               transform ease 0.2s, white-space ease 0.1s;
-              transition-delay: 0s, 0s, 0s, 0s, 0s;
+            transition-delay: 0s, 0s, 0s, 0s, 0s;
           }
         }
       }
@@ -393,14 +383,239 @@ $max-width: 40px;
   }
 }
 
+@mixin social-btn() {
+  position: relative;
+  margin-top: 20px;
+  margin-left: 15px;
+  color: clr(font-primary-light);
+  @include flex-center();
+  @include px(1024) {
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    margin-top: 35px;
+    margin-left: 0;
+    margin-inline: auto;
+    gap: 3px;
+  }
+  .link-btn {
+    gap: 15px;
+    @include flex-center();
+    @include px(1024) {
+      flex-direction: column;
+    }
+    .link-to {
+      position: relative;
+      padding: 5px 15px;
 
+      font-size: clamp(70%, 50% + 1.1vw, 110%);
+      border-radius: 33px;
+      color: white;
+      margin-left: 0px;
+      gap: 10px;
+      box-shadow: 0 0 0 0 #7ccdff00;
+      transform: scale(1);
+
+      background: linear-gradient(215deg, #95d572, #5edbf8);
+      background-size: 200% 200%;
+      -webkit-animation: link-to-bg-anime 8s ease infinite,
+        pulsating 2s infinite;
+      -moz-animation: link-to-bg-anime 8s ease infinite, pulsating 2s infinite;
+      -o-animation: link-to-bg-anime 8s ease infinite, pulsating 2s infinite;
+      animation: link-to-bg-anime 8s ease infinite, pulsating 2s infinite;
+      animation: link-to-bg-anime 8s ease infinite, pulsating 2s infinite;
+      @include flex-center();
+
+      @include px(1024) {
+        font-size: clamp(130%, 100% + 1.5vw, 230%);
+        border-radius: 50px;
+        padding: 6px 15px;
+        gap: 15px;
+      }
+
+      .ig-icon {
+        fill: white;
+        height: 25px;
+        width: 25px;
+        @include px(1024) {
+          height: 30px;
+          width: 30px;
+        }
+      }
+
+      .dm-icon {
+        position: absolute;
+        top: -10px;
+        right: -5px;
+        width: 18px;
+        height: 18px;
+        background: #7dc4fd;
+        border-radius: 50%;
+        @include flex-center();
+        @include px(1024) {
+          width: 30px;
+          height: 30px;
+          top: -15px;
+        }
+        svg {
+          position: absolute;
+          fill: white;
+          height: 12px;
+          width: 12px;
+          top: 50%;
+          left: 50%;
+          transform: translate(-55%, -45%);
+          @include flex-center();
+          @include px(1024) {
+            height: 17px;
+            width: 17px;
+          }
+        }
+      }
+
+      p {
+        color: white;
+        font-size: clamp(70%, 50% + 1.1vw, 110%);
+      }
+
+      .touch-container {
+        position: absolute;
+        bottom: 50%;
+        left: unset;
+        right: 0%;
+        transform: translate(30%, 50%);
+        @include px(1024) {
+          transform: translate(30%, 60%);
+        }
+        &.left {
+          right: unset;
+          left: 0;
+          transform: translate(-200%, 60%);
+          @include px(1024) {
+            left: unset;
+            right: 0;
+            transform: translate(30%, 70%);
+          }
+          .touch-arrow-click {
+            #touch-click-left {
+              opacity: 0;
+              visibility: hidden;
+              display: none;
+              @include px(1024) {
+                opacity: 0;
+                visibility: hidden;
+                display: none;
+              }
+            }
+            #touch-click-right {
+              opacity: 0;
+              visibility: hidden;
+              display: none;
+              @include px(1024) {
+                opacity: 1;
+                visibility: visible;
+                display: block;
+              }
+            }
+            #mouse-click {
+              transform: rotate(0deg);
+            }
+          }
+        }
+        .touch-arrow-click {
+          fill: clr(primary);
+          transform: translate(-50%, 60%);
+          @include touchStay();
+
+          #touch-click-left {
+            width: 50px;
+            height: 50px;
+          }
+          #touch-click-right {
+            width: 50px;
+            height: 50px;
+          }
+          #mouse-click {
+            width: 35px;
+            height: 35px;
+            transform: rotate(290deg);
+            fill: clr(primary);
+          }
+
+          #touch-click-left {
+            opacity: 0;
+            visibility: hidden;
+            display: none;
+            @include px(1024) {
+              opacity: 0;
+              visibility: hidden;
+              display: none;
+            }
+          }
+          #touch-click-right {
+            opacity: 0;
+            visibility: hidden;
+            display: none;
+            @include px(1024) {
+              opacity: 1;
+              visibility: visible;
+              display: block;
+            }
+          }
+          #mouse-click {
+            opacity: 1;
+            visibility: visible;
+            display: block;
+            @include px(1024) {
+              opacity: 0;
+              visibility: hidden;
+              display: none;
+            }
+          }
+        }
+      }
+
+      .press-here {
+        position: absolute;
+        bottom: 0%;
+        left: 50%;
+        transform: translate(-50%, 100%);
+        font-size: 70%;
+        white-space: nowrap;
+        background: linear-gradient(215deg, #95d572, #5edbf8);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-size: 120% 120%;
+        -webkit-animation: link-to-bg-anime 8s ease infinite;
+        -moz-animation: link-to-bg-anime 8s ease infinite;
+        -o-animation: link-to-bg-anime 8s ease infinite;
+        animation: link-to-bg-anime 8s ease infinite;
+        animation: link-to-bg-anime 8s ease infinite;
+
+        @include px(1024) {
+          font-size: 45%;
+        }
+        @include px(600) {
+          font-size: 55%;
+          display: none;
+        }
+      }
+    }
+    .book {
+      @include px(1024) {
+        margin-top: 0px;
+        font-size: clamp(70%, 50% + 1.1vw, 110%);
+      }
+    }
+  }
+}
 
 //* Sections
 $section-increment: 32px;
 $section-decrement: 2.5vw;
 $section-minw: 80%;
 $section-maxw: 95%;
-@mixin sections($width,$padding,$margin) {
+@mixin sections($width, $padding, $margin) {
   position: relative;
   width: $width;
   height: 100%;
@@ -417,74 +632,4 @@ $section-maxw: 95%;
   width: 100%;
   padding: 50px 0px;
 }
-@mixin section1() {
 
-}
-@mixin section2() {
-  
-}
-@mixin section3() {
-  
-}
-@mixin section4() {
-  
-}
-@mixin section5() {
-  
-}
-@mixin section6() {
-  
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-@mixin slidermenu {
-  .slider-modal-menu {
-    z-index: 9999;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0px 0px 30px 0px rgba($color: #3c3c3c, $alpha: 0.3);
-
-    &.active {
-      margin-top: 5px;
-      background: white;
-      opacity: 1;
-    }
-  }
-}
-
-
-
-@mixin sliderbtn {
-  .slider-modal-btn {
-    position: relative;
-    z-index: 9999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 18px;
-    height: 18px;
-    svg {
-      width: 18px;
-      height: 18px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      fill: red;
-    }
-  }
-}

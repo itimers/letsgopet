@@ -5,6 +5,7 @@
       page.changeSection(4)
     "
     :disabled="page.isButtonDisabled(4)"
+    :class="{active: page.currentSection === 4}"
     class="hover-link"
   >
   {{ $t("Cenovnik") }}

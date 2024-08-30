@@ -923,7 +923,7 @@ export const useSlidesStore = defineStore('slides', {
         },
         resetProgress() {
             if (this.progressBar && this.isProgressBarUsing && !this.isPaused) {
-                console.log("resetProgress");
+                //console.log("resetProgress");
                 this.progressBarTime = "0";
                 this.progressBarWidth = "0%";
             }
