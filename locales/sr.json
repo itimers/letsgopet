@@ -24,6 +24,11 @@
   "cenovnik":"cenovnik",
   "uvod":"uvod",
   "Uvod":"Uvod",
+  "Vrtic":"Vrtić",
+  "Vrtić":"Vrtić",
+  "vrtic":"vrtic",
+  "usluge-vrtica":"usluge-vrtica",
+  "Usluge vrtica":"Usluge vrtića",
   "Marketing": "Marketing",
   "mk": "Marketing kolačići",
   "mone": "Zabrani marketing kolacice",
@@ -170,10 +175,12 @@
   "Tretman protiv masne kože":"Tretman protiv masne kože",
   "Tretman protiv peruti":"Tretman protiv peruti",
   "Klikni da odes na Google Mape":"Klikni da odes na Google Mape",
-  "Klikni da odes na Instagram profil":"Klikni da odes na Instagram profil"
+  "Klikni da odes na Instagram profil":"Klikni da odes na Instagram profil",
   
-
-
+  "Vrtic za pse": "Vrtić za pse",
+  "Vrtic za pse2": "Čuvamo, sređujemo i vraćamo",
+  "Vrtic tekst": "Dobrodošli u naš Let's Go Pet vrtić za pse, mesto gde vaši ljubimci uživaju u sigurnosti, pažnji i brizi tokom celog dana! U našem vrtiću, psi su uvek na sigurnom, a posebna pažnja posvećena je njihovoj ishrani. Bilo da želite da koristimo našu pažljivo odabranu hranu ili želite da donesete omiljenu hranu vašeg ljubimca, mi se prilagođavamo njihovim potrebama.",
+  "Vrtic tekst2": " Osim što će vaši psi uživati u igranju i druženju, nudimo i dodatne usluge grooming salona – tako da mogu izaći iz vrtića ne samo srećni, već i savršeno sređeni! Rezervišite mesto za svog ljubimca već danas i pružite mu nezaboravan dan u Let's Go Pet vrtiću za pse!"
 
 
 

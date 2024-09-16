@@ -725,7 +725,7 @@ onBeforeUnmount(() => {
 </template>
 
 <style lang="scss">
-.sections {
+.page-home .sections {
   max-width: 2160px;
   gap: 0px;
   @include sections(
@@ -735,7 +735,7 @@ onBeforeUnmount(() => {
     );
     @include flex-full(flex-start, flex-start, column);
 }
-section {
+.page-home section {
   color: clr(font);
   padding: 0px calc((10px + 4vw) - 20px) 0px calc((10px + 4vw) - 20px);
   @include allSections();
@@ -745,7 +745,7 @@ $section-1-height-sm: 900px;
 $section-1-height-smm: 800px;
 $section-1-height-img: 800px;
 $section-1-height-boxs: 500px;
-.section-1 {
+.page-home .section-1 {
   position: relative;
   //width: calc(80% + 5vw);
   //width: 1024px;
@@ -934,7 +934,7 @@ $section-1-height-boxs: 500px;
     }
   }
 }
-.section-2 {
+.page-home .section-2 {
   position: relative;
   z-index: 2;
   width: calc(70% + 150px);
@@ -985,9 +985,9 @@ $section-1-height-boxs: 500px;
         max-height: 400px;
         border-radius: 50%;
         background-position: center;
-        background-size: cover;
+        background-size: contain;
         background-repeat: no-repeat;
-        background-image: url("/assets/img/dogs/1.jpg");
+        background-image: url("/assets/img/dogs/milasite.png");
       }
     }
 
@@ -999,7 +999,7 @@ $section-1-height-boxs: 500px;
     }
   }
 }
-.section-3 {
+.page-home .section-3 {
   position: relative;
   z-index: 2;
   width: calc(70% + 150px);
@@ -1101,7 +1101,7 @@ $section-1-height-boxs: 500px;
     }
   }
 }
-.section-4 {
+.page-home .section-4 {
   padding: 100px 0px;
   width: calc(90% + 50px);
   margin-inline: auto;
@@ -1300,7 +1300,7 @@ $section-1-height-boxs: 500px;
     }
   }
 }
-.section-5 {
+.page-home .section-5 {
   position: relative;
   z-index: 2;
   width: calc(70% + 150px);
@@ -1372,7 +1372,7 @@ $section-1-height-boxs: 500px;
     }
   }
 }
-.section-6 {
+.page-home .section-6 {
   position: relative;
   z-index: 2;
   width: calc(70% + 150px);
@@ -1479,7 +1479,7 @@ $section-1-height-boxs: 500px;
     }
   }
 }
-.section-7 {
+.page-home .section-7 {
   position: relative;
   padding: 100px 0px;
 

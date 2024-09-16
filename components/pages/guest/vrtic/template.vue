@@ -30,20 +30,32 @@ const sections = [
   {
     id: 1,
     sectionName: i18n.t("Vrtic"),
-    slotName: "section7",
+    slotName: "section1",
     idtag: i18n.t("vrtic"),
   },
   {
     id: 2,
     sectionName: i18n.t("Usluge vrtica"),
-    slotName: "section8",
+    slotName: "section2",
     idtag: i18n.t("usluge-vrtica"),
   },
   {
     id: 3,
     sectionName: i18n.t("Vip"),
-    slotName: "section9",
+    slotName: "section3",
     idtag: i18n.t("vip"),
+  },
+  {
+    id: 4,
+    sectionName: i18n.t("Cenovnik"),
+    slotName: "section4",
+    idtag: i18n.t("cenovnik"),
+  },
+  {
+    id: 5,
+    sectionName: i18n.t("Kontakt"),
+    slotName: "section5",
+    idtag: i18n.t("kontakt"),
   }
 ];
 
@@ -263,12 +275,8 @@ onBeforeUnmount(() => {
           :slot="sections[0].slotName"
           :id="`${sections[0].idtag}`"
         >
-          <div
-            class="box-shadow-header"
-            :class="{ scrolled: page.isScrolled }"
-          ></div>
+          
 
-          <IconsDefaultOrganic class="organic" />
           <article>
             <h2>{{ $t("Let's Go Pet") }}</h2>
             <figure>
@@ -311,9 +319,9 @@ onBeforeUnmount(() => {
           <article>
             <div class="box-pic">
               <div class="box-text">
-                <h2>{{ $t("Usluge") }}</h2>
+                <h2>{{ $t("Vrtic za pse") }}</h2>
                 <p>
-                  {{ $t("Usluge tekst") }}
+                  {{ $t("Vrtic tekst") }}
                 </p>
               </div>
               <div class="pic-box"></div>
@@ -396,13 +404,236 @@ onBeforeUnmount(() => {
             </div>
           </div> -->
         </section>
+
+        <section
+          ref="section4Ref"
+          :data-section-id="4"
+          :class="[
+            'section section-4',
+            {
+              active: page.activeSectionsByPage[page.page]
+                ? page.activeSectionsByPage[page.page].includes(4)
+                : false,
+            },
+          ]"
+          :slot="sections[3].slotName"
+          :id="`${sections[3].idtag}`"
+        >
+          <article>
+            <h2>{{ $t("Cenovnik") }}</h2>
+            <figure>
+              <figcaption>
+                <div class="box-1 style">
+                  <div class="box-header">
+                    <p>{{ $t("Jednostavan") }}</p>
+                    <span>{{ $t("Za sve uzraste") }}</span>
+                  </div>
+                  <ul>
+                    <li>{{ $t("Transport") }}</li>
+                    <li>{{ $t("Šišanje") }}</li>
+                    <li>{{ $t("Kupanje") }}</li>
+                    <li>{{ $t("Sušenje") }}</li>
+                  </ul>
+
+                  <div class="prices">
+                    <div class="discount-img">
+                      <IconsDefaultPaw2 />
+                      <p>85 €</p>
+                    </div>
+                    <div class="discount-img2">
+                      <IconsDefaultCrown />
+                      <p>43 €</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="box-2 style">
+                  <div class="box-header">
+                    <p>{{ $t("Osnovni") }}</p>
+                    <span>{{ $t("Za štence do 6 meseci") }}</span>
+                  </div>
+                  <ul>
+                    <li>{{ $t("Transport") }}</li>
+                    <li>{{ $t("Kupanje i sušenje") }}</li>
+                    <li>{{ $t("Skraćivanje noktića") }}</li>
+                    <li>
+                      {{ $t("Higijena ušiju Light Trimming") }}
+                    </li>
+                    <li>{{ $t("Oblikovanje dlake") }}</li>
+                  </ul>
+
+                  <div class="prices">
+                    <div class="discount-img">
+                      <IconsDefaultPaw2 />
+                      <p>100 €</p>
+                    </div>
+                    <div class="discount-img2">
+                      <IconsDefaultCrown />
+                      <p>50 €</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="box-3 style">
+                  <div class="box-header">
+                    <p>{{ $t("Paket") }}</p>
+                    <span>{{ $t("Za pse do 10kg") }}</span>
+                  </div>
+                  <ul>
+                    <li>{{ $t("Transport") }}</li>
+                    <li>{{ $t("Kupanje i sušenje") }}</li>
+                    <li>{{ $t("Šišanje") }}</li>
+                    <li>{{ $t("Skraćivanje noktića") }}</li>
+                    <li>{{ $t("Higijena ušiju") }}</li>
+                    <li>{{ $t("Pranje zubića") }}</li>
+                  </ul>
+
+                  <div class="prices">
+                    <div class="discount-img">
+                      <IconsDefaultPaw2 />
+                      <p>100 €</p>
+                    </div>
+                    <div class="discount-img2">
+                      <IconsDefaultCrown />
+                      <p>50 €</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="box-4 style">
+                  <div class="box-header">
+                    <p>{{ $t("Specijalni") }}</p>
+                    <span>{{ $t("MEDICAL SPA TREATMENT") }}</span>
+                  </div>
+                  <ul>
+                    <li>
+                      {{ $t("Tretman protiv seboreje") }}
+                    </li>
+                    <li>
+                      {{ $t("Tretman protiv suve kože") }}
+                    </li>
+                    <li>
+                      {{ $t("Tretman protiv masne kože") }}
+                    </li>
+                    <li>
+                      {{ $t("Tretman protiv peruti") }}
+                    </li>
+                  </ul>
+
+                  <div class="prices">
+                    <div class="discount-img">
+                      <IconsDefaultPaw2 />
+                      <p>25 €</p>
+                    </div>
+                    <div class="discount-img2">
+                      <IconsDefaultCrown />
+                      <p>13 €</p>
+                    </div>
+                  </div>
+                </div>
+              </figcaption>
+            </figure>
+
+            <aside>
+              <div class="important">
+                <p class="first">
+                  {{ $t("Napomena") }}
+                </p>
+                <p class="second">
+                  {{ $t("Svi tretmani") }}
+                </p>
+              </div>
+
+              <div class="link-box">
+                <div class="link-btn">
+                  <LinksTosocialIg class="link-to" />
+                </div>
+                <p class="first">
+                  {{ $t("Zakazite") }}
+                </p>
+              </div>
+            </aside>
+          </article>
+          <!-- <div
+            class="bg-img"
+            :style="{
+              width: page.widthofMain + 'px',
+              height: page.sectionHeights[3] + 'px',
+            }"
+          >
+            <div
+              class="bg-paralax"
+              :style="{
+                width: page.widthofMain + 100 + 'px',
+                height: page.sectionHeights[3] + 100 + 'px',
+              }"
+            >
+              <div class="bg"></div>
+            </div>
+          </div> -->
+        </section>
+
+        <section
+          ref="section5Ref"
+          :data-section-id="5"
+          :class="[
+            'section section-5',
+            {
+              active: page.activeSectionsByPage[page.page]
+                ? page.activeSectionsByPage[page.page].includes(5)
+                : false,
+            },
+          ]"
+          :slot="sections[4].slotName"
+          :id="`${sections[4].idtag}`"
+        >
+          <article>
+            <h2>{{ $t("Kontakt") }}</h2>
+
+            <figure>
+              <figcaption>
+                <div class="igpic">
+                  <div class="overlay">
+                    <NuxtLink
+                      :to="mapLink"
+                      v-if="isClient"
+                      target="_blank"
+                    ></NuxtLink>
+                    <p>{{ $t("Klikni da odes na Instagram profil") }}</p>
+                  </div>
+                </div>
+                <div class="mappic">
+                  <div class="overlay">
+                    <NuxtLink
+                      :to="igLink"
+                      v-if="isClient"
+                      target="_blank"
+                      :aria-label="$t('igprofile')"
+                    ></NuxtLink>
+                    <p>{{ $t("Klikni da odes na Google Mape") }}</p>
+                  </div>
+                </div>
+              </figcaption>
+            </figure>
+            <aside>
+              <div class="link-box">
+                <div class="link-btn">
+                  <LinksTosocialIg2 class="link-to" />
+                </div>
+              </div>
+              <div class="link-box link2">
+                <div class="link-btn">
+                  <LinksTosocialMap class="link-to" />
+                </div>
+              </div>
+            </aside>
+          </article>
+        </section>
       </div>
     </div>
   </div>
 </template>
 
 <style lang="scss">
-.sections {
+
+.page-vrtic .sections {
   max-width: 2160px;
   gap: 0px;
   @include sections(
@@ -412,7 +643,7 @@ onBeforeUnmount(() => {
     );
     @include flex-full(flex-start, flex-start, column);
 }
-section {
+.page-vrtic section {
   color: clr(font);
   padding: 0px calc((10px + 4vw) - 20px) 0px calc((10px + 4vw) - 20px);
   @include allSections();
@@ -422,15 +653,16 @@ $section-1-height-sm: 900px;
 $section-1-height-smm: 800px;
 $section-1-height-img: 800px;
 $section-1-height-boxs: 500px;
-.section-1 {
+
+
+.page-vrtic .section-1 {
   position: relative;
-  //width: calc(80% + 5vw);
+  width: calc(50% + 350px);
   //width: 1024px;
   height: 100%;
-  min-height: 700px;
   //padding: 180px 10px 50px 10px;
   margin-inline: auto;
-  padding: 0 0px 0px 0px 0px;
+  padding: 250px 0px 100px 0px;
   gap: 20px;
   @include flex-full(space-between, center, row);
   @include px(1024) {
@@ -442,47 +674,19 @@ $section-1-height-boxs: 500px;
     min-height: 100%;
     @include flex-full(center, center, column-reverse);
   }
-  .box-shadow-header {
-    position: absolute;
-    z-index: 3;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, 0%);
-    width: 100%;
-    box-shadow: 0px 0px 200px 150px rgba($color: #ffffff, $alpha: 1);
-    transition: box-shadow ease 0.3s;
-    transition-delay: 0.1s;
-    @include px(1024) {
-      box-shadow: 0px 0px 0px 0px rgba($color: #ffffff, $alpha: 1);
-    }
-    @include px(600) {
-      box-shadow: 0px 0px 80px 105px rgba($color: #ffffff, $alpha: 1);
-    }
-    &.scrolled {
-      box-shadow: 0px 0px 0px 0px rgba($color: #ffffff, $alpha: 1);
-    }
-  }
-  .organic {
-    position: absolute;
-    z-index: 2;
-    bottom: 40px;
-    right: 40px;
-    width: 100px;
-    height: 100px;
-    fill: white;
-  }
+  
   article {
     position: relative;
     z-index: 3;
     text-align: left;
-    width: calc(47% + 400px);
+    width: 100%;
     height: 100%;
     margin-inline: auto;
     @include flex-full(center, flex-start, column);
     @include px(1024) {
       width: 100%;
       text-align: center;
-      padding: $nav-height + $upnav-height + 50px 0 0 0;
+      padding: $nav-height + $upnav-height + 50px 0 10px 0;
       @include flex-full(flex-start, center, column);
     }
     @include px(600) {
@@ -525,34 +729,17 @@ $section-1-height-boxs: 500px;
     }
   }
 
-  .boxshadow {
-    position: absolute;
-    z-index: 2;
-    top: unset;
-    left: 0;
-    box-shadow: 0px 0px 500px 600px rgba($color: #fff, $alpha: 1);
-    @include px(1024) {
-      top: 0;
-      left: unset;
-      box-shadow: 0px -1200px 500px 1200px rgba($color: #fff, $alpha: 1);
-      height: $section-1-height-boxs;
-    }
-    @include px(600) {
-      display: none;
-    }
-  }
+  
 
 
   $img-height: 500px;
   aside {
-    position: absolute;
+    position: relative;
     z-index: 1;
     top: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
+    
     transition: all ease 0.1s;
-    @include flex-full(flex-start, flex-start, row);
+    @include flex-full(flex-end, center, row);
     @include px(600) {
       //height: $section-1-height-smm;
       position: relative;
@@ -560,29 +747,23 @@ $section-1-height-boxs: 500px;
       top: unset;
       left: unset;
       transform: translate(0%, 0%);
-      width: 600px;
-      height: 509px;
-      min-width: 700px;
       border-bottom-right-radius: 50%;
       border-bottom-left-radius: 50%;
       overflow: hidden;
       margin-top: -$nav-height - $upnav-height - 50px;
     }
     .img-dog {
-      width: 100%;
       top: 0;
       right: 0;
-      width: 100%;
-      height: 100%;
-      max-height: 100%;
-      background-attachment: fixed;
-      background-position: right 0;
+      width: calc(80px + 20vw);
+      height: calc(80px + 20vw);
+      background-position: center;
       background-repeat: no-repeat;
-      background-size: auto 80%;
+      background-size: contain;
       background-position: right 0px;
-      background-image: url("/assets/img/dogs/4-ps.jpg");
+      background-image: url("/assets/img/dogs/house.png");
 
-      @include px(1450) {
+     /* @include px(1450) {
         background-image: url("/assets/img/dogs/4-ps.jpg");
         background-position: 82% 0;
         background-size: auto 100%;
@@ -607,11 +788,11 @@ $section-1-height-boxs: 500px;
         background-size: auto;
         background-position: 35px 100px;
         background-attachment: unset;
-      }
+      }*/
     }
   }
 }
-.section-2 {
+.page-vrtic .section-2 {
   position: relative;
   z-index: 2;
   width: calc(70% + 150px);
@@ -629,7 +810,7 @@ $section-1-height-boxs: 500px;
     h2 {
       font-size: clamp(90%, 110% + 1.5vw, 300%);
       margin-bottom: 30px;
-      font-family: "Passion One", sans-serif;
+      font-family: "Poppins", sans-serif;
       @include px(600) {
         text-align: center;
       }
@@ -676,7 +857,7 @@ $section-1-height-boxs: 500px;
     }
   }
 }
-.section-3 {
+.page-vrtic .section-3 {
   position: relative;
   z-index: 2;
   width: calc(70% + 150px);
@@ -711,7 +892,7 @@ $section-1-height-boxs: 500px;
         h2 {
           font-size: clamp(90%, 110% + 1.5vw, 300%);
           margin-bottom: 0px;
-          font-family: "Passion One", sans-serif;
+          font-family: "Lilita One", sans-serif;
           @include px(600) {
             text-align: center;
           }

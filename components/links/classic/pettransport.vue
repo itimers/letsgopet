@@ -3,7 +3,7 @@
     @click="updateUrlWithSectionId(page.sectionIds[4])"
     :disabled="page.isButtonDisabled(5)"
     class="hover-link"
-    :class="{active: page.currentSection === 5}"
+    :class="{active: page.currentSection === 5 && page.page === 1}"
   >
     {{ $t("Pet transport") }}
   </NuxtLink>
@@ -12,7 +12,7 @@
 const page = usePagesStore();
 
 const observeOnScroll = computed(
-  () => page.isScrolled && page.currentScroll >= 250
+  () => page.isScrolled && page.currentScroll >= 250 && page.page === 1
 );
 function addHashToLocation(sectionId: string) {
   if (window.location.hash !== `#${sectionId}`) {
@@ -36,7 +36,7 @@ function debounce<T extends any[]>(func: (...args: T) => void, delay: number) {
   };
 }
 const updateUrlWithSectionId = debounce((sectionId: string) => {
-  if (window.location.hash !== `#${sectionId}` && observeOnScroll.value) {
+  if (window.location.hash !== `#${sectionId}` && observeOnScroll.value && page.page === 1) {
     addHashToLocation(sectionId);
   }
 }, 200);

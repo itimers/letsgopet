@@ -5,7 +5,7 @@
     "
     :disabled="page.isButtonDisabled(7)"
     class="hover-link"
-    :class="{active: page.currentSection === 7}"
+    :class="{active: page.currentSection === 7 && page.page === 1}"
   >
   {{ $t("Kontakt") }}
   </NuxtLink>
@@ -26,7 +26,7 @@ const page = usePagesStore();
   const linkTo = computed(() => languageRoutes[page.currentLanguage] || "/");
 
 const observeOnScroll = computed(
-  () => page.isScrolled && page.currentScroll >= 250
+  () => page.isScrolled && page.currentScroll >= 250 && page.page === 1
 );
 function addHashToLocation(sectionId: string) {
   if (window.location.hash !== `#${sectionId}`) {
@@ -53,7 +53,7 @@ const updateUrlWithSectionId = debounce(
     (sectionId: string) => {
       if (
         window.location.hash !== `#${sectionId}` &&
-        observeOnScroll.value
+        observeOnScroll.value && page.page === 1
       ) {
         addHashToLocation(sectionId);
       }

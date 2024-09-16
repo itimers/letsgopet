@@ -4,7 +4,7 @@
     @click="updateUrlWithSectionId(page.sectionIds[5])"
     :disabled="page.isButtonDisabled(6)"
     class="hover-link"
-    :class="{ active: page.currentSection === 6 }"
+    :class="{ active: page.currentSection === 6 && page.page === 1}"
   >
     {{ $t("O nama") }}
   </NuxtLink>
@@ -25,7 +25,7 @@ const languageRoutes: Record<string, string> = {
 const linkTo = computed(() => languageRoutes[page.currentLanguage] || "/");
 
 const observeOnScroll = computed(
-  () => page.isScrolled && page.currentScroll >= 250
+  () => page.isScrolled && page.currentScroll >= 250 && page.page === 1
 );
 function addHashToLocation(sectionId: string) {
   if (window.location.hash !== `#${sectionId}`) {
@@ -49,7 +49,7 @@ function debounce<T extends any[]>(func: (...args: T) => void, delay: number) {
   };
 }
 const updateUrlWithSectionId = debounce((sectionId: string) => {
-  if (window.location.hash !== `#${sectionId}` && observeOnScroll.value) {
+  if (window.location.hash !== `#${sectionId}` && observeOnScroll.value && page.page === 1) {
     addHashToLocation(sectionId);
   }
 }, 200);

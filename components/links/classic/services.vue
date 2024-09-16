@@ -4,7 +4,7 @@
       updateUrlWithSectionId(page.sectionIds[1])
     "
     :disabled="page.isButtonDisabled(2)"
-    :class="{active: page.currentSection === 2}"
+    :class="{active: page.currentSection === 2 && page.page === 1}"
     class="hover-link"
   >
   {{ $t("Usluge") }}
@@ -18,7 +18,7 @@ const observeOnScroll = computed(
   () => page.isScrolled && page.currentScroll >= 250
 );
 function addHashToLocation(sectionId: string) {
-  if (window.location.hash !== `#${sectionId}`) {
+  if (window.location.hash !== `#${sectionId}` && page.page === 1) {
     history.pushState(
       {},
       "",
@@ -42,7 +42,7 @@ const updateUrlWithSectionId = debounce(
     (sectionId: string) => {
       if (
         window.location.hash !== `#${sectionId}` &&
-        observeOnScroll.value
+        observeOnScroll.value && page.page === 1
       ) {
         addHashToLocation(sectionId);
       }

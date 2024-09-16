@@ -2,7 +2,7 @@
   <NuxtLink :to="linkTo"
     
     class="hover-link"
-    :class="{active: page.currentSection === 1}"
+    :class="{active: page.currentSection === 1 && page.page === 1}"
   >
   {{ $t("Pocetna") }}
   </NuxtLink>
