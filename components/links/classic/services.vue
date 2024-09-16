@@ -1,8 +1,7 @@
 <template>
   <NuxtLink
     @click="
-      updateUrlWithSectionId(page.sectionIds[1]),
-      page.changeSection(2)
+      updateUrlWithSectionId(page.sectionIds[1])
     "
     :disabled="page.isButtonDisabled(2)"
     :class="{active: page.currentSection === 2}"

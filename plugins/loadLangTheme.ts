@@ -15,7 +15,9 @@ export default defineNuxtPlugin(() => {
       if (import.meta.client) {
         localStorage.setItem('language', language);
       }
-      page.changeLanguage(language);
+      if(page.isLanguageValid(language)) {
+        page.changeLanguage(language);
+      }
     }
     if(import.meta.client && typeof window !== 'undefined') {
       const savedTheme = localStorage.getItem("theme") as Theme | null;

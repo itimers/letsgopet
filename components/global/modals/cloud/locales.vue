@@ -11,6 +11,7 @@
       })
     "
   >
+    <div class="circle"></div>
     <div
       class="locale-btn"
       @click.stop="page.toggleElementVisibility('locales')"
@@ -40,6 +41,16 @@
         Srpski
       </button>
       <button @click.stop="updateZindex"
+        @click="changeLanguage('en')"
+        :class="{
+          active:
+            currentLanguage === 'en' &&
+            !['sr', 'ru', 'de','tr','es','cn','fr','it'].includes(currentLanguage),
+        }"
+      >
+        English
+      </button>
+      <button @click.stop="updateZindex"
         @click="changeLanguage('ru')"
         :class="{
           active:
@@ -67,18 +78,9 @@
             !['sr', 'en', 'ru', 'de','fr','it','cn','es'].includes(currentLanguage),
         }"
       >
-        Francais
+        Türkçe
       </button>
-      <button @click.stop="updateZindex"
-        @click="changeLanguage('en')"
-        :class="{
-          active:
-            currentLanguage === 'en' &&
-            !['sr', 'ru', 'de','tr','es','cn','fr','it'].includes(currentLanguage),
-        }"
-      >
-        English
-      </button>
+      
       <button @click.stop="updateZindex"
         @click="changeLanguage('it')"
         :class="{
@@ -97,7 +99,18 @@
             !['sr', 'en', 'ru', 'de','tr','it','cn','fr'].includes(currentLanguage),
         }"
       >
-        Espanol
+        Español
+      </button>
+      
+      <button @click.stop="updateZindex"
+        @click="changeLanguage('fr')"
+        :class="{
+          active:
+            currentLanguage === 'fr' &&
+            !['sr', 'en', 'ru', 'de','tr','it','cn','es'].includes(currentLanguage),
+        }"
+      >
+        Français
       </button>
       <button @click.stop="updateZindex"
         @click="changeLanguage('cn')"
@@ -107,17 +120,7 @@
             !['sr', 'en', 'ru', 'de','tr','it','es','fr'].includes(currentLanguage),
         }"
       >
-        Chinaese
-      </button>
-      <button @click.stop="updateZindex"
-        @click="changeLanguage('fr')"
-        :class="{
-          active:
-            currentLanguage === 'fr' &&
-            !['sr', 'en', 'ru', 'de','tr','it','cn','es'].includes(currentLanguage),
-        }"
-      >
-        Francais
+        中國人
       </button>
     </div>
   </div>
@@ -134,7 +137,9 @@ const updateZindex = () => {
 }
 
 const changeLanguage = (language: string) => {
-  page.changeLanguage(language);
+  if(page.isLanguageValid(language)) {
+    page.changeLanguage(language);
+  }
   if (language === "sr") {
     router.push("/");
   } else {

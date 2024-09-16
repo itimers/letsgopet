@@ -1,19 +1,28 @@
 <template>
   <NuxtLink
-    @click="
-      updateUrlWithSectionId(page.sectionIds[5]),
-      page.changeSection(6)
-    "
+    :to="linkTo"
+    @click="updateUrlWithSectionId(page.sectionIds[5])"
     :disabled="page.isButtonDisabled(6)"
     class="hover-link"
-    :class="{active: page.currentSection === 6}"
+    :class="{ active: page.currentSection === 6 }"
   >
-  {{ $t("O nama") }}
+    {{ $t("O nama") }}
   </NuxtLink>
 </template>
 <script lang="ts" setup>
 const page = usePagesStore();
+const languageRoutes: Record<string, string> = {
+  en: "/en/",
+  ru: "/ru/",
+  de: "/de/",
+  it: "/it/",
+  fr: "/fr/",
+  tr: "/tr/",
+  es: "/es/",
+  cn: "/cn/",
+};
 
+const linkTo = computed(() => languageRoutes[page.currentLanguage] || "/");
 
 const observeOnScroll = computed(
   () => page.isScrolled && page.currentScroll >= 250
@@ -39,15 +48,9 @@ function debounce<T extends any[]>(func: (...args: T) => void, delay: number) {
     }, delay);
   };
 }
-const updateUrlWithSectionId = debounce(
-    (sectionId: string) => {
-      if (
-        window.location.hash !== `#${sectionId}` &&
-        observeOnScroll.value
-      ) {
-        addHashToLocation(sectionId);
-      }
-    },
-    200
-  );
+const updateUrlWithSectionId = debounce((sectionId: string) => {
+  if (window.location.hash !== `#${sectionId}` && observeOnScroll.value) {
+    addHashToLocation(sectionId);
+  }
+}, 200);
 </script>

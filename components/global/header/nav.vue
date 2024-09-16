@@ -11,14 +11,26 @@
       <div class="nav-wrapper">
         <LinksClassicHomelogo class="logo" />
         <nav>
-          <div>
-            <LinksClassicHome />
-            <LinksClassicAbout />
-            <LinksClassicServices />
-            <LinksClassicVip />
-            <LinksClassicPettransport/>
-            <LinksClassicPricemenu />
-            <LinksClassicContact />
+         
+          <div v-if="page.page === 1">
+            <LinksClassicHome @click="page.changeSection(1)"/>
+            <LinksClassicAbout @click="page.changeSection(6)"/>
+            <LinksClassicServices @click="page.changeSection(2)"/>
+            <LinksClassicVip @click="page.changeSection(3)"/>
+            <LinksClassicPettransport @click="page.changeSection(5)"/>
+            <LinksClassicPetvrtic class="vrtic"/>
+            <LinksClassicPricemenu @click="page.changeSection(4)"/>
+            <LinksClassicContact @click="page.changeSection(7)"/>
+          </div>
+          <div v-else>
+            <LinksClassicHome @click="page.changeSectionDelay(1)"/>
+            <LinksClassicAbout @click="page.changeSectionDelay(6)"/>
+            <LinksClassicServices @click="page.changeSectionDelay(2)"/>
+            <LinksClassicVip @click="page.changeSectionDelay(3)"/>
+            <LinksClassicPettransport @click="page.changeSectionDelay(5)"/>
+            <LinksClassicPetvrtic class="vrtic"/>
+            <LinksClassicPricemenu @click="page.changeSectionDelay(4)"/>
+            <LinksClassicContact @click="page.changeSectionDelay(7)"/>
           </div>
         </nav>
         <HeaderTools />
@@ -36,6 +48,23 @@
 const page = usePagesStore();
 </script>
 <style lang="scss">
+$locale-bg: #fff;
+$locale-dot: #fff;
+$locale-font: $font;
+$locale-font-hover: #fff;
+$locale-font-active: #fff;
+$locale-btn: #fff;
+$locale-btn-hover: #c17255;
+$locale-btn-active: #9f6049;
+
+$locale-bg-dark: #fff;
+$locale-dot-dark: #fff;
+$locale-font-dark: #fff;
+$locale-font-hover-dark: #ffffff;
+$locale-font-active-dark: #fff;
+$locale-btn-dark: #fff;
+$locale-btn-hover-dark: #c17255;
+$locale-btn-active-dark: #9f6049;
 $header: (
   "light": (
     headerbg: #ffffffec,
@@ -45,6 +74,15 @@ $header: (
     upnaviconsfillscrolled600: #9f6049,
     logofill: #c17255,
     logofill600: #c17255,
+
+    locale-bg: $locale-bg,
+    locale-dot: $locale-dot,
+    locale-font: $locale-font,
+    locale-font-hover: $locale-font-hover,
+    locale-font-active: $locale-font-active,
+    locale-btn: $locale-btn,
+    locale-btn-hover: $locale-btn-hover,
+    locale-btn-active: $locale-btn-active,
   ),
 
   "dark": (
@@ -55,6 +93,15 @@ $header: (
     upnaviconsfillscrolled600: #9f6049,
     logofill: #c17255,
     logofill600: #c17255,
+
+    locale-bg: $locale-bg-dark,
+    locale-dot: $locale-dot-dark,
+    locale-font: $locale-font-dark,
+    locale-font-hover: $locale-font-hover-dark,
+    locale-font-active: $locale-font-active-dark,
+    locale-btn: $locale-btn-dark,
+    locale-btn-hover: $locale-btn-hover-dark,
+    locale-btn-active: $locale-btn-active-dark,
   ),
 );
 
@@ -223,6 +270,12 @@ button {
     background: clr(primary);
     color: white;
   }
+  &.vrtic {
+    &.router-link-active {
+      background: clr(primary);
+      color: white;
+    }
+  }
 }
 
 .upnav {
@@ -293,31 +346,91 @@ button {
     background-image: url("@/assets/img/lang/tr.svg");
   }
   &.fr .locale-btn {
-    background-image: url("@/assets/img/lang/fr.svg");
+    background-image: url("@/assets/img/lang/fr.webp");
   }
   &.cn .locale-btn {
-    background-image: url("@/assets/img/lang/cn.svg");
+    background-image: url("@/assets/img/lang/cn.webp");
   }
   &.es .locale-btn {
-    background-image: url("@/assets/img/lang/es.svg");
+    background-image: url("@/assets/img/lang/es.webp");
+  }
+
+  .circle {
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: clr(locale-dot);
+    width: calc(20px + $tools-increment - $tools-decrement);
+    height: calc(20px + $tools-increment - $tools-decrement);
+    min-width: $tools-minw + 3px;
+    max-width: $tools-maxw + 3px;
+    min-height: $tools-minw + 3px;
+    max-height: $tools-maxw + 3px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all ease 0.3s;
+  }
+  &.active {
+    .circle {
+      opacity: 1;
+      visibility: visible;
+    }
   }
 }
 .locale-btn {
   background-repeat: no-repeat;
   background-position: center;
-  color: white;
+  background-size: contain;
+  transition: all ease 0.2s;
 }
 .locales-cloud-modal {
-  @include cloud-modal(150px);
-  background: clr(primary);
   padding: 10px;
+  background: clr(app);
+  box-shadow: 0px 0px 20px 0px rgba($color: #888888, $alpha: 0.3);
+  border-radius: 13px;
+  gap: 4px;
+  @include cloud-modal(150px);
+  @include flex-full(space-between, center, column);
   button {
-    color: white;
-    border-radius: 33px;
-    transition: all ease .3s;
+    width: 100%;
+    white-space: nowrap;
+    padding: 5px 38px;
+    border-radius: 9px;
+    transform: scale(1) translateX(0px);
+    transition: all ease 0.2s;
+    @include flex-full(space-between, center, row);
+    &:hover {
+      color: clr(locale-font-hover);
+      background: clr(locale-btn-hover);
+      padding: 5px 8px 5px 18px;
+      transform: scale(0.955) translateX(0px);
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      left: 9px;
+      top: 50%;
+      transform: translate(0%, -50%) scale(0);
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: clr(locale-dot);
+      opacity: 0;
+      visibility: hidden;
+      transition: all ease 0.3s;
+    }
     &.active {
-      background: white;
-      color: clr(primary);
+      padding: 10px 10px 10px 35px;
+      color: clr(locale-font-active);
+      background: clr(locale-btn-active);
+      &::before {
+        opacity: 1;
+        visibility: visible;
+        transform: translate(60%, -50%) scale(1);
+      }
     }
   }
 }

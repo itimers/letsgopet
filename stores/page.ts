@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
 
+export type Language = 'sr' | 'en' | 'ru' | 'de' | 'tr' | 'es' | 'cn' | 'fr' | 'it';
 type Theme = 'light' | 'dark';
 
 function getDefaultLanguage(): string {
@@ -34,10 +35,9 @@ export const usePagesStore = defineStore('pages', {
       /palm/i
     ],
     isSlider: false,
-    currentLanguage: getDefaultLanguage(),
+    currentLanguage: getDefaultLanguage() as Language,
     currentTheme: 'light' as Theme,
     availableThemes: ['light', 'dark'] as Theme[],
-    page: 1,
     sectionCount: 0,
     currentSection: 1,
     activeSection: 0,
@@ -305,8 +305,71 @@ export const usePagesStore = defineStore('pages', {
       },
     ] as any[],
 
-    links: [
 
+
+    page: 1,
+    pageDelay: 1200,
+    links: [
+      {
+        id: 1,
+        page: 1,
+        name: "Home",
+        hash: [
+          {
+            id: 1,
+            idtag: "home",
+          },
+          {
+            id: 2,
+            idtag: "about",
+          },
+          {
+            id: 3,
+            idtag: "contact",
+          },
+        ],
+        to: {
+          sr: "/",
+          en: "/en/",
+          ru: "/ru/",
+          de: "/de/",
+          cn: "/cn/",
+          it: "/it/",
+          es: "/es/",
+          fr: "/fr/",
+          tr: "/tr/",
+        },
+      },
+      {
+        id: 1,
+        page: 1,
+        name: "Vip",
+        hash: [
+          {
+            id: 1,
+            idtag: "vip",
+          },
+          {
+            id: 2,
+            idtag: "vipmember",
+          },
+          {
+            id: 3,
+            idtag: "contact",
+          },
+        ],
+        to: {
+          sr: "/vip",
+          en: "/en/vip",
+          ru: "/ru/vip",
+          de: "/de/vip",
+          cn: "/cn/vip",
+          it: "/it/vip",
+          es: "/es/vip",
+          fr: "/fr/vip",
+          tr: "/tr/vip",
+        },
+      }
     ]
   }),
 
@@ -315,15 +378,15 @@ export const usePagesStore = defineStore('pages', {
       const slider = useSlidesStore();
       const userAgent = navigator.userAgent || navigator.vendor;
       const foundMobileDevice = this.mobileDevices.some(device => device.test(userAgent));
-    
+
       if (foundMobileDevice) {
         this.isMobile = true;
-        if(this.page === 1) {
+        if (this.page === 1) {
           slider.isMobile = true;
         }
       } else {
         this.isMobile = false;
-        if(this.page === 1) {
+        if (this.page === 1) {
           slider.isMobile = false;
         }
         // Ako nije pronađen mobilni uređaj, oslanjamo se na širinu prozora
@@ -332,7 +395,7 @@ export const usePagesStore = defineStore('pages', {
           slider.isMobile = window.innerWidth < 1024;
         } */
       }
-    
+
       if (this.isMobile) {
         //console.log('Korisnik je na mobilnom uređaju');
       } else {
@@ -583,7 +646,7 @@ export const usePagesStore = defineStore('pages', {
 
 
     //& Change language
-    changeLanguage(language: string) {
+    changeLanguage(language: Language) {
       this.currentLanguage = language;
       const cookie = useCookieStore();
       if (typeof localStorage !== 'undefined') {
@@ -598,13 +661,16 @@ export const usePagesStore = defineStore('pages', {
         const storedCurrentLanguage = localStorage.getItem('lang');
         const i18n = useI18n();
 
-        if (storedCurrentLanguage) {
-          this.currentLanguage = getDefaultLanguage();
+        if (storedCurrentLanguage && this.isLanguageValid(storedCurrentLanguage)) {
+          this.currentLanguage = storedCurrentLanguage as Language;
           i18n.locale.value = this.currentLanguage;
         } else {
-          this.currentLanguage = 'sr'
+          this.currentLanguage = 'sr';
         }
       }
+    },
+    isLanguageValid(language: string): language is Language {
+      return ['sr', 'en', 'ru', 'de', 'tr', 'es', 'cn', 'fr', 'it'].includes(language);
     },
 
 
@@ -733,6 +799,12 @@ export const usePagesStore = defineStore('pages', {
       }, this.loadingTimePage + 300);
     },
 
+
+
+
+
+
+    
     //& Change page
     changePage(newPage: number) {
       this.page = newPage;
@@ -785,24 +857,27 @@ export const usePagesStore = defineStore('pages', {
     setSectionIds(id: string[]) {
       this.sectionIds = id;
     },
-    
-    
+
+
     changeSectionDelay(newSection: number) {
+      this.currentSection = newSection;
+      const activeAllSections = this.sectionCount === this.activeSectionsByPage[this.page].length;
+      this.activeAllSections = activeAllSections;
       setTimeout(() => {
-        this.currentSection = newSection;
         this.toggleActiveSections();
       }, 100);
 
       setTimeout(() => {
-        this.scrollToTargetSection(newSection.toString());
-        setTimeout(() => {
+        if (this.activeAllSections) {
           this.scrollToTargetSection(newSection.toString());
-        }, 500);
-      }, 1200);
-
-     
+        } else {
+          setTimeout(() => {
+            this.scrollToTargetSection(newSection.toString());
+          }, 300);
+        }
+      }, 1200)
     },
-    
+
     changeSection(newSection: number) {
       this.currentSection = newSection;
       const activeAllSections = this.sectionCount === this.activeSectionsByPage[this.page].length;
@@ -837,7 +912,7 @@ export const usePagesStore = defineStore('pages', {
         this.isScrolling = false;
       }, 1500);
     },
-    
+
     async scrollToTargetPrice(targetId: string) {
       if (this.isScrolling) return;
       const router = useRouter();
@@ -851,6 +926,16 @@ export const usePagesStore = defineStore('pages', {
         path = "/ru/pricemenu";
       } else if (this.currentLanguage === 'de') {
         path = "/de/pricemenu";
+      } else if (this.currentLanguage === 'cn') {
+        path = "/cn/pricemenu";
+      } else if (this.currentLanguage === 'es') {
+        path = "/es/pricemenu";
+      } else if (this.currentLanguage === 'it') {
+        path = "/it/pricemenu";
+      } else if (this.currentLanguage === 'fr') {
+        path = "/fr/pricemenu";
+      } else if (this.currentLanguage === 'tr') {
+        path = "/tr/pricemenu";
       }
 
       try {

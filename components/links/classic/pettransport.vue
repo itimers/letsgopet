@@ -1,6 +1,6 @@
 <template>
   <NuxtLink
-    @click="updateUrlWithSectionId(page.sectionIds[4]), page.changeSection(5)"
+    @click="updateUrlWithSectionId(page.sectionIds[4])"
     :disabled="page.isButtonDisabled(5)"
     class="hover-link"
     :class="{active: page.currentSection === 5}"

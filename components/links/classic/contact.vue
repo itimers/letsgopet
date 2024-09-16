@@ -1,8 +1,7 @@
 <template>
-  <NuxtLink
+  <NuxtLink :to="linkTo"
     @click="
-      updateUrlWithSectionId(page.sectionIds[6]),
-      page.changeSection(7)
+      updateUrlWithSectionId(page.sectionIds[6])
     "
     :disabled="page.isButtonDisabled(7)"
     class="hover-link"
@@ -13,7 +12,18 @@
 </template>
 <script lang="ts" setup>
 const page = usePagesStore();
-
+  const languageRoutes: Record<string, string> = {
+    en: "/en/",
+    ru: "/ru/",
+    de: "/de/",
+    it: "/it/",
+    fr: "/fr/",
+    tr: "/tr/",
+    es: "/es/",
+    cn: "/cn/"
+  };
+  
+  const linkTo = computed(() => languageRoutes[page.currentLanguage] || "/");
 
 const observeOnScroll = computed(
   () => page.isScrolled && page.currentScroll >= 250

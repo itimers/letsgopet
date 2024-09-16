@@ -180,7 +180,7 @@ router.beforeEach((to, from, next) => {
   if (Array.isArray(lang)) {
     lang = lang[0];
   }
-  if (supportedLanguages.includes(lang)) {
+  if (supportedLanguages.includes(lang) && page.isLanguageValid(lang)) {
     page.changeLanguage(lang);
   }
   setTimeout(() => {
@@ -483,5 +483,9 @@ main {
   position: relative;
   width: 100%;
   margin-inline: auto;
+}
+.page {
+  position: relative;
+  width: 100%;
 }
 </style>

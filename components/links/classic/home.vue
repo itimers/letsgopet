@@ -1,8 +1,6 @@
 <template>
-  <NuxtLink
-    @click="
-    page.changeSection(1)
-    "
+  <NuxtLink :to="linkTo"
+    
     class="hover-link"
     :class="{active: page.currentSection === 1}"
   >
@@ -10,7 +8,19 @@
   </NuxtLink>
 </template>
 <script lang="ts" setup>
-const page = usePagesStore();
+  const page = usePagesStore();
+  const languageRoutes: Record<string, string> = {
+    en: "/en/",
+    ru: "/ru/",
+    de: "/de/",
+    it: "/it/",
+    fr: "/fr/",
+    tr: "/tr/",
+    es: "/es/",
+    cn: "/cn/"
+  };
+  
+  const linkTo = computed(() => languageRoutes[page.currentLanguage] || "/");
 </script>
 
 
