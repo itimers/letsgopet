@@ -3,7 +3,9 @@
     <div class="header-wrapper">
       <div class="upnav">
         <div class="up-left">
+          <LinksSocialsFb class="fb" />
           <LinksSocialsIg class="ig" />
+          <LinksSocialsPhone class="phone" />
         </div>
         <div class="up-mid"></div>
         <div class="up-right"></div>
@@ -297,7 +299,8 @@ button {
   a {
     &.fb,
     &.ig,
-    &.yt {
+    &.yt,
+    &.phone {
       fill: clr(upnaviconsfill);
       @include px(600) {
         fill: clr(upnaviconsfill600);

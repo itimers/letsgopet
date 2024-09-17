@@ -265,7 +265,7 @@ onBeforeUnmount(() => {
           ref="section1Ref"
           :data-section-id="1"
           :class="[
-            'section section-1',
+            'section section-1 vrtic',
             {
               active: page.activeSectionsByPage[page.page]
                 ? page.activeSectionsByPage[page.page].includes(1)
@@ -277,13 +277,13 @@ onBeforeUnmount(() => {
         >
           
 
-          <article>
-            <h2>{{ $t("Let's Go Pet") }}</h2>
+          <article class="vrtic">
+            <h2>{{ $t("Vrtic za pse") }}</h2>
             <figure>
-              <h3>{{ $t("Od vas, do nas, vaš ljubimac!") }}</h3>
+              <h3>{{ $t("Mi ih") }}</h3>
               <figcaption>
-                <p>{{ $t("Gde god da se nalazite, mi dolazimo do vas.") }}</p>
-                <p>{{ $t("Transport i održavanje vašeg psa!") }}</p>
+                <p>{{ $t("Svaki dan je dan zabave!") }}</p>
+                <p>{{ $t("Transport, čuvanje i održavanje vašeg psa!") }}</p>
               </figcaption>
             </figure>
             <div class="link-box">
@@ -295,8 +295,7 @@ onBeforeUnmount(() => {
               </div>
             </div>
           </article>
-          <div class="boxshadow"></div>
-          <aside :class="{ scroll: page.isScrolled }">
+          <aside :class="{ scroll: page.isScrolled }" class="house">
             <div class="img-dog"></div>
             <!-- <img src="/assets/img/dogs/4-ps.jpg" /> -->
           </aside>
@@ -306,7 +305,7 @@ onBeforeUnmount(() => {
           ref="section2Ref"
           :data-section-id="2"
           :class="[
-            'section section-2',
+            'section section-2 vrtic',
             {
               active: page.activeSectionsByPage[page.page]
                 ? page.activeSectionsByPage[page.page].includes(2)
@@ -318,17 +317,20 @@ onBeforeUnmount(() => {
         >
           <article>
             <div class="box-pic">
-              <div class="box-text">
+              <div class="box-text vrtic">
                 <h2>{{ $t("Vrtic za pse") }}</h2>
                 <p>
                   {{ $t("Vrtic tekst") }}
                 </p>
+                <p>
+                  {{ $t("Vrtic tekst2") }}
+                </p>
               </div>
-              <div class="pic-box"></div>
+              <div class="pic-box vrtic"></div>
             </div>
 
             <aside>
-              <div class="link-box">
+              <div class="link-box vrtic">
                 <div class="link-btn">
                   <LinksTosocialIg class="link-to" />
                   <p class="book">
@@ -376,7 +378,7 @@ onBeforeUnmount(() => {
             </div>
 
             <aside>
-              <div class="link-box">
+              <div class="link-box vrtic">
                 <div class="link-btn">
                   <LinksTosocialIg2 class="link-to" />
                   <p class="book">
@@ -633,21 +635,8 @@ onBeforeUnmount(() => {
 
 <style lang="scss">
 
-.page-vrtic .sections {
-  max-width: 2160px;
-  gap: 0px;
-  @include sections(
-    /* Width */ 100%,
-    /* Padding */ 0px,
-    /* Margin */ 0px 0px 0px 0px
-    );
-    @include flex-full(flex-start, flex-start, column);
-}
-.page-vrtic section {
-  color: clr(font);
-  padding: 0px calc((10px + 4vw) - 20px) 0px calc((10px + 4vw) - 20px);
-  @include allSections();
-}
+
+
 $section-1-height: 700px;
 $section-1-height-sm: 900px;
 $section-1-height-smm: 800px;
@@ -655,148 +644,115 @@ $section-1-height-img: 800px;
 $section-1-height-boxs: 500px;
 
 
-.page-vrtic .section-1 {
+.section-1 {
   position: relative;
-  width: calc(50% + 350px);
-  //width: 1024px;
-  height: 100%;
-  //padding: 180px 10px 50px 10px;
-  margin-inline: auto;
-  padding: 250px 0px 100px 0px;
-  gap: 20px;
-  @include flex-full(space-between, center, row);
-  @include px(1024) {
-    padding: 0px 10px;
-    min-height: 850px;
-    @include flex-full(flex-start, center, column);
-  }
-  @include px(600) {
-    min-height: 100%;
-    @include flex-full(center, center, column-reverse);
-  }
-  
-  article {
-    position: relative;
-    z-index: 3;
-    text-align: left;
-    width: 100%;
+  &.vrtic {
+    width: calc(50% + 350px);
     height: 100%;
     margin-inline: auto;
-    @include flex-full(center, flex-start, column);
+    padding: 250px 0px 100px 0px;
+    gap: 20px;
+
     @include px(1024) {
       width: 100%;
-      text-align: center;
-      padding: $nav-height + $upnav-height + 50px 0 10px 0;
+      padding: 0px 10px;
+      min-height: auto;
       @include flex-full(flex-start, center, column);
     }
     @include px(600) {
-      padding-top: 50px;
+      min-height: auto;
+      @include flex-full(flex-start, center, column-reverse);
     }
-    @include px(420) {
-      padding-top: 10px;
-    }
-    h2 {
+  }
+  
+  article {
+    &.vrtic {
       width: 100%;
-      font-size: clamp(80%, 150% + 3.1vw, 700%);
-      font-weight: 600;
-      color: clr(font-primary);
-      font-family: "Passion One", sans-serif;
-      text-shadow: 3px 3px 4px #68482146;
+      height: 100%;
+      @include px(1024) {
+        padding: $nav-height + $upnav-height + 50px 0 10px 0;
+        @include flex-full(flex-start, center, column);
+      }
+      @include px(600) {
+        padding: 10px 0 10px 0;
+      }
+      @include px(420) {
+        padding: 10px 0 10px 0;
+      }
     }
+    
     figure {
-      h3 {
-        width: 100%;
-        font-size: clamp(70%, 70% + 2.1vw, 250%);
-        font-weight: 500;
-        background: linear-gradient(215deg, #6ca14f, #4ac1dc);
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-size: 150% 150%;
-        text-shadow: 2px 2px 3px #7ce5ad5c;
-      }
+      
       figcaption {
-        p {
-          width: 100%;
-          font-size: clamp(60%, 40% + 2.1vw, 160%);
-          color: clr(font-primary-light);
-          text-shadow: 2px 2px 3px #68482123;
-        }
+        
       }
-    }
-    .link-box {
-      @include social-btn();
     }
   }
 
   
 
 
-  $img-height: 500px;
   aside {
-    position: relative;
-    z-index: 1;
-    top: 0;
-    
-    transition: all ease 0.1s;
-    @include flex-full(flex-end, center, row);
-    @include px(600) {
-      //height: $section-1-height-smm;
+    &.house {
       position: relative;
-      z-index: 2;
-      top: unset;
-      left: unset;
-      transform: translate(0%, 0%);
-      border-bottom-right-radius: 50%;
-      border-bottom-left-radius: 50%;
-      overflow: hidden;
-      margin-top: -$nav-height - $upnav-height - 50px;
-    }
-    .img-dog {
+      z-index: 1;
       top: 0;
-      right: 0;
-      width: calc(80px + 20vw);
-      height: calc(80px + 20vw);
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: contain;
-      background-position: right 0px;
-      background-image: url("/assets/img/dogs/house.png");
-
-     /* @include px(1450) {
-        background-image: url("/assets/img/dogs/4-ps.jpg");
-        background-position: 82% 0;
-        background-size: auto 100%;
-        background-attachment: unset;
-      }
-      @include px(1024) {
-        background-image: url("/assets/img/dogs/4-wite.jpg");
-        background-size: auto;
-        background-position: calc(-1450px + 15vw * 5) 200px;
-        background-attachment: unset;
-        max-height: 850px;
-      }
-
+      transition: all ease 0.1s;
+      @include flex-full(flex-end, center, row);
       @include px(600) {
-        background-image: url("/assets/img/dogs/4-short.png");
-        background-size: auto;
-        background-position: 50px 100px;
-        background-attachment: unset;
+        //height: $section-1-height-smm;
+        position: relative;
+        z-index: 2;
+        top: unset;
+        left: unset;
+        transform: translate(0%, 0%);
+        overflow: hidden;
+        padding: $nav-height + $upnav-height + 50px 0 10px 0;
       }
-      @include px(360) {
-        background-image: url("/assets/img/dogs/4-short.png");
-        background-size: auto;
-        background-position: 35px 100px;
-        background-attachment: unset;
-      }*/
+      .img-dog {
+        top: 0;
+        right: 0;
+        width: calc(80px + 20vw);
+        height: calc(80px + 20vw);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: right 0px;
+        background-image: url("/assets/img/dogs/house.png");
+  
+       /* @include px(1450) {
+          background-image: url("/assets/img/dogs/4-ps.jpg");
+          background-position: 82% 0;
+          background-size: auto 100%;
+          background-attachment: unset;
+        }
+        @include px(1024) {
+          background-image: url("/assets/img/dogs/4-wite.jpg");
+          background-size: auto;
+          background-position: calc(-1450px + 15vw * 5) 200px;
+          background-attachment: unset;
+          max-height: 850px;
+        }
+  
+        @include px(600) {
+          background-image: url("/assets/img/dogs/4-short.png");
+          background-size: auto;
+          background-position: 50px 100px;
+          background-attachment: unset;
+        }
+        @include px(360) {
+          background-image: url("/assets/img/dogs/4-short.png");
+          background-size: auto;
+          background-position: 35px 100px;
+          background-attachment: unset;
+        }*/
+      }
     }
   }
 }
-.page-vrtic .section-2 {
+.section-2 {
   position: relative;
   z-index: 2;
-  width: calc(70% + 150px);
-  margin-inline: auto;
   padding: 200px 0px 100px 0px;
   @include px(1024) {
     width: 98%;
@@ -805,6 +761,15 @@ $section-1-height-boxs: 500px;
   @include px(600) {
     width: 98%;
     padding: 100px 10px 50px 10px;
+  }
+
+  &.vrtic {
+    width: calc(80% + 150px);
+    margin: 0;
+    margin-inline: auto 0;
+    @include px(600) {
+      width: 100%;
+    }
   }
   article {
     h2 {
@@ -833,32 +798,48 @@ $section-1-height-boxs: 500px;
           width: 100%;
           font-size: clamp(90%, 50% + 1.1vw, 130%);
         }
+        &.vrtic {
+          :nth-child(2) {
+            margin-bottom: 20px;
+          }
+        }
       }
       .pic-box {
-        width: calc(100px + 15vw);
-        height: calc(100px + 15vw);
-        min-height: 200px;
-        min-width: 200px;
-        max-width: 400px;
-        max-height: 400px;
-        border-radius: 50%;
-        background-position: center;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-image: url("/assets/img/dogs/1.jpg");
+        
+        &.vrtic {
+          margin-top: -50px;
+          margin-right: -50px;
+          width: calc(150px + 25vw);
+          height: calc(150px + 25vw);
+          min-height: 200px;
+          min-width: 200px;
+          max-width: 500px;
+          max-height: 500px;
+          border-radius: 50%;
+          background-position: center;
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-image: url("/assets/img/dogs/welove2.png");
+          @include px(600) {
+            margin-top: 0;
+            margin-right: 0;
+          }
+          
+        }
       }
     }
 
     aside {
       .link-box {
-        @include flex-full(flex-start, center, row);
-        @include social-btn();
+        &.vrtic {
+          margin-top: 50px;
+        }
       }
     }
   }
 }
 
-.page-vrtic .section-3 {
+.section-3 {
   position: relative;
   z-index: 2;
   width: calc(70% + 150px);
@@ -961,7 +942,7 @@ $section-1-height-boxs: 500px;
   }
 }
 
-.page-vrtic .section-4 {
+.section-4 {
   padding: 100px 0px;
   width: calc(90% + 50px);
   margin-inline: auto;
@@ -1161,7 +1142,7 @@ $section-1-height-boxs: 500px;
   }
 }
 
-.page-vrtic .section-5 {
+.section-5 {
   position: relative;
   padding: 100px 0px;
 

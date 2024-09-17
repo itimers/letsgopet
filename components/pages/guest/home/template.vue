@@ -312,7 +312,7 @@ onBeforeUnmount(() => {
             </div>
           </article>
           <div class="boxshadow"></div>
-          <aside :class="{ scroll: page.isScrolled }">
+          <aside :class="{ scroll: page.isScrolled }" class="dog">
             <div class="img-dog"></div>
             <!-- <img src="/assets/img/dogs/4-ps.jpg" /> -->
           </aside>
@@ -725,7 +725,7 @@ onBeforeUnmount(() => {
 </template>
 
 <style lang="scss">
-.page-home .sections {
+.sections {
   max-width: 2160px;
   gap: 0px;
   @include sections(
@@ -735,7 +735,7 @@ onBeforeUnmount(() => {
     );
     @include flex-full(flex-start, flex-start, column);
 }
-.page-home section {
+section {
   color: clr(font);
   padding: 0px calc((10px + 4vw) - 20px) 0px calc((10px + 4vw) - 20px);
   @include allSections();
@@ -745,7 +745,7 @@ $section-1-height-sm: 900px;
 $section-1-height-smm: 800px;
 $section-1-height-img: 800px;
 $section-1-height-boxs: 500px;
-.page-home .section-1 {
+.section-1 {
   position: relative;
   //width: calc(80% + 5vw);
   //width: 1024px;
@@ -868,73 +868,75 @@ $section-1-height-boxs: 500px;
 
   $img-height: 500px;
   aside {
-    position: absolute;
-    z-index: 1;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    transition: all ease 0.1s;
-    @include flex-full(flex-start, flex-start, row);
-    @include px(600) {
-      //height: $section-1-height-smm;
-      position: relative;
-      z-index: 2;
-      top: unset;
-      left: unset;
-      transform: translate(0%, 0%);
-      width: 600px;
-      height: 509px;
-      min-width: 700px;
-      border-bottom-right-radius: 50%;
-      border-bottom-left-radius: 50%;
-      overflow: hidden;
-      margin-top: -$nav-height - $upnav-height - 50px;
-    }
-    .img-dog {
-      width: 100%;
+    &.dog {
+      position: absolute;
+      z-index: 1;
       top: 0;
       right: 0;
       width: 100%;
       height: 100%;
-      max-height: 100%;
-      background-attachment: fixed;
-      background-position: right 0;
-      background-repeat: no-repeat;
-      background-size: auto 80%;
-      background-position: right 0px;
-      background-image: url("/assets/img/dogs/4-ps.jpg");
-
-      @include px(1450) {
-        background-image: url("/assets/img/dogs/4-ps.jpg");
-        background-position: 82% 0;
-        background-size: auto 100%;
-        background-attachment: unset;
-      }
-      @include px(1024) {
-        background-image: url("/assets/img/dogs/4-wite.jpg");
-        background-size: auto;
-        background-position: calc(-1450px + 15vw * 5) 200px;
-        background-attachment: unset;
-        max-height: 850px;
-      }
-
+      transition: all ease 0.1s;
+      @include flex-full(flex-start, flex-start, row);
       @include px(600) {
-        background-image: url("/assets/img/dogs/4-short.png");
-        background-size: auto;
-        background-position: 50px 100px;
-        background-attachment: unset;
+        //height: $section-1-height-smm;
+        position: relative;
+        z-index: 2;
+        top: unset;
+        left: unset;
+        transform: translate(0%, 0%);
+        width: 600px;
+        height: 509px;
+        min-width: 700px;
+        border-bottom-right-radius: 50%;
+        border-bottom-left-radius: 50%;
+        overflow: hidden;
+        margin-top: -$nav-height - $upnav-height - 50px;
       }
-      @include px(360) {
-        background-image: url("/assets/img/dogs/4-short.png");
-        background-size: auto;
-        background-position: 35px 100px;
-        background-attachment: unset;
+      .img-dog {
+        width: 100%;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        max-height: 100%;
+        background-attachment: fixed;
+        background-position: right 0;
+        background-repeat: no-repeat;
+        background-size: auto 80%;
+        background-position: right 0px;
+        background-image: url("/assets/img/dogs/4-ps.jpg");
+  
+        @include px(1450) {
+          background-image: url("/assets/img/dogs/4-ps.jpg");
+          background-position: 82% 0;
+          background-size: auto 100%;
+          background-attachment: unset;
+        }
+        @include px(1024) {
+          background-image: url("/assets/img/dogs/4-wite.jpg");
+          background-size: auto;
+          background-position: calc(-1450px + 15vw * 5) 200px;
+          background-attachment: unset;
+          max-height: 850px;
+        }
+  
+        @include px(600) {
+          background-image: url("/assets/img/dogs/4-short.png");
+          background-size: auto;
+          background-position: 50px 100px;
+          background-attachment: unset;
+        }
+        @include px(360) {
+          background-image: url("/assets/img/dogs/4-short.png");
+          background-size: auto;
+          background-position: 35px 100px;
+          background-attachment: unset;
+        }
       }
     }
   }
 }
-.page-home .section-2 {
+.section-2 {
   position: relative;
   z-index: 2;
   width: calc(70% + 150px);
@@ -999,7 +1001,7 @@ $section-1-height-boxs: 500px;
     }
   }
 }
-.page-home .section-3 {
+.section-3 {
   position: relative;
   z-index: 2;
   width: calc(70% + 150px);
@@ -1101,7 +1103,7 @@ $section-1-height-boxs: 500px;
     }
   }
 }
-.page-home .section-4 {
+.section-4 {
   padding: 100px 0px;
   width: calc(90% + 50px);
   margin-inline: auto;
@@ -1300,7 +1302,7 @@ $section-1-height-boxs: 500px;
     }
   }
 }
-.page-home .section-5 {
+.section-5 {
   position: relative;
   z-index: 2;
   width: calc(70% + 150px);
@@ -1372,7 +1374,7 @@ $section-1-height-boxs: 500px;
     }
   }
 }
-.page-home .section-6 {
+.section-6 {
   position: relative;
   z-index: 2;
   width: calc(70% + 150px);
@@ -1479,7 +1481,7 @@ $section-1-height-boxs: 500px;
     }
   }
 }
-.page-home .section-7 {
+.section-7 {
   position: relative;
   padding: 100px 0px;
 
