@@ -259,7 +259,7 @@ router.beforeEach((to, from, next) => {
         
         
         <IconsControlsTotop @click.stop="page.scrollTop" />
-        <!-- <IconsDefaultCallus /> -->
+        <IconsDefaultCallus />
         <HeaderNav :class="{ scrolled: page.isScrolled }" />
         <main
           ref="isScrollable"

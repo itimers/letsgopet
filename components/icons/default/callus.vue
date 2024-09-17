@@ -1,7 +1,7 @@
 <template>
   <NuxtLink class="calluswrap" to="tel:+381612966499" :aria-label="$t('Pozovite nas')">
     <span class="sr-only">{{ $t("Pozovite nas") }}</span>
-    <!-- <svg
+    <svg
       version="1.1"
       id="callus"
       xmlns="http://www.w3.org/2000/svg"
@@ -24,23 +24,24 @@
    C9.7,20.4,8,18.5,7,16.1c-0.5-1.2-0.9-2.4-1-3.7c0-0.4-0.1-0.7-0.1-1.1c0-0.2,0-0.5,0-0.7C5.9,10.4,6,10.2,6.1,10
    c0.2-0.3,0.5-0.4,0.8-0.5C7.9,9.5,8.9,9.5,9.9,9.5z"
       />
-    </svg> -->
+    </svg>
   </NuxtLink>
 </template>
 <style lang="scss" scoped>
 .calluswrap {
   position: fixed;
-  z-index: 900;
+  z-index: 9000;
   right: 20px;
   bottom: 25px;
   width: 100px;
   height: 100px;
-  background: getColor(callus);
+  background: transparent;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  box-shadow: 0px 0px 20px 0px rgba($color: #000000, $alpha: 0.3);
+  cursor: pointer;
+  transition: all ease .4s;
   p {
     opacity: 0;
     visibility: hidden;
@@ -53,24 +54,12 @@
   svg {
     width: 100%;
     height: 100px;
-    
+    box-shadow: 0px 0px 20px 0px rgba($color: #000000, $alpha: 0.3);
+    border-radius: 50%;
   }
-  /*#radius {
-    transform-origin: 50% 50%;
-    @include pulse4(10s, ease, none, .8, 1.3);
-  }*/
-  /*#clock {
-    transform-origin: 50% 50%;
-    @include pulse3(10s, ease-in, none, 1, 1.1);
-    /~opacity: 0 !important;~/
-  }*/
-  #phone {
-    transform-origin: 50% 50%;
-    transform: scale(1) translate(0%,0%) rotate(0deg);
-    
-  }
+  
   .st0 {
-    fill: getColor(callus);
+    fill: #4adcbf;
   }
   .st1 {
     fill: #ffffff;

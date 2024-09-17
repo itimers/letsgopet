@@ -9,10 +9,10 @@ const igLinkParts = [
   "ps://ww",
   "w.insta",
   "gram.co",
-  "m/kupa",
-  "nje",
-  "pa",
-  "sa",
+  "m/lets",
+  "go",
+  "pe",
+  "t.rs",
 ];
 const igLink = ref(`${igLinkParts.join("")}`);
 const isClient = ref(false);

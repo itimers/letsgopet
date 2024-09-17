@@ -18,19 +18,19 @@ const igLinkParts = [
   "ps://ww",
   "w.insta",
   "gram.co",
-  "m/kup",
-  "anj",
-  "epa",
-  "sa",
+  "m/lets",
+  "go",
+  "pe",
+  "t.rs",
 ];
 const igNameParts = [
   "@",
-  "ku",
-  "pan",
-  "je",
-  "pa",
-  "s",
-  "a",
+  "le",
+  "ts",
+  "go",
+  "pe",
+  "t",
+  ".rs",
 ];
 const igLink = ref(`${igLinkParts.join("")}`);
 const igName = ref(`${igNameParts.join("")}`);

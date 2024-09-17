@@ -13,16 +13,15 @@
     </NuxtLink>
 </template>
 <script lang="ts" setup>
-const page = usePagesStore();
 const igLinkParts = [
   "htt",
   "ps://ww",
   "w.insta",
   "gram.co",
-  "m/kup",
-  "anj",
-  "epa",
-  "sa",
+  "m/let",
+  "sgo",
+  "pe",
+  "t.rs",
 ];
 const igLink = ref(`${igLinkParts.join("")}`);
 const isClient = ref(false);

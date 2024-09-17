@@ -360,51 +360,28 @@ onBeforeUnmount(() => {
             <div class="box-pic">
               <div class="pic-box"></div>
               <div class="box-text">
-                <h2>{{ $t("Postani VIP") }}</h2>
-                <h3>{{ $t("Uštedi 50% na sve usluge!") }}</h3>
+                <h2>{{ $t("Nisi VIP") }}</h2>
+                <h3>{{ $t("Nudimo 50% na sve usluge!") }}</h3>
                 <ul class="ul-1">
-                  <li>{{ $t("Vip1") }}</li>
-                  <li>{{ $t("Vip2") }}</li>
+                  <li>{{ $t("Vip12") }}</li>
                 </ul>
-                <p class="solo-1">{{ $t("Vip3") }}</p>
-                <ul class="ul-2">
-                  <li>{{ $t("Vip4") }}</li>
-                  <li>{{ $t("Vip5") }}</li>
-                  <li>{{ $t("Vip6") }}</li>
-                  <li>{{ $t("Vip7") }}</li>
-                </ul>
-                <p class="solo-2">{{ $t("Vip8") }}</p>
+                <p class="solo-1">{{ $t("Kako to") }}</p>
+                <p class="solo-1 two">{{ $t("Vip3") }}</p>
               </div>
             </div>
 
             <aside>
               <div class="link-box vrtic">
                 <div class="link-btn">
-                  <LinksTosocialIg2 class="link-to" />
+                  <LinksTosocialVip class="link-to"/>
                   <p class="book">
-                    {{ $t("Postani VIP, javi se u DM") }}
+                    {{ $t("Pročitaj više kako postati VIP") }}
                   </p>
                 </div>
               </div>
             </aside>
           </article>
-          <!-- <div
-            class="bg-img"
-            :style="{
-              width: page.widthofMain + 'px',
-              height: page.sectionHeights[3] + 'px',
-            }"
-          >
-            <div
-              class="bg-paralax"
-              :style="{
-                width: page.widthofMain + 100 + 'px',
-                height: page.sectionHeights[3] + 100 + 'px',
-              }"
-            >
-              <div class="bg"></div>
-            </div>
-          </div> -->
+          
         </section>
 
         <section
@@ -424,14 +401,14 @@ onBeforeUnmount(() => {
           <article>
             <h2>{{ $t("Cenovnik") }}</h2>
             <figure>
-              <figcaption>
+              <figcaption class="vrtic">
                 <div class="box-1 style">
                   <div class="box-header">
-                    <p>{{ $t("Jednostavan") }}</p>
-                    <span>{{ $t("Za sve uzraste") }}</span>
+                    <p>{{ $t("VRTIĆ ZA MALE PSE") }}</p>
+                    <span>{{ $t("MESEČNA NAKNADA") }}</span>
                   </div>
                   <ul>
-                    <li>{{ $t("Transport") }}</li>
+                    <li class="vrtic">{{ $t("Gratis jednom") }}</li>
                     <li>{{ $t("Šišanje") }}</li>
                     <li>{{ $t("Kupanje") }}</li>
                     <li>{{ $t("Sušenje") }}</li>
@@ -440,94 +417,35 @@ onBeforeUnmount(() => {
                   <div class="prices">
                     <div class="discount-img">
                       <IconsDefaultPaw2 />
-                      <p>85 €</p>
+                      <p>300 €</p>
                     </div>
-                    <div class="discount-img2">
+                    <!-- <div class="discount-img2">
                       <IconsDefaultCrown />
                       <p>43 €</p>
-                    </div>
+                    </div> -->
                   </div>
                 </div>
                 <div class="box-2 style">
                   <div class="box-header">
-                    <p>{{ $t("Osnovni") }}</p>
-                    <span>{{ $t("Za štence do 6 meseci") }}</span>
+                    <p>{{ $t("TRANSPORT") }}</p>
+                    <span>{{ $t("Dodatna naknada uz vrtić") }}</span>
                   </div>
                   <ul>
-                    <li>{{ $t("Transport") }}</li>
-                    <li>{{ $t("Kupanje i sušenje") }}</li>
-                    <li>{{ $t("Skraćivanje noktića") }}</li>
-                    <li>
-                      {{ $t("Higijena ušiju Light Trimming") }}
-                    </li>
-                    <li>{{ $t("Oblikovanje dlake") }}</li>
+                    <li class="vrtic">{{ $t("Preuzimamo i vracamo ljubimca") }}</li>
+                    <li>{{ $t("Transport svakog dana") }}</li>
+                    
+                    <li>{{ $t("Dogovoreni transport") }}</li>
                   </ul>
 
                   <div class="prices">
                     <div class="discount-img">
                       <IconsDefaultPaw2 />
-                      <p>100 €</p>
+                      <p>45 €</p>
                     </div>
-                    <div class="discount-img2">
+                    <!-- <div class="discount-img2">
                       <IconsDefaultCrown />
                       <p>50 €</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="box-3 style">
-                  <div class="box-header">
-                    <p>{{ $t("Paket") }}</p>
-                    <span>{{ $t("Za pse do 10kg") }}</span>
-                  </div>
-                  <ul>
-                    <li>{{ $t("Transport") }}</li>
-                    <li>{{ $t("Kupanje i sušenje") }}</li>
-                    <li>{{ $t("Šišanje") }}</li>
-                    <li>{{ $t("Skraćivanje noktića") }}</li>
-                    <li>{{ $t("Higijena ušiju") }}</li>
-                    <li>{{ $t("Pranje zubića") }}</li>
-                  </ul>
-
-                  <div class="prices">
-                    <div class="discount-img">
-                      <IconsDefaultPaw2 />
-                      <p>100 €</p>
-                    </div>
-                    <div class="discount-img2">
-                      <IconsDefaultCrown />
-                      <p>50 €</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="box-4 style">
-                  <div class="box-header">
-                    <p>{{ $t("Specijalni") }}</p>
-                    <span>{{ $t("MEDICAL SPA TREATMENT") }}</span>
-                  </div>
-                  <ul>
-                    <li>
-                      {{ $t("Tretman protiv seboreje") }}
-                    </li>
-                    <li>
-                      {{ $t("Tretman protiv suve kože") }}
-                    </li>
-                    <li>
-                      {{ $t("Tretman protiv masne kože") }}
-                    </li>
-                    <li>
-                      {{ $t("Tretman protiv peruti") }}
-                    </li>
-                  </ul>
-
-                  <div class="prices">
-                    <div class="discount-img">
-                      <IconsDefaultPaw2 />
-                      <p>25 €</p>
-                    </div>
-                    <div class="discount-img2">
-                      <IconsDefaultCrown />
-                      <p>13 €</p>
-                    </div>
+                    </div> -->
                   </div>
                 </div>
               </figcaption>
@@ -553,30 +471,14 @@ onBeforeUnmount(() => {
               </div>
             </aside>
           </article>
-          <!-- <div
-            class="bg-img"
-            :style="{
-              width: page.widthofMain + 'px',
-              height: page.sectionHeights[3] + 'px',
-            }"
-          >
-            <div
-              class="bg-paralax"
-              :style="{
-                width: page.widthofMain + 100 + 'px',
-                height: page.sectionHeights[3] + 100 + 'px',
-              }"
-            >
-              <div class="bg"></div>
-            </div>
-          </div> -->
+          
         </section>
 
         <section
           ref="section5Ref"
           :data-section-id="5"
           :class="[
-            'section section-5',
+            'section section-5 section-vrtic',
             {
               active: page.activeSectionsByPage[page.page]
                 ? page.activeSectionsByPage[page.page].includes(5)
@@ -680,13 +582,6 @@ $section-1-height-boxs: 500px;
         padding: 10px 0 10px 0;
       }
     }
-    
-    figure {
-      
-      figcaption {
-        
-      }
-    }
   }
 
   
@@ -719,33 +614,6 @@ $section-1-height-boxs: 500px;
         background-size: contain;
         background-position: right 0px;
         background-image: url("/assets/img/dogs/house.png");
-  
-       /* @include px(1450) {
-          background-image: url("/assets/img/dogs/4-ps.jpg");
-          background-position: 82% 0;
-          background-size: auto 100%;
-          background-attachment: unset;
-        }
-        @include px(1024) {
-          background-image: url("/assets/img/dogs/4-wite.jpg");
-          background-size: auto;
-          background-position: calc(-1450px + 15vw * 5) 200px;
-          background-attachment: unset;
-          max-height: 850px;
-        }
-  
-        @include px(600) {
-          background-image: url("/assets/img/dogs/4-short.png");
-          background-size: auto;
-          background-position: 50px 100px;
-          background-attachment: unset;
-        }
-        @include px(360) {
-          background-image: url("/assets/img/dogs/4-short.png");
-          background-size: auto;
-          background-position: 35px 100px;
-          background-attachment: unset;
-        }*/
       }
     }
   }
@@ -772,19 +640,8 @@ $section-1-height-boxs: 500px;
     }
   }
   article {
-    h2 {
-      font-size: clamp(90%, 110% + 1.5vw, 300%);
-      margin-bottom: 30px;
-      font-family: "Poppins", sans-serif;
-      @include px(600) {
-        text-align: center;
-      }
-    }
 
     .box-pic {
-      position: relative;
-      width: 100%;
-      gap: 15px;
       @include flex-full(space-between, center, row);
       @include px(600) {
         @include flex-full(space-between, center, column-reverse);
@@ -793,10 +650,6 @@ $section-1-height-boxs: 500px;
         width: 65%;
         @include px(600) {
           width: 85%;
-        }
-        p {
-          width: 100%;
-          font-size: clamp(90%, 50% + 1.1vw, 130%);
         }
         &.vrtic {
           :nth-child(2) {
@@ -871,30 +724,11 @@ $section-1-height-boxs: 500px;
           font-size: clamp(90%, 50% + 1.1vw, 140%);
         }
 
-        h2 {
-          font-size: clamp(90%, 110% + 1.5vw, 300%);
-          margin-bottom: 0px;
-          font-family: "Lilita One", sans-serif;
-          @include px(600) {
-            text-align: center;
-          }
-        }
-        h3 {
-          font-size: clamp(90%, 90% + 1.5vw, 200%);
-          margin-bottom: 0px;
-          font-family: "Passion One", sans-serif;
-          background: linear-gradient(215deg, #6ca14f, #4ac1dc);
-          -webkit-background-clip: text;
-          background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-size: 150% 150%;
-          text-shadow: 2px 2px 3px #7ce5ad5c;
-          @include px(600) {
-            text-align: center;
-          }
-        }
+        
+        
         li {
           font-size: clamp(90%, 50% + 1.5vw, 110%);
+          list-style-type: none;
         }
         .ul-1 {
           margin-top: 20px;
@@ -902,6 +736,9 @@ $section-1-height-boxs: 500px;
         }
         .solo-1 {
           margin-top: 20px;
+          &.two {
+            margin-top: 0px;
+          }
         }
         .ul-2 {
           margin-top: 10px;
@@ -929,7 +766,7 @@ $section-1-height-boxs: 500px;
 
     aside {
       margin-top: 20px;
-      width: 70%;
+      width: 100%;
       float: right;
       @include px(1024) {
         width: 100%;
@@ -943,318 +780,45 @@ $section-1-height-boxs: 500px;
 }
 
 .section-4 {
-  padding: 100px 0px;
-  width: calc(90% + 50px);
-  margin-inline: auto;
+  
   @include px(1450) {
     width: 100%;
     padding: 50px 0px;
   }
 
   article {
-    h2 {
-      font-size: clamp(90%, 150% + 2.5vw, 300%);
-      margin-bottom: 0px;
-      font-family: "Passion One", sans-serif;
-      background: linear-gradient(215deg, #6ca14f, #4ac1dc);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-size: 150% 150%;
-      text-shadow: 2px 2px 3px #7ce5ad5c;
-      text-align: center;
-    }
     figure {
       margin-top: 20px;
       figcaption {
-        display: grid;
-        grid-template-columns: 0.25fr 0.25fr 0.25fr 0.25fr;
-        justify-content: center;
-        gap: 50px;
-        @include px(1600) {
-          gap: 20px;
-        }
-        @include px(1450) {
-          grid-template-columns: 0.33fr 0.33fr;
-        }
-        @include px(1024) {
-          grid-template-columns: 0.4fr 0.4fr;
-        }
-        @include px(600) {
-          grid-template-columns: 0.7fr;
-        }
-        @include px(500) {
-          grid-template-columns: 0.8fr;
-        }
-        @include px(400) {
-          grid-template-columns: 0.9fr;
-        }
-        @include px(360) {
-          grid-template-columns: 0.95fr;
-        }
-        .style {
-          position: relative;
-          min-width: calc(200px + 4.5vw);
-          border-radius: 33px;
-          overflow: hidden;
-          box-shadow: 0px 0px 20px 0px rgba($color: #94a69e, $alpha: 0.25);
-          @include flex-full(space-between, space-between, column);
+        &.vrtic {
+          grid-template-columns: 0.25fr 0.25fr;
           @include px(600) {
-            border-radius: 15px;
+            grid-template-columns: 0.7fr;
           }
-          .prices {
-            @include flex-full(space-between, center, row);
-            .discount-img {
-              padding: 10px 20px;
-              transition: all ease 0.3s;
-              @include flex-full(center, center, column);
-              svg {
-                position: relative;
-                z-index: -1;
-                width: calc(10px + 1.5vw);
-                height: calc(10px + 1.5vw);
-                min-width: 20px;
-                min-height: 20px;
-                transition: all ease 0.3s;
-                fill: #4adcbf;
-                opacity: 0.8;
-              }
-              p {
-                position: relative;
-                z-index: 3;
-                color: #4adcbf;
-                white-space: nowrap;
-                font-size: clamp(100%, 40% + 1.2vw, 150%);
-                font-family: "Lilita One", sans-serif;
+          .style {
+            @include flex-full(space-between, space-between, column);
+            @include px(600) {
+              border-radius: 15px;
+            }
+            .prices {
+              @include flex-full(center, center, row);
+              .discount-img {
+                @include flex-full(center, center, column);
               }
             }
-            .discount-img2 {
-              padding: 10px 20px;
-              transition: all ease 0.3s;
-              @include flex-full(center, center, column);
-              svg {
-                position: relative;
-                z-index: -1;
-                width: calc(10px + 1.5vw);
-                height: calc(10px + 1.5vw);
-                min-width: 20px;
-                min-height: 20px;
-                transition: all ease 0.3s;
-                fill: #ffc774;
-                opacity: 0.8;
-              }
-              p {
-                position: relative;
-                z-index: 3;
-                color: #ffc774;
-                white-space: nowrap;
-                font-size: clamp(100%, 40% + 1.2vw, 150%);
-                font-family: "Lilita One", sans-serif;
+            
+            ul {
+              li {
+                &.vrtic {
+                  text-align: center;
+                  font-weight: 800;
+                  margin-bottom: 10px;
+                  color: #fff;
+                  border-radius: 33px;
+                  background: #ffc774;
+                }
               }
             }
-          }
-          .box-header {
-            position: relative;
-            padding: 25px 10px 12px 10px;
-            //border-bottom: 1px solid #4adc9154;
-            //background: clr(font-primary-light);
-            border-top-left-radius: 9px;
-            border-top-right-radius: 9px;
-            p {
-              font-family: "Passion One", sans-serif;
-              font-weight: 500;
-              text-align: center;
-              color: clr(font);
-              font-size: clamp(120%, 40% + 1.5vw, 190%);
-            }
-            span {
-              font-family: "Passion One", sans-serif;
-              padding: 5px 10px;
-              font-weight: 500;
-              background: linear-gradient(215deg, #6ca14f, #4ac1dc);
-              -webkit-background-clip: text;
-              background-clip: text;
-              -webkit-text-fill-color: transparent;
-              background-size: 100% 100%;
-              text-shadow: 1px 1px 2px #7ce5ad5c;
-              font-size: clamp(90%, 40% + 1.1vw, 150%);
-              @include flex-center();
-            }
-          }
-          ul {
-            list-style-type: none;
-            background: #ffffffb2;
-            padding: 5px 20px;
-            li {
-              font-size: clamp(80%, 30% + 1.1vw, 120%);
-              color: clr(font-primary-light2);
-            }
-          }
-        }
-      }
-    }
-    .important {
-      margin-top: 50px;
-      text-align: center;
-      margin-bottom: 30px;
-      .first {
-        font-family: "Passion One", sans-serif;
-        font-size: clamp(100%, 70% + 3vw, 210%);
-        padding: 0px 40px;
-      }
-      .second {
-        padding: 0px 150px;
-        font-size: clamp(90%, 50% + 1.5vw, 110%);
-        @include px(800) {
-          padding: 0px 50px;
-        }
-        @include px(600) {
-          padding: 0px 40px;
-        }
-        @include px(500) {
-          padding: 0px 20px;
-        }
-      }
-    }
-    aside {
-      margin-top: 50px;
-      width: 100%;
-      .link-box {
-        @include flex-full(center, center, column);
-        @include social-btn();
-        .first {
-          margin-top: 30px;
-          margin-bottom: 20px;
-          text-align: center;
-          padding: 0px 150px;
-          @include px(800) {
-            padding: 0px 50px;
-          }
-          @include px(600) {
-            padding: 0px 40px;
-          }
-          @include px(500) {
-            padding: 0px 20px;
-          }
-        }
-      }
-    }
-  }
-}
-
-.section-5 {
-  position: relative;
-  padding: 100px 0px;
-
-  article {
-    h2 {
-      font-size: clamp(90%, 110% + 1.5vw, 300%);
-      margin-bottom: 30px;
-      font-family: "Passion One", sans-serif;
-      text-align: center;
-    }
-    figure {
-      width: calc(85% + 50px);
-      margin-inline: auto;
-      border-radius: 33px;
-      box-shadow: 0px 0px 150px 0px rgba(62, 62, 62, 0.2);
-      overflow: hidden;
-      @include px(1024) {
-        width: 96%;
-      }
-      figcaption {
-        position: relative;
-        overflow: hidden;
-        max-height: 600px;
-        @include flex-full(space-between, flex-start, row);
-        @include px(1024) {
-          max-height: unset;
-          @include flex-full(space-between, flex-start, column);
-        }
-        .overlay {
-          position: absolute;
-          z-index: 1;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: rgba($color: #ffffff, $alpha: 0.5);
-          backdrop-filter: blur(10px);
-          opacity: 0;
-          visibility: hidden;
-          transition: all ease 0.3s;
-          p {
-            height: 100%;
-            @include flex-center;
-          }
-        }
-        .igpic {
-          position: relative;
-          background: url("/assets/img/igkupanjepasa.png");
-          width: 100%;
-          height: 100%;
-          max-height: 600px;
-          min-height: 600px;
-          background-position: 0 auto;
-          background-size: cover;
-          cursor: pointer;
-          a {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-          }
-
-          &:hover {
-            .overlay {
-              opacity: 1;
-              visibility: visible;
-            }
-          }
-        }
-        .mappic {
-          position: relative;
-          background: url("/assets/img/mapa.png");
-          width: 100%;
-          height: 100%;
-          max-height: 600px;
-          min-height: 600px;
-          background-position: center;
-          background-size: cover;
-          cursor: pointer;
-          a {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-          }
-          &:hover {
-            .overlay {
-              opacity: 1;
-              visibility: visible;
-            }
-          }
-        }
-      }
-    }
-    aside {
-      margin-top: 20px;
-      width: 100%;
-      gap: 100px;
-      @include flex-center;
-      @include px(800) {
-        gap: 50px;
-      }
-      @include px(600) {
-        gap: 10px;
-        flex-direction: column;
-      }
-      .link-box {
-        @include flex-full(flex-start, center, row);
-        @include social-btn();
-      }
-      .link2 {
-        .touch {
-          @include px(600) {
-            display: none;
           }
         }
       }

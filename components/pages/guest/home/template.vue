@@ -17,10 +17,10 @@ const igLinkParts = [
   "ps://ww",
   "w.insta",
   "gram.co",
-  "m/kupa",
-  "nje",
-  "pa",
-  "sa",
+  "m/let",
+  "sgo",
+  "pe",
+  "t.rs",
 ];
 const mapLink = ref(`${mapLinkParts.join("")}`);
 const igLink = ref(`${igLinkParts.join("")}`);
@@ -685,8 +685,9 @@ onBeforeUnmount(() => {
                 <div class="igpic">
                   <div class="overlay">
                     <NuxtLink
-                      :to="mapLink"
                       v-if="isClient"
+                      :to="igLink"
+                      
                       target="_blank"
                     ></NuxtLink>
                     <p>{{ $t("Klikni da odes na Instagram profil") }}</p>
@@ -695,7 +696,7 @@ onBeforeUnmount(() => {
                 <div class="mappic">
                   <div class="overlay">
                     <NuxtLink
-                      :to="igLink"
+                      :to="mapLink"
                       v-if="isClient"
                       target="_blank"
                       :aria-label="$t('igprofile')"
@@ -1091,7 +1092,7 @@ $section-1-height-boxs: 500px;
 
     aside {
       margin-top: 20px;
-      width: 70%;
+      width: 100%;
       float: right;
       @include px(1024) {
         width: 100%;
@@ -1469,7 +1470,7 @@ $section-1-height-boxs: 500px;
 
     aside {
       margin-top: 20px;
-      width: 70%;
+      width: 100%;
       float: right;
       @include px(1024) {
         width: 100%;
@@ -1481,7 +1482,7 @@ $section-1-height-boxs: 500px;
     }
   }
 }
-.section-7 {
+.section-7, .section-vrtic {
   position: relative;
   padding: 100px 0px;
 
@@ -1529,14 +1530,22 @@ $section-1-height-boxs: 500px;
         }
         .igpic {
           position: relative;
-          background: url("/assets/img/igkupanjepasa.png");
+          background: url("/assets/img/ig.png");
           width: 100%;
           height: 100%;
-          max-height: 600px;
           min-height: 600px;
-          background-position: 0 auto;
-          background-size: cover;
+          min-width: 500px;
+          background-position: center;
+          background-size: auto 100%;
+          background-repeat: no-repeat;
           cursor: pointer;
+          @include px(1450) {
+            min-height: 600px;
+            background-size: cover;
+          }
+          @include px(1024) {
+            background-size: auto 100%;
+          }
           a {
             position: absolute;
             width: 100%;

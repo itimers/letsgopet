@@ -75,14 +75,25 @@
           </button>
         </div>
         <div class="mid-side">
-          <div class="mid-links">
-            <LinksClassicHome @click.stop="page.toggleElementVisibility('burger')"/>
-            <LinksClassicAbout @click.stop="page.toggleElementVisibility('burger')"/>
-            <LinksClassicServices @click.stop="page.toggleElementVisibility('burger')"/>
-            <LinksClassicVip @click.stop="page.toggleElementVisibility('burger')"/>
-            <LinksClassicPettransport @click.stop="page.toggleElementVisibility('burger')"/>
-            <LinksClassicPricemenu @click.stop="page.toggleElementVisibility('burger')"/>
-            <LinksClassicContact @click.stop="page.toggleElementVisibility('burger')"/>
+          <div v-if="page.page === 1" class="mid-links">
+            <LinksClassicHome @click="page.toggleElementVisibility('burger'), page.changeSection(1)"/>
+            <LinksClassicAbout @click="page.toggleElementVisibility('burger'), page.changeSection(6)"/>
+            <LinksClassicServices @click="page.toggleElementVisibility('burger'), page.changeSection(2)"/>
+            <LinksClassicVip @click="page.toggleElementVisibility('burger'), page.changeSection(3)"/>
+            <LinksClassicPettransport @click="page.toggleElementVisibility('burger'), page.changeSection(5)"/>
+            <LinksClassicPetvrtic class="vrtic" @click="page.toggleElementVisibility('burger')"/>
+            <LinksClassicPricemenu @click="page.toggleElementVisibility('burger'), page.changeSection(4)"/>
+            <LinksClassicContact @click="page.toggleElementVisibility('burger'), page.changeSection(7)"/>
+          </div>
+          <div v-else class="mid-links">
+            <LinksClassicHome @click="page.toggleElementVisibility('burger'), page.changeSectionDelay(1)"/>
+            <LinksClassicAbout @click="page.toggleElementVisibility('burger'), page.changeSectionDelay(6)"/>
+            <LinksClassicServices @click="page.toggleElementVisibility('burger'), page.changeSectionDelay(2)"/>
+            <LinksClassicVip @click="page.toggleElementVisibility('burger'), page.changeSectionDelay(3)"/>
+            <LinksClassicPettransport @click="page.toggleElementVisibility('burger'), page.changeSectionDelay(5)"/>
+            <LinksClassicPetvrtic class="vrtic" @click="page.toggleElementVisibility('burger')"/>
+            <LinksClassicPricemenu @click="page.toggleElementVisibility('burger'), page.changeSectionDelay(4)"/>
+            <LinksClassicContact @click="page.toggleElementVisibility('burger'), page.changeSectionDelay(7)"/>
           </div>
         </div>
         <div class="bottom-side">
