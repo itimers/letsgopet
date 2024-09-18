@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+
 const page = usePagesStore();
 const i18n = useI18n();
 const mapLinkParts = [
@@ -815,7 +816,7 @@ $section-1-height-boxs: 500px;
                   margin-bottom: 10px;
                   color: #fff;
                   border-radius: 33px;
-                  background: #ffc774;
+                  color: #ffc774;
                 }
               }
             }

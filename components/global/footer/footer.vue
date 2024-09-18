@@ -26,6 +26,11 @@
             <LinksTosocialMap class="link-to" />
           </div>
         </div>
+      <div class="link-box link2">
+          <div class="link-btn">
+            <LinksTosocialPhone class="link-to" />
+          </div>
+        </div>
       </aside>
     </div>
     <div class="copyright">
@@ -81,6 +86,9 @@ $footer: (
   }
 
   .footer-mid {
+    @include px(1024) {
+      padding: 20px 0px !important;
+    }
     ul {
       list-style-type: none;
       li {
@@ -113,6 +121,9 @@ $footer: (
     margin-top: 0px;
     gap: 0px;
     @include flex-full(center,center,column);
+    @include px(1024) {
+      @include flex-full(flex-start,flex-start,column);
+    }
     @include px(800) {
       gap: 0px;
     }
@@ -122,9 +133,13 @@ $footer: (
     }
 
     .link-box {
-      @include flex-full(flex-start, center, row);
+      margin: 0 !important; 
+      margin-top: 10px !important;
+      @include flex-full(flex-start, flex-start, row);
       @include social-btn();
-
+      @include px(1024) {
+        margin-top: 10px !important;
+      }
       .link-btn {
         .link-to {
             animation: none;

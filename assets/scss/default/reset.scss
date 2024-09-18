@@ -95,7 +95,7 @@ h4,
 h5,
 h6,
 h7 {
-  color: getColor(font);
+  color: clr(font);
 }
 .disabled-link {
   pointer-events: none !important;

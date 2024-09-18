@@ -207,7 +207,7 @@ router.beforeEach((to, from, next) => {
         <!-- <ModalsCookie
           v-if="page.states.find((el) => el.btn === 'cookie' && el.activebtn)"
         /> -->
-        <div>
+        <div v-if="page.page !== 3">
           <div class="section-pagination" v-if="page.isScrolling">
             <span class="to-top" @click.stop="page.scrollTop">
               <IconsControlsArrow/>
@@ -258,15 +258,16 @@ router.beforeEach((to, from, next) => {
         
         
         
-        <IconsControlsTotop @click.stop="page.scrollTop" />
-        <IconsDefaultCallus />
-        <HeaderNav :class="{ scrolled: page.isScrolled }" />
+        <IconsControlsTotop @click.stop="page.scrollTop" v-if="page.page !== 3"/>
+        <IconsDefaultCallus v-if="page.page === 3"/>
+        <HeaderNav :class="{ scrolled: page.isScrolled }" v-if="page.page !== 3"/>
         <main
           ref="isScrollable"
           class="main"
           :class="{
             scroll: page.isScrollable,
             scrolled: page.isScrolled,
+            qr: page.page === 3
           }"
           @scroll="handleScroll"
         >
@@ -278,7 +279,7 @@ router.beforeEach((to, from, next) => {
 
           <div class="viewport">
             <NuxtPage />
-            <Footer />
+            <Footer v-if="page.page !== 3"/>
           </div>
           <div class="bottom"></div>
         </main>
@@ -326,6 +327,9 @@ main {
   margin-top: -$nav-height - $upnav-height;
   transition: margin-top ease .3s;
   transition-delay: .1s;
+  &.qr {
+    margin-top: 0px;
+  }
   &.scrolled {
     margin-top: 0;
   }
@@ -375,7 +379,7 @@ main {
     transform: rotate(0deg);
 
     svg {
-      fill: getColor(sectionpagarrows);
+      fill: clr(font);
     }
   }
 
@@ -385,7 +389,7 @@ main {
 
     span {
       svg {
-        fill: getColor(sectionpagarrows);
+        fill: clr(font);
       }
     }
 
@@ -398,7 +402,7 @@ main {
 
     span {
       svg {
-        fill: getColor(sectionpagarrows);
+        fill: clr(font);
       }
     }
   }
