@@ -257,7 +257,7 @@ nav {
   }
 }
 nav a,
-button {
+nav button {
   position: relative;
   bottom: 0;
   height: 70%;
@@ -726,7 +726,7 @@ button {
 .mid-links {
   padding: 20px 20px;
   @include flex-full(flex-start, flex-start, column);
-  a {
+  a,button {
     padding: 5px 15px;
     color: white;
     border-radius: 33px;

@@ -9,6 +9,7 @@
 </template>
 <script lang="ts" setup>
   const page = usePagesStore();
+  const i18n = useI18n();
   const languageRoutes: Record<string, string> = {
     en: "/en/",
     ru: "/ru/",

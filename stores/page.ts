@@ -20,7 +20,6 @@ function getDefaultLanguage(): string {
 
 export const usePagesStore = defineStore('pages', {
   state: () => ({
-    isMobile: false,
     mobileDevices: [
       /android/i,
       /webos/i,
@@ -34,7 +33,6 @@ export const usePagesStore = defineStore('pages', {
       /symbian/i,
       /palm/i
     ],
-    isSlider: false,
     currentLanguage: getDefaultLanguage() as Language,
     currentTheme: 'light' as Theme,
     availableThemes: ['light', 'dark'] as Theme[],
@@ -374,34 +372,7 @@ export const usePagesStore = defineStore('pages', {
   }),
 
   actions: {
-    isMobileDevice() {
-      const slider = useSlidesStore();
-      const userAgent = navigator.userAgent || navigator.vendor;
-      const foundMobileDevice = this.mobileDevices.some(device => device.test(userAgent));
-
-      if (foundMobileDevice) {
-        this.isMobile = true;
-        if (this.page === 1) {
-          slider.isMobile = true;
-        }
-      } else {
-        this.isMobile = false;
-        if (this.page === 1) {
-          slider.isMobile = false;
-        }
-        // Ako nije pronađen mobilni uređaj, oslanjamo se na širinu prozora
-        /* this.isMobile = window.innerWidth < 1024;
-        if(this.page === 1) {
-          slider.isMobile = window.innerWidth < 1024;
-        } */
-      }
-
-      if (this.isMobile) {
-        //console.log('Korisnik je na mobilnom uređaju');
-      } else {
-        //console.log('Korisnik je na desktop uređaju');
-      }
-    },
+    
     setFirstLoaderState(isActive: boolean) {
       const element = this.states.find(el => el.btn === 'firstloader');
       if (!element) return;
@@ -1001,7 +972,6 @@ export const usePagesStore = defineStore('pages', {
       }
     },
 
-
     updateScrollDirection() {
       const mainElement = document.querySelector(".main") as HTMLElement | null;
 
@@ -1116,58 +1086,15 @@ export const usePagesStore = defineStore('pages', {
       }
       //}
     },
-
-    setWidthOfCardWrapper() {
-      //if (isClientSide()) {
-      const slider = useSlidesStore();
-      const cardWrapper = document.querySelector(".sliding-wrapper-cards") as HTMLElement | null;
-      if (cardWrapper) {
-        const width = cardWrapper.clientWidth;
-        slider.setWidthCardWrapper(width);
-      }
-      //}
-    },
-    setWidthOfSliderWrapper() {
-      //if (isClientSide()) {
-      const slider = useSlidesStore();
-      const slideWrapper = document.querySelector(".sliding-wrapper") as HTMLElement | null;
-      if (slideWrapper) {
-        const width = slideWrapper.clientWidth;
-        slider.setWidthSliderWrapper(width);
-      }
-      //}
-    },
   },
 
   getters: {
     language: (state) => state.currentLanguage,
-    getCurrentTheme: (state) => state.currentTheme,
-
-    setScrollableState: (state) => state.isScrollable,
-    setScrolledState: (state) => state.isScrolled,
-    setCurrentScroll: (state) => state.currentScroll,
-    setProgressScroll: (state) => state.scrollProgress,
-    setMainHeightState: (state) => state.heightofMain,
-    setNavHeightState: (state) => state.heightofNav,
-    setHtmlWidthState: (state) => state.widthofHtml,
-    setHtmlHeightState: (state) => state.heightofHtml,
-    setMainWidthState: (state) => state.widthofMain,
     isButtonDisabled: (state) => {
       return (buttonId: number) => {
         return state.buttonsDisabled || state.activeSection === buttonId;
       };
     },
-
-
-    setLoaderState: (state) => state.isLoader,
-    setLoadingAnimationState: (state) => state.isLoadingAnimation,
-    setLoadingState: (state) => state.isLoading,
-    setLoadedState: (state) => state.isLoaded,
-
-    setLoaderPageState: (state) => state.isLoaderPage,
-    setLoadingAnimationPageState: (state) => state.isLoadingAnimationPage,
-    setLoadingPageState: (state) => state.isLoadingPage,
-    setLoadedPageState: (state) => state.isLoadedPage,
   },
   //persist: true
 });

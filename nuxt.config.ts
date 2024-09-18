@@ -30,7 +30,7 @@ export default defineNuxtConfig({
         { name: 'revisit-after', content: '7 days' },
         { name: 'application-name', content: "Let's Go Pet" },
         { name: 'msapplication-TileColor', content: '#dc9176' },
-        { name: 'msapplication-TileImage', content: 'https://www.letsgopet.rs/favico.png' },
+        { name: 'msapplication-TileImage', content: 'https://www.letsgopet.rs/favicon.ico' },
         { name: 'apple-mobile-web-app-capable', content: 'yes' },
         { name: 'apple-mobile-web-app-status-bar-style', content: 'default' },
         { name: 'mobile-web-app-capable', content: 'yes' },
@@ -40,7 +40,6 @@ export default defineNuxtConfig({
         { property: 'og:image:type', content: 'image/png' },
         { 'http-equiv': 'content-type', content: 'text/html; charset=UTF-8' },
         { 'http-equiv': 'pragma', content: 'no-cahe' },
-        { 'http-equiv': 'cache-control', content: 'no-cahe' },
         { 'http-equiv': 'imagetoolbar', content: 'no'},
         { 'http-equiv': 'expires', content: '0' },
         { 'http-equiv': 'X-UA-Compatible', content: 'IE=edge' },
@@ -52,6 +51,7 @@ export default defineNuxtConfig({
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      // Preload the mobile background image
         //{ rel: "preconnect", href: 'https://fonts.googleapis.com' },
         //{ rel: "preconnect", href: 'https://fonts.gstatic.com', type: 'crossorigin' },
         //{ rel: "stylesheet", href: 'https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&display=swap' },

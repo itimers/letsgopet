@@ -93,7 +93,7 @@ $footer: (
       list-style-type: none;
       li {
         margin: 5px 0px;
-        a {
+        a,button {
           color: white;
           padding: 5px 10px;
           font-size: clamp(90%, 50% + 1.5vw, 110%);

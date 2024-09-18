@@ -12,24 +12,28 @@
 }
 
 @font-face {
+  font-display: swap;
   font-family: 'Lilita One';
   font-weight: 400;
   src: url('/static/fonts/LilitaOne-Regular.woff2') format('woff2');
 }
 
 @font-face {
+  font-display: swap;
   font-family: 'Passion One';
   font-weight: 900;
   src: url('/static/fonts/PassionOne-Black.woff2') format('woff2');
 }
 
 @font-face {
+  font-display: swap;
   font-family: 'Passion One';
   font-weight: 700;
   src: url('/static/fonts/PassionOne-Bold.woff2') format('woff2');
 }
 
 @font-face {
+  font-display: swap;
   font-family: 'Passion One';
   font-weight: 400;
   src: url('/static/fonts/PassionOne-Regular.woff2') format('woff2');
@@ -37,24 +41,28 @@
 
 
 @font-face {
+  font-display: swap;
   font-family: 'Poppins';
   font-weight: 900;
   src: url('/static/fonts/Poppins-Black.woff2') format('woff2');
 }
 
 @font-face {
+  font-display: swap;
   font-family: 'Poppins';
   font-weight: 700;
   src: url('/static/fonts/Poppins-Bold.woff2') format('woff2');
 }
 
 @font-face {
+  font-display: swap;
   font-family: 'Poppins';
   font-weight: 800;
   src: url('/static/fonts/Poppins-ExtraBold.woff2') format('woff2');
 }
 
 @font-face {
+  font-display: swap;
   font-family: 'Poppins';
   font-weight: 600;
   src: url('/static/fonts/Poppins-SemiBold.woff2') format('woff2');
@@ -80,8 +88,10 @@ button {
     font-family: 'Poppins', sans-serif; 
     font-size: 100%;
 }
-
-
+.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
 
 a {
   text-decoration: none;

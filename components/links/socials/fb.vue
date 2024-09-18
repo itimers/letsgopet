@@ -9,10 +9,10 @@ const fbLinkParts = [
   "ps://ww",
   "w.face",
   "book.co",
-  "m/man",
+  "m/let",
+  "s",
   "go",
-  "_kol",
-  "aci",
+  "pet.rs",
 ];
 const fbLink = ref(`${fbLinkParts.join("")}`);
 const isClient = ref(false);
