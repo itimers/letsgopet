@@ -82,19 +82,6 @@ export const usePagesStore = defineStore('pages', {
     states: [
       {
         id: 1,
-        btn: 'cookie',
-        menu: 'cookiediv',
-        activebtn: true,
-        activemenu: true,
-        delayActive: 50,
-        delayRemoveActive: 300,
-        zIndex: 9800,
-        keepZindex: true,
-        resetable: false,
-        localstorage: true,
-      },
-      {
-        id: 2,
         btn: 'firstloader',
         menu: 'firstloaderdiv',
         activebtn: true,
@@ -105,71 +92,6 @@ export const usePagesStore = defineStore('pages', {
         keepZindex: true,
         resetable: false,
         localstorage: false,
-      },
-      {
-        id: 3,
-        btn: 'page',
-        menu: 'pagediv',
-        activebtn: false,
-        activemenu: false,
-        delayActive: 50,
-        delayRemoveActive: 300,
-        zIndex: -1,
-        keepZindex: false,
-        resetable: true,
-        localstorage: true,
-      },
-      {
-        id: 4,
-        btn: 'fetching',
-        menu: 'fetchingdiv',
-        activebtn: false,
-        activemenu: false,
-        delayActive: 50,
-        delayRemoveActive: 300,
-        zIndex: -1,
-        keepZindex: false,
-        resetable: true,
-        localstorage: true,
-      },
-      {
-        id: 5,
-        btn: 'error',
-        menu: 'errordiv',
-        activebtn: false,
-        activemenu: false,
-        delayActive: 50,
-        delayRemoveActive: 300,
-        zIndex: -1,
-        keepZindex: false,
-        resetable: true,
-        localstorage: true,
-      },
-      {
-        id: 6,
-        btn: 'settings',
-        menu: 'settingsdiv',
-        activebtn: false,
-        activemenu: false,
-        delayActive: 50,
-        delayRemoveActive: 300,
-        zIndex: -1,
-        keepZindex: false,
-        resetable: true,
-        localstorage: true,
-      },
-      {
-        id: 7,
-        btn: 'themes',
-        menu: 'themesdiv',
-        activebtn: false,
-        activemenu: false,
-        delayActive: 50,
-        delayRemoveActive: 300,
-        zIndex: -1,
-        keepZindex: false,
-        resetable: true,
-        localstorage: true,
       },
       {
         id: 8,
@@ -197,178 +119,11 @@ export const usePagesStore = defineStore('pages', {
         resetable: true,
         localstorage: true,
       },
-      {
-        id: 10,
-        btn: 'linkmenu',
-        menu: 'linkmenudiv',
-        activebtn: false,
-        activemenu: false,
-        delayActive: 50,
-        delayRemoveActive: 300,
-        zIndex: -1,
-        keepZindex: false,
-        resetable: true,
-        localstorage: true,
-      },
-      {
-        id: 11,
-        btn: 'infusions',
-        menu: 'infusionsdiv',
-        activebtn: false,
-        activemenu: false,
-        delayActive: 50,
-        delayRemoveActive: 300,
-        zIndex: -1,
-        keepZindex: false,
-        resetable: true,
-        localstorage: true,
-      },
-      {
-        id: 12,
-        btn: 'surgery',
-        menu: 'surgerydiv',
-        activebtn: false,
-        activemenu: false,
-        delayActive: 50,
-        delayRemoveActive: 300,
-        zIndex: -1,
-        keepZindex: false,
-        resetable: true,
-        localstorage: true,
-      },
-      {
-        id: 13,
-        btn: 'services',
-        menu: 'servicesdiv',
-        activebtn: false,
-        activemenu: false,
-        delayActive: 50,
-        delayRemoveActive: 300,
-        zIndex: -1,
-        keepZindex: false,
-        resetable: true,
-        localstorage: true,
-      },
-      {
-        id: 14,
-        btn: 'slider',
-        menu: 'sliderdiv',
-        activebtn: false,
-        activemenu: false,
-        delayActive: 50,
-        delayRemoveActive: 300,
-        zIndex: -1,
-        keepZindex: false,
-        resetable: true,
-        localstorage: true,
-      },
-      {
-        id: 15,
-        btn: 'syncslides',
-        menu: 'syncslidesdiv',
-        activebtn: false,
-        activemenu: false,
-        delayActive: 50,
-        delayRemoveActive: 300,
-        zIndex: -1,
-        keepZindex: false,
-        resetable: true,
-        localstorage: true,
-      },
-      {
-        id: 16,
-        btn: 'closedslides',
-        menu: 'closedslidesdiv',
-        activebtn: false,
-        activemenu: false,
-        delayActive: 50,
-        delayRemoveActive: 300,
-        zIndex: -1,
-        keepZindex: false,
-        resetable: true,
-        localstorage: true,
-      },
-      {
-        id: 17,
-        btn: 'closedcards',
-        menu: 'closedcardsdiv',
-        activebtn: false,
-        activemenu: false,
-        delayActive: 50,
-        delayRemoveActive: 300,
-        zIndex: -1,
-        keepZindex: false,
-        resetable: true,
-        localstorage: true,
-      },
     ] as any[],
 
 
 
     page: 1,
-    pageDelay: 1200,
-    links: [
-      {
-        id: 1,
-        page: 1,
-        name: "Home",
-        hash: [
-          {
-            id: 1,
-            idtag: "home",
-          },
-          {
-            id: 2,
-            idtag: "about",
-          },
-          {
-            id: 3,
-            idtag: "contact",
-          },
-        ],
-        to: {
-          sr: "/",
-          en: "/en/",
-          ru: "/ru/",
-          de: "/de/",
-          cn: "/cn/",
-          it: "/it/",
-          es: "/es/",
-          fr: "/fr/",
-          tr: "/tr/",
-        },
-      },
-      {
-        id: 1,
-        page: 1,
-        name: "Vip",
-        hash: [
-          {
-            id: 1,
-            idtag: "vip",
-          },
-          {
-            id: 2,
-            idtag: "vipmember",
-          },
-          {
-            id: 3,
-            idtag: "contact",
-          },
-        ],
-        to: {
-          sr: "/vip",
-          en: "/en/vip",
-          ru: "/ru/vip",
-          de: "/de/vip",
-          cn: "/cn/vip",
-          it: "/it/vip",
-          es: "/es/vip",
-          fr: "/fr/vip",
-          tr: "/tr/vip",
-        },
-      }
-    ]
   }),
 
   actions: {
@@ -410,8 +165,6 @@ export const usePagesStore = defineStore('pages', {
     },
 
     initializeActiveElements() {
-      const cookie = useCookieStore();
-      if (cookie.localstorage) {
         const storedStatesJSON = localStorage.getItem('states');
         if (storedStatesJSON && storedStatesJSON !== '[]') {
           const storedStates = JSON.parse(storedStatesJSON);
@@ -421,7 +174,6 @@ export const usePagesStore = defineStore('pages', {
               Object.assign(state, storedState);
             }
           });
-        }
       } else {
         this.states = JSON.parse(JSON.stringify(this.states));
       }
@@ -437,8 +189,6 @@ export const usePagesStore = defineStore('pages', {
     },
 
     refreshFromLocalStorage() {
-      const cookie = useCookieStore();
-      if (cookie.localstorage) {
         const storedStatesJSON = localStorage.getItem('states');
         if (storedStatesJSON && storedStatesJSON !== '[]') {
           const storedStates = JSON.parse(storedStatesJSON);
@@ -450,11 +200,9 @@ export const usePagesStore = defineStore('pages', {
           });
           this.initializeActiveElements();
         }
-      }
     },
 
     updateActiveElement(buttonClass: string, isActive: boolean, isMenu: boolean) {
-      const cookie = useCookieStore();
       const element = this.states.find(el => el.btn === buttonClass || el.menu === buttonClass);
       if (element) {
         if (isMenu) {
@@ -462,7 +210,7 @@ export const usePagesStore = defineStore('pages', {
         } else {
           element.activebtn = isActive;
         }
-        if (element.localstorage && cookie.localstorage) {
+        if (element.localstorage) {
           setTimeout(() => {
             localStorage.setItem('states', JSON.stringify(this.states.filter(el => el.localstorage)));
           }, isActive ? element.delayActive : element.delayRemoveActive);
@@ -471,7 +219,6 @@ export const usePagesStore = defineStore('pages', {
     },
 
     toggleElementVisibility(buttonClass: string) {
-      const cookie = useCookieStore();
       const element = this.states.find(el => el.btn === buttonClass);
       if (!element) return;
 
@@ -487,7 +234,7 @@ export const usePagesStore = defineStore('pages', {
               element.zIndex = -1;
             }
             this.updateZIndex();
-            if (element.localstorage && cookie.localstorage) {
+            if (element.localstorage) {
               localStorage.setItem('states', JSON.stringify(this.states.filter(el => el.localstorage)));
             }
           }, element.delayRemoveActive);
@@ -507,7 +254,7 @@ export const usePagesStore = defineStore('pages', {
                 el.zIndex -= 1;
               }
             });
-            if (element.localstorage && cookie.localstorage) {
+            if (element.localstorage) {
               localStorage.setItem('states', JSON.stringify(this.states.filter(el => el.localstorage)));
             }
           }, 50);
@@ -559,8 +306,7 @@ export const usePagesStore = defineStore('pages', {
           element.activemenu = false;
           setTimeout(() => {
             element.activebtn = false;
-            const cookie = useCookieStore();
-            if (element.localstorage && cookie.localstorage) {
+            if (element.localstorage) {
               localStorage.setItem('states', JSON.stringify(this.states.filter(el => el.localstorage)));
             }
           }, element.delayRemoveActive);
@@ -619,16 +365,11 @@ export const usePagesStore = defineStore('pages', {
     //& Change language
     changeLanguage(language: Language) {
       this.currentLanguage = language;
-      const cookie = useCookieStore();
       if (typeof localStorage !== 'undefined') {
-        if (cookie.localstorage) {
           localStorage.setItem('lang', language);
-        }
       }
     },
     initializeLanguage() {
-      const cookie = useCookieStore();
-      if (cookie.isCookieActive('langs')) {
         const storedCurrentLanguage = localStorage.getItem('lang');
         const i18n = useI18n();
 
@@ -638,7 +379,6 @@ export const usePagesStore = defineStore('pages', {
         } else {
           this.currentLanguage = 'sr';
         }
-      }
     },
     isLanguageValid(language: string): language is Language {
       return ['sr', 'en', 'ru', 'de', 'tr', 'es', 'cn', 'fr', 'it'].includes(language);
@@ -647,18 +387,13 @@ export const usePagesStore = defineStore('pages', {
 
     //& Change theme
     setTheme(theme: Theme) {
-      const cookie = useCookieStore();
       this.currentTheme = theme;
       //this.$patch({ currentTheme: theme });
       document.documentElement.setAttribute('class', theme);
-      if (cookie.localstorage) {
         //safeLocalStorageSetItem('theme', theme);
         localStorage.setItem('theme', theme);
-      }
     },
     initTheme() {
-      const cookie = useCookieStore();
-      if (cookie.isCookieActive('themes')) {
         //^console.log("INIT THEME");
         const savedTheme = localStorage.getItem('theme') as Theme | null;
         const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -674,15 +409,10 @@ export const usePagesStore = defineStore('pages', {
 
 
         const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-        if (cookie.isCookieActive('listeners')) {
           mediaQuery.addEventListener('change', this.handlePrefersColorSchemeChange, { passive: true });
-        }
         //^console.log("Added Event Listener for Media Query:", mediaQuery);
-      }
     },
     handlePrefersColorSchemeChange(event: MediaQueryListEvent) {
-      const cookie = useCookieStore();
-      if (cookie.isCookieActive('prefers')) {
         //^console.log("Theme Change Event Triggered", event.matches);
         const prefersDarkMode = event.matches;
         const savedTheme = localStorage.getItem('theme') as Theme | null;
@@ -695,7 +425,6 @@ export const usePagesStore = defineStore('pages', {
           document.documentElement.setAttribute('class', this.currentTheme);
         }
         //^console.log("Updated Theme on System Change:", this.currentTheme);
-      }
     },
 
     //& Loading and Timings

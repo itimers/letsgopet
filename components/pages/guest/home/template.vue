@@ -1,6 +1,31 @@
 <script lang="ts" setup>
+import imgdog from "@/assets/img/dogs/4.webp" 
+import imgdog2 from "@/assets/img/dogs/4-short.webp" 
+
 const page = usePagesStore();
 const i18n = useI18n();
+const preloadImage = (imagePath: string) => {
+  const link = document.createElement('link');
+  link.rel = 'preload';
+  link.as = 'image';
+  link.href = imagePath;
+  document.head.appendChild(link);
+};
+useHead({
+  link: [
+    {
+      rel: "preload",
+      as: "image",
+      href: imgdog
+    },
+    {
+      rel: "preload",
+      as: "image",
+      href: imgdog2
+    },
+  ]
+})
+
 const mapLinkParts = [
   "htt",
   "ps://",
@@ -307,8 +332,8 @@ onBeforeUnmount(() => {
           <div class="boxshadow"></div>
           <aside :class="{ scroll: page.isScrolled }" class="dog">
             <div class="img-dog">
-              <img src="/assets/img/dogs/4-short.webp" v-if="page.widthofHtml <= 600" alt="white-dog"/>
-              <img src="/assets/img/dogs/4.webp" alt="white-dog" v-else/>
+              <img :src="imgdog2" v-if="page.widthofHtml <= 600" alt="white-dog"/>
+              <img :src="imgdog" alt="white-dog" v-else/>
             </div>
           </aside>
         </section>
