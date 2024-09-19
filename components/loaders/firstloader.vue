@@ -51,7 +51,7 @@ $laoder: (
 );
 
 .loader {
-  transform: all ease 0.3s;
+  transform: all ease 0.12s;
   position: fixed;
   z-index: -1;
   width: 100%;
@@ -60,7 +60,7 @@ $laoder: (
   justify-content: center;
   align-items: center;
   opacity: 0;
-  @include fadeInUpBig(0.3s, ease, none);
+  @include fadeInUpBig(0.12s, ease, none);
   @include setColors($laoder);
 }
 article {
@@ -70,7 +70,7 @@ article {
   justify-content: center;
   align-items: center;
   margin-bottom: $loader-position;
-  transition: all ease 0.3s;
+  transition: all ease 0.12s;
 }
 .spinner {
   position: relative;

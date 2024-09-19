@@ -85,17 +85,13 @@ function handleScroll() {
   }
 }
 const handleResize = () => {
-  page.setHeightOfMain();
-  page.setHeightOfNav();
-  page.setWidthOfMain();
-  page.setWidthOfHtml();
-  page.setHeightOfHtml();
+  page.setSizes();
 };
 const handleDOMContentLoaded = () => {
   setTimeout(() => {
     if (page.states.find((el) => el.btn === "firstloader" && el.activebtn))
       page.toggleElementVisibility("firstloader");
-  }, 100);
+  }, 20);
 };
 onMounted(() => {
   removeHashFromUrl();
@@ -110,12 +106,12 @@ onMounted(() => {
   page.initializeLanguage();
   page.initializeActiveElements();
   page.refreshFromLocalStorage();
-  handleResize();
+  page.setSizes();
 
-    document.addEventListener("click", page.handleClickOutside, {
-      passive: true,
-    });
-    window.addEventListener("resize", handleResize, { passive: true });
+  document.addEventListener("click", page.handleClickOutside, {
+    passive: true,
+  });
+  window.addEventListener("resize", handleResize, { passive: true });
   setTimeout(async () => {
     const mainElement = document.querySelector("#main");
     if (mainElement) {
@@ -123,15 +119,15 @@ onMounted(() => {
       page.setScrollable(isScrollable);
     }
   }, page.loadingTime + 120);
-  page.setUILoaded();
+  //page.setUILoaded();
 });
 onUnmounted(() => {
   if (mutationObserver) {
     mutationObserver.disconnect();
   }
-    window.removeEventListener("resize", handleResize);
-    document.removeEventListener("click", page.handleClickOutside);
-    window.removeEventListener("scroll-target-section", handleScroll);
+  window.removeEventListener("resize", handleResize);
+  document.removeEventListener("click", page.handleClickOutside);
+  window.removeEventListener("scroll-target-section", handleScroll);
 });
 router.afterEach(() => {
   setTimeout(() => {
@@ -300,8 +296,7 @@ main {
   overflow: hidden auto;
   scrollbar-gutter: stable;
   margin-top: -$nav-height - $upnav-height;
-  transition: margin-top ease 0.3s;
-  transition-delay: 0.1s;
+  transition: all ease 0.12s;
   &.qr {
     margin-top: 0px;
   }
@@ -467,7 +462,6 @@ main {
   width: 100%;
 }
 
-
 $locale-bg: #fff;
 $locale-dot: #fff;
 $locale-font: $font;
@@ -576,8 +570,7 @@ header {
   box-shadow: 0px 0px 0px 0px #7c512741;
   background: none;
   //background: clr(headerbg);
-  transition: background ease 0.3s, box-shadow ease 0.1s;
-  transition-delay: 0.1s, 0.1s;
+  transition: background ease 0.3s, box-shadow ease 0.1s, opacity ease .12s;
   &.scrolled {
     position: sticky;
     background: clr(headerbgscrl);
@@ -605,7 +598,6 @@ header {
                   fill: clr(upnaviconsfillscrolled);
                 }
               }
-              
             }
           }
           /*.loacales {
@@ -654,7 +646,7 @@ header {
   font-weight: 600;
   color: clr(logofill);
   font-family: "Passion One", sans-serif;
-  transition: color ease .3s;
+  transition: color ease 0.3s;
   @include px(600) {
     color: clr(logofill600);
   }
@@ -683,7 +675,7 @@ nav button {
   white-space: nowrap;
   color: clr(font);
   cursor: pointer;
-  transition: all ease .3s;
+  transition: all ease 0.3s;
   border-radius: 33px;
   @include flex-center();
   &.active {
@@ -997,7 +989,7 @@ nav button {
         fill: clr(toolsfillactive);
         width: 25px;
         height: 25px;
-        transition: fill ease .3s;
+        transition: fill ease 0.3s;
 
         @include px(600) {
           fill: clr(toolsfill600active);
@@ -1017,7 +1009,7 @@ nav button {
   margin-left: 0px;
   display: none;
   @include px(1024) {
-    display: block
+    display: block;
   }
 }
 
@@ -1127,7 +1119,6 @@ nav button {
     color: white;
     @include flex-custom(flex-end, center);
 
-    
     svg {
       height: calc(#{$base-width} - #{$decrement});
       min-width: $min-width;
@@ -1144,11 +1135,12 @@ nav button {
 .mid-links {
   padding: 20px 20px;
   @include flex-full(flex-start, flex-start, column);
-  a,button {
+  a,
+  button {
     padding: 5px 15px;
     color: white;
     border-radius: 33px;
-    transition: all ease .3s;
+    transition: all ease 0.3s;
     cursor: pointer;
     &:hover {
       background: white;
@@ -1160,7 +1152,6 @@ nav button {
       color: clr(font);
     }
   }
-
 }
 
 .bottom-side {
@@ -1199,38 +1190,6 @@ nav button {
   transition: width 0.2s linear;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .sections {
   max-width: 2160px;
   gap: 0px;
@@ -1261,15 +1220,36 @@ $section-1-height-boxs: 500px;
   margin-inline: auto;
   padding: 0 0px 0px 0px 0px;
   gap: 20px;
-  @include flex-full(space-between, center, row);
+  //background-image: url("/public/img/zaki.webp");
+  background-repeat: no-repeat;
+  background-position: 100% 0;
+  background-size: auto 700px;
+  overflow: hidden;
+  @include flex-full(center, center, row);
+  @include px(1450) {
+    background-position: calc(60% + 20vw) 0px;
+  }
   @include px(1024) {
     padding: 0px 10px;
-    min-height: 850px;
+    min-height: 800px;
+    background-size: auto 700px;
+    background-position: 100% 200px;
     @include flex-full(flex-start, center, column);
   }
+  @include px(750) {
+    background-position: 50% 200px;
+  }
   @include px(600) {
-    min-height: 100%;
-    @include flex-full(center, center, column-reverse);
+    min-height: 690px;
+    background-size: auto 400px;
+    background-position: 100% 0px;
+    @include flex-full(flex-start, center, column-reverse);
+  }
+  @include px(450) {
+    background-position: 55% 0px;
+    min-height: 550px;
+    background-size: auto 300px;
+    @include flex-full(center, flex-end, row);
   }
   .box-shadow-header {
     position: absolute;
@@ -1315,7 +1295,7 @@ $section-1-height-boxs: 500px;
       @include flex-full(flex-start, center, column);
     }
     @include px(600) {
-      padding-top: 50px;
+      padding-top: 10px;
     }
     @include px(420) {
       padding-top: 10px;
@@ -1364,7 +1344,7 @@ $section-1-height-boxs: 500px;
     @include px(1920) {
       box-shadow: 0px 0px 900px calc(450px + 32vw) rgba($color: #fff, $alpha: 1);
     }
-    
+
     @include px(1650) {
       box-shadow: 0px 0px 900px calc(350px + 32vw) rgba($color: #fff, $alpha: 1);
     }
@@ -1390,7 +1370,7 @@ $section-1-height-boxs: 500px;
       height: 100%;
       transition: all ease 0.1s;
       @include flex-full(flex-start, flex-start, row);
-      @include px(600) {
+      /*@include px(600) {
         //height: $section-1-height-smm;
         position: relative;
         z-index: 2;
@@ -1404,21 +1384,16 @@ $section-1-height-boxs: 500px;
         border-bottom-left-radius: 50%;
         overflow: hidden;
         margin-top: -$nav-height - $upnav-height - 50px;
-      }
+      }*/
       .img-dog {
-        width: 100%;
+        position: relative;
         top: 0;
         right: 0;
         width: 100%;
         height: 100%;
-
         max-height: 100%;
-        background-position: right 0;
-        background-repeat: no-repeat;
-        background-size: auto 80%;
-        background-position: right 0px;
-        //background-image: url("/assets/img/dogs/4-ps.webp");
-        img {
+
+        /*img {
           position: absolute;
           right: 0;
           height: 700px;
@@ -1438,7 +1413,7 @@ $section-1-height-boxs: 500px;
             left: 0px;
             height: 450px;
           }
-        }
+        }*/
 
         /*@include px(1450) {
           background-image: url("/assets/img/dogs/4-ps.webp");
@@ -1524,7 +1499,7 @@ $section-1-height-boxs: 500px;
         background-position: center;
         background-size: contain;
         background-repeat: no-repeat;
-        background-image: url("/assets/img/dogs/milasite.webp");
+        //background-image: url("/assets/img/dogs/milasite.webp");
       }
     }
 
@@ -1620,7 +1595,7 @@ $section-1-height-boxs: 500px;
         background-size: contain;
         background-repeat: no-repeat;
         margin-right: 40px;
-        background-image: url("/assets/img/vip.webp");
+        //background-image: url("/assets/img/vip.webp");
       }
     }
 
@@ -1890,7 +1865,7 @@ $section-1-height-boxs: 500px;
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
-        background-image: url("/assets/img/dogs/pettransport.webp");
+        //background-image: url("/assets/img/dogs/pettransport.webp");
       }
     }
 
@@ -1995,7 +1970,7 @@ $section-1-height-boxs: 500px;
         background-size: contain;
         background-repeat: no-repeat;
         margin-right: 40px;
-        background-image: url("/assets/img/dogs/8.webp");
+        //background-image: url("/assets/img/dogs/8.webp");
         @include px(1450) {
           margin-right: 0;
         }
@@ -2065,7 +2040,7 @@ $section-1-height-boxs: 500px;
         }
         .igpic {
           position: relative;
-          background: url("/assets/img/ig.webp");
+          //background: url("/assets/img/ig.webp");
           width: 100%;
           height: 100%;
           min-height: 600px;
@@ -2096,7 +2071,7 @@ $section-1-height-boxs: 500px;
         }
         .mappic {
           position: relative;
-          background: url("/assets/img/mapa.webp");
+          //background: url("/assets/img/mapa.webp");
           width: 100%;
           height: 100%;
           max-height: 600px;
@@ -2209,7 +2184,7 @@ $section-1-height-boxs: 500px;
         background-repeat: no-repeat;
         background-size: contain;
         background-position: right 0px;
-        background-image: url("/assets/img/dogs/house.webp");
+        //background-image: url("/assets/img/dogs/house.webp");
       }
     }
   }
@@ -2266,7 +2241,7 @@ $section-1-height-boxs: 500px;
           background-position: center;
           background-size: cover;
           background-repeat: no-repeat;
-          background-image: url("/assets/img/dogs/welove.webp");
+          //background-image: url("/assets/img/dogs/welove.webp");
           @include px(600) {
             margin-top: 0;
             margin-right: 0;
@@ -2350,7 +2325,7 @@ $section-1-height-boxs: 500px;
         background-size: contain;
         background-repeat: no-repeat;
         margin-right: 40px;
-        background-image: url("/assets/img/vip.webp");
+        //background-image: url("/assets/img/vip.webp");
       }
     }
 
@@ -2409,6 +2384,147 @@ $section-1-height-boxs: 500px;
               }
             }
           }
+        }
+      }
+    }
+  }
+}
+$footer: (
+  "light": (
+    headerbg: #ffffffec,
+    upnaviconsfill: #9f6049,
+    upnaviconsfill600: #9f6049,
+    upnaviconsfillscrolled: #9f6049,
+    upnaviconsfillscrolled600: #9f6049,
+    logofill: #c17255,
+    logofill600: #c17255,
+  ),
+
+  "dark": (
+    headerbg: #fff,
+    upnaviconsfill: #9f6049,
+    upnaviconsfill600: #fff,
+    upnaviconsfillscrolled: #9f6049,
+    upnaviconsfillscrolled600: #9f6049,
+    logofill: #c17255,
+    logofill600: #c17255,
+  ),
+);
+.footer {
+  background: clr(upnaviconsfill);
+  @include setColors($footer);
+}
+.footer {
+ @include flex-full(space-between, center, column);
+}
+.copyright {
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  background: rgba($color: #000000, $alpha: 0.1);
+  color: white;
+}
+.footer-wrapper {
+  width: calc(85% + 50px);
+  margin-inline: auto;
+  padding: 50px 0px;
+  @include flex-full(space-between, flex-start, row);
+  @include px(1024) {
+    width: 95%;
+    flex-direction: column;
+    padding-left: 50px;
+  }
+
+  .footer-mid {
+    @include px(1024) {
+      padding: 20px 0px !important;
+    }
+    ul {
+      list-style-type: none;
+      li {
+        margin: 5px 0px;
+        a,button {
+          color: white;
+          padding: 5px 10px;
+          font-size: clamp(90%, 50% + 1.5vw, 110%);
+          border-radius: 33px;
+          transition: all ease .2s;
+          cursor: pointer;
+          &:hover {
+            background: white;
+            color: clr(font);
+          }
+        }
+      }
+    }
+  }
+  .footer-left {
+    .logo {
+      font-size: clamp(170%, 50% + 2.6vw, 310%);
+      font-weight: 600;
+      color: clr(headerbg);
+      font-family: "Passion One", sans-serif;
+      transition: color ease 0.3s;
+    }
+  }
+  .footer-right {
+    margin-top: 0px;
+    gap: 0px;
+    @include flex-full(center,center,column);
+    @include px(1024) {
+      @include flex-full(flex-start,flex-start,column);
+    }
+    @include px(800) {
+      gap: 0px;
+    }
+    @include px(600) {
+      gap: 10px;
+      flex-direction: column;
+    }
+
+    .link-box {
+      margin: 0 !important; 
+      margin-top: 10px !important;
+      @include flex-full(flex-start, flex-start, row);
+      @include social-btn();
+      @include px(1024) {
+        margin-top: 10px !important;
+      }
+      .link-btn {
+        .link-to {
+            animation: none;
+        }
+        .press-here {
+            background: none !important;
+            color: white !important;
+            display: none !important;
+        }
+        svg {
+            fill: clr(primary) !important;
+        }
+        a {
+          background: white !important;
+            .dm-icon {
+                display: none !important;
+            }
+            p {
+                color: clr(primary) !important;
+            }
+            .touch-container {
+                display: none;
+                .touch-arrow-click {
+                    svg {
+                        fill: white !important;
+                    }
+                }
+            }
+        }
+      }
+    }
+    .link2 {
+      .touch {
+        @include px(600) {
+          display: none;
         }
       }
     }

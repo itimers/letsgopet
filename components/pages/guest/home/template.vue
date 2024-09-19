@@ -1,30 +1,58 @@
 <script lang="ts" setup>
-import imgdog from "@/assets/img/dogs/4.webp" 
-import imgdog2 from "@/assets/img/dogs/4-short.webp" 
-
 const page = usePagesStore();
 const i18n = useI18n();
-const preloadImage = (imagePath: string) => {
-  const link = document.createElement('link');
-  link.rel = 'preload';
-  link.as = 'image';
-  link.href = imagePath;
-  document.head.appendChild(link);
+
+const section1Ref = ref<HTMLElement | null>(null);
+const image2UrlRef = ref<HTMLElement | null>(null);
+const image3UrlRef = ref<HTMLElement | null>(null);
+const image4UrlRef = ref<HTMLElement | null>(null);
+const image5UrlRef = ref<HTMLElement | null>(null);
+const image6UrlRef = ref<HTMLElement | null>(null);
+const image7UrlRef = ref<HTMLElement | null>(null);
+
+const imageRefs = [
+  section1Ref,
+  image2UrlRef,
+  image3UrlRef,
+  image4UrlRef,
+  image5UrlRef,
+  image6UrlRef,
+  image7UrlRef,
+];
+const image1Url = "/img/zaki.webp";
+const image2Url = "/img/milasite.webp";
+const image3Url = "/img/vip.webp";
+const image4Url = "/img/pettransport.webp";
+const image5Url = "/img/8.webp";
+const image6Url = "/img/ig.webp";
+const image7Url = "/img/mapa.webp";
+const imageUrls = [
+  image1Url,
+  image2Url,
+  image3Url,
+  image4Url,
+  image5Url,
+  image6Url,
+  image7Url,
+];
+
+const preloadImage = (src: string): Promise<void> => {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    //console.log("Pokušavam da učitam sliku sa putanje:", src);
+    img.src = src;
+
+    img.onload = () => {
+      // console.log("Slika je uspešno učitana:", src);
+      resolve();
+    };
+
+    img.onerror = (error) => {
+      //console.error("Greška pri učitavanju slike:", error);
+      reject(new Error(`Neuspešno učitavanje slike sa: ${src}`));
+    };
+  });
 };
-useHead({
-  link: [
-    {
-      rel: "preload",
-      as: "image",
-      href: imgdog
-    },
-    {
-      rel: "preload",
-      as: "image",
-      href: imgdog2
-    },
-  ]
-})
 
 const mapLinkParts = [
   "htt",
@@ -125,17 +153,22 @@ function addHashToLocation(sectionId: string) {
   }
 }
 
-
 const observers: IntersectionObserver[] = [];
 const stopWatchers: (() => void)[] = [];
 
 onMounted(async () => {
+  isClient.value = true;
+
+  // Ovaj niz definiše koje slike će biti unapred učitane
+  const preloadImages = [1]; // Na primer, odmah učitaj slike 1, 3 i 5
+
   page.changePage(1);
+
   const sectionNames = sections.map((section) => section.sectionName);
   const sectionIds = sections.map((section) => section.idtag);
   page.setSectionNames(sectionNames);
   page.setSectionIds(sectionIds);
-  isClient.value = true;
+
   sections.forEach((section, index) => {
     const sectionElement = document.querySelector(
       `#${section.idtag}`
@@ -145,9 +178,10 @@ onMounted(async () => {
     }
   });
 
+  // Provera trenutnog hasha
   const hash = window.location.hash.substring(1);
   const sectionIndex = sections.findIndex((section) => section.idtag === hash);
-  if (hash && sectionRefs[sectionIndex].value) {
+  if (hash && sectionRefs[sectionIndex]?.value) {
     if (sectionIndex !== -1) {
       page.changeSection(sectionIndex + 1);
     }
@@ -168,7 +202,9 @@ onMounted(async () => {
 
   const observeSection = (
     sectionRef: globalThis.Ref<HTMLElement | null>,
-    sectionId: number
+    sectionId: number,
+    imageRef: globalThis.Ref<HTMLElement | null>,
+    imageUrl: string
   ) => {
     if (sectionRef.value) {
       const debouncedAddActiveSection = debounce((id: number) => {
@@ -184,10 +220,22 @@ onMounted(async () => {
         "0px";
 
       const observerCallback = (entries: IntersectionObserverEntry[]) => {
-        entries.forEach((entry) => {
+        entries.forEach(async (entry) => {
           if (entry.isIntersecting) {
             debouncedAddActiveSection(sectionId);
             debouncedSetActiveSection(sectionId);
+
+            // Provera i učitavanje slike kada sekcija postane vidljiva
+            if (imageRef.value && !imageRef.value.style.backgroundImage) {
+              try {
+                //console.log(`Učitavanje slike: ${imageUrl}`);
+                await preloadImage(imageUrl);
+                imageRef.value.style.backgroundImage = `url('${imageUrl}')`;
+              } catch (error) {
+                //console.error("Greška pri učitavanju slike:", error);
+              }
+            }
+
             if (page.isScrollingTopBottom) {
               updateUrlWithSectionId(
                 page.sectionIds[sectionId - 1],
@@ -199,12 +247,12 @@ onMounted(async () => {
       };
 
       const observerDown = new IntersectionObserver(observerCallback, {
-        threshold: [0.85],
+        threshold: [0.1],
         rootMargin,
       });
 
       const observerUp = new IntersectionObserver(observerCallback, {
-        threshold: [0.25],
+        threshold: [0.9],
         rootMargin,
       });
 
@@ -213,11 +261,11 @@ onMounted(async () => {
       const observe = () => {
         if (sectionRef.value) {
           if (page.scrollDirection === "up") {
-            observerUp.disconnect();
-            observerDown.observe(sectionRef.value);
-          } else if (page.scrollDirection === "down") {
             observerDown.disconnect();
             observerUp.observe(sectionRef.value);
+          } else if (page.scrollDirection === "down") {
+            observerUp.disconnect();
+            observerDown.observe(sectionRef.value);
           }
         }
       };
@@ -227,7 +275,9 @@ onMounted(async () => {
       const stopWatch = watch(
         () => page.scrollDirection,
         (newDirection, oldDirection) => {
-          observe();
+          if (newDirection !== oldDirection) {
+            observe();
+          }
         }
       );
 
@@ -235,14 +285,30 @@ onMounted(async () => {
     }
   };
 
-  watch(observeOnScroll, (newValue) => {
-    if (newValue) {
-      sections.forEach((section, index) => {
-        observeSection(sectionRefs[index], section.id);
-      });
-      //^console.log("DESAVA SE");
-    } else {
-      //^console.log("NE DESAVA SE");
+  // Preload slika koje su unapred odabrane
+  preloadImages.forEach(async (index) => {
+    const imageRef = imageRefs[index - 1]; // Pošto je index 1-based, a niz 0-based
+    const imageUrl = imageUrls[index - 1];
+
+    if (imageRef?.value) {
+      try {
+        //console.log(`Preload slike: ${imageUrl}`);
+        await preloadImage(imageUrl); // Učitavanje slike unapred
+        imageRef.value.style.backgroundImage = `url('${imageUrl}')`;
+      } catch (error) {
+        //console.error("Greška pri preload-u slike:", error);
+      }
+    }
+  });
+
+  // Posmatraj svaku sekciju i njenu sliku (samo za one koje nisu preloadaovane)
+  sectionRefs.forEach((sectionRef, index) => {
+    const imageRef = imageRefs[index];
+    const imageUrl = imageUrls[index];
+
+    // Ako slika nije već preloadovana, primeni observer
+    if (!preloadImages.includes(index + 1)) {
+      observeSection(sectionRef, index + 1, imageRef, imageUrl);
     }
   });
 
@@ -269,16 +335,16 @@ onMounted(async () => {
     () => page.currentSection,
     (currentSection) => {
       if (currentSection === 3) {
-        // Specific actions for section 3
+        // Logika za kada je sekcija 3 aktivna
       } else if (currentSection === 1) {
-        // Specific actions for section 1
+        // Logika za kada je sekcija 1 aktivna
       }
     },
     { deep: true }
   );
   stopWatchers.push(sectionWatcher);
 
-  await new Promise((resolve) => setTimeout(resolve, 100)); // Kašnjenje od 100ms
+  await new Promise((resolve) => setTimeout(resolve, 100));
 });
 
 onBeforeUnmount(() => {
@@ -332,8 +398,9 @@ onBeforeUnmount(() => {
           <div class="boxshadow"></div>
           <aside :class="{ scroll: page.isScrolled }" class="dog">
             <div class="img-dog">
-              <img :src="imgdog2" v-if="page.widthofHtml <= 600" alt="white-dog"/>
-              <img :src="imgdog" alt="white-dog" v-else/>
+              <!--  <img src="/public/img/4-short.webp" v-if="page.widthofHtml >= 600" alt="white-dog" fetchpriority="high" width="1000" height="600" placeholder="blur" placeholderSrc="/img/4-blur.png"/>
+                <img src="/public/img/4.webp"  alt="white-dog" v-else-if="page.widthofHtml < 600" fetchpriority="high" width="650" height="600" placeholder="blur" placeholderSrc="/img/4-short-blur.png"/>
+                <img src="/public/img/4.webp"  alt="white-dog" v-else-if="page.widthofHtml <= 450" fetchpriority="high" width="400" height="350" placeholder="blur" placeholderSrc="/img/4-short-blur.png"/> -->
             </div>
           </aside>
         </section>
@@ -360,7 +427,7 @@ onBeforeUnmount(() => {
                   {{ $t("Usluge tekst") }}
                 </p>
               </div>
-              <div class="pic-box"></div>
+              <div class="pic-box" ref="image2UrlRef"></div>
             </div>
 
             <aside>
@@ -392,7 +459,7 @@ onBeforeUnmount(() => {
         >
           <article>
             <div class="box-pic">
-              <div class="pic-box"></div>
+              <div class="pic-box" ref="image3UrlRef"></div>
               <div class="box-text">
                 <h2>{{ $t("Postani VIP") }}</h2>
                 <h3>{{ $t("Uštedi 50% na sve usluge!") }}</h3>
@@ -628,7 +695,7 @@ onBeforeUnmount(() => {
                   {{ $t("Pet transport tekst") }}
                 </p>
               </div>
-              <div class="pic-box"></div>
+              <div class="pic-box" ref="image4UrlRef"></div>
             </div>
 
             <aside>
@@ -660,7 +727,7 @@ onBeforeUnmount(() => {
         >
           <article>
             <div class="box-pic">
-              <div class="pic-box"></div>
+              <div class="pic-box" ref="image5UrlRef"></div>
 
               <div class="box-text">
                 <h2>{{ $t("O nama") }}</h2>
@@ -702,18 +769,17 @@ onBeforeUnmount(() => {
 
             <figure>
               <figcaption>
-                <div class="igpic">
+                <div class="igpic" ref="image6UrlRef">
                   <div class="overlay">
                     <NuxtLink
                       v-if="isClient"
                       :to="igLink"
-                      
                       target="_blank"
                     ></NuxtLink>
                     <p>{{ $t("Klikni da odes na Instagram profil") }}</p>
                   </div>
                 </div>
-                <div class="mappic">
+                <div class="mappic" ref="image7UrlRef">
                   <div class="overlay">
                     <NuxtLink
                       :to="mapLink"

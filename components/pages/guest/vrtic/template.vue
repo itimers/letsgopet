@@ -1,7 +1,52 @@
 <script lang="ts" setup>
-
 const page = usePagesStore();
 const i18n = useI18n();
+
+const image8UrlRef = ref<HTMLElement | null>(null);
+const image9UrlRef = ref<HTMLElement | null>(null);
+const image10UrlRef = ref<HTMLElement | null>(null);
+const image11UrlRef = ref<HTMLElement | null>(null);
+const image12UrlRef = ref<HTMLElement | null>(null);
+
+const imageRefs = [
+  image8UrlRef,
+  image9UrlRef,
+  image10UrlRef,
+  image11UrlRef,
+  image12UrlRef,
+];
+const image8Url = "/img/house.webp";
+const image9Url = "/img/welove.webp";
+const image10Url = "/img/vip.webp";
+const image11Url = "/img/ig.webp";
+const image12Url = "/img/mapa.webp";
+const imageUrls = [
+  image8Url,
+  image9Url,
+  image10Url,
+  image11Url,
+  image12Url,
+];
+
+
+const preloadImage = (src: string): Promise<void> => {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    //console.log("Pokušavam da učitam sliku sa putanje:", src);
+    img.src = src;
+
+    img.onload = () => {
+      //console.log("Slika je uspešno učitana:", src);
+      resolve();
+    };
+
+    img.onerror = (error) => {
+      //console.error("Greška pri učitavanju slike:", error);
+      reject(new Error(`Neuspešno učitavanje slike sa: ${src}`));
+    };
+  });
+};
+
 const mapLinkParts = [
   "htt",
   "ps://",
@@ -57,7 +102,7 @@ const sections = [
     sectionName: i18n.t("Kontakt"),
     slotName: "section5",
     idtag: i18n.t("kontakt"),
-  }
+  },
 ];
 
 const sectionRefs = sections.map(() => ref<HTMLElement | null>(null));
@@ -89,17 +134,22 @@ function addHashToLocation(sectionId: string) {
   }
 }
 
-
 const observers: IntersectionObserver[] = [];
 const stopWatchers: (() => void)[] = [];
 
 onMounted(async () => {
+  isClient.value = true;
+
+  // Ovaj niz definiše koje slike će biti unapred učitane
+  const preloadImages = [1]; // Na primer, odmah učitaj slike 1, 3 i 5
+
   page.changePage(2);
+
   const sectionNames = sections.map((section) => section.sectionName);
   const sectionIds = sections.map((section) => section.idtag);
   page.setSectionNames(sectionNames);
   page.setSectionIds(sectionIds);
-  isClient.value = true;
+
   sections.forEach((section, index) => {
     const sectionElement = document.querySelector(
       `#${section.idtag}`
@@ -109,9 +159,10 @@ onMounted(async () => {
     }
   });
 
+  // Provera trenutnog hasha
   const hash = window.location.hash.substring(1);
   const sectionIndex = sections.findIndex((section) => section.idtag === hash);
-  if (hash && sectionRefs[sectionIndex].value) {
+  if (hash && sectionRefs[sectionIndex]?.value) {
     if (sectionIndex !== -1) {
       page.changeSection(sectionIndex + 1);
     }
@@ -132,7 +183,9 @@ onMounted(async () => {
 
   const observeSection = (
     sectionRef: globalThis.Ref<HTMLElement | null>,
-    sectionId: number
+    sectionId: number,
+    imageRef: globalThis.Ref<HTMLElement | null>,
+    imageUrl: string
   ) => {
     if (sectionRef.value) {
       const debouncedAddActiveSection = debounce((id: number) => {
@@ -144,31 +197,39 @@ onMounted(async () => {
       }, 400);
 
       const rootMargin =
-        page.dynamicRootMarginsByPage[page.currentSection]?.[sectionId] ||
-        "0px";
+        page.dynamicRootMarginsByPage[page.currentSection]?.[sectionId] || "0px";
 
       const observerCallback = (entries: IntersectionObserverEntry[]) => {
-        entries.forEach((entry) => {
+        entries.forEach(async (entry) => {
           if (entry.isIntersecting) {
             debouncedAddActiveSection(sectionId);
             debouncedSetActiveSection(sectionId);
+
+            // Provera i učitavanje slike kada sekcija postane vidljiva
+            if (imageRef.value && !imageRef.value.style.backgroundImage) {
+              try {
+                //console.log(`Učitavanje slike: ${imageUrl}`);
+                await preloadImage(imageUrl);
+                imageRef.value.style.backgroundImage = `url('${imageUrl}')`;
+              } catch (error) {
+                //console.error("Greška pri učitavanju slike:", error);
+              }
+            }
+
             if (page.isScrollingTopBottom) {
-              updateUrlWithSectionId(
-                page.sectionIds[sectionId - 1],
-                sectionRef
-              );
+              updateUrlWithSectionId(page.sectionIds[sectionId - 1], sectionRef);
             }
           }
         });
       };
 
       const observerDown = new IntersectionObserver(observerCallback, {
-        threshold: [0.85],
+        threshold: [0.1],
         rootMargin,
       });
 
       const observerUp = new IntersectionObserver(observerCallback, {
-        threshold: [0.25],
+        threshold: [0.9],
         rootMargin,
       });
 
@@ -177,11 +238,11 @@ onMounted(async () => {
       const observe = () => {
         if (sectionRef.value) {
           if (page.scrollDirection === "up") {
-            observerUp.disconnect();
-            observerDown.observe(sectionRef.value);
-          } else if (page.scrollDirection === "down") {
             observerDown.disconnect();
             observerUp.observe(sectionRef.value);
+          } else if (page.scrollDirection === "down") {
+            observerUp.disconnect();
+            observerDown.observe(sectionRef.value);
           }
         }
       };
@@ -191,7 +252,9 @@ onMounted(async () => {
       const stopWatch = watch(
         () => page.scrollDirection,
         (newDirection, oldDirection) => {
-          observe();
+          if (newDirection !== oldDirection) {
+            observe();
+          }
         }
       );
 
@@ -199,14 +262,30 @@ onMounted(async () => {
     }
   };
 
-  watch(observeOnScroll, (newValue) => {
-    if (newValue) {
-      sections.forEach((section, index) => {
-        observeSection(sectionRefs[index], section.id);
-      });
-      //^console.log("DESAVA SE");
-    } else {
-      //^console.log("NE DESAVA SE");
+  // Preload slika koje su unapred odabrane
+  preloadImages.forEach(async (index) => {
+    const imageRef = imageRefs[index - 1]; // Pošto je index 1-based, a niz 0-based
+    const imageUrl = imageUrls[index - 1];
+
+    if (imageRef?.value) {
+      try {
+        //console.log(`Preload slike: ${imageUrl}`);
+        await preloadImage(imageUrl); // Učitavanje slike unapred
+        imageRef.value.style.backgroundImage = `url('${imageUrl}')`;
+      } catch (error) {
+        //console.error("Greška pri preload-u slike:", error);
+      }
+    }
+  });
+
+  // Posmatraj svaku sekciju i njenu sliku (samo za one koje nisu preloadaovane)
+  sectionRefs.forEach((sectionRef, index) => {
+    const imageRef = imageRefs[index];
+    const imageUrl = imageUrls[index];
+
+    // Ako slika nije već preloadovana, primeni observer
+    if (!preloadImages.includes(index + 1)) {
+      observeSection(sectionRef, index + 1, imageRef, imageUrl);
     }
   });
 
@@ -233,16 +312,16 @@ onMounted(async () => {
     () => page.currentSection,
     (currentSection) => {
       if (currentSection === 3) {
-        // Specific actions for section 3
+        // Logika za kada je sekcija 3 aktivna
       } else if (currentSection === 1) {
-        // Specific actions for section 1
+        // Logika za kada je sekcija 1 aktivna
       }
     },
     { deep: true }
   );
   stopWatchers.push(sectionWatcher);
 
-  await new Promise((resolve) => setTimeout(resolve, 100)); // Kašnjenje od 100ms
+  await new Promise((resolve) => setTimeout(resolve, 100));
 });
 
 onBeforeUnmount(() => {
@@ -269,8 +348,6 @@ onBeforeUnmount(() => {
           :slot="sections[0].slotName"
           :id="`${sections[0].idtag}`"
         >
-          
-
           <article class="vrtic">
             <h1>{{ $t("Vrtic za pse") }}</h1>
             <figure>
@@ -290,7 +367,7 @@ onBeforeUnmount(() => {
             </div>
           </article>
           <aside :class="{ scroll: page.isScrolled }" class="house">
-            <div class="img-dog"></div>
+            <div class="img-dog" ref="image8UrlRef"></div>
             <!-- <img src="/assets/img/dogs/4-ps.jpg" /> -->
           </aside>
         </section>
@@ -320,7 +397,7 @@ onBeforeUnmount(() => {
                   {{ $t("Vrtic tekst2") }}
                 </p>
               </div>
-              <div class="pic-box vrtic"></div>
+              <div class="pic-box vrtic" ref="image9UrlRef"></div>
             </div>
 
             <aside>
@@ -352,7 +429,7 @@ onBeforeUnmount(() => {
         >
           <article>
             <div class="box-pic">
-              <div class="pic-box"></div>
+              <div class="pic-box" ref="image10UrlRef"></div>
               <div class="box-text">
                 <h2>{{ $t("Nisi VIP") }}</h2>
                 <h3>{{ $t("Nudimo 50% na sve usluge!") }}</h3>
@@ -367,7 +444,7 @@ onBeforeUnmount(() => {
             <aside>
               <div class="link-box vrtic">
                 <div class="link-btn">
-                  <LinksTosocialVip class="link-to"/>
+                  <LinksTosocialVip class="link-to" />
                   <p class="book">
                     {{ $t("Pročitaj više kako postati VIP") }}
                   </p>
@@ -375,7 +452,6 @@ onBeforeUnmount(() => {
               </div>
             </aside>
           </article>
-          
         </section>
 
         <section
@@ -425,9 +501,11 @@ onBeforeUnmount(() => {
                     <span>{{ $t("Dodatna naknada uz vrtić") }}</span>
                   </div>
                   <ul>
-                    <li class="vrtic">{{ $t("Preuzimamo i vracamo ljubimca") }}</li>
+                    <li class="vrtic">
+                      {{ $t("Preuzimamo i vracamo ljubimca") }}
+                    </li>
                     <li>{{ $t("Transport svakog dana") }}</li>
-                    
+
                     <li>{{ $t("Dogovoreni transport") }}</li>
                   </ul>
 
@@ -465,7 +543,6 @@ onBeforeUnmount(() => {
               </div>
             </aside>
           </article>
-          
         </section>
 
         <section
@@ -487,7 +564,7 @@ onBeforeUnmount(() => {
 
             <figure>
               <figcaption>
-                <div class="igpic">
+                <div class="igpic" ref="image11UrlRef">
                   <div class="overlay">
                     <NuxtLink
                       :to="mapLink"
@@ -497,7 +574,7 @@ onBeforeUnmount(() => {
                     <p>{{ $t("Klikni da odes na Instagram profil") }}</p>
                   </div>
                 </div>
-                <div class="mappic">
+                <div class="mappic" ref="image12UrlRef">
                   <div class="overlay">
                     <NuxtLink
                       :to="igLink"

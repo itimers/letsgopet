@@ -1,38 +1,15 @@
 import { defineStore } from 'pinia';
-
 export type Language = 'sr' | 'en' | 'ru' | 'de' | 'tr' | 'es' | 'cn' | 'fr' | 'it';
 type Theme = 'light' | 'dark';
-
-function getDefaultLanguage(): string {
-  if (import.meta.client) {
-    if (typeof localStorage !== 'undefined') {
-      const storedLanguage = localStorage.getItem('lang');
-      if (storedLanguage) {
-        return storedLanguage;
-      }
-    }
-    const browserLanguage = navigator.language.split('-')[0];
-    return ['sr', 'en', 'ru', 'de', 'tr', 'es', 'cn', 'fr', 'it'].includes(browserLanguage) ? browserLanguage : 'sr';
+const getDefaultLanguage = (): string => {
+  if (import.meta.client && typeof localStorage !== 'undefined') {
+    const storedLanguage = localStorage.getItem('lang') || navigator.language.split('-')[0];
+    return ['sr', 'en', 'ru', 'de', 'tr', 'es', 'cn', 'fr', 'it'].includes(storedLanguage) ? storedLanguage : 'sr';
   }
   return 'sr';
-}
-
-
+};
 export const usePagesStore = defineStore('pages', {
   state: () => ({
-    mobileDevices: [
-      /android/i,
-      /webos/i,
-      /iphone/i,
-      /ipad/i,
-      /ipod/i,
-      /blackberry/i,
-      /iemobile/i,
-      /opera mini/i,
-      /windows phone/i,
-      /symbian/i,
-      /palm/i
-    ],
     currentLanguage: getDefaultLanguage() as Language,
     currentTheme: 'light' as Theme,
     availableThemes: ['light', 'dark'] as Theme[],
@@ -40,13 +17,12 @@ export const usePagesStore = defineStore('pages', {
     currentSection: 1,
     activeSection: 0,
     activeSectionsByPage: {} as Record<number, number[]>,
-    sections: [] as any[], // Inicijalizovani kao prazan niz
+    sections: [] as any[],
     sectionHeights: {} as Record<string, number>,
     pagesToResetAllSections: [0],
     sectionNames: [] as string[],
     sectionIds: [] as string[],
     dynamicRootMarginsByPage: {} as Record<number, string[]>,
-
     lastScrollTop: 0,
     scrollDirection: '',
     currentScroll: 0,
@@ -55,161 +31,71 @@ export const usePagesStore = defineStore('pages', {
     isScrollable: false,
     isScrolled: false,
     isScrollingTopBottom: true,
-
     heightofMain: 0,
     heightofNav: 0,
     widthofMain: 0,
     widthofHtml: 0,
     heightofHtml: 0,
     buttonsDisabled: false,
-
     activeAllSections: false,
-
-    isLoader: false,
-    isLoadingAnimation: true,
-    isLoading: true,
-    isLoaded: false,
-    loadingTime: 300,
-    waitTime: 1000,
-
-    isLoaderPage: false,
-    isLoadingAnimationPage: true,
-    isLoadingPage: true,
-    isLoadedPage: false,
-    loadingTimePage: 300,
-    waitTimePage: 1000,
+    loadingTime: 50,
     savedStates: [] as any[],
     states: [
-      {
-        id: 1,
-        btn: 'firstloader',
-        menu: 'firstloaderdiv',
-        activebtn: true,
-        activemenu: true,
-        delayActive: 50,
-        delayRemoveActive: 300,
-        zIndex: 9999,
-        keepZindex: true,
-        resetable: false,
-        localstorage: false,
-      },
-      {
-        id: 8,
-        btn: 'locales',
-        menu: 'localesdiv',
-        activebtn: false,
-        activemenu: false,
-        delayActive: 50,
-        delayRemoveActive: 300,
-        zIndex: -1,
-        keepZindex: false,
-        resetable: true,
-        localstorage: true,
-      },
-      {
-        id: 9,
-        btn: 'burger',
-        menu: 'burgerdiv',
-        activebtn: false,
-        activemenu: false,
-        delayActive: 50,
-        delayRemoveActive: 300,
-        zIndex: -1,
-        keepZindex: false,
-        resetable: true,
-        localstorage: true,
-      },
+      { id: 1, btn: 'firstloader', menu: 'firstloaderdiv', activebtn: true, activemenu: true, delayActive: 50, delayRemoveActive: 300, zIndex: 9999, keepZindex: true, resetable: false, localstorage: false },
+      { id: 8, btn: 'locales', menu: 'localesdiv', activebtn: false, activemenu: false, delayActive: 50, delayRemoveActive: 300, zIndex: -1, keepZindex: false, resetable: true, localstorage: true },
+      { id: 9, btn: 'burger', menu: 'burgerdiv', activebtn: false, activemenu: false, delayActive: 50, delayRemoveActive: 300, zIndex: -1, keepZindex: false, resetable: true, localstorage: true },
     ] as any[],
-
-
-
     page: 1,
   }),
-
   actions: {
-    
     setFirstLoaderState(isActive: boolean) {
       const element = this.states.find(el => el.btn === 'firstloader');
       if (!element) return;
-
+      const updateState = (active: boolean, menu: boolean, delay: number) => setTimeout(() => this.updateActiveElement(menu ? 'firstloaderdiv' : 'firstloader', active, menu), delay);
       if (isActive) {
         element.activemenu = false;
-        setTimeout(() => {
-          this.updateActiveElement('firstloader', false, true);
-          setTimeout(() => {
-            this.updateActiveElement('firstloaderdiv', false, false);
-            if (!element.keepZindex) {
-              element.zIndex = -1;
-            }
-          }, element.delayRemoveActive);
-        }, 50);
+        updateState(false, true, 50);
+        updateState(false, false, element.delayRemoveActive);
+        if (!element.keepZindex) element.zIndex = -1;
       } else {
         element.activemenu = false;
-        this.updateActiveElement('firstloader', true, false);
+        updateState(true, false, 50);
+        updateState(true, true, 50);
         setTimeout(() => {
-          this.updateActiveElement('firstloaderdiv', true, true);
-          setTimeout(() => {
-            element.activemenu = true;
-            if (!element.keepZindex) {
-              element.zIndex = 8000;
-            }
-            this.updateZIndex();
-            this.states.forEach(el => {
-              if (el.menu !== 'firstloaderdiv' && el.activemenu && !el.keepZindex) {
-                el.zIndex -= 1;
-              }
-            });
-          }, 50);
+          element.activemenu = true;
+          if (!element.keepZindex) element.zIndex = 8000;
+          this.states.forEach(el => el.menu !== 'firstloaderdiv' && el.activemenu && !el.keepZindex && (el.zIndex -= 1));
         }, 50);
       }
     },
-
     initializeActiveElements() {
-        const storedStatesJSON = localStorage.getItem('states');
-        if (storedStatesJSON && storedStatesJSON !== '[]') {
-          const storedStates = JSON.parse(storedStatesJSON);
-          this.states.forEach(state => {
-            const storedState = storedStates.find((st: any) => st.id === state.id);
-            if (storedState && state.localstorage) {
-              Object.assign(state, storedState);
-            }
-          });
+      const storedStatesJSON = localStorage.getItem('states');
+      if (storedStatesJSON && storedStatesJSON !== '[]') {
+        const storedStates = JSON.parse(storedStatesJSON);
+        this.states.forEach(state => {
+          const storedState = storedStates.find((st: any) => st.id === state.id);
+          if (storedState && state.localstorage) Object.assign(state, storedState);
+        });
       } else {
         this.states = JSON.parse(JSON.stringify(this.states));
       }
-      // Vraćanje zIndex vrednosti na inicijalne za one koji imaju keepZindex: true
-      this.states.forEach(state => {
-        if (state.keepZindex) {
-          const originalState = this.states.find(el => el.id === state.id);
-          if (originalState) {
-            state.zIndex = originalState.zIndex;
-          }
-        }
-      });
+      this.states.forEach(state => state.keepZindex && (state.zIndex = this.states.find(el => el.id === state.id)?.zIndex || state.zIndex));
     },
-
     refreshFromLocalStorage() {
-        const storedStatesJSON = localStorage.getItem('states');
-        if (storedStatesJSON && storedStatesJSON !== '[]') {
-          const storedStates = JSON.parse(storedStatesJSON);
-          this.states.forEach(state => {
-            const storedState = storedStates.find((st: any) => st.id === state.id);
-            if (storedState && state.localstorage) {
-              Object.assign(state, storedState);
-            }
-          });
-          this.initializeActiveElements();
-        }
+      const storedStatesJSON = localStorage.getItem('states');
+      if (storedStatesJSON && storedStatesJSON !== '[]') {
+        const storedStates = JSON.parse(storedStatesJSON);
+        this.states.forEach(state => {
+          const storedState = storedStates.find((st: any) => st.id === state.id);
+          if (storedState && state.localstorage) Object.assign(state, storedState);
+        });
+        this.initializeActiveElements();
+      }
     },
-
     updateActiveElement(buttonClass: string, isActive: boolean, isMenu: boolean) {
       const element = this.states.find(el => el.btn === buttonClass || el.menu === buttonClass);
       if (element) {
-        if (isMenu) {
-          element.activemenu = isActive;
-        } else {
-          element.activebtn = isActive;
-        }
+        element[isMenu ? 'activemenu' : 'activebtn'] = isActive;
         if (element.localstorage) {
           setTimeout(() => {
             localStorage.setItem('states', JSON.stringify(this.states.filter(el => el.localstorage)));
@@ -217,89 +103,26 @@ export const usePagesStore = defineStore('pages', {
         }
       }
     },
-
     toggleElementVisibility(buttonClass: string) {
       const element = this.states.find(el => el.btn === buttonClass);
       if (!element) return;
-
       const relatedElementClass = element.menu;
-
+      const updateState = (active: boolean, menu: boolean, delay: number) => setTimeout(() => this.updateActiveElement(menu ? relatedElementClass : buttonClass, active, menu), delay);
       if (element.activemenu) {
         element.activemenu = false;
-        setTimeout(() => {
-          this.updateActiveElement(relatedElementClass, false, true);
-          setTimeout(() => {
-            this.updateActiveElement(buttonClass, false, false);
-            if (!element.keepZindex) {
-              element.zIndex = -1;
-            }
-            this.updateZIndex();
-            if (element.localstorage) {
-              localStorage.setItem('states', JSON.stringify(this.states.filter(el => el.localstorage)));
-            }
-          }, element.delayRemoveActive);
-        }, 50);
+        updateState(false, true, 50);
+        updateState(false, false, element.delayRemoveActive);
+        if (!element.keepZindex) element.zIndex = -1;
       } else {
-        this.updateActiveElement(buttonClass, true, false);
+        updateState(true, false, 50);
+        updateState(true, true, 50);
         setTimeout(() => {
-          this.updateActiveElement(relatedElementClass, true, true);
-          setTimeout(() => {
-            element.activemenu = true;
-            if (!element.keepZindex) {
-              element.zIndex = 8000;
-            }
-            this.updateZIndex();
-            this.states.forEach(el => {
-              if (el.menu !== relatedElementClass && el.activemenu && !el.keepZindex) {
-                el.zIndex -= 1;
-              }
-            });
-            if (element.localstorage) {
-              localStorage.setItem('states', JSON.stringify(this.states.filter(el => el.localstorage)));
-            }
-          }, 50);
+          element.activemenu = true;
+          if (!element.keepZindex) element.zIndex = 8000;
+          this.states.forEach(el => el.menu !== relatedElementClass && el.activemenu && !el.keepZindex && (el.zIndex -= 1));
         }, 50);
       }
     },
-    /* updateZIndex() {
-      const activeElements = this.states
-        .filter(element => element.activemenu && !element.keepZindex)
-        .sort((a, b) => b.zIndex - a.zIndex);
-  
-      activeElements.forEach((element, index) => {
-        element.zIndex = 8000 - index;
-      });
-      localStorage.setItem('states', JSON.stringify(this.states.filter(el => el.localstorage)));
-    }, */
-    updateZIndex() {
-      // Prvo sačuvaj trenutne zIndex vrednosti elemenata sa keepZindex: true
-      const keepZindexElements = this.states
-        .filter(element => element.keepZindex)
-        .map(element => ({
-          id: element.id,
-          zIndex: element.zIndex
-        }));
-      keepZindexElements.forEach(({ id, zIndex }) => {
-        const element = this.states.find(el => el.id === id);
-        if (element) {
-          element.zIndex = zIndex;
-        }
-      });
-      // Ažuriraj zIndex vrednosti za elemente sa keepZindex: false
-      /* const activeElements = this.states
-        .filter(element => element.activemenu && !element.keepZindex)
-        .sort((a, b) => b.zIndex - a.zIndex);
-  
-      activeElements.forEach((element, index) => {
-        element.zIndex = 8000 - index;
-      }); */
-
-      // Vratite originalne zIndex vrednosti za elemente sa keepZindex: true
-
-
-      localStorage.setItem('states', JSON.stringify(this.states.filter(el => el.localstorage)));
-    },
-
     resetActiveElements() {
       this.states.forEach(element => {
         if (element.resetable) {
@@ -313,7 +136,6 @@ export const usePagesStore = defineStore('pages', {
         }
       });
     },
-
     handleClickOutside(event: MouseEvent) {
       const target = event.target as HTMLElement;
       let clickedInside = false;
@@ -339,7 +161,6 @@ export const usePagesStore = defineStore('pages', {
         this.resetActiveElements();
       }
     },
-
     bringToFront(element: { zIndex: number; id: any; }) {
       const activeElements = this.states
         .filter(el => el.activemenu && !el.keepZindex)
@@ -357,199 +178,67 @@ export const usePagesStore = defineStore('pages', {
 
       localStorage.setItem('states', JSON.stringify(this.states.filter(el => el.localstorage)));
     },
-
-
-
-
-
-    //& Change language
     changeLanguage(language: Language) {
       this.currentLanguage = language;
-      if (typeof localStorage !== 'undefined') {
-          localStorage.setItem('lang', language);
-      }
+      localStorage.setItem('lang', language);
     },
     initializeLanguage() {
-        const storedCurrentLanguage = localStorage.getItem('lang');
-        const i18n = useI18n();
-
-        if (storedCurrentLanguage && this.isLanguageValid(storedCurrentLanguage)) {
-          this.currentLanguage = storedCurrentLanguage as Language;
-          i18n.locale.value = this.currentLanguage;
-        } else {
-          this.currentLanguage = 'sr';
-        }
+      const storedCurrentLanguage = localStorage.getItem('lang');
+      const i18n = useI18n();
+      if (storedCurrentLanguage && this.isLanguageValid(storedCurrentLanguage)) {
+        this.currentLanguage = storedCurrentLanguage as Language;
+        i18n.locale.value = this.currentLanguage;
+      } else {
+        this.currentLanguage = 'sr';
+      }
     },
     isLanguageValid(language: string): language is Language {
       return ['sr', 'en', 'ru', 'de', 'tr', 'es', 'cn', 'fr', 'it'].includes(language);
     },
-
-
-    //& Change theme
     setTheme(theme: Theme) {
       this.currentTheme = theme;
-      //this.$patch({ currentTheme: theme });
       document.documentElement.setAttribute('class', theme);
-        //safeLocalStorageSetItem('theme', theme);
-        localStorage.setItem('theme', theme);
+      localStorage.setItem('theme', theme);
     },
     initTheme() {
-        //^console.log("INIT THEME");
-        const savedTheme = localStorage.getItem('theme') as Theme | null;
-        const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        //^console.log("Prefers Dark Mode:", prefersDarkMode);  // Dodato za debagovanje
-
-        if (savedTheme && this.availableThemes.includes(savedTheme)) {
-          this.currentTheme = savedTheme;
-        } else {
-          this.currentTheme = prefersDarkMode ? 'dark' : 'light';
-        }
-        document.documentElement.setAttribute('class', this.currentTheme);
-        //^console.log("Current Theme:", this.currentTheme); // Dodato za debagovanje
-
-
-        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-          mediaQuery.addEventListener('change', this.handlePrefersColorSchemeChange, { passive: true });
-        //^console.log("Added Event Listener for Media Query:", mediaQuery);
+      const savedTheme = localStorage.getItem('theme') as Theme | null;
+      const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      this.currentTheme = savedTheme && this.availableThemes.includes(savedTheme) ? savedTheme : prefersDarkMode ? 'dark' : 'light';
+      document.documentElement.setAttribute('class', this.currentTheme);
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', this.handlePrefersColorSchemeChange, { passive: true });
     },
     handlePrefersColorSchemeChange(event: MediaQueryListEvent) {
-        //^console.log("Theme Change Event Triggered", event.matches);
-        const prefersDarkMode = event.matches;
-        const savedTheme = localStorage.getItem('theme') as Theme | null;
-
-        if (!savedTheme || !this.availableThemes.includes(savedTheme)) {
-          this.currentTheme = prefersDarkMode ? 'dark' : 'light';
-          document.documentElement.setAttribute('class', this.currentTheme);
-        } else {
-          this.currentTheme = prefersDarkMode ? 'dark' : 'light';
-          document.documentElement.setAttribute('class', this.currentTheme);
-        }
-        //^console.log("Updated Theme on System Change:", this.currentTheme);
+      const prefersDarkMode = event.matches;
+      const savedTheme = localStorage.getItem('theme') as Theme | null;
+      if (!savedTheme || !this.availableThemes.includes(savedTheme)) {
+        this.currentTheme = prefersDarkMode ? 'dark' : 'light';
+        document.documentElement.setAttribute('class', this.currentTheme);
+      }
     },
-
-    //& Loading and Timings
-    setLoader(value: boolean) {
-      this.isLoader = value;
-    },
-    setLoadingAnimation(value: boolean) {
-      this.isLoadingAnimation = value;
-    },
-    setLoading(value: boolean) {
-      this.isLoading = value;
-    },
-    setLoaded(value: boolean) {
-      this.isLoaded = value;
-    },
-
-    setLoadingNow() {
-      this.setLoaded(false);
-      this.setLoading(true);
-      this.setLoadingAnimation(true);
-    },
-    setUILoaded() {
-      setTimeout(() => {
-        this.isLoadingAnimation = true;
-      }, 50);
-      setTimeout(() => {
-        this.isLoadingAnimation = false;
-      }, this.loadingTime + 20);
-      setTimeout(() => {
-        this.isLoading = false;
-      }, this.loadingTime + 280);
-      setTimeout(() => {
-        this.isLoaded = true;
-      }, this.loadingTime + 300);
-    },
-
-
-
-
-    setLoaderPage(value: boolean) {
-      this.isLoaderPage = value;
-    },
-    setLoadingAnimationPage(value: boolean) {
-      this.isLoadingAnimationPage = value;
-    },
-    setLoadingPage(value: boolean) {
-      this.isLoadingPage = value;
-    },
-    setLoadedPage(value: boolean) {
-      this.isLoadedPage = value;
-    },
-
-    setLoadingPageNow() {
-      this.setLoadedPage(false);
-      this.setLoadingPage(true);
-      this.setLoadingAnimationPage(true);
-    },
-    setUILoadedPage() {
-      /* setTimeout(() => {
-          this.isLoadingAnimationPage = true;
-      }, 50); */
-      setTimeout(() => {
-        this.isLoadingAnimationPage = false;
-      }, 20);
-
-      setTimeout(() => {
-        this.isLoadingPage = false;
-      }, this.loadingTimePage + 280);
-
-      setTimeout(() => {
-        this.isLoadedPage = true;
-      }, this.loadingTimePage + 300);
-    },
-
-
-
-
-
-
-    
-    //& Change page
     changePage(newPage: number) {
       this.page = newPage;
-
-      if (!this.activeSectionsByPage[newPage]) {
-        this.activeSectionsByPage[newPage] = [];
-      }
-      if (!this.dynamicRootMarginsByPage[newPage]) {
-        this.dynamicRootMarginsByPage[newPage] = [];
-      }
-
+      if (!this.activeSectionsByPage[newPage]) this.activeSectionsByPage[newPage] = [];
+      if (!this.dynamicRootMarginsByPage[newPage]) this.dynamicRootMarginsByPage[newPage] = [];
       this.countSections();
     },
-
-    //& Custom margin
     setCustomRootMargin(sectionId: number, rootMargin: string) {
-      if (!this.dynamicRootMarginsByPage[this.page]) {
-        this.dynamicRootMarginsByPage[this.page] = [];
-      }
+      if (!this.dynamicRootMarginsByPage[this.page]) this.dynamicRootMarginsByPage[this.page] = [];
       this.dynamicRootMarginsByPage[this.page][sectionId] = rootMargin;
     },
-
-    //& Sections Logic
     countSections() {
       if (this.isScrolling) return;
-
-      //if (isClientSide()) {
       const sections = document.querySelectorAll('[data-section-id]');
       this.sectionCount = sections.length;
-      let totalHeight = 0;
       const dynamicRootMargins: string[] = [];
-
       sections.forEach((section) => {
         const sectionId = section.getAttribute('data-section-id');
         if (sectionId) {
           const sectionHeight = section.clientHeight;
           this.sectionHeights[sectionId] = sectionHeight;
           dynamicRootMargins.push(`0px 0px ${-sectionHeight / 4}px 0px`);
-          totalHeight += sectionHeight;
         }
       });
-
-      // Sačuvaj trenutne margine za trenutnu stranicu
       this.dynamicRootMarginsByPage[this.page] = dynamicRootMargins;
-      // }
     },
     setSectionNames(names: string[]) {
       this.sectionNames = names;
@@ -557,8 +246,6 @@ export const usePagesStore = defineStore('pages', {
     setSectionIds(id: string[]) {
       this.sectionIds = id;
     },
-
-
     changeSectionDelay(newSection: number) {
       this.currentSection = newSection;
       const activeAllSections = this.sectionCount === this.activeSectionsByPage[this.page].length;
@@ -566,7 +253,6 @@ export const usePagesStore = defineStore('pages', {
       setTimeout(() => {
         this.toggleActiveSections();
       }, 100);
-
       setTimeout(() => {
         if (this.activeAllSections) {
           this.scrollToTargetSection(newSection.toString());
@@ -577,13 +263,11 @@ export const usePagesStore = defineStore('pages', {
         }
       }, 1200)
     },
-
     changeSection(newSection: number) {
       this.currentSection = newSection;
       const activeAllSections = this.sectionCount === this.activeSectionsByPage[this.page].length;
       this.toggleActiveSections();
       this.activeAllSections = activeAllSections;
-
       if (this.activeAllSections) {
         this.scrollToTargetSection(newSection.toString());
       } else {
@@ -592,78 +276,20 @@ export const usePagesStore = defineStore('pages', {
         }, 300);
       }
     },
-
     scrollToTargetSection(targetId: string) {
       if (this.isScrolling) return;
-
       this.isScrolling = true;
       const targetSection = document.querySelector(`[data-section-id="${targetId}"]`) as HTMLElement | null;
-
       if (targetSection) {
         targetSection.scrollIntoView({ behavior: "smooth" });
         this.setActiveSection(parseInt(targetId));
-
-        // Emitovanje događaja po završetku skrolovanja
         const event = new CustomEvent('scroll-target-section');
         window.dispatchEvent(event);
       }
-
       setTimeout(() => {
         this.isScrolling = false;
       }, 1500);
     },
-
-    async scrollToTargetPrice(targetId: string) {
-      if (this.isScrolling) return;
-      const router = useRouter();
-      let path = '';
-
-      if (this.currentLanguage === 'sr') {
-        path = "/cenovnik";
-      } else if (this.currentLanguage === 'en') {
-        path = "/en/pricemenu";
-      } else if (this.currentLanguage === 'ru') {
-        path = "/ru/pricemenu";
-      } else if (this.currentLanguage === 'de') {
-        path = "/de/pricemenu";
-      } else if (this.currentLanguage === 'cn') {
-        path = "/cn/pricemenu";
-      } else if (this.currentLanguage === 'es') {
-        path = "/es/pricemenu";
-      } else if (this.currentLanguage === 'it') {
-        path = "/it/pricemenu";
-      } else if (this.currentLanguage === 'fr') {
-        path = "/fr/pricemenu";
-      } else if (this.currentLanguage === 'tr') {
-        path = "/tr/pricemenu";
-      }
-
-      try {
-        await router.push(path); // Čekanje na završetak navigacije
-
-        setTimeout(() => {
-          const targetSection = document.getElementById(targetId);
-          this.isScrolling = true; // Postavljamo zastavicu da je skrolovanje u toku
-          this.buttonsDisabled = true; // Onemogućavamo dugmad za vreme skrolovanja
-
-          if (targetSection) {
-            targetSection.scrollIntoView({ behavior: "smooth" });
-          }
-          /* setTimeout(()=> {
-            if (targetSection) {
-              targetSection.scrollIntoView({ behavior: "smooth" });
-            }
-          },500) */
-          setTimeout(() => {
-            this.isScrolling = false; // Resetujemo zastavicu po završetku skrolovanja
-            this.buttonsDisabled = false; // Ponovo omogućavamo dugmad
-          }, 1000); // Podesite ovo vreme prema trajanju skrolovanja
-        }, 1700); // Podesite ovo vreme prema potrebnom vremenu učitavanja stranice
-      } catch (error) {
-        console.error('Navigation error:', error);
-      }
-    },
-
     resetActiveSections() {
       if (this.pagesToResetAllSections.includes(this.page)) {
         this.activeSectionsByPage[this.page] = [];
@@ -679,18 +305,14 @@ export const usePagesStore = defineStore('pages', {
       this.buttonsDisabled = false;
     },
     setActiveSection(sectionId: number) {
-      if (this.activeSection === sectionId) return;
-
-      this.activeSection = sectionId;
-      this.currentSection = sectionId;
+      if (this.activeSection !== sectionId) {
+        this.activeSection = sectionId;
+        this.currentSection = sectionId;
+      }
     },
     addActiveSection(sectionId: number) {
-      if (!this.activeSectionsByPage[this.page]) {
-        this.activeSectionsByPage[this.page] = [];
-      }
-      if (!this.activeSectionsByPage[this.page].includes(sectionId)) {
-        this.activeSectionsByPage[this.page].push(sectionId);
-      }
+      if (!this.activeSectionsByPage[this.page]) this.activeSectionsByPage[this.page] = [];
+      if (!this.activeSectionsByPage[this.page].includes(sectionId)) this.activeSectionsByPage[this.page].push(sectionId);
     },
     toggleActiveSections() {
       const totalSections = this.sectionCount;
@@ -700,10 +322,8 @@ export const usePagesStore = defineStore('pages', {
         }
       }
     },
-
     updateScrollDirection() {
       const mainElement = document.querySelector(".main") as HTMLElement | null;
-
       if (mainElement) {
         const scrollTop = window.scrollY || mainElement.scrollTop;
         if (scrollTop > this.lastScrollTop) {
@@ -711,37 +331,25 @@ export const usePagesStore = defineStore('pages', {
         } else if (scrollTop < this.lastScrollTop) {
           this.scrollDirection = 'up';
         }
-        this.lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
-        //console.log(`Scroll direction: ${this.scrollDirection}`); // Dodato logovanje
+        this.lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        //console.log(`Scroll direction: ${this.scrollDirection}`);
       }
     },
-
-
-
-    //& Progress and Scroll
     setCurrentScrollLive(height: number) {
       this.currentScroll = height;
     },
     setCurrentProgressScroll(live: number) {
       this.scrollProgress = live;
     },
-
     setScrollable(value: boolean) {
       this.isScrollable = value;
     },
     setScrolled(value: boolean) {
       this.isScrolled = value;
-      /* setTimeout(() => {
-        this.setHeightOfNav(this.heightofNav);
-      }, 300); */
     },
-
     scrollTop() {
-      //if (isClientSide()) {
       this.isScrollingTopBottom = false;
-
       const topElement = document.querySelector(".top") as HTMLElement | null;
-
       if (topElement) {
         topElement.scrollIntoView({ behavior: "smooth" });
         if (this.activeSection === 1) {
@@ -750,80 +358,32 @@ export const usePagesStore = defineStore('pages', {
           }, 500);
         }
       }
-
       setTimeout(() => {
         this.isScrollingTopBottom = true;
       }, 1000)
-      //}
     },
     scrollBottom() {
-      //if (isClientSide()) {
       const bottomElement = document.querySelector(".bottom") as HTMLElement | null;
       if (bottomElement) {
         bottomElement.scrollIntoView({ behavior: "smooth" });
       }
-      //}
     },
-
-
-
-
-
-    //& Set dimensions
-    setHeightOfMain() {
-      //if (isClientSide()) {
-      const mainElement = document.querySelector(".main") as HTMLElement | null;
-      if (mainElement) {
-        const height = mainElement.clientHeight;
-        this.heightofMain = height;
-      }
-      //}
+    setSizes() {
+      this.setDimensions(".main", "height", "heightofMain");
+      this.setDimensions("header", "height", "heightofNav");
+      this.setDimensions("html", "width", "widthofHtml");
+      this.setDimensions("html", "height", "heightofHtml");
+      this.setDimensions(".main", "width", "widthofMain");
     },
-    setHeightOfNav() {
-      //if (isClientSide()) {
-      const nav = document.querySelector("header") as HTMLElement | null;
-      if (nav) {
-        const height = nav.clientHeight;
-        this.heightofNav = height;
+    setDimensions(elementSelector: string, dimensionType: "height" | "width", targetProperty: "heightofMain" | "heightofNav" | "heightofHtml" | "widthofMain" | "widthofHtml") {
+      const element = document.querySelector(elementSelector) as HTMLElement | null;
+      if (element) {
+        this[targetProperty] = dimensionType === "height" ? element.clientHeight : element.clientWidth;
       }
-      //}
-    },
-    setWidthOfHtml() {
-      //if (isClientSide()) {
-      const htmlElement = document.documentElement as HTMLElement | null;
-      if (htmlElement) {
-        const width = htmlElement.clientWidth;
-        this.widthofHtml = width;
-      }
-      //}
-    },
-    setHeightOfHtml() {
-      //if (isClientSide()) {
-      const htmlElement = document.documentElement as HTMLElement | null;
-      if (htmlElement) {
-        const height = htmlElement.clientHeight;
-        this.heightofHtml = height;
-      }
-      //}
-    },
-    setWidthOfMain() {
-      //if (isClientSide()) {
-      const mainElement = document.querySelector(".main") as HTMLElement | null;
-      if (mainElement) {
-        const width = mainElement.clientWidth;
-        this.widthofMain = width;
-      }
-      //}
     },
   },
-
   getters: {
     language: (state) => state.currentLanguage,
-    isButtonDisabled: (state) => {
-      return (buttonId: number) => {
-        return state.buttonsDisabled || state.activeSection === buttonId;
-      };
-    },
+    isButtonDisabled: state => (buttonId: number) => state.buttonsDisabled || state.activeSection === buttonId,
   },
-  //persist: true
 });

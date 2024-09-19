@@ -18,12 +18,6 @@
   src: url('/static/fonts/LilitaOne-Regular.woff2') format('woff2');
 }
 
-@font-face {
-  font-display: swap;
-  font-family: 'Passion One';
-  font-weight: 900;
-  src: url('/static/fonts/PassionOne-Black.woff2') format('woff2');
-}
 
 @font-face {
   font-display: swap;
@@ -43,29 +37,14 @@
 @font-face {
   font-display: swap;
   font-family: 'Poppins';
-  font-weight: 900;
-  src: url('/static/fonts/Poppins-Black.woff2') format('woff2');
+  font-weight: 500;
+  src: url('/static/fonts/Poppins-Medium.woff2') format('woff2');
 }
-
 @font-face {
   font-display: swap;
   font-family: 'Poppins';
-  font-weight: 700;
-  src: url('/static/fonts/Poppins-Bold.woff2') format('woff2');
-}
-
-@font-face {
-  font-display: swap;
-  font-family: 'Poppins';
-  font-weight: 800;
-  src: url('/static/fonts/Poppins-ExtraBold.woff2') format('woff2');
-}
-
-@font-face {
-  font-display: swap;
-  font-family: 'Poppins';
-  font-weight: 600;
-  src: url('/static/fonts/Poppins-SemiBold.woff2') format('woff2');
+  font-weight: 400;
+  src: url('/static/fonts/Poppins-Regular.woff2') format('woff2');
 }
 
 html {
