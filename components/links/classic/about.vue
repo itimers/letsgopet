@@ -18,10 +18,7 @@ const languageRoutes: Record<string, string> = {
   ru: `/ru/#${i18n.t("o-nama")}`,
   de: `/de/#${i18n.t("o-nama")}`,
   it: `/it/#${i18n.t("o-nama")}`,
-  fr: `/fr/#${i18n.t("o-nama")}`,
   tr: `/tr/#${i18n.t("o-nama")}`,
-  es: `/es/#${i18n.t("o-nama")}`,
-  cn: `/cn/#${i18n.t("o-nama")}`,
 };
 
 // Update linkTo to include the hash

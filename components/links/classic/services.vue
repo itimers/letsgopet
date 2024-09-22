@@ -17,10 +17,7 @@ const languageRoutes: Record<string, string> = {
   ru: `/ru/#${i18n.t("usluge")}`,
   de: `/de/#${i18n.t("usluge")}`,
   it: `/it/#${i18n.t("usluge")}`,
-  fr: `/fr/#${i18n.t("usluge")}`,
   tr: `/tr/#${i18n.t("usluge")}`,
-  es: `/es/#${i18n.t("usluge")}`,
-  cn: `/cn/#${i18n.t("usluge")}`,
 };
 
 const linkTo = computed(() => languageRoutes[page.currentLanguage] || "/#usluge");

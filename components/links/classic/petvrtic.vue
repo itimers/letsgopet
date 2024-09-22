@@ -9,10 +9,7 @@ const languageRoutes: Record<string, string> = {
   ru: "/ru/pet-kindergarten",
   de: "/de/pet-kindergarten",
   it: "/it/pet-kindergarten",
-  fr: "/fr/pet-kindergarten",
   tr: "/tr/pet-kindergarten",
-  es: "/es/pet-kindergarten",
-  cn: "/cn/pet-kindergarten",
 };
 
 const linkTo = computed(

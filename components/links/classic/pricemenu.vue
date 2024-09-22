@@ -16,10 +16,7 @@ const languageRoutes: Record<string, string> = {
   ru: `/ru/#${i18n.t("cenovnik")}`,
   de: `/de/#${i18n.t("cenovnik")}`,
   it: `/it/#${i18n.t("cenovnik")}`,
-  fr: `/fr/#${i18n.t("cenovnik")}`,
   tr: `/tr/#${i18n.t("cenovnik")}`,
-  es: `/es/#${i18n.t("cenovnik")}`,
-  cn: `/cn/#${i18n.t("cenovnik")}`,
 };
 
 const linkTo = computed(

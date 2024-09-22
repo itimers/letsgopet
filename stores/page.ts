@@ -1,10 +1,10 @@
 import { defineStore } from 'pinia';
-export type Language = 'sr' | 'en' | 'ru' | 'de' | 'tr' | 'es' | 'cn' | 'fr' | 'it';
+export type Language = 'sr' | 'en' | 'ru' | 'de' | 'tr' | 'it';
 type Theme = 'light' | 'dark';
 const getDefaultLanguage = (): string => {
   if (import.meta.client && typeof localStorage !== 'undefined') {
     const storedLanguage = localStorage.getItem('lang') || navigator.language.split('-')[0];
-    return ['sr', 'en', 'ru', 'de', 'tr', 'es', 'cn', 'fr', 'it'].includes(storedLanguage) ? storedLanguage : 'sr';
+    return ['sr', 'en', 'ru', 'de', 'tr', 'it'].includes(storedLanguage) ? storedLanguage : 'sr';
   }
   return 'sr';
 };
@@ -106,20 +106,33 @@ export const usePagesStore = defineStore('pages', {
     toggleElementVisibility(buttonClass: string) {
       const element = this.states.find(el => el.btn === buttonClass);
       if (!element) return;
+
       const relatedElementClass = element.menu;
-      const updateState = (active: boolean, menu: boolean, delay: number) => setTimeout(() => this.updateActiveElement(menu ? relatedElementClass : buttonClass, active, menu), delay);
       if (element.activemenu) {
         element.activemenu = false;
-        updateState(false, true, 50);
-        updateState(false, false, element.delayRemoveActive);
-        if (!element.keepZindex) element.zIndex = -1;
-      } else {
-        updateState(true, false, 50);
-        updateState(true, true, 50);
         setTimeout(() => {
-          element.activemenu = true;
-          if (!element.keepZindex) element.zIndex = 8000;
-          this.states.forEach(el => el.menu !== relatedElementClass && el.activemenu && !el.keepZindex && (el.zIndex -= 1));
+          this.updateActiveElement(relatedElementClass, false, true);
+          setTimeout(() => {
+            this.updateActiveElement(buttonClass, false, false);
+            if (!element.keepZindex) element.zIndex = -1;
+            if (element.localstorage) localStorage.setItem('states', JSON.stringify(this.states.filter(el => el.localstorage)));
+          }, element.delayRemoveActive);
+        }, 50);
+      } else {
+        this.updateActiveElement(buttonClass, true, false);
+        setTimeout(() => {
+          this.updateActiveElement(relatedElementClass, true, true);
+          setTimeout(() => {
+            element.activemenu = true;
+            if (!element.keepZindex) element.zIndex = 8000;
+             
+            this.states.forEach(el => {
+              if (el.menu !== relatedElementClass && el.activemenu && !el.keepZindex) {
+                el.zIndex -= 1;
+              }
+            });
+            if (element.localstorage) localStorage.setItem('states', JSON.stringify(this.states.filter(el => el.localstorage)));
+          }, 50);
         }, 50);
       }
     },
@@ -193,7 +206,7 @@ export const usePagesStore = defineStore('pages', {
       }
     },
     isLanguageValid(language: string): language is Language {
-      return ['sr', 'en', 'ru', 'de', 'tr', 'es', 'cn', 'fr', 'it'].includes(language);
+      return ['sr', 'en', 'ru', 'de', 'tr', 'it'].includes(language);
     },
     setTheme(theme: Theme) {
       this.currentTheme = theme;

@@ -8,7 +8,7 @@ export default defineNuxtPlugin(() => {
 
 
   router.beforeEach((to, from, next) => {
-    const supportedLanguages = ['sr', 'en', 'ru', 'de','tr','es','cn','fr','it'];
+    const supportedLanguages = ['sr', 'en', 'ru', 'de','tr','it'];
     const language = to.path.split('/')[1];
 
     if (supportedLanguages.includes(language)) {

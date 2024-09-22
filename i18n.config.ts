@@ -3,9 +3,6 @@ import ru from './locales/ru.json';
 import sr from './locales/sr.json';
 import de from './locales/de.json';
 import it from './locales/it.json';
-import cn from './locales/cn.json';
-import es from './locales/es.json';
-import fr from './locales/fr.json';
 import tr from './locales/tr.json';
 
 
@@ -21,9 +18,6 @@ export default defineI18nConfig(() => ({
     { code: 'ru', iso: 'ru-RU', file: 'ru.json', name: "Ruski" },
     { code: 'de', iso: 'de-DE', file: 'de.json', name: "Deutsch" },
     { code: 'it', iso: 'it-IT', file: 'it.json', name: "Italiano" },
-    { code: 'cn', iso: 'zh-CN', file: 'cn.json', name: "中文" },
-    { code: 'es', iso: 'es-ES', file: 'es.json', name: "Español" },
-    { code: 'fr', iso: 'fr-FR', file: 'fr.json', name: "Français" },
     { code: 'tr', iso: 'tr-TR', file: 'tr.json', name: "Türkçe" }
   ],
   fallbackLocale: 'sr',
@@ -33,9 +27,6 @@ export default defineI18nConfig(() => ({
     ru,
     de,
     it,
-    cn,
-    es,
-    fr,
     tr
   },
   detectBrowserLanguage: {

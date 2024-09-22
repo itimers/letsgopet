@@ -17,10 +17,7 @@ const languageRoutes: Record<string, string> = {
   ru: `/ru/#${i18n.t("vip")}`,
   de: `/de/#${i18n.t("vip")}`,
   it: `/it/#${i18n.t("vip")}`,
-  fr: `/fr/#${i18n.t("vip")}`,
   tr: `/tr/#${i18n.t("vip")}`,
-  es: `/es/#${i18n.t("vip")}`,
-  cn: `/cn/#${i18n.t("vip")}`,
 };
 
 const linkTo = computed(() => languageRoutes[page.currentLanguage] || "/#vip");

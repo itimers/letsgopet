@@ -16,10 +16,7 @@ const page = usePagesStore();
     ru: "/ru/#contact",
     de: "/de/#contact",
     it: "/it/#contact",
-    fr: "/fr/#contact",
     tr: "/tr/#contact",
-    es: "/es/#contact",
-    cn: "/cn/#contact"
   };
   
   const linkTo = computed(() => languageRoutes[page.currentLanguage] || "/#kontakt");

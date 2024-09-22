@@ -7,9 +7,6 @@ Allow: /en/
 Allow: /ru/
 Allow: /sr/
 Allow: /tr/
-Allow: /es/
-Allow: /fr/
-Allow: /cn/
 Allow: /it/
 Allow: /
 

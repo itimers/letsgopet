@@ -12,6 +12,4 @@
    </g>
 </g>
 </svg>
-
-
 </template>

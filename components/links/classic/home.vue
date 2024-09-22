@@ -15,10 +15,7 @@
     ru: "/ru/",
     de: "/de/",
     it: "/it/",
-    fr: "/fr/",
     tr: "/tr/",
-    es: "/es/",
-    cn: "/cn/"
   };
   
   const linkTo = computed(() => languageRoutes[page.currentLanguage] || "/");

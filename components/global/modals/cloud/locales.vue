@@ -35,7 +35,7 @@
         :class="{
           active:
             currentLanguage === 'sr' &&
-            !['en', 'ru', 'de','tr','es','cn','fr','it'].includes(currentLanguage),
+            !['en', 'ru', 'de','tr','it'].includes(currentLanguage),
         }"
       >
         Srpski
@@ -45,7 +45,7 @@
         :class="{
           active:
             currentLanguage === 'en' &&
-            !['sr', 'ru', 'de','tr','es','cn','fr','it'].includes(currentLanguage),
+            !['sr', 'ru', 'de','tr','it'].includes(currentLanguage),
         }"
       >
         English
@@ -55,7 +55,7 @@
         :class="{
           active:
             currentLanguage === 'ru' &&
-            !['sr', 'en', 'de','tr','es','cn','fr','it'].includes(currentLanguage),
+            !['sr', 'en', 'de','tr','it'].includes(currentLanguage),
         }"
       >
         Русский
@@ -65,7 +65,7 @@
         :class="{
           active:
             currentLanguage === 'de' &&
-            !['sr', 'en', 'ru','tr','es','cn','fr','it'].includes(currentLanguage),
+            !['sr', 'en', 'ru','tr','it'].includes(currentLanguage),
         }"
       >
         Deutsch
@@ -75,7 +75,7 @@
         :class="{
           active:
             currentLanguage === 'tr' &&
-            !['sr', 'en', 'ru', 'de','fr','it','cn','es'].includes(currentLanguage),
+            !['sr', 'en', 'ru', 'de','it'].includes(currentLanguage),
         }"
       >
         Türkçe
@@ -86,41 +86,10 @@
         :class="{
           active:
             currentLanguage === 'it' &&
-            !['sr', 'en', 'ru', 'de','tr','es','cn','fr'].includes(currentLanguage),
+            !['sr', 'en', 'ru', 'de','tr'].includes(currentLanguage),
         }"
       >
         Italiano
-      </button>
-      <button @click.stop="updateZindex"
-        @click="changeLanguage('es')"
-        :class="{
-          active:
-            currentLanguage === 'es' &&
-            !['sr', 'en', 'ru', 'de','tr','it','cn','fr'].includes(currentLanguage),
-        }"
-      >
-        Español
-      </button>
-      
-      <button @click.stop="updateZindex"
-        @click="changeLanguage('fr')"
-        :class="{
-          active:
-            currentLanguage === 'fr' &&
-            !['sr', 'en', 'ru', 'de','tr','it','cn','es'].includes(currentLanguage),
-        }"
-      >
-        Français
-      </button>
-      <button @click.stop="updateZindex"
-        @click="changeLanguage('cn')"
-        :class="{
-          active:
-            currentLanguage === 'cn' &&
-            !['sr', 'en', 'ru', 'de','tr','it','es','fr'].includes(currentLanguage),
-        }"
-      >
-        中國人
       </button>
     </div>
   </div>

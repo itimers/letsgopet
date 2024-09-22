@@ -15,10 +15,7 @@ const languageRoutes: Record<string, string> = {
   ru: `/ru/#${i18n.t("pet-transport")}`,
   de: `/de/#${i18n.t("pet-transport")}`,
   it: `/it/#${i18n.t("pet-transport")}`,
-  fr: `/fr/#${i18n.t("pet-transport")}`,
   tr: `/tr/#${i18n.t("pet-transport")}`,
-  es: `/es/#${i18n.t("pet-transport")}`,
-  cn: `/cn/#${i18n.t("pet-transport")}`,
 };
 
 const linkTo = computed(() => languageRoutes[page.currentLanguage] || "/#pet-transport");

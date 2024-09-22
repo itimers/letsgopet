@@ -68,8 +68,13 @@ export default defineNuxtConfig({
     }
   },
 
-  modules: ['@pinia/nuxt', '@nuxtjs/i18n'],
-  
+  modules: ['@pinia/nuxt', '@nuxtjs/i18n','nuxt-beastcss'],
+  beastcss: {
+    // Options passed directly to beastcss: https://github.com/freddy38510/beastcss/tree/master/packages/beastcss#options
+    config: {
+      fontFace: true,
+    },
+  },
   
   vite: {
     css: {

@@ -135,7 +135,7 @@ router.afterEach(() => {
   }, 500);
 });
 router.beforeEach((to, from, next) => {
-  const supportedLanguages = ["sr", "en", "ru", "de", "cn", "fr", "tr", "it"];
+  const supportedLanguages = ["sr", "en", "ru", "de", "tr", "it"];
   let lang = to.params.lang;
   if (Array.isArray(lang)) {
     lang = lang[0];
@@ -741,22 +741,22 @@ nav button {
   justify-content: flex-end;
   align-items: center;
   &.sr .locale-btn {
-    background-image: url("@/assets/img/lang/sr.svg");
+    background-image: url("@/assets/img/lang/sr.webp");
   }
   &.ru .locale-btn {
-    background-image: url("@/assets/img/lang/ru.svg");
+    background-image: url("@/assets/img/lang/ru.webp");
   }
   &.en .locale-btn {
-    background-image: url("@/assets/img/lang/en.svg");
+    background-image: url("@/assets/img/lang/en.webp");
   }
   &.de .locale-btn {
-    background-image: url("@/assets/img/lang/de.svg");
+    background-image: url("@/assets/img/lang/de.webp");
   }
   &.it .locale-btn {
-    background-image: url("@/assets/img/lang/it.svg");
+    background-image: url("@/assets/img/lang/it.webp");
   }
   &.tr .locale-btn {
-    background-image: url("@/assets/img/lang/tr.svg");
+    background-image: url("@/assets/img/lang/tr.webp");
   }
   &.fr .locale-btn {
     background-image: url("@/assets/img/lang/fr.webp");
