@@ -1,3 +1,5 @@
+
+
 //* Krece da se smanjuje od 720px
 $f-size1: clamp(80%, 40% + 1.5vw, 115%);
 $f-size2: clamp(75%, 40% + 1.5vw, 105%);
@@ -63,323 +65,167 @@ $max-width: 40px;
   display: flex;
   align-items: $a-items;
 }
+@mixin locale() {
+  $locale-bg: #fff;
+$locale-dot: #fff;
+$locale-font: $font;
+$locale-font-hover: #fff;
+$locale-font-active: #fff;
+$locale-btn: #fff;
+$locale-btn-hover: #c17255;
+$locale-btn-active: #9f6049;
 
-@mixin toggleButton() {
-  $toggleButton: (
-    "light": (
-      tglbtn: #ffffff,
-      tglbs: #d6ad6b80,
-      tglin: $font2,
-    ),
+$locale-bg-dark: #fff;
+$locale-dot-dark: #fff;
+$locale-font-dark: #fff;
+$locale-font-hover-dark: #ffffff;
+$locale-font-active-dark: #fff;
+$locale-btn-dark: #fff;
+$locale-btn-hover-dark: #c17255;
+$locale-btn-active-dark: #9f6049;
 
-    "dark": (
-      tglbtn: #111111,
-      tglbs: #262626,
-      tglin: $font2dark,
-    ),
-  );
-  $width: 35px;
-  $height: 20px;
-  $s-height: 16px;
-  position: relative;
-  width: 100%;
-  height: $height;
-  @include flex-custom(flex-start, flex-start);
-  @include setColors($toggleButton);
+$locale: (
+  "light": (
+    locale-bg: $locale-bg,
+    locale-dot: $locale-dot,
+    locale-font: $locale-font,
+    locale-font-hover: $locale-font-hover,
+    locale-font-active: $locale-font-active,
+    locale-btn: $locale-btn,
+    locale-btn-hover: $locale-btn-hover,
+    locale-btn-active: $locale-btn-active,
+  ),
 
-  .span {
-    width: $width;
-    height: $height;
+  "dark": (
+    locale-bg: $locale-bg-dark,
+    locale-dot: $locale-dot-dark,
+    locale-font: $locale-font-dark,
+    locale-font-hover: $locale-font-hover-dark,
+    locale-font-active: $locale-font-active-dark,
+    locale-btn: $locale-btn-dark,
+    locale-btn-hover: $locale-btn-hover-dark,
+    locale-btn-active: $locale-btn-active-dark,
+  ),
+);
+  .locales {
     position: relative;
-    padding: 0px 1px;
-
-    background: clr(tglbtn);
-    border-radius: 33px;
-    font-weight: 500;
-    box-shadow: 1px 2px 10px 1px clr(tglbs);
-    transition: all ease-out 0.15s;
+    width: 100%;
     display: flex;
     justify-content: flex-end;
-  }
-  &:hover {
-    .span {
-      box-shadow: 0px 0px 15px 3px clr(tglbs);
+    align-items: center;
+    @include setColors($locale);
+    &.sr .locale-btn {
+      background-image: url("@/assets/img/lang/sr.webp");
     }
-    //transform: scale(.97);
-  }
-  &.active {
-    .span {
-      box-shadow: 0px 0px 15px 3px clr(tglbs);
-      transform: scale(1.05);
-      span {
-        transform: translate(-100%, -50%);
-      }
+    &.ru .locale-btn {
+      background-image: url("@/assets/img/lang/ru.webp");
     }
-    .p-one-two {
-      padding: 0px 8px;
-      width: 100%;
-
-      display: flex;
-      align-items: center;
-      p {
-        text-align: left;
-        font-size: $f-size2;
-        .one {
-          transform: translate(-200%, -50%);
-          opacity: 0;
-        }
-        .two {
-          transform: translate(-100%, -50%);
-          opacity: 1;
-        }
-      }
+    &.en .locale-btn {
+      background-image: url("@/assets/img/lang/en.webp");
     }
-  }
-  .span {
-    span {
+    &.de .locale-btn {
+      background-image: url("@/assets/img/lang/de.webp");
+    }
+    &.it .locale-btn {
+      background-image: url("@/assets/img/lang/it.webp");
+    }
+    &.tr .locale-btn {
+      background-image: url("@/assets/img/lang/tr.webp");
+    }
+    &.fr .locale-btn {
+      background-image: url("@/assets/img/lang/fr.webp");
+    }
+    &.cn .locale-btn {
+      background-image: url("@/assets/img/lang/cn.webp");
+    }
+    &.es .locale-btn {
+      background-image: url("@/assets/img/lang/es.webp");
+    }
+  
+    .circle {
       position: absolute;
+      z-index: -1;
       top: 50%;
       left: 50%;
-      transform: translate(0%, -50%);
-      width: $width - 18px;
-      height: $width - 18px;
+      transform: translate(-50%, -50%);
       border-radius: 50%;
-      min-height: 10px;
-      min-width: 10px;
-      background: clr(tglin);
+      background: clr(locale-dot);
+      width: calc(20px + $tools-increment - $tools-decrement);
+      height: calc(20px + $tools-increment - $tools-decrement);
+      min-width: $tools-minw + 3px;
+      max-width: $tools-maxw + 3px;
+      min-height: $tools-minw + 3px;
+      max-height: $tools-maxw + 3px;
+      opacity: 0;
+      visibility: hidden;
       transition: all ease 0.3s;
     }
-  }
-  .p-one-two {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translate(0, -50%);
-    padding: 0px 8px;
-    width: 100%;
-    line-height: $height - 5px;
-    p {
-      position: absolute;
-      top: 50%;
-      left: 0;
-      transform: translate(-100%, -50%);
-      white-space: nowrap;
-      color: clr(tglin);
-      transition: all ease 0.2s;
-      @include flex-center();
-      &.one {
-        transform: translate(-100%, -50%);
+    &.active {
+      .circle {
         opacity: 1;
-      }
-      &.two {
-        transform: translate(-150%, -50%);
-        opacity: 0;
+        visibility: visible;
       }
     }
   }
-
-  &.right {
-    .p-one-two {
+  .locale-btn {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    transition: all ease 0.2s;
+  }
+  .locales-cloud-modal {
+    padding: 10px;
+    background: clr(app);
+    box-shadow: 0px 0px 20px 0px rgba($color: #888888, $alpha: 0.3);
+    border-radius: 13px;
+    gap: 4px;
+    @include cloud-modal(150px);
+    @include flex-full(space-between, center, column);
+    button {
       width: 100%;
-      @include align-items(flex-start);
-
-      p {
-        text-align: left;
-        font-size: $f-size2;
+      white-space: nowrap;
+      padding: 5px 38px;
+      border-radius: 9px;
+      transform: scale(1) translateX(0px);
+      transition: all ease 0.2s;
+      @include flex-full(space-between, center, row);
+      &:hover {
+        color: clr(locale-font-hover);
+        background: clr(locale-btn-hover);
+        padding: 5px 8px 5px 18px;
+        transform: scale(0.955) translateX(0px);
+      }
+      &::before {
+        content: "";
         position: absolute;
+        left: 9px;
         top: 50%;
-        left: 0;
-        transform: translate(100%, -50%);
-        white-space: nowrap;
-        color: clr(tglin);
-
-        &.one {
-          transform: translate($width + 7px, -50%);
-          opacity: 1;
-        }
-        &.two {
-          transform: translate(100%, -50%);
-          opacity: 0;
-        }
+        transform: translate(0%, -50%) scale(0);
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: clr(locale-dot);
+        opacity: 0;
+        visibility: hidden;
+        transition: all ease 0.3s;
       }
-    }
-
-    &.active {
-      .p-one-two {
-        width: 100%;
-        @include align-items(center);
-        p {
-          @include flex-center();
-          &.one {
-            transform: translate(200%, -50%);
-            opacity: 0;
-          }
-          &.two {
-            transform: translate($width + 7px, -50%);
-            opacity: 1;
-          }
-        }
-      }
-    }
-  }
-
-  &.rel {
-    @include flex-full(flex-start, flex-start, row-reverse);
-    .p-one-two {
-      position: relative;
-      /* overflow: auto hidden; */
-      @include align-items(center);
-      p {
-        direction: ltr;
-        position: relative;
-        text-align: left;
-        font-size: $f-size2;
-        padding-right: 0px;
-        white-space: wrap;
-        color: clr(tglin);
-        transform: translateX(0%);
-        @include flex-custom(flex-start, center);
-
-        &.one {
-          transform: translateX(0%);
-          opacity: 1;
-          height: auto;
-          width: auto;
-          white-space: wrap;
-          transition: opacity ease 0.2s, width ease 0.3s, height ease 0.1s,
-            transform ease 0.2s, white-space ease 0.1s;
-          transition-delay: 0s, 0s, 0s, 0s, 0s;
-        }
-        &.two {
-          transform: translateX(100%);
-          @include hideBtn();
-          white-space: nowrap;
-          transition: opacity ease 0.3s, width ease 0.2s, height ease 0.1s,
-            transform ease 0.2s, white-space ease 0.1s;
-          transition-delay: 0s, 0s, 0s, 0s, 0s;
-        }
-      }
-    }
-    &.active {
-      .span {
-        span {
-          transform: translate(-100%, -50%);
-        }
-      }
-      .p-one-two {
-        p {
-          justify-content: flex-start;
-          &.one {
-            transform: translateX(100%);
-            @include hideBtn();
-            white-space: nowrap;
-            transition: opacity ease 0.2s, width ease 0.1s, height ease 0.1s,
-              transform ease 0.2s, white-space ease 0.1s;
-            transition-delay: 0s, 0s, 0s, 0s, 0s;
-          }
-          &.two {
-            transform: translate(0);
-            opacity: 1;
-            width: auto;
-            height: $height;
-            white-space: wrap;
-            transition: opacity ease 0.2s, width ease 0.3s, height ease 0.1s,
-              transform ease 0.2s, white-space ease 0.1s;
-            transition-delay: 0s, 0s, 0s, 0s, 0s;
-          }
-        }
-      }
-    }
-
-    &.right {
-      flex-direction: row;
       &.active {
-        .span {
-          span {
-            transform: translate(-100%, -50%);
-          }
+        padding: 10px 10px 10px 35px;
+        color: clr(locale-font-active);
+        background: clr(locale-btn-active);
+        &::before {
+          opacity: 1;
+          visibility: visible;
+          transform: translate(60%, -50%) scale(1);
         }
       }
     }
   }
-  @include px(600) {
-    .span {
-      height: $s-height;
-
-      span {
-        width: $s-height - 3px;
-        height: $s-height - 3px;
-      }
-    }
-    .p-one-two {
-      height: $s-height;
-      line-height: $s-height - 2;
-      p {
-        height: auto;
-      }
-    }
-
-    &.rel {
-      &.right {
-        .p-one-two {
-          align-items: baseline;
-          height: auto;
-          p {
-            height: auto;
-          }
-        }
-        &.active {
-          .p-one-two {
-            height: auto;
-            p {
-              height: auto;
-            }
-          }
-        }
-      }
-    }
-  }
-  @include px(500) {
-    .span {
-      height: $s-height;
-
-      span {
-        width: $s-height - 3px;
-        height: $s-height - 3px;
-      }
-    }
-    .p-one-two {
-      height: $s-height;
-      line-height: $s-height - 5;
-
-      p {
-        height: auto;
-        white-space: nowrap;
-      }
-    }
-
-    &.rel {
-      &.right {
-        .p-one-two {
-          align-items: baseline;
-          height: auto;
-          p {
-            height: auto;
-          }
-        }
-        &.active {
-          .p-one-two {
-            height: auto;
-            p {
-              height: auto;
-              white-space: nowrap;
-            }
-          }
-        }
-      }
-    }
+  .locales.active .locales-cloud-modal {
+    @include active-cloud-modal($nav-height + 3px);
   }
 }
+
 
 @mixin social-btn() {
   position: relative;
