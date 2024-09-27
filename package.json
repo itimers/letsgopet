@@ -18,10 +18,10 @@
     "nuxt": "^3.12.4",
     "pinia": "^2.2.2",
     "vue": "latest",
-    "vue-i18n": "^9.14.0"
+    "vue-i18n": "^9.13.0"
   },
   "devDependencies": {
-    "@nuxtjs/i18n": "^8.5.0",
+    "@nuxtjs/i18n": "^8.3.1",
     "nuxt-beastcss": "^1.0.3",
     "sass": "^1.77.8",
     "sass-loader": "^16.0.1",

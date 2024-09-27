@@ -1,6 +1,32 @@
 import { defineStore } from 'pinia';
 export type Language = 'sr' | 'en' | 'ru' | 'de' | 'tr' | 'it';
 type Theme = 'light' | 'dark';
+function isClientSide() {
+  return typeof window !== 'undefined';
+}
+function safeLocalStorageGetItem(key: string) {
+  if (isClientSide()) {
+      return localStorage.getItem(key);
+  }
+  return null;
+}
+function safeLocalStorageSetItem(key: string, value: string) {
+  if (isClientSide()) {
+      localStorage.setItem(key, value);
+  }
+}
+function safeLocalStorageRemoveItem(key: string) {
+  if (isClientSide()) {
+      localStorage.removeItem(key);
+  }
+}
+function safeLocalStorageClear(): void {
+  try {
+      localStorage.clear();
+  } catch (e) {
+      console.warn("Error accessing localStorage", e);
+  }
+}
 const getDefaultLanguage = (): string => {
   if (import.meta.client && typeof localStorage !== 'undefined') {
     const storedLanguage = localStorage.getItem('lang') || navigator.language.split('-')[0];
@@ -11,6 +37,15 @@ const getDefaultLanguage = (): string => {
 export const usePagesStore = defineStore('pages', {
   state: () => ({
     currentLanguage: getDefaultLanguage() as Language,
+    localstorage: (() => {
+      const rawValue = safeLocalStorageGetItem('localstorage');
+      if (rawValue === null || rawValue === undefined) {
+          return true;
+      }
+      const value = JSON.parse(rawValue);
+      return value;
+  })(),
+    localStorageEnabled: true,
     currentTheme: 'light' as Theme,
     availableThemes: ['light', 'dark'] as Theme[],
     sectionCount: 0,
@@ -46,28 +81,102 @@ export const usePagesStore = defineStore('pages', {
       { id: 9, btn: 'burger', menu: 'burgerdiv', activebtn: false, activemenu: false, delayActive: 50, delayRemoveActive: 300, zIndex: -1, keepZindex: false, resetable: true, localstorage: true },
     ] as any[],
     page: 1,
+
+    mapName: 'Google Maps',
+    mapLink: '',
+    mapLinkParts: [
+      "htt",
+      "ps://",
+      "maps.",
+      "app.goo",
+      ".gl/dx6WqL",
+      "C7eRW",
+      "xNHs",
+      "c8",
+    ],
+    igName: '',
+    igNameParts: [
+      "@",
+      "le",
+      "ts",
+      "go",
+      "pe",
+      "t",
+      ".rs",
+    ],
+    igLink: '',
+    igLinkParts: [
+      "htt",
+      "ps://ww",
+      "w.insta",
+      "gram.co",
+      "m/lets",
+      "go",
+      "pe",
+      "t.rs",
+    ],
+    phone: '',
+    phoneNumberParts: ["381", "69", "1507", "212"],
+
+    fbName: '',
+    fbNameParts: [
+      "/let",
+      "s",
+      "go",
+      "pet.rs",
+    ],
+    fbLink: '',
+    fbLinkParts: [
+      "htt",
+      "ps://ww",
+      "w.face",
+      "book.co",
+      "m/let",
+      "s",
+      "go",
+      "pet.rs",
+    ],
+
+    waLink: '',
+    linkVib: '',
+    mailLink: '',
+    mailParts: ["in", "fo", "@", "lets", "gopet", ".", "rs"],
+
+    ytLink: '',
+    ytLinkParts: [
+      "htt",
+      "ps://ww",
+      "w.youtu",
+      "be.co",
+      "m/@Medic",
+      "alTime",
+      "_r",
+      "s",
+    ],
+    tiktokLink: '',
+    tiktokName: '',
+    tiktokNameParts: [
+      "@le",
+      "ts",
+      "go",
+      "_pe",
+      "t",
+    ],
+    tiktokLinkParts: [
+      "htt",
+      "ps://ti",
+      "ktok",
+      ".co",
+      "m/@let",
+      "s",
+      "go",
+      "_pet",
+    ],
+
+
+
   }),
   actions: {
-    setFirstLoaderState(isActive: boolean) {
-      const element = this.states.find(el => el.btn === 'firstloader');
-      if (!element) return;
-      const updateState = (active: boolean, menu: boolean, delay: number) => setTimeout(() => this.updateActiveElement(menu ? 'firstloaderdiv' : 'firstloader', active, menu), delay);
-      if (isActive) {
-        element.activemenu = false;
-        updateState(false, true, 50);
-        updateState(false, false, element.delayRemoveActive);
-        if (!element.keepZindex) element.zIndex = -1;
-      } else {
-        element.activemenu = false;
-        updateState(true, false, 50);
-        updateState(true, true, 50);
-        setTimeout(() => {
-          element.activemenu = true;
-          if (!element.keepZindex) element.zIndex = 8000;
-          this.states.forEach(el => el.menu !== 'firstloaderdiv' && el.activemenu && !el.keepZindex && (el.zIndex -= 1));
-        }, 50);
-      }
-    },
     initializeActiveElements() {
       const storedStatesJSON = localStorage.getItem('states');
       if (storedStatesJSON && storedStatesJSON !== '[]') {
@@ -75,11 +184,30 @@ export const usePagesStore = defineStore('pages', {
         this.states.forEach(state => {
           const storedState = storedStates.find((st: any) => st.id === state.id);
           if (storedState && state.localstorage) Object.assign(state, storedState);
+
+
         });
       } else {
         this.states = JSON.parse(JSON.stringify(this.states));
       }
       this.states.forEach(state => state.keepZindex && (state.zIndex = this.states.find(el => el.id === state.id)?.zIndex || state.zIndex));
+
+      this.igName = `${this.igNameParts.join("")}`;
+      this.igLink = `${this.igLinkParts.join("")}`;
+      this.fbLink = `${this.fbLinkParts.join("")}`;
+      this.fbName = `${this.fbNameParts.join("")}`;
+      this.phone = `tel:${this.phoneNumberParts.join("")}`;
+      this.mapLink = `${this.mapLinkParts.join("")}`;
+      this.waLink = `https://wa.me/${this.phoneNumberParts.join('')}`;
+      this.linkVib = `viber://add?number=${this.phoneNumberParts.join("")}`;
+      this.mailLink = `mailto:${this.mailParts.join("")}`;
+      this.tiktokLink = `${this.tiktokLinkParts.join("")}`;
+      this.tiktokName = `${this.tiktokNameParts.join("")}`;
+
+
+
+
+      this.ytLink = `href:${this.ytLinkParts.join("")}`;
     },
     refreshFromLocalStorage() {
       const storedStatesJSON = localStorage.getItem('states');
@@ -89,7 +217,34 @@ export const usePagesStore = defineStore('pages', {
           const storedState = storedStates.find((st: any) => st.id === state.id);
           if (storedState && state.localstorage) Object.assign(state, storedState);
         });
-        this.initializeActiveElements();
+
+
+        
+        setTimeout(()=> {
+          const activeMenus = this.states.filter((el) => el.activemenu === true);
+          if (activeMenus.length > 0 && this.states.find((el) => el.btn === 'firstloader' && !el.activemenu)) {
+            // Dodaj slušaoca događaja za klik van menija ako postoji barem jedan aktivan meni
+            document.addEventListener("click", this.handleClickOutside, {
+              passive: true,
+            });
+  
+            // Ispiši sve aktivne menije
+            //console.log("Aktivni meniji su:", activeMenus);
+          }
+        },this.loadingTime)
+
+      }
+    },
+    setLocalStorageEnabled(value: boolean) {
+      this.localstorage = value;
+      safeLocalStorageSetItem('localstorage', JSON.stringify(value));
+    },
+    autoLocalStorage() {
+      if (this.localStorageEnabled) {
+          this.setLocalStorageEnabled(true);
+      } else {
+          this.setLocalStorageEnabled(false);
+          safeLocalStorageClear();
       }
     },
     updateActiveElement(buttonClass: string, isActive: boolean, isMenu: boolean) {
@@ -117,15 +272,28 @@ export const usePagesStore = defineStore('pages', {
             if (!element.keepZindex) element.zIndex = -1;
             if (element.localstorage) localStorage.setItem('states', JSON.stringify(this.states.filter(el => el.localstorage)));
           }, element.delayRemoveActive);
+
         }, 50);
+
+
+        const activeMenus = this.states.filter((el) => el.activemenu === false);
+          if (activeMenus.length > 0) {
+            // Dodaj slušaoca događaja za klik van menija ako postoji barem jedan aktivan meni
+            document.removeEventListener("click", this.handleClickOutside);
+  
+            // Ispiši sve aktivne menije
+            //console.log("Ne aktivni meniji su:", activeMenus);
+          }
+
       } else {
         this.updateActiveElement(buttonClass, true, false);
         setTimeout(() => {
+
           this.updateActiveElement(relatedElementClass, true, true);
           setTimeout(() => {
             element.activemenu = true;
             if (!element.keepZindex) element.zIndex = 8000;
-             
+
             this.states.forEach(el => {
               if (el.menu !== relatedElementClass && el.activemenu && !el.keepZindex) {
                 el.zIndex -= 1;
@@ -152,6 +320,7 @@ export const usePagesStore = defineStore('pages', {
     handleClickOutside(event: MouseEvent) {
       const target = event.target as HTMLElement;
       let clickedInside = false;
+      //console.log("KLIK");
 
       this.states.forEach(element => {
         const btnElement = document.querySelector(`.${element.btn}`);
@@ -165,6 +334,7 @@ export const usePagesStore = defineStore('pages', {
 
         if (menuElement && menuElement.contains(target)) {
           clickedInside = true;
+
         } else {
           this.resetActiveElements();
         }
@@ -172,6 +342,7 @@ export const usePagesStore = defineStore('pages', {
 
       if (!clickedInside) {
         this.resetActiveElements();
+        document.removeEventListener("click", this.handleClickOutside);
       }
     },
     bringToFront(element: { zIndex: number; id: any; }) {

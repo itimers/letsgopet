@@ -2,40 +2,35 @@
     <PagesGuestVrticTemplate/>
 </template>
 <script setup lang="ts">
-import { useI18n } from "vue-i18n";
-
-const i18n = useI18n();
-
-
 useHead({
-  title:  i18n.t("VrticSEO"),
+  title: "Let's Go Pet Kindergarten",
   htmlAttrs: {
-        lang: i18n.locale
+        lang: "de"
   },
 meta: [
     {
       name: 'date',
-      content: i18n.t("Datum"),
+      content: "2024-09-26",
     },
     {
       name: 'description',
-      content: i18n.t("VrticDescription"),
+      content: "Wir kümmern uns um, pflegen und transportieren Ihren Hund, aber vor allem schenken wir ihm viel Liebe!",
     },
     {
       name: 'keywords',
-      content: i18n.t("VrticKeywords"),
+      content: "hundekindergarten, hundebetreuung, kleine hundebetreuung, pflege von hunden, let's go pet kindergarten, hundebetreuung let's go pet, grooming von hunden, grooming von kleinen hunden, pomeranian pflege, malteser pflege, kleine hunde pflege, hundetransport, hundetransport zum salon, tierbetreuung, tiertransport und betreuung, haustierbetreuung, hundegeburtstage, wie man das fell eines hundes pflegt, mein hund ist traurig, was tun, wenn mein hund schlecht gelaunt ist, soziale interaktion für hunde im kindergarten, kindergarten für kleine hunde, hundekindergarten vracar, hundekindergarten vozdovac, hundekindergarten brace jerkovic, kindergarten für kleine hunde brace jerkovic, hundekindergarten-angebote",
     },
     {
       name: 'language',
-      content: i18n.t("language"),
+      content: "de",
     },
     {
       property: 'og:title',
-      content: i18n.t("VrticSEO"),
+      content: "Let's Go Pet Kindergarten",
     },
     {
       property: 'og:description',
-      content: i18n.t("VrticDescription"),
+      content: "Wir kümmern uns um, pflegen und transportieren Ihren Hund, aber vor allem schenken wir ihm viel Liebe!",
     },
     /* {
       property: 'og:image',
@@ -44,23 +39,23 @@ meta: [
     
     {
       property: 'og:url',
-      content: 'https://www.letsgopet.rs/vrtic-za-pse',
+      content: 'https://www.letsgopet.rs',
     },
     {
       property: 'og:locale',
-      content: i18n.t("language"),
+      content: "de",
     },
     {
       property: 'og:site_name',
-      content: i18n.t("Let's Go Pet"),
+      content: "Let's Go Pet Kindergarten",
     },
     {
       name: 'geo.placename',
-      content: i18n.t("Beograd"),
+      content: "Beograd",
     },
     {
       'http-equiv': 'content-language',
-      content: i18n.t("language"),
+      content: 'de',
     },
   ],
 });

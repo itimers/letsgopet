@@ -21,6 +21,16 @@
             <LinksTosocialIg2 class="link-to" />
           </div>
         </div>
+        <div class="link-box">
+          <div class="link-btn">
+            <LinksTosocialFb class="link-to" />
+          </div>
+        </div>
+        <div class="link-box">
+          <div class="link-btn">
+            <LinksTosocialTiktok class="link-to" />
+          </div>
+        </div>
         <div class="link-box link2">
           <div class="link-btn">
             <LinksTosocialMap class="link-to" />

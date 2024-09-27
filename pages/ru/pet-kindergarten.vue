@@ -2,40 +2,35 @@
     <PagesGuestVrticTemplate/>
 </template>
 <script setup lang="ts">
-import { useI18n } from "vue-i18n";
-
-const i18n = useI18n();
-
-
 useHead({
-  title:  i18n.t("VrticSEO"),
+  title: "Детский сад Let's Go Pet",
   htmlAttrs: {
-        lang: i18n.locale
+        lang: "sr"
   },
 meta: [
     {
       name: 'date',
-      content: i18n.t("Datum"),
+      content: "2024-09-26",
     },
     {
       name: 'description',
-      content: i18n.t("VrticDescription"),
+      content: "Мы заботимся, ухаживаем и транспортируем вашего питомца, но прежде всего дарим ему много любви!",
     },
     {
       name: 'keywords',
-      content: i18n.t("VrticKeywords"),
+      content: "детский сад для собак, содержание собак, содержание маленьких собак, уход за собаками, детский сад let's go pet, содержание собак let's go pet, груминг собак, груминг маленьких собак, груминг померанцев, уход за шерстью померанцев, уход за шерстью мальтийцев, содержание маленьких собак, транспортировка собак, транспортировка собак в салон, содержание домашних животных, транспортировка и содержание домашних животных, содержание питомцев, дни рождения для собак, как ухаживать за шерстью собаки, моя собака не в настроении, что делать, если моя собака не в настроении, общение собак в детском саду, детский сад для маленьких собак, детский сад для собак врчар, детский сад для собак воздавец, детский сад для собак браце еркович, детский сад для маленьких собак браце еркович, детский сад для собак акция",
     },
     {
       name: 'language',
-      content: i18n.t("language"),
+      content: "ru",
     },
     {
       property: 'og:title',
-      content: i18n.t("VrticSEO"),
+      content: "Детский сад Let's Go Pet ",
     },
     {
       property: 'og:description',
-      content: i18n.t("VrticDescription"),
+      content: "Мы заботимся, ухаживаем и транспортируем вашего питомца, но прежде всего дарим ему много любви!",
     },
     /* {
       property: 'og:image',
@@ -44,23 +39,23 @@ meta: [
     
     {
       property: 'og:url',
-      content: 'https://www.letsgopet.rs/vrtic-za-pse',
+      content: 'https://www.letsgopet.rs/ru/pet-kindergarten',
     },
     {
       property: 'og:locale',
-      content: i18n.t("language"),
+      content: "ru",
     },
     {
       property: 'og:site_name',
-      content: i18n.t("Let's Go Pet"),
+      content: "Детский сад Let's Go Pet",
     },
     {
       name: 'geo.placename',
-      content: i18n.t("Beograd"),
+      content: "Beograd",
     },
     {
       'http-equiv': 'content-language',
-      content: i18n.t("language"),
+      content: 'ru',
     },
   ],
 });

@@ -5,7 +5,9 @@
         <div class="up-left">
           <LinksSocialsFb class="fb" />
           <LinksSocialsIg class="ig" />
+          <LinksSocialsTikt class="tiktok" />
           <LinksSocialsPhone class="phone" />
+          <LinksSocialsMap class="map" />
         </div>
         <div class="up-mid"></div>
         <div class="up-right"></div>

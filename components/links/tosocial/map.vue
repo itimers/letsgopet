@@ -1,10 +1,10 @@
 <template>
   <NuxtLink
-    :to="igLink"
-    v-if="isClient"
+  v-if="isClient"
+    :to="page.mapLink"
     target="_blank"
     :aria-label="$t('igprofile')"
-    ><IconsDefaultMaps class="ig-icon" /><p>{{ igName }}</p>
+    ><IconsDefaultMaps class="ig-icon" /><p>{{ page.mapName }}</p>
     <p class="press-here">{{ $t("Klikni ovde") }}</p>
 
     <div class="touch-container">
@@ -13,29 +13,9 @@
     </NuxtLink>
 </template>
 <script lang="ts" setup>
-const igLinkParts = [
-  "htt",
-  "ps://",
-  "maps.",
-  "app.goo",
-  ".gl/mqJz",
-  "CEvyc4Z",
-  "Yez5f9?g_",
-  "st=ac",
-];
-const igNameParts = [
-  "Go",
-  "o",
-  "g",
-  "le ",
-  "Ma",
-  "p",
-  "s",
-];
-const igLink = ref(`${igLinkParts.join("")}`);
-const igName = ref(`${igNameParts.join("")}`);
+const page = usePagesStore();
 const isClient = ref(false);
-onMounted(() => {
+onMounted(()=> {
   isClient.value = true;
-});
+})
 </script>

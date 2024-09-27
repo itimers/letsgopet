@@ -28,49 +28,21 @@ const imageUrls = [
   image12Url,
 ];
 
-
 const preloadImage = (src: string): Promise<void> => {
+  if (!process.client) return Promise.resolve(); // Skip on server
   return new Promise((resolve, reject) => {
     const img = new Image();
-    //console.log("Pokušavam da učitam sliku sa putanje:", src);
     img.src = src;
 
     img.onload = () => {
-      //console.log("Slika je uspešno učitana:", src);
       resolve();
     };
 
     img.onerror = (error) => {
-      //console.error("Greška pri učitavanju slike:", error);
       reject(new Error(`Neuspešno učitavanje slike sa: ${src}`));
     };
   });
 };
-
-const mapLinkParts = [
-  "htt",
-  "ps://",
-  "maps.",
-  "app.goo",
-  ".gl/mqJz",
-  "CEvyc4Z",
-  "Yez5f9?g_",
-  "st=ac",
-];
-
-const igLinkParts = [
-  "htt",
-  "ps://ww",
-  "w.insta",
-  "gram.co",
-  "m/kupa",
-  "nje",
-  "pa",
-  "sa",
-];
-const mapLink = ref(`${mapLinkParts.join("")}`);
-const igLink = ref(`${igLinkParts.join("")}`);
-const isClient = ref(false);
 
 const sections = [
   {
@@ -124,13 +96,12 @@ function debounce<T extends any[]>(func: (...args: T) => void, delay: number) {
 }
 
 function addHashToLocation(sectionId: string) {
-  if (window.location.hash !== `#${sectionId}`) {
+  if (process.client && window.location.hash !== `#${sectionId}`) {
     history.pushState(
       {},
       "",
       `${window.location.pathname}#${encodeURIComponent(sectionId)}`
     );
-    //^console.log(`URL updated to section: ${sectionId}`);
   }
 }
 
@@ -138,11 +109,9 @@ const observers: IntersectionObserver[] = [];
 const stopWatchers: (() => void)[] = [];
 
 onMounted(async () => {
-  isClient.value = true;
+  if (!process.client) return; // Skip on server
 
-  // Ovaj niz definiše koje slike će biti unapred učitane
-  const preloadImages = [1]; // Na primer, odmah učitaj slike 1, 3 i 5
-
+  const preloadImages = [1];
   page.changePage(2);
 
   const sectionNames = sections.map((section) => section.sectionName);
@@ -151,16 +120,17 @@ onMounted(async () => {
   page.setSectionIds(sectionIds);
 
   sections.forEach((section, index) => {
-    const sectionElement = document.querySelector(
-      `#${section.idtag}`
-    ) as HTMLElement | null;
-    if (sectionElement) {
-      sectionRefs[index].value = sectionElement;
+    if (process.client) {
+      const sectionElement = document.querySelector(
+        `#${section.idtag}`
+      ) as HTMLElement | null;
+      if (sectionElement) {
+        sectionRefs[index].value = sectionElement;
+      }
     }
   });
 
-  // Provera trenutnog hasha
-  const hash = window.location.hash.substring(1);
+  const hash = process.client ? window.location.hash.substring(1) : '';
   const sectionIndex = sections.findIndex((section) => section.idtag === hash);
   if (hash && sectionRefs[sectionIndex]?.value) {
     if (sectionIndex !== -1) {
@@ -171,6 +141,7 @@ onMounted(async () => {
   const updateUrlWithSectionId = debounce(
     (sectionId: string, sectionRef: any) => {
       if (
+        process.client &&
         window.location.hash !== `#${sectionId}` &&
         sectionRef.value &&
         observeOnScroll.value
@@ -206,9 +177,12 @@ onMounted(async () => {
             debouncedSetActiveSection(sectionId);
 
             // Provera i učitavanje slike kada sekcija postane vidljiva
-            if (imageRef.value && !imageRef.value.style.backgroundImage) {
+            if (
+              imageRef.value &&
+              !imageRef.value.style.backgroundImage &&
+              process.client
+            ) {
               try {
-                //console.log(`Učitavanje slike: ${imageUrl}`);
                 await preloadImage(imageUrl);
                 imageRef.value.style.backgroundImage = `url('${imageUrl}')`;
               } catch (error) {
@@ -269,7 +243,6 @@ onMounted(async () => {
 
     if (imageRef?.value) {
       try {
-        //console.log(`Preload slike: ${imageUrl}`);
         await preloadImage(imageUrl); // Učitavanje slike unapred
         imageRef.value.style.backgroundImage = `url('${imageUrl}')`;
       } catch (error) {
@@ -283,18 +256,23 @@ onMounted(async () => {
     const imageRef = imageRefs[index];
     const imageUrl = imageUrls[index];
 
-    // Ako slika nije već preloadovana, primeni observer
     if (!preloadImages.includes(index + 1)) {
       observeSection(sectionRef, index + 1, imageRef, imageUrl);
     }
   });
 
   const resizeListener = () => page.countSections();
-  window.addEventListener("resize", resizeListener);
-  stopWatchers.push(() => window.removeEventListener("resize", resizeListener));
+  if (process.client) {
+    window.addEventListener("resize", resizeListener);
+  }
+  stopWatchers.push(() => {
+    if (process.client) {
+      window.removeEventListener("resize", resizeListener);
+    }
+  });
 
   const hashWatcher = watch(
-    () => window.location.hash,
+    () => (process.client ? window.location.hash : ''),
     (newHash) => {
       const sectionId = newHash.substring(1);
       if (sectionId) {
@@ -308,28 +286,15 @@ onMounted(async () => {
   );
   stopWatchers.push(hashWatcher);
 
-  const sectionWatcher = watch(
-    () => page.currentSection,
-    (currentSection) => {
-      if (currentSection === 3) {
-        // Logika za kada je sekcija 3 aktivna
-      } else if (currentSection === 1) {
-        // Logika za kada je sekcija 1 aktivna
-      }
-    },
-    { deep: true }
-  );
-  stopWatchers.push(sectionWatcher);
-
   await new Promise((resolve) => setTimeout(resolve, 100));
 });
 
 onBeforeUnmount(() => {
   observers.forEach((observer) => observer.disconnect());
   stopWatchers.forEach((stopWatch) => stopWatch());
-  //^console.log('All observers and watchers have been stopped.');
 });
 </script>
+
 <template>
   <div class="page page-vrtic">
     <div class="page-size">
@@ -567,8 +532,7 @@ onBeforeUnmount(() => {
                 <div class="igpic" ref="image11UrlRef">
                   <div class="overlay">
                     <NuxtLink
-                      :to="mapLink"
-                      v-if="isClient"
+                      :to="page.mapLink"
                       target="_blank"
                     ></NuxtLink>
                     <p>{{ $t("Klikni da odes na Instagram profil") }}</p>
@@ -577,8 +541,7 @@ onBeforeUnmount(() => {
                 <div class="mappic" ref="image12UrlRef">
                   <div class="overlay">
                     <NuxtLink
-                      :to="igLink"
-                      v-if="isClient"
+                      :to="page.igLink"
                       target="_blank"
                       :aria-label="$t('igprofile')"
                     ></NuxtLink>

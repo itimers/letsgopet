@@ -1,5 +1,5 @@
 <template>
-  <NuxtLink :to="linkTo">{{ $t("Vrtić") }}</NuxtLink>
+  <NuxtLink v-if="isClient" :to="linkTo">{{ $t("Vrtić") }}</NuxtLink>
 </template>
 <script lang="ts" setup>
 const page = usePagesStore();
@@ -15,4 +15,8 @@ const languageRoutes: Record<string, string> = {
 const linkTo = computed(
   () => languageRoutes[page.currentLanguage] || "/vrtic-za-pse"
 );
+const isClient = ref(false);
+onMounted(()=> {
+  isClient.value = true;
+})
 </script>

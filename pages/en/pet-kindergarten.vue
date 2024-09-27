@@ -2,40 +2,35 @@
     <PagesGuestVrticTemplate/>
 </template>
 <script setup lang="ts">
-import { useI18n } from "vue-i18n";
-
-const i18n = useI18n();
-
-
 useHead({
-  title:  i18n.t("VrticSEO"),
+  title: "Let's Go Pet Daycare",
   htmlAttrs: {
-        lang: i18n.locale
+        lang: "en"
   },
 meta: [
     {
       name: 'date',
-      content: i18n.t("Datum"),
+      content: "2024-09-26",
     },
     {
       name: 'description',
-      content: i18n.t("VrticDescription"),
+      content: "We take care of, maintain, and transport your dog, but above all, we provide immense love!",
     },
     {
       name: 'keywords',
-      content: i18n.t("VrticKeywords"),
+      content: "dog daycare, dog boarding, small dog boarding, dog care, let's go pet daycare, let's go pet dog boarding, dog grooming, small dog grooming, pomeranian grooming, pomeranian care, maltese care, small dog care, dog transport, dog transport to salon, pet boarding, pet transport and boarding, pet care, dog birthdays, how to maintain dog fur, my dog is not feeling well, what to do if my dog is down, dog socialization at daycare, daycare for small dogs, dog daycare vracar, dog daycare vozdovac, dog daycare brace jerkovic, daycare for small dogs brace jerkovic, dog daycare discount",
     },
     {
       name: 'language',
-      content: i18n.t("language"),
+      content: "en",
     },
     {
       property: 'og:title',
-      content: i18n.t("VrticSEO"),
+      content: "Let's Go Pet Daycare",
     },
     {
       property: 'og:description',
-      content: i18n.t("VrticDescription"),
+      content: "We take care of, maintain, and transport your dog, but above all, we provide immense love!",
     },
     /* {
       property: 'og:image',
@@ -44,23 +39,23 @@ meta: [
     
     {
       property: 'og:url',
-      content: 'https://www.letsgopet.rs/vrtic-za-pse',
+      content: 'https://www.letsgopet.rs/en/pet-kindergarten',
     },
     {
       property: 'og:locale',
-      content: i18n.t("language"),
+      content: "en",
     },
     {
       property: 'og:site_name',
-      content: i18n.t("Let's Go Pet"),
+      content: "Let's Go Pet Daycare",
     },
     {
       name: 'geo.placename',
-      content: i18n.t("Beograd"),
+      content: "Beograd",
     },
     {
       'http-equiv': 'content-language',
-      content: i18n.t("language"),
+      content: 'en',
     },
   ],
 });

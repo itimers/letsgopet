@@ -2,40 +2,35 @@
     <PagesGuestVrticTemplate/>
 </template>
 <script setup lang="ts">
-import { useI18n } from "vue-i18n";
-
-const i18n = useI18n();
-
-
 useHead({
-  title:  i18n.t("PocetnaSEO"),
+  title: "Let's Go Pet Vrtic",
   htmlAttrs: {
-        lang: i18n.locale
+        lang: "sr"
   },
 meta: [
     {
       name: 'date',
-      content: i18n.t("Datum"),
+      content: "2024-09-26",
     },
     {
       name: 'description',
-      content: i18n.t("PocetnaDescription"),
+      content: "Mi čuvamo, održavamo i transportujemo vašeg psa, a pre svega pružamo ogromnu ljubav!",
     },
     {
       name: 'keywords',
-      content: i18n.t("PocetnaKeywords"),
+      content: "vrtic za pse, cuvanje pasa, cuvanje malih pasa, odrzavanje pasa, lets go pet vrtic, lets go pet cuvanje pasa, grooming pasa, grooming malih pasa, grooming pomeranca, odrzavanje pomeranca, odrzavanje maltezera, odrzavanje malih pasa, transport pasa, transport pasa do salona, cuvanje kucnih ljubimaca, transport i cuvanje kucnih ljubimaca, cuvanje ljubimaca, rodjendani za pse, kako negovati dlaku psa, pas mi nije raspolozen, sta uraditi ako mi je pas neraspolozen, druzenje pasa u vrticu, vrtic za male pse, vrtic za pse vracar, vrtic za pse vozdovac, vrtic za pse brace jerkovic, vrtic za male pse brace jerkovic, vrtic za pse akcija",
     },
     {
       name: 'language',
-      content: i18n.t("language"),
+      content: "sr",
     },
     {
       property: 'og:title',
-      content: i18n.t("PocetnaSEO"),
+      content: "Let's Go Pet Vrtić",
     },
     {
       property: 'og:description',
-      content: i18n.t("PocetnaDescription"),
+      content: "Mi čuvamo, održavamo i transportujemo vašeg psa, a pre svega pružamo ogromnu ljubav!",
     },
     /* {
       property: 'og:image',
@@ -44,23 +39,23 @@ meta: [
     
     {
       property: 'og:url',
-      content: 'https://www.letsgopet.rs',
+      content: 'https://www.letsgopet.rs/vrtic-za-pse',
     },
     {
       property: 'og:locale',
-      content: i18n.t("language"),
+      content: "sr",
     },
     {
       property: 'og:site_name',
-      content: i18n.t("Let's Go Pet"),
+      content: "Let's Go Pet Vrtić",
     },
     {
       name: 'geo.placename',
-      content: i18n.t("Beograd"),
+      content: "Beograd",
     },
     {
       'http-equiv': 'content-language',
-      content: i18n.t("language"),
+      content: 'sr',
     },
   ],
 });

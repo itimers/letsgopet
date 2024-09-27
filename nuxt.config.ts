@@ -1,12 +1,39 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
+  ssr: true,
   pages: true,
-  ssr: false,
-  i18n: {
-    vueI18n: './i18n.config.ts'
-  },
 
+  i18n: {
+    vueI18n: './i18n.config.ts',
+  },
+  nitro: {
+    routeRules: {
+      // Keširaj slike u 'public/img' na 1 godinu
+      '/img/**': { cache: { maxAge: 60 * 60 * 24 * 365, swr: true } },
+      // Keširaj fontove u 'static/fonts' na 1 godinu
+      '/fonts/**': { cache: { maxAge: 60 * 60 * 24 * 365, swr: true } },
+
+      '/_nuxt/**': { cache: { maxAge: 60 * 60 * 24 * 365, swr: true } },
+    },
+    prerender: {
+      crawlLinks: true,
+     /*  routes: [
+        '/', // Početna stranica
+        '/sr', // Samo srpska verzija
+      ], */
+      ignore: [
+        '/de',
+        '/en', 
+        '/it',
+        '/ru',
+        '/tr',
+        '/sr',
+        '/qr',
+      ]
+    },
+  },
+  
   components: true,
 
   typescript: {
@@ -69,13 +96,13 @@ export default defineNuxtConfig({
   },
 
   modules: ['@pinia/nuxt', '@nuxtjs/i18n','nuxt-beastcss'],
-  beastcss: {
+ /*  beastcss: {
     // Options passed directly to beastcss: https://github.com/freddy38510/beastcss/tree/master/packages/beastcss#options
     config: {
       fontFace: true,
     },
-  },
-  
+  }, */
+
   vite: {
     css: {
       preprocessorOptions: {
@@ -86,5 +113,5 @@ export default defineNuxtConfig({
     }
   },
 
-  compatibilityDate: '2024-08-26',
+  compatibilityDate: '2024-04-03',
 })

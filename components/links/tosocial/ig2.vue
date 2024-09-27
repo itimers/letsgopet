@@ -1,10 +1,10 @@
 <template>
   <NuxtLink
-    :to="igLink"
+    :to="page.igLink"
     v-if="isClient"
     target="_blank"
     :aria-label="$t('igprofile')"
-    ><IconsSocialsInstagram class="ig-icon" /><p>{{ igName }}</p><div class="dm-icon"><IconsDefaultDm/></div>
+    ><IconsSocialsInstagram class="ig-icon" /><p>{{ page.igName }}</p><div class="dm-icon"><IconsDefaultDm/></div>
     <p class="press-here">{{ $t("Klikni ovde") }}</p>
 
     <div class="touch-container left">
@@ -13,29 +13,9 @@
     </NuxtLink>
 </template>
 <script lang="ts" setup>
-const igLinkParts = [
-  "htt",
-  "ps://ww",
-  "w.insta",
-  "gram.co",
-  "m/lets",
-  "go",
-  "pe",
-  "t.rs",
-];
-const igNameParts = [
-  "@",
-  "le",
-  "ts",
-  "go",
-  "pe",
-  "t",
-  ".rs",
-];
-const igLink = ref(`${igLinkParts.join("")}`);
-const igName = ref(`${igNameParts.join("")}`);
+const page = usePagesStore();
 const isClient = ref(false);
-onMounted(() => {
+onMounted(()=> {
   isClient.value = true;
-});
+})
 </script>

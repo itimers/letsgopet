@@ -1,10 +1,9 @@
 <template>
-  <NuxtLink
-  v-if="isClient"
-    :to="page.igLink"
+  <NuxtLink v-if="isClient"
+    :to="page.tiktokLink"
     target="_blank"
-    :aria-label="$t('igprofile')"
-    ><IconsSocialsInstagram class="ig-icon" /><p>{{ $t("Zakazite ig") }}</p><div class="dm-icon"><IconsDefaultDm/></div>
+    :aria-label="$t('tiktok')"
+    ><IconsSocialsTikt class="ig-icon" /><p>{{ page.tiktokName }}</p><div class="dm-icon"><IconsDefaultDm/></div>
     <p class="press-here">{{ $t("Klikni ovde") }}</p>
 
     <div class="touch-container left">

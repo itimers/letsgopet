@@ -1,11 +1,10 @@
 <template>
-  <NuxtLink :to="phone" v-if="isClient" target="_blank" :aria-label="$t('phone')">
+  <NuxtLink :to="page.phone" v-if="isClient" target="_blank" :aria-label="$t('phone')">
     <IconsSocialsPhone />
   </NuxtLink>
 </template>
 <script setup lang="ts">
-const phoneNumberParts = ["381", "64", "960", "6474"];
-const phone = ref(`tel:${phoneNumberParts.join("")}`);
+const page = usePagesStore();
 const isClient = ref(false);
 onMounted(()=> {
   isClient.value = true;

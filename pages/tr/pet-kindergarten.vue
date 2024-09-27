@@ -2,40 +2,35 @@
     <PagesGuestVrticTemplate/>
 </template>
 <script setup lang="ts">
-import { useI18n } from "vue-i18n";
-
-const i18n = useI18n();
-
-
 useHead({
-  title:  i18n.t("VrticSEO"),
+  title:  "Let's Go Pet Köpek Kreşi",
   htmlAttrs: {
-        lang: i18n.locale
+        lang: "tr"
   },
 meta: [
     {
       name: 'date',
-      content: i18n.t("Datum"),
+      content: "2024-09-17",
     },
     {
       name: 'description',
-      content: i18n.t("VrticDescription"),
+      content: "Köpeğinizi sevgiyle besliyor, taşıyor ve ona en iyi bakımı sunuyoruz!",
     },
     {
       name: 'keywords',
-      content: i18n.t("VrticKeywords"),
+      content: "köpek kreşi, küçük köpek bakımı, köpek taşıma hizmeti, pomeranian bakımı, malta köpeği bakımı, köpekler için kreş hizmetleri, köpek sosyalizasyonu, köpek doğum günü partileri, köpek depresyonu, köpeğim üzgün ne yapmalıyım, köpekler için bakım paketleri, vracar köpek kreşi, vozdovac köpek kreşi, brace jerkovic köpek kreşi, küçük köpek bakımı uygun fiyatlı",
     },
     {
       name: 'language',
-      content: i18n.t("language"),
+      content: "tr",
     },
     {
       property: 'og:title',
-      content: i18n.t("VrticSEO"),
+      content: "Let's Go Pet Köpek Kreşi",
     },
     {
       property: 'og:description',
-      content: i18n.t("VrticDescription"),
+      content: "Köpeğinizi sevgiyle besliyor, taşıyor ve ona en iyi bakımı sunuyoruz!",
     },
     /* {
       property: 'og:image',
@@ -44,23 +39,23 @@ meta: [
     
     {
       property: 'og:url',
-      content: 'https://www.letsgopet.rs/vrtic-za-pse',
+      content: 'https://www.letsgopet.rs/tr/pet-kindergarten',
     },
     {
       property: 'og:locale',
-      content: i18n.t("language"),
+      content: "tr",
     },
     {
       property: 'og:site_name',
-      content: i18n.t("Let's Go Pet"),
+      content: "Let's Go Pet Köpek Kreşi",
     },
     {
       name: 'geo.placename',
-      content: i18n.t("Beograd"),
+      content: "Beograd",
     },
     {
       'http-equiv': 'content-language',
-      content: i18n.t("language"),
+      content: "tr",
     },
   ],
 });

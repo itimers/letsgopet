@@ -98,6 +98,10 @@
         </div>
         <div class="bottom-side">
           <LinksSocialsIg />
+          <LinksSocialsFb />
+          <LinksSocialsTikt />
+          <LinksSocialsMap />
+          <LinksSocialsPhone />
         </div>
       </div>
     </div>

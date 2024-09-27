@@ -7,6 +7,7 @@ import tr from './locales/tr.json';
 
 
 export default defineI18nConfig(() => ({
+  
   legacy: false,
   locale: 'sr',
   strategy: 'prefix_except_default',

@@ -5,7 +5,6 @@ const page = usePagesStore();
 const router = useRouter();
 const scrollProgress = ref(0);
 let scrollTimeout: string | number | NodeJS.Timeout | null | undefined = null;
-let mutationObserver: MutationObserver | undefined;
 const isScrollable = ref<HTMLElement | null>(null);
 const currentTheme = computed(() => page.currentTheme);
 /* watch(is1024, (newVal) => {
@@ -23,17 +22,17 @@ function removeHashFromUrl() {
     window.location.pathname + window.location.search
   );
 }
-function isPageScrollable() {
+/*function isPageScrollable() {
   if (isScrollable.value) {
     if (isScrollable.value.scrollHeight > isScrollable.value.clientHeight) {
       page.setScrollable(true);
-      /* console.log("Da li je stranica skrolabilna: " + page.isScrollable); */
+      /~ console.log("Da li je stranica skrolabilna: " + page.isScrollable); ~/
     } else {
       page.setScrollable(false);
-      /* console.log("Da li je stranica skrolabilna: " + page.isScrollable); */
+      /~ console.log("Da li je stranica skrolabilna: " + page.isScrollable); ~/
     }
   }
-}
+}*/
 function handleScroll() {
   const mainElement = isScrollable.value;
   if (mainElement && mainElement.scrollTop !== undefined) {
@@ -94,7 +93,7 @@ const handleDOMContentLoaded = () => {
   }, 20);
 };
 onMounted(() => {
-  removeHashFromUrl();
+  //removeHashFromUrl();
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", handleDOMContentLoaded, {
       passive: true,
@@ -103,37 +102,32 @@ onMounted(() => {
     handleDOMContentLoaded();
   }
   //page.initTheme();
-  page.initializeLanguage();
   page.initializeActiveElements();
+  page.initializeLanguage();
   page.refreshFromLocalStorage();
   page.setSizes();
 
-  document.addEventListener("click", page.handleClickOutside, {
-    passive: true,
-  });
+  
   window.addEventListener("resize", handleResize, { passive: true });
-  setTimeout(async () => {
+  /* setTimeout(async () => {
     const mainElement = document.querySelector("#main");
     if (mainElement) {
       const isScrollable = mainElement.scrollHeight > mainElement.clientHeight;
       page.setScrollable(isScrollable);
     }
-  }, page.loadingTime + 120);
+  }, page.loadingTime + 120); */
   //page.setUILoaded();
 });
 onUnmounted(() => {
-  if (mutationObserver) {
-    mutationObserver.disconnect();
-  }
   window.removeEventListener("resize", handleResize);
   document.removeEventListener("click", page.handleClickOutside);
   window.removeEventListener("scroll-target-section", handleScroll);
 });
-router.afterEach(() => {
+/*router.afterEach(() => {
   setTimeout(() => {
     isPageScrollable();
   }, 500);
-});
+});*/
 router.beforeEach((to, from, next) => {
   const supportedLanguages = ["sr", "en", "ru", "de", "tr", "it"];
   let lang = to.params.lang;
@@ -149,8 +143,9 @@ router.beforeEach((to, from, next) => {
   next();
 });
 </script>
+
+
 <template>
-  <ClientOnly>
     <div class="app" :class="currentTheme">
       <div
         class="app-viewport"
@@ -242,10 +237,141 @@ router.beforeEach((to, from, next) => {
         </main>
       </div>
     </div>
-  </ClientOnly>
 </template>
 
 <style lang="scss">
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Lilita One';
+  font-weight: 400;
+  src: url('/static/fonts/LilitaOne-Regular.woff2') format('woff2');
+}
+
+
+@font-face {
+  font-display: swap;
+  font-family: 'Passion One';
+  font-weight: 700;
+  src: url('/static/fonts/PassionOne-Bold.woff2') format('woff2');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Passion One';
+  font-weight: 400;
+  src: url('/static/fonts/PassionOne-Regular.woff2') format('woff2');
+}
+
+
+@font-face {
+  font-display: swap;
+  font-family: 'Poppins';
+  font-weight: 500;
+  src: url('/static/fonts/Poppins-Medium.woff2') format('woff2');
+}
+@font-face {
+  font-display: swap;
+  font-family: 'Poppins';
+  font-weight: 400;
+  src: url('/static/fonts/Poppins-Regular.woff2') format('woff2');
+}
+
+html {
+  position: relative;
+  font-family: "Poppins", sans-serif;
+  font-size: 100%;
+}
+body {
+  position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+html{font-family: 'Poppins', sans-serif; font-size: 100%;width: 100%;height: 100%;}
+button {
+    outline: none;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif; 
+    font-size: 100%;
+}
+.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+a {
+  text-decoration: none;
+}
+a,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+h7 {
+  color: clr(font);
+}
+.disabled-link {
+  pointer-events: none !important;
+  cursor: not-allowed !important;
+}
+.link {
+  &.disabled-link {
+    pointer-events: none !important;
+    cursor: not-allowed !important;
+  }
+  .disabled-link {
+    pointer-events: none !important;
+    cursor: not-allowed !important;
+  }
+}
+/* .page {
+  @include fadeInRight(0.3s, ease, none);
+} */
+.page-enter-active,
+.page-leave-active {
+  transition: ease 0.3s;
+}
+
+.page-enter-to {
+  right: 0%;
+  opacity: 1;
+}
+
+.page-enter-from {
+  right: -100%;
+  opacity: 0.8;
+}
+
+.page-leave-to {
+  left: -150%;
+  opacity: 0.5;
+}
+
+.page-leave-from {
+  left: 0%;
+  opacity: 1;
+}
+
+
+
 .top {
   position: relative;
   height: 0;
@@ -612,6 +738,13 @@ header {
   color: clr(logofill);
   font-family: "Passion One", sans-serif;
   transition: color ease 0.3s;
+  background-image: url('/img/logo.webp');
+  width: 200px;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100%;
+  max-height: $nav-height - 5px;
+  background-size: contain;
   @include px(600) {
     color: clr(logofill600);
   }
@@ -675,7 +808,9 @@ nav button {
     &.fb,
     &.ig,
     &.yt,
-    &.phone {
+    &.phone,
+    &.map,
+    &.tiktok {
       fill: clr(upnaviconsfill);
       @include px(600) {
         fill: clr(upnaviconsfill600);
@@ -685,6 +820,20 @@ nav button {
         min-width: $up-minw;
         max-width: $up-maxw;
         @include flex-center();
+      }
+    }
+    &.map {
+      & > * {
+        width: calc(20px + $up-increment - $up-decrement);
+        min-width: $up-minw + 5px;
+        max-width: $up-maxw + 5px;
+      }
+    }
+    &.tiktok {
+      & > * {
+        width: calc(20px + $up-increment - $up-decrement);
+        min-width: $up-minw - 3px;
+        max-width: $up-maxw - 3px;
       }
     }
   }
@@ -1978,6 +2127,7 @@ $section-1-height-boxs: 500px;
     margin-inline: auto;
     padding: 250px 0px 100px 0px;
     gap: 20px;
+    overflow: unset;
 
     @include px(1024) {
       width: 100%;
@@ -2375,6 +2525,181 @@ $footer: (
       .touch {
         @include px(600) {
           display: none;
+        }
+      }
+    }
+  }
+}
+.page-qr {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  @include locale();
+  .down {
+    margin-top: 20px;
+    @include px(1024) {
+      margin-top: 2px;
+    }
+  }
+  .page-header {
+    p {
+      width: 100%;
+      font-size: clamp(70%, 70% + 2.1vw, 200%);
+      font-weight: 500;
+      font-family: "Passion One", sans-serif;
+      background: linear-gradient(215deg, #6ca14f, #4ac1dc);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-size: 150% 150%;
+      text-shadow: 2px 2px 3px #7ce5ad5c;
+      margin-bottom: 10px;
+      @include px(1024) {
+        margin-bottom: 6px;
+      }
+    }
+    .logo-qr {
+      font-size: clamp(80%, 120% + 2.5vw, 600%);
+      font-weight: 600;
+      text-align: center;
+      color: clr(font-primary);
+      font-family: "Passion One", sans-serif;
+      text-shadow: 3px 3px 4px #68482146;
+    }
+  }
+  .qr-header {
+    @include flex-custom(space-between, center);
+    h2 {
+      white-space: nowrap;
+      color: #8a7d6c;
+      font-weight: 600;
+      font-size: clamp(70%, 70% + 1.5vw, 120%);
+    }
+  }
+  .thanks {
+    text-align: center;
+    margin-top: 10px;
+    font-weight: 500;
+    font-size: clamp(80%, 50% + 1.5vw, 100%);
+    color: #595959;
+    font-weight: 600;
+    @include px(1024) {
+      margin-top: 5px;
+    }
+  }
+  .page-size {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  .qr-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 15px 25px 5px 25px;
+    box-shadow: 0px 10px 40px 0px rgba($color: #888888, $alpha: 0.3);
+    border-radius: 13px;
+    @include px(1024) {
+      border-radius: 9px;
+      padding: 10px 15px 0px 15px;
+    }
+    @include px(300) {
+      padding: 10px 5px 2px 5px;
+    }
+  }
+  .qr-page {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    transform: translate(-50%, 20px);
+  }
+  ul {
+    position: relative;
+    list-style-type: none;
+    padding: 20px 0px;
+    @include px(1024) {
+      padding: 8px 0px;
+    }
+    li {
+      margin-bottom: 15px;
+      &:last-child {
+        margin-bottom: 0px;
+      }
+      a {
+        @include flex-custom(flex-start, center);
+        background: green;
+        border-radius: 33px;
+        padding: 10px 15px;
+        @include px(1024) {
+          border-radius: 11px;
+          padding: 5px 0px 5px 8px;
+        }
+        p {
+          padding: 0px 15px;
+          font-weight: 500;
+          color: white;
+          white-space: nowrap;
+          font-size: clamp(70%, 50% + 1.5vw, 100%);
+          @include px(1024) {
+            padding: 0px 7px 0px 7px;
+          }
+        }
+      }
+      &.phone,
+      &.wa,
+      &.vib,
+      &.loc,
+      &.ig,
+      &.fb,
+      &.tt {
+        svg {
+          width: calc(20px + $up-increment - $up-decrement);
+          min-width: $up-minw;
+          max-width: $up-maxw;
+          @include flex-center();
+          fill: white;
+        }
+      }
+      &.ig {
+        a {
+          background: rgb(249, 206, 52);
+          background: linear-gradient(
+            90deg,
+            rgba(249, 206, 52, 1) 0%,
+            rgba(238, 42, 123, 1) 48%,
+            rgba(98, 40, 215, 1) 100%
+          );
+        }
+      }
+      &.fb {
+        a {
+          background: #1778f2;
+        }
+      }
+      &.tt {
+        a {
+          background: rgba(254, 40, 88, 1);
+        }
+      }
+      &.phone {
+        a {
+          background: linear-gradient(215deg, #4fa17c, #4ac1dc);
+        }
+      }
+      &.vib {
+        a {
+          background: #7360f2;
+        }
+      }
+      &.wa {
+        a {
+          background: #25d366;
+        }
+      }
+      &.loc {
+        a {
+          background: #1a73e8;
         }
       }
     }

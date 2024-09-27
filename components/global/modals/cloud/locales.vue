@@ -14,7 +14,7 @@
     <div class="circle"></div>
     <div
       class="locale-btn"
-      @click.stop="page.toggleElementVisibility('locales')"
+      @click.stop="toggleLocale"
     ></div>
 
     <div
@@ -104,17 +104,36 @@ const currentLanguage = computed(() => page.language);
 const updateZindex = () => {
     page.bringToFront(page.states.find(el => el.menu === 'localesdiv'))
 }
-
+const toggleLocale = () => {
+  page.toggleElementVisibility('locales');
+  setTimeout(()=> {
+    if(page.states.find((el) => el.btn === 'locales' && el.activemenu)) {
+      document.addEventListener("click", page.handleClickOutside, {
+        passive: true,
+      });
+    } 
+  },100)
+}
 const changeLanguage = (language: string) => {
   if(page.isLanguageValid(language)) {
     page.changeLanguage(language);
   }
-  if (language === "sr") {
-    router.push("/");
-  } else {
-    const newPath = `/${language}`;
-    router.push(newPath);
-  }
+
+  if(page.page === 1) {
+    if (language === "sr") {
+      router.push("/");
+    } else {
+      const newPath = `/${language}`;
+      router.push(newPath);
+    }
+  } else if(page.page === 2) {
+    if (language === "sr") {
+      router.push("/vrtic-za-pse");
+    } else {
+      const newPath = `/${language}/pet-kindergarten`;
+      router.push(newPath);
+    }
+  } 
 
   i18n.locale.value = language;
 };

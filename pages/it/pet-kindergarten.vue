@@ -2,40 +2,35 @@
     <PagesGuestVrticTemplate/>
 </template>
 <script setup lang="ts">
-import { useI18n } from "vue-i18n";
-
-const i18n = useI18n();
-
-
 useHead({
-  title:  i18n.t("VrticSEO"),
+  title: "Let's Go Pet Asilo per Cani",
   htmlAttrs: {
-        lang: i18n.locale
+        lang: "it"
   },
 meta: [
     {
       name: 'date',
-      content: i18n.t("Datum"),
+      content: "2024-09-26",
     },
     {
       name: 'description',
-      content: i18n.t("VrticDescription"),
+      content: "Ci prendiamo cura di, intratteniamo e trasportiamo il tuo cane, ma soprattutto gli offriamo tanto amore!",
     },
     {
       name: 'keywords',
-      content: i18n.t("VrticKeywords"),
+      content: "asilo per cani, cura per cani piccoli, trasporto di cani, cura dei pomerania, cura dei maltesi, asilo let's go pet, cura dei cani let's go pet, toelettatura per cani piccoli, socializzazione per cani, feste di compleanno per cani, il mio cane è triste, cosa fare se il mio cane è depresso, consigli di toelettatura, spa per cani, asilo per cani vracar, asilo per cani vozdovac, asilo per cani brace jerkovic, offerte per asilo per cani",
     },
     {
       name: 'language',
-      content: i18n.t("language"),
+      content: "it",
     },
     {
       property: 'og:title',
-      content: i18n.t("VrticSEO"),
+      content: "Let's Go Pet Asilo per Cani",
     },
     {
       property: 'og:description',
-      content: i18n.t("VrticDescription"),
+      content: "Ci prendiamo cura di, intratteniamo e trasportiamo il tuo cane, ma soprattutto gli offriamo tanto amore!",
     },
     /* {
       property: 'og:image',
@@ -44,23 +39,23 @@ meta: [
     
     {
       property: 'og:url',
-      content: 'https://www.letsgopet.rs/vrtic-za-pse',
+      content: 'https://www.letsgopet.rs/it/pet-kindergarten',
     },
     {
       property: 'og:locale',
-      content: i18n.t("language"),
+      content: "it",
     },
     {
       property: 'og:site_name',
-      content: i18n.t("Let's Go Pet"),
+      content: "Let's Go Pet Asilo per Cani",
     },
     {
       name: 'geo.placename',
-      content: i18n.t("Beograd"),
+      content: "Beograd",
     },
     {
       'http-equiv': 'content-language',
-      content: i18n.t("language"),
+      content: 'it',
     },
   ],
 });

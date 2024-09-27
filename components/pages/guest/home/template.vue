@@ -37,47 +37,20 @@ const imageUrls = [
 ];
 
 const preloadImage = (src: string): Promise<void> => {
+  if (!import.meta.client) return Promise.resolve(); // Skip on server
   return new Promise((resolve, reject) => {
     const img = new Image();
-    //console.log("Pokušavam da učitam sliku sa putanje:", src);
     img.src = src;
 
     img.onload = () => {
-      // console.log("Slika je uspešno učitana:", src);
       resolve();
     };
 
     img.onerror = (error) => {
-      //console.error("Greška pri učitavanju slike:", error);
       reject(new Error(`Neuspešno učitavanje slike sa: ${src}`));
     };
   });
 };
-
-const mapLinkParts = [
-  "htt",
-  "ps://",
-  "maps.",
-  "app.goo",
-  ".gl/mqJz",
-  "CEvyc4Z",
-  "Yez5f9?g_",
-  "st=ac",
-];
-
-const igLinkParts = [
-  "htt",
-  "ps://ww",
-  "w.insta",
-  "gram.co",
-  "m/let",
-  "sgo",
-  "pe",
-  "t.rs",
-];
-const mapLink = ref(`${mapLinkParts.join("")}`);
-const igLink = ref(`${igLinkParts.join("")}`);
-const isClient = ref(false);
 
 const sections = [
   {
@@ -143,13 +116,12 @@ function debounce<T extends any[]>(func: (...args: T) => void, delay: number) {
 }
 
 function addHashToLocation(sectionId: string) {
-  if (window.location.hash !== `#${sectionId}`) {
+  if (import.meta.client && window.location.hash !== `#${sectionId}`) {
     history.pushState(
       {},
       "",
       `${window.location.pathname}#${encodeURIComponent(sectionId)}`
     );
-    //^console.log(`URL updated to section: ${sectionId}`);
   }
 }
 
@@ -157,9 +129,8 @@ const observers: IntersectionObserver[] = [];
 const stopWatchers: (() => void)[] = [];
 
 onMounted(async () => {
-  isClient.value = true;
+  if (!import.meta.client) return; // Skip on server
 
-  // Ovaj niz definiše koje slike će biti unapred učitane
   const preloadImages = [1]; // Na primer, odmah učitaj slike 1, 3 i 5
 
   page.changePage(1);
@@ -226,9 +197,12 @@ onMounted(async () => {
             debouncedSetActiveSection(sectionId);
 
             // Provera i učitavanje slike kada sekcija postane vidljiva
-            if (imageRef.value && !imageRef.value.style.backgroundImage) {
+            if (
+              imageRef.value &&
+              !imageRef.value.style.backgroundImage &&
+              import.meta.client
+            ) {
               try {
-                //console.log(`Učitavanje slike: ${imageUrl}`);
                 await preloadImage(imageUrl);
                 imageRef.value.style.backgroundImage = `url('${imageUrl}')`;
               } catch (error) {
@@ -292,7 +266,6 @@ onMounted(async () => {
 
     if (imageRef?.value) {
       try {
-        //console.log(`Preload slike: ${imageUrl}`);
         await preloadImage(imageUrl); // Učitavanje slike unapred
         imageRef.value.style.backgroundImage = `url('${imageUrl}')`;
       } catch (error) {
@@ -306,7 +279,6 @@ onMounted(async () => {
     const imageRef = imageRefs[index];
     const imageUrl = imageUrls[index];
 
-    // Ako slika nije već preloadovana, primeni observer
     if (!preloadImages.includes(index + 1)) {
       observeSection(sectionRef, index + 1, imageRef, imageUrl);
     }
@@ -350,9 +322,9 @@ onMounted(async () => {
 onBeforeUnmount(() => {
   observers.forEach((observer) => observer.disconnect());
   stopWatchers.forEach((stopWatch) => stopWatch());
-  //^console.log('All observers and watchers have been stopped.');
 });
 </script>
+
 <template>
   <div class="page page-home">
     <div class="page-size">
@@ -772,8 +744,7 @@ onBeforeUnmount(() => {
                 <div class="igpic" ref="image6UrlRef">
                   <div class="overlay">
                     <NuxtLink
-                      v-if="isClient"
-                      :to="igLink"
+                      :to="page.igLink"
                       target="_blank"
                     ></NuxtLink>
                     <p>{{ $t("Klikni da odes na Instagram profil") }}</p>
@@ -782,8 +753,7 @@ onBeforeUnmount(() => {
                 <div class="mappic" ref="image7UrlRef">
                   <div class="overlay">
                     <NuxtLink
-                      :to="mapLink"
-                      v-if="isClient"
+                      :to="page.mapLink"
                       target="_blank"
                       :aria-label="$t('igprofile')"
                     ></NuxtLink>

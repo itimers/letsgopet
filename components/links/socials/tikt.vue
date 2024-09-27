@@ -1,6 +1,6 @@
 <template>
-    <NuxtLink :to="page.mailLink" v-if="isClient" target="_blank" :aria-label="$t('mail')">
-      <IconsSocialsMail />
+    <NuxtLink :to="page.tiktokLink" v-if="isClient" target="_blank" :aria-label="$t('tiktok')">
+      <IconsSocialsTikt />
     </NuxtLink>
   </template>
   <script setup lang="ts">

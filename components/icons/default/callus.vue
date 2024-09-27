@@ -1,10 +1,9 @@
 <script setup lang="ts">
-const phoneNumberParts = ["+381", "69", "1507", "212"];
-const telLink = ref(`tel:${phoneNumberParts.join("")}`);
+const page = usePagesStore();
 </script>
 
 <template>
-  <NuxtLink class="calluswrap" :to="telLink" :aria-label="$t('Pozovite nas')">
+  <NuxtLink class="calluswrap" :to="page.phone" :aria-label="$t('Pozovite nas')">
     <span class="sr-only">{{ $t("Pozovite nas") }}</span>
     <IconsSocialsPhone/>
   </NuxtLink>
