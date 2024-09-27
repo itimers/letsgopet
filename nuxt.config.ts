@@ -8,14 +8,14 @@ export default defineNuxtConfig({
     vueI18n: './i18n.config.ts',
   },
   nitro: {
-    routeRules: {
+    /* routeRules: {
       // Keširaj slike u 'public/img' na 1 godinu
       '/img/**': { cache: { maxAge: 60 * 60 * 24 * 365, swr: true } },
       // Keširaj fontove u 'static/fonts' na 1 godinu
       '/fonts/**': { cache: { maxAge: 60 * 60 * 24 * 365, swr: true } },
 
       '/_nuxt/**': { cache: { maxAge: 60 * 60 * 24 * 365, swr: true } },
-    },
+    }, */
     prerender: {
       crawlLinks: true,
      /*  routes: [

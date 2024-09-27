@@ -733,13 +733,13 @@ header {
   @include flex-custom(space-between, center);
 }
 .logo {
-  font-size: clamp(170%, 50% + 2.6vw, 210%);
-  font-weight: 600;
-  color: clr(logofill);
-  font-family: "Passion One", sans-serif;
+  //font-size: clamp(170%, 50% + 2.6vw, 210%);
+  //font-weight: 600;
+  //color: clr(logofill);
+  //font-family: "Passion One", sans-serif;
   transition: color ease 0.3s;
   background-image: url('/img/logo.webp');
-  width: 200px;
+  width: calc(120px + 2.5vw);
   background-position: center;
   background-repeat: no-repeat;
   height: 100%;
