@@ -1,27 +1,27 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  ssr: true,
+  ssr: false,
   pages: true,
 
   i18n: {
     vueI18n: './i18n.config.ts',
   },
   nitro: {
-    /* routeRules: {
+    routeRules: {
       // Keširaj slike u 'public/img' na 1 godinu
       '/img/**': { cache: { maxAge: 60 * 60 * 24 * 365, swr: true } },
       // Keširaj fontove u 'static/fonts' na 1 godinu
       '/fonts/**': { cache: { maxAge: 60 * 60 * 24 * 365, swr: true } },
 
       '/_nuxt/**': { cache: { maxAge: 60 * 60 * 24 * 365, swr: true } },
-    }, */
-    prerender: {
+    },
+    /*prerender: {
       crawlLinks: true,
-     /*  routes: [
+     /~  routes: [
         '/', // Početna stranica
         '/sr', // Samo srpska verzija
-      ], */
+      ], ~/
       ignore: [
         '/de',
         '/en', 
@@ -31,7 +31,7 @@ export default defineNuxtConfig({
         '/sr',
         '/qr',
       ]
-    },
+    },*/
   },
   
   components: true,
