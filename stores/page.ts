@@ -159,8 +159,8 @@ export const usePagesStore = defineStore('pages', {
       "@le",
       "ts",
       "go",
-      "_pe",
-      "t",
+      "pe",
+      "t.rs",
     ],
     tiktokLinkParts: [
       "htt",
