@@ -436,7 +436,7 @@ export const usePagesStore = defineStore('pages', {
       this.activeAllSections = activeAllSections;
       setTimeout(() => {
         this.toggleActiveSections();
-      }, 100);
+      }, 700);
       setTimeout(() => {
         if (this.activeAllSections) {
           this.scrollToTargetSection(newSection.toString());
@@ -450,8 +450,11 @@ export const usePagesStore = defineStore('pages', {
     changeSection(newSection: number) {
       this.currentSection = newSection;
       const activeAllSections = this.sectionCount === this.activeSectionsByPage[this.page].length;
-      this.toggleActiveSections();
-      this.activeAllSections = activeAllSections;
+      /* this.toggleActiveSections(); */
+      setTimeout(() => {
+        this.toggleActiveSections();
+        this.activeAllSections = activeAllSections;
+      }, 200);
       if (this.activeAllSections) {
         this.scrollToTargetSection(newSection.toString());
       } else {

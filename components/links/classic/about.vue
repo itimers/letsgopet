@@ -1,12 +1,27 @@
 <template>
   <button
-    @click.stop="updateUrlWithSectionId(page.sectionIds[5]), page.changeSection(6)"
+    v-if="page.page === 1"
+    @click.stop="
+      updateUrlWithSectionId(page.sectionIds[5]), page.changeSection(6)
+    "
     :disabled="page.isButtonDisabled(6)"
     class="hover-link"
     :class="{ active: page.currentSection === 6 && page.page === 1 }"
   >
     {{ $t("O nama") }}
   </button>
+  <NuxtLink
+    v-else
+    :to="linkTo"
+    @click.stop="
+    updateUrlWithSectionIdDelay(page.sectionIds[5]), page.changeSectionDelay(6)
+    "
+    :disabled="page.isButtonDisabled(6)"
+    class="hover-link"
+    :class="{ active: page.currentSection === 6 && page.page === 2 }"
+  >
+    {{ $t("O nama") }}
+  </NuxtLink>
 </template>
 
 <script lang="ts" setup>
@@ -22,7 +37,9 @@ const languageRoutes: Record<string, string> = {
 };
 
 // Update linkTo to include the hash
-const linkTo = computed(() => languageRoutes[page.currentLanguage] || "/#o-nama");
+const linkTo = computed(
+  () => languageRoutes[page.currentLanguage] || "/#o-nama"
+);
 
 const observeOnScroll = computed(
   () => page.isScrolled && page.currentScroll >= 250 && page.page === 1
@@ -54,9 +71,22 @@ function debounce<T extends any[]>(func: (...args: T) => void, delay: number) {
 
 // Update the URL with the section hash
 const updateUrlWithSectionId = debounce((sectionId: string) => {
-  if (window.location.hash !== `#${sectionId}` && observeOnScroll.value &&
-      page.page === 2) {
+  if (
+    window.location.hash !== `#${sectionId}` &&
+    observeOnScroll.value &&
+    page.page === 2
+  ) {
     addHashToLocation(sectionId);
   }
 }, 200);
+
+const updateUrlWithSectionIdDelay = debounce((sectionId: string) => {
+  if (
+    window.location.hash !== `#${sectionId}` &&
+    observeOnScroll.value &&
+    page.page === 2
+  ) {
+    addHashToLocation(sectionId);
+  }
+}, 700);
 </script>

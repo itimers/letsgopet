@@ -1,11 +1,19 @@
 <template>
-  <button
+  <button v-if="page.page === 1"
     @click="updateUrlWithSectionId(page.sectionIds[4])"
     class="hover-link"
     :class="{active: page.currentSection === 5 && page.page === 1}"
   >
     {{ $t("Pet transport") }}
   </button>
+  <NuxtLink v-else
+  :to="linkTo"
+    @click="updateUrlWithSectionId(page.sectionIds[4])"
+    class="hover-link"
+    :class="{active: page.currentSection === 5 && page.page === 2}"
+  >
+    {{ $t("Pet transport") }}
+  </NuxtLink>
 </template>
 <script lang="ts" setup>
 const page = usePagesStore();
@@ -44,7 +52,7 @@ function debounce<T extends any[]>(func: (...args: T) => void, delay: number) {
   };
 }
 const updateUrlWithSectionId = debounce((sectionId: string) => {
-  if (window.location.hash !== `#${sectionId}` && observeOnScroll.value && page.page === 2) {
+  if (window.location.hash !== `#${sectionId}` && observeOnScroll.value && page.page === 1) {
     addHashToLocation(sectionId);
   }
 }, 200);

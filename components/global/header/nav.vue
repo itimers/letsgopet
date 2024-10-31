@@ -13,9 +13,9 @@
         <div class="up-right"></div>
       </div>
       <div class="nav-wrapper">
-        <LinksClassicHomelogo class="logo" />
+        <LinksClassicHomelogo class="logo nav" />
         <nav>
-         
+        
           <div v-if="page.page === 1">
             <LinksClassicHome @click="page.changeSection(1)"/>
             <LinksClassicAbout @click="page.changeSection(6)"/>
@@ -32,9 +32,9 @@
             <LinksClassicServices @click="page.changeSectionDelay(2)"/>
             <LinksClassicVip @click="page.changeSectionDelay(3)"/>
             <LinksClassicPettransport @click="page.changeSectionDelay(5)"/>
-            <LinksClassicPetvrtic class="vrtic"/>
-            <LinksClassicPricemenu @click="page.changeSectionDelay(4)"/>
-            <LinksClassicContact @click="page.changeSectionDelay(7)"/>
+            <LinksClassicPetvrtic @click="page.changeSection(1)" class="vrtic"/>
+            <LinksClassicPricemenu @click="page.changeSection(3)"/>
+            <LinksClassicContact @click="page.changeSection(4)"/>
           </div>
         </nav>
         <HeaderTools />

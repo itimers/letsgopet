@@ -1,5 +1,5 @@
 <template>
-  <button
+  <button v-if="page.page === 1"
     @click="
       updateUrlWithSectionId(page.sectionIds[2])
     "
@@ -8,6 +8,18 @@
   >
   {{ $t("Vip") }}
   </button>
+  <NuxtLink
+    v-else
+    :to="linkTo"
+    @click.stop="
+    updateUrlWithSectionIdDelay(page.sectionIds[2]), page.changeSectionDelay(3)
+    "
+    :disabled="page.isButtonDisabled(3)"
+    class="hover-link"
+    :class="{ active: page.currentSection === 3 && page.page === 1 }"
+  >
+    {{ $t("Vip") }}
+  </NuxtLink>
 </template>
 <script lang="ts" setup>
 const page = usePagesStore();
@@ -57,4 +69,13 @@ const updateUrlWithSectionId = debounce(
     },
     200
   );
+  const updateUrlWithSectionIdDelay = debounce((sectionId: string) => {
+  if (
+    window.location.hash !== `#${sectionId}` &&
+    observeOnScroll.value &&
+    page.page === 2
+  ) {
+    addHashToLocation(sectionId);
+  }
+}, 700);
 </script>

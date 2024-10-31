@@ -1,9 +1,18 @@
 <template>
-  <button
+  <button v-if="page.page === 1"
     @click="
       updateUrlWithSectionId(page.sectionIds[1])
     "
     :class="{active: page.currentSection === 2 && page.page === 1}"
+    class="hover-link"
+  >
+  {{ $t("Usluge") }}
+  </button>
+  <button v-else
+    @click="
+      updateUrlWithSectionId(page.sectionIds[1])
+    "
+    :class="{active: page.currentSection === 2 && page.page === 2}"
     class="hover-link"
   >
   {{ $t("Usluge") }}

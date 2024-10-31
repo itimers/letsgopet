@@ -433,12 +433,6 @@ onBeforeUnmount(() => {
             <div class="box-pic">
               <div class="pic-box" ref="image3UrlRef"></div>
               <div class="box-text">
-                <h2>{{ $t("Postani VIP") }}</h2>
-                <h3>{{ $t("Uštedi 50% na sve usluge!") }}</h3>
-                <ul class="ul-1">
-                  <li>{{ $t("Vip1") }}</li>
-                  <li>{{ $t("Vip2") }}</li>
-                </ul>
                 <p class="solo-1">{{ $t("Vip3") }}</p>
                 <ul class="ul-2">
                   <li>{{ $t("Vip4") }}</li>
@@ -455,7 +449,7 @@ onBeforeUnmount(() => {
                 <div class="link-btn">
                   <LinksTosocialIg2 class="link-to" />
                   <p class="book">
-                    {{ $t("Postani VIP, javi se u DM") }}
+                    {{ $t("Zakazite odmah") }}
                   </p>
                 </div>
               </div>
@@ -500,12 +494,9 @@ onBeforeUnmount(() => {
               <figcaption>
                 <div class="box-1 style">
                   <div class="box-header">
-                    <p>{{ $t("Jednostavan") }}</p>
-                    <span>{{ $t("Za sve uzraste") }}</span>
+                    <p>{{ $t("KUPANJE") }}</p>
                   </div>
                   <ul>
-                    <li>{{ $t("Transport") }}</li>
-                    <li>{{ $t("Šišanje") }}</li>
                     <li>{{ $t("Kupanje") }}</li>
                     <li>{{ $t("Sušenje") }}</li>
                   </ul>
@@ -513,22 +504,23 @@ onBeforeUnmount(() => {
                   <div class="prices">
                     <div class="discount-img">
                       <IconsDefaultPaw2 />
-                      <p>85 €</p>
+                      <p v-if="page.currentLanguage === 'sr'">3000 RSD</p>
+                      <p v-else>27 €</p>
                     </div>
                     <div class="discount-img2">
-                      <IconsDefaultCrown />
-                      <p>43 €</p>
+                      <IconsDefaultCar />
+                      <p v-if="page.currentLanguage === 'sr'">1000 RSD</p>
+                      <p v-else>8 €</p>
                     </div>
                   </div>
                 </div>
                 <div class="box-2 style">
                   <div class="box-header">
-                    <p>{{ $t("Osnovni") }}</p>
-                    <span>{{ $t("Za štence do 6 meseci") }}</span>
+                    <p>{{ $t("KUPANJE I SISANJE") }}</p>
                   </div>
                   <ul>
-                    <li>{{ $t("Transport") }}</li>
                     <li>{{ $t("Kupanje i sušenje") }}</li>
+                    <li>{{ $t("Sisanje") }}</li>
                     <li>{{ $t("Skraćivanje noktića") }}</li>
                     <li>
                       {{ $t("Higijena ušiju Light Trimming") }}
@@ -539,37 +531,32 @@ onBeforeUnmount(() => {
                   <div class="prices">
                     <div class="discount-img">
                       <IconsDefaultPaw2 />
-                      <p>100 €</p>
+                      <p v-if="page.currentLanguage === 'sr'">5000 RSD</p>
+                      <p v-else>45 €</p>
                     </div>
                     <div class="discount-img2">
-                      <IconsDefaultCrown />
-                      <p>50 €</p>
+                      <IconsDefaultCar />
+                      <p v-if="page.currentLanguage === 'sr'">1000 RSD</p>
+                      <p v-else>8 €</p>
                     </div>
                   </div>
                 </div>
                 <div class="box-3 style">
                   <div class="box-header">
-                    <p>{{ $t("Paket") }}</p>
-                    <span>{{ $t("Za pse do 10kg") }}</span>
+                    <p>{{ $t("Hranjivo pakovanje dlake") }}</p>
                   </div>
                   <ul>
-                    <li>{{ $t("Transport") }}</li>
-                    <li>{{ $t("Kupanje i sušenje") }}</li>
-                    <li>{{ $t("Šišanje") }}</li>
-                    <li>{{ $t("Skraćivanje noktića") }}</li>
-                    <li>{{ $t("Higijena ušiju") }}</li>
-                    <li>{{ $t("Pranje zubića") }}</li>
+                    <li>{{ $t("Nahranite dlaku vašem ljubimcu organskim pakovanjem dlake") }}</li>
+                    
                   </ul>
 
-                  <div class="prices">
+                  <div class="prices center">
                     <div class="discount-img">
                       <IconsDefaultPaw2 />
-                      <p>100 €</p>
+                      <p v-if="page.currentLanguage === 'sr'">1000 RSD</p>
+                      <p v-else>8 €</p>
                     </div>
-                    <div class="discount-img2">
-                      <IconsDefaultCrown />
-                      <p>50 €</p>
-                    </div>
+                    
                   </div>
                 </div>
                 <div class="box-4 style">
@@ -592,14 +579,11 @@ onBeforeUnmount(() => {
                     </li>
                   </ul>
 
-                  <div class="prices">
+                  <div class="prices center">
                     <div class="discount-img">
                       <IconsDefaultPaw2 />
-                      <p>25 €</p>
-                    </div>
-                    <div class="discount-img2">
-                      <IconsDefaultCrown />
-                      <p>13 €</p>
+                      <p v-if="page.currentLanguage === 'sr'">2000 RSD</p>
+                      <p v-else>18 €</p>
                     </div>
                   </div>
                 </div>

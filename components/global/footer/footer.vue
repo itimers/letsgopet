@@ -5,14 +5,25 @@
         <LinksClassicHomelogo class="logo" />
       </div>
       <div class="footer-mid">
-        <ul>
-          <li><LinksClassicHome /></li>
-          <li><LinksClassicAbout /></li>
-          <li><LinksClassicServices /></li>
-          <li><LinksClassicVip /></li>
-          <li><LinksClassicPettransport /></li>
-          <li><LinksClassicPricemenu /></li>
-          <li><LinksClassicContact /></li>
+        <ul v-if="page.page === 1">
+          <li><LinksClassicHome @click="page.changeSection(1)"/></li>
+          <li><LinksClassicAbout @click="page.changeSection(6)"/></li>
+          <li><LinksClassicServices @click="page.changeSection(2)"/></li>
+          <li><LinksClassicVip @click="page.changeSection(3)"/></li>
+          <li><LinksClassicPettransport @click="page.changeSection(5)"/></li>
+          <li><LinksClassicPetvrtic class="vrtic"/></li>
+          <li><LinksClassicPricemenu @click="page.changeSection(4)"/></li>
+          <li><LinksClassicContact @click="page.changeSection(7)"/></li>
+        </ul>
+        <ul v-else>
+          <li><LinksClassicHome @click="page.changeSectionDelay(1)"/></li>
+          <li><LinksClassicAbout @click="page.changeSectionDelay(6)"/></li>
+          <li><LinksClassicServices @click="page.changeSectionDelay(2)"/></li>
+          <li><LinksClassicVip @click="page.changeSectionDelay(3)"/></li>
+          <li><LinksClassicPettransport @click="page.changeSectionDelay(5)"/></li>
+          <li><LinksClassicPetvrtic @click="page.changeSection(1)" class="vrtic"/></li>
+          <li><LinksClassicPricemenu @click="page.changeSection(3)"/></li>
+          <li><LinksClassicContact @click="page.changeSection(4)"/></li>
         </ul>
       </div>
       <aside class="footer-right">
@@ -48,3 +59,6 @@
     </div>
   </div>
 </template>
+<script lang="ts" setup>
+const page = usePagesStore();
+</script>

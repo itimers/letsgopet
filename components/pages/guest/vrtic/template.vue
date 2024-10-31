@@ -29,7 +29,7 @@ const imageUrls = [
 ];
 
 const preloadImage = (src: string): Promise<void> => {
-  if (!process.client) return Promise.resolve(); // Skip on server
+  if (!import.meta.client) return Promise.resolve(); // Skip on server
   return new Promise((resolve, reject) => {
     const img = new Image();
     img.src = src;
@@ -59,20 +59,14 @@ const sections = [
   },
   {
     id: 3,
-    sectionName: i18n.t("Vip"),
-    slotName: "section3",
-    idtag: i18n.t("vip"),
-  },
-  {
-    id: 4,
     sectionName: i18n.t("Cenovnik"),
-    slotName: "section4",
+    slotName: "section3",
     idtag: i18n.t("cenovnik"),
   },
   {
-    id: 5,
+    id: 4,
     sectionName: i18n.t("Kontakt"),
-    slotName: "section5",
+    slotName: "section4",
     idtag: i18n.t("kontakt"),
   },
 ];
@@ -96,7 +90,7 @@ function debounce<T extends any[]>(func: (...args: T) => void, delay: number) {
 }
 
 function addHashToLocation(sectionId: string) {
-  if (process.client && window.location.hash !== `#${sectionId}`) {
+  if (import.meta.client && window.location.hash !== `#${sectionId}`) {
     history.pushState(
       {},
       "",
@@ -109,7 +103,7 @@ const observers: IntersectionObserver[] = [];
 const stopWatchers: (() => void)[] = [];
 
 onMounted(async () => {
-  if (!process.client) return; // Skip on server
+  if (!import.meta.client) return; // Skip on server
 
   const preloadImages = [1];
   page.changePage(2);
@@ -120,7 +114,7 @@ onMounted(async () => {
   page.setSectionIds(sectionIds);
 
   sections.forEach((section, index) => {
-    if (process.client) {
+    if (import.meta.client) {
       const sectionElement = document.querySelector(
         `#${section.idtag}`
       ) as HTMLElement | null;
@@ -130,7 +124,7 @@ onMounted(async () => {
     }
   });
 
-  const hash = process.client ? window.location.hash.substring(1) : '';
+  const hash = import.meta.client ? window.location.hash.substring(1) : '';
   const sectionIndex = sections.findIndex((section) => section.idtag === hash);
   if (hash && sectionRefs[sectionIndex]?.value) {
     if (sectionIndex !== -1) {
@@ -141,7 +135,7 @@ onMounted(async () => {
   const updateUrlWithSectionId = debounce(
     (sectionId: string, sectionRef: any) => {
       if (
-        process.client &&
+        import.meta.client &&
         window.location.hash !== `#${sectionId}` &&
         sectionRef.value &&
         observeOnScroll.value
@@ -180,13 +174,13 @@ onMounted(async () => {
             if (
               imageRef.value &&
               !imageRef.value.style.backgroundImage &&
-              process.client
+              import.meta.client
             ) {
               try {
                 await preloadImage(imageUrl);
                 imageRef.value.style.backgroundImage = `url('${imageUrl}')`;
               } catch (error) {
-                //console.error("Greška pri učitavanju slike:", error);
+                console.error("Greška pri učitavanju slike:", error);
               }
             }
 
@@ -262,17 +256,17 @@ onMounted(async () => {
   });
 
   const resizeListener = () => page.countSections();
-  if (process.client) {
+  if (import.meta.client) {
     window.addEventListener("resize", resizeListener);
   }
   stopWatchers.push(() => {
-    if (process.client) {
+    if (import.meta.client) {
       window.removeEventListener("resize", resizeListener);
     }
   });
 
   const hashWatcher = watch(
-    () => (process.client ? window.location.hash : ''),
+    () => (import.meta.client ? window.location.hash : ''),
     (newHash) => {
       const sectionId = newHash.substring(1);
       if (sectionId) {
@@ -378,6 +372,8 @@ onBeforeUnmount(() => {
           </article>
         </section>
 
+        
+
         <section
           ref="section3Ref"
           :data-section-id="3"
@@ -391,47 +387,6 @@ onBeforeUnmount(() => {
           ]"
           :slot="sections[2].slotName"
           :id="`${sections[2].idtag}`"
-        >
-          <article>
-            <div class="box-pic">
-              <div class="pic-box" ref="image10UrlRef"></div>
-              <div class="box-text">
-                <h2>{{ $t("Nisi VIP") }}</h2>
-                <h3>{{ $t("Nudimo 50% na sve usluge!") }}</h3>
-                <ul class="ul-1">
-                  <li>{{ $t("Vip12") }}</li>
-                </ul>
-                <p class="solo-1">{{ $t("Kako to") }}</p>
-                <p class="solo-1 two">{{ $t("Vip3") }}</p>
-              </div>
-            </div>
-
-            <aside>
-              <div class="link-box vrtic">
-                <div class="link-btn">
-                  <LinksTosocialVip class="link-to" />
-                  <p class="book">
-                    {{ $t("Pročitaj više kako postati VIP") }}
-                  </p>
-                </div>
-              </div>
-            </aside>
-          </article>
-        </section>
-
-        <section
-          ref="section4Ref"
-          :data-section-id="4"
-          :class="[
-            'section section-4',
-            {
-              active: page.activeSectionsByPage[page.page]
-                ? page.activeSectionsByPage[page.page].includes(4)
-                : false,
-            },
-          ]"
-          :slot="sections[3].slotName"
-          :id="`${sections[3].idtag}`"
         >
           <article>
             <h2>{{ $t("Cenovnik") }}</h2>
@@ -449,10 +404,11 @@ onBeforeUnmount(() => {
                     <li>{{ $t("Sušenje") }}</li>
                   </ul>
 
-                  <div class="prices">
+                  <div class="prices center">
                     <div class="discount-img">
                       <IconsDefaultPaw2 />
-                      <p>300 €</p>
+                      <p v-if="page.currentLanguage === 'sr'">36 000 RSD</p>
+                      <p v-else>300 €</p>
                     </div>
                     <!-- <div class="discount-img2">
                       <IconsDefaultCrown />
@@ -474,15 +430,36 @@ onBeforeUnmount(() => {
                     <li>{{ $t("Dogovoreni transport") }}</li>
                   </ul>
 
-                  <div class="prices">
+                  <div class="prices center">
                     <div class="discount-img">
                       <IconsDefaultPaw2 />
-                      <p>45 €</p>
+                      <p v-if="page.currentLanguage === 'sr'">5000 RSD</p>
+                      <p v-else>45 €</p>
                     </div>
                     <!-- <div class="discount-img2">
                       <IconsDefaultCrown />
                       <p>50 €</p>
                     </div> -->
+                  </div>
+                </div>
+                <div class="box-3 style">
+                  <div class="box-header">
+                    <p>{{ $t("PANSION 24h") }}</p>
+                  </div>
+                  <ul>
+                    <li>{{ $t("Boravak psa") }}</li>
+                  </ul>
+                  <div class="prices">
+                    <div class="discount-img">
+                      <IconsDefaultPaw2 />
+                      <p v-if="page.currentLanguage === 'sr'">2000 RSD</p>
+                      <p v-else>18 €</p>
+                    </div>
+                    <div class="discount-img2">
+                      <IconsDefaultCar />
+                      <p v-if="page.currentLanguage === 'sr'">1000 RSD</p>
+                      <p v-else>8 €</p>
+                    </div>
                   </div>
                 </div>
               </figcaption>
@@ -511,58 +488,58 @@ onBeforeUnmount(() => {
         </section>
 
         <section
-          ref="section5Ref"
-          :data-section-id="5"
+          ref="section4Ref"
+          :data-section-id="4"
           :class="[
-            'section section-5 section-vrtic',
+            'section section-4 section-vrtic',
             {
               active: page.activeSectionsByPage[page.page]
-                ? page.activeSectionsByPage[page.page].includes(5)
+                ? page.activeSectionsByPage[page.page].includes(4)
                 : false,
             },
           ]"
-          :slot="sections[4].slotName"
-          :id="`${sections[4].idtag}`"
+          :slot="sections[3].slotName"
+          :id="`${sections[3].idtag}`"
         >
-          <article>
-            <h2>{{ $t("Kontakt") }}</h2>
+        <article>
+          <h2>{{ $t("Kontakt") }}</h2>
 
-            <figure>
-              <figcaption>
-                <div class="igpic" ref="image11UrlRef">
-                  <div class="overlay">
-                    <NuxtLink
-                      :to="page.mapLink"
-                      target="_blank"
-                    ></NuxtLink>
-                    <p>{{ $t("Klikni da odes na Instagram profil") }}</p>
-                  </div>
-                </div>
-                <div class="mappic" ref="image12UrlRef">
-                  <div class="overlay">
-                    <NuxtLink
-                      :to="page.igLink"
-                      target="_blank"
-                      :aria-label="$t('igprofile')"
-                    ></NuxtLink>
-                    <p>{{ $t("Klikni da odes na Google Mape") }}</p>
-                  </div>
-                </div>
-              </figcaption>
-            </figure>
-            <aside>
-              <div class="link-box">
-                <div class="link-btn">
-                  <LinksTosocialIg2 class="link-to" />
+          <figure>
+            <figcaption>
+              <div class="igpic" ref="image11UrlRef">
+                <div class="overlay">
+                  <NuxtLink
+                    :to="page.igLink"
+                    target="_blank"
+                  ></NuxtLink>
+                  <p>{{ $t("Klikni da odes na Instagram profil") }}</p>
                 </div>
               </div>
-              <div class="link-box link2">
-                <div class="link-btn">
-                  <LinksTosocialMap class="link-to" />
+              <div class="mappic" ref="image12UrlRef">
+                <div class="overlay">
+                  <NuxtLink
+                    :to="page.mapLink"
+                    target="_blank"
+                    :aria-label="$t('igprofile')"
+                  ></NuxtLink>
+                  <p>{{ $t("Klikni da odes na Google Mape") }}</p>
                 </div>
               </div>
-            </aside>
-          </article>
+            </figcaption>
+          </figure>
+          <aside>
+            <div class="link-box">
+              <div class="link-btn">
+                <LinksTosocialIg2 class="link-to" />
+              </div>
+            </div>
+            <div class="link-box link2">
+              <div class="link-btn">
+                <LinksTosocialMap class="link-to" />
+              </div>
+            </div>
+          </aside>
+        </article>
         </section>
       </div>
     </div>

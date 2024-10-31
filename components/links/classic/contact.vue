@@ -1,10 +1,19 @@
 <template>
-  <button 
+  <button v-if="page.page === 1"
     @click="
-      updateUrlWithSectionId(page.sectionIds[6])
+      updateUrlWithSectionId(page.sectionIds[6]), page.changeSection(7)
     "
     class="hover-link"
     :class="{active: page.currentSection === 7 && page.page === 1}"
+  >
+  {{ $t("Kontakt") }}
+  </button>
+  <button v-else
+    @click="
+      updateUrlWithSectionId(page.sectionIds[3]),page.changeSection(4)
+    "
+    class="hover-link"
+    :class="{active: page.currentSection === 4 && page.page === 2}"
   >
   {{ $t("Kontakt") }}
   </button>
@@ -22,7 +31,7 @@ const page = usePagesStore();
   const linkTo = computed(() => languageRoutes[page.currentLanguage] || "/#kontakt");
 
 const observeOnScroll = computed(
-  () => page.isScrolled && page.currentScroll >= 250 && page.page === 1
+  () => page.isScrolled && page.currentScroll >= 250 && page.page === 2
 );
 function addHashToLocation(sectionId: string) {
   if (window.location.hash !== `#${sectionId}`) {
