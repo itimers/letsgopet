@@ -20,7 +20,6 @@
             <LinksClassicHome @click="page.changeSection(1)"/>
             <LinksClassicAbout @click="page.changeSection(6)"/>
             <LinksClassicServices @click="page.changeSection(2)"/>
-            <LinksClassicVip @click="page.changeSection(3)"/>
             <LinksClassicPettransport @click="page.changeSection(5)"/>
             <LinksClassicPetvrtic class="vrtic"/>
             <LinksClassicPricemenu @click="page.changeSection(4)"/>
@@ -30,7 +29,6 @@
             <LinksClassicHome @click="page.changeSectionDelay(1)"/>
             <LinksClassicAbout @click="page.changeSectionDelay(6)"/>
             <LinksClassicServices @click="page.changeSectionDelay(2)"/>
-            <LinksClassicVip @click="page.changeSectionDelay(3)"/>
             <LinksClassicPettransport @click="page.changeSectionDelay(5)"/>
             <LinksClassicPetvrtic @click="page.changeSection(1)" class="vrtic"/>
             <LinksClassicPricemenu @click="page.changeSection(3)"/>

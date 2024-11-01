@@ -67,9 +67,9 @@ const sections = [
   },
   {
     id: 3,
-    sectionName: i18n.t("Vip"),
+    sectionName: i18n.t("Odrzavanje"),
     slotName: "section3",
-    idtag: i18n.t("vip"),
+    idtag: i18n.t("odrzavanje"),
   },
   {
     id: 4,
@@ -433,7 +433,7 @@ onBeforeUnmount(() => {
             <div class="box-pic">
               <div class="pic-box" ref="image3UrlRef"></div>
               <div class="box-text">
-                <p class="solo-1">{{ $t("Vip3") }}</p>
+                <h2>{{ $t("Vip3") }}</h2>
                 <ul class="ul-2">
                   <li>{{ $t("Vip4") }}</li>
                   <li>{{ $t("Vip5") }}</li>

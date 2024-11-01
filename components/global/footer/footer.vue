@@ -9,7 +9,6 @@
           <li><LinksClassicHome @click="page.changeSection(1)"/></li>
           <li><LinksClassicAbout @click="page.changeSection(6)"/></li>
           <li><LinksClassicServices @click="page.changeSection(2)"/></li>
-          <li><LinksClassicVip @click="page.changeSection(3)"/></li>
           <li><LinksClassicPettransport @click="page.changeSection(5)"/></li>
           <li><LinksClassicPetvrtic class="vrtic"/></li>
           <li><LinksClassicPricemenu @click="page.changeSection(4)"/></li>
@@ -19,7 +18,6 @@
           <li><LinksClassicHome @click="page.changeSectionDelay(1)"/></li>
           <li><LinksClassicAbout @click="page.changeSectionDelay(6)"/></li>
           <li><LinksClassicServices @click="page.changeSectionDelay(2)"/></li>
-          <li><LinksClassicVip @click="page.changeSectionDelay(3)"/></li>
           <li><LinksClassicPettransport @click="page.changeSectionDelay(5)"/></li>
           <li><LinksClassicPetvrtic @click="page.changeSection(1)" class="vrtic"/></li>
           <li><LinksClassicPricemenu @click="page.changeSection(3)"/></li>
