@@ -490,6 +490,7 @@ onBeforeUnmount(() => {
         >
           <article>
             <h2>{{ $t("Cenovnik") }}</h2>
+            <h3 style="text-align: center">{{ $t("Placanje iskljucivo karticama") }}</h3>
             <figure>
               <figcaption>
                 <div class="box-1 style">

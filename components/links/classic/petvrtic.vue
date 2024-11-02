@@ -1,5 +1,5 @@
 <template>
-  <NuxtLink v-if="isClient" :to="linkTo">{{ $t("Vrtić") }}</NuxtLink>
+  <NuxtLink v-if="isClient" :to="linkTo">{{ $t("Vrtić/Pansion") }}</NuxtLink>
 </template>
 <script lang="ts" setup>
 const page = usePagesStore();

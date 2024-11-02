@@ -31,7 +31,7 @@
       }"
     >
       <button @click.stop="updateZindex"
-        @click="changeLanguage('sr')"
+        @click="changeLanguage('sr'), toggleLocale()"
         :class="{
           active:
             currentLanguage === 'sr' &&
@@ -41,7 +41,7 @@
         Srpski
       </button>
       <button @click.stop="updateZindex"
-        @click="changeLanguage('en')"
+        @click="changeLanguage('en'), toggleLocale()"
         :class="{
           active:
             currentLanguage === 'en' &&
@@ -51,7 +51,7 @@
         English
       </button>
       <button @click.stop="updateZindex"
-        @click="changeLanguage('ru')"
+        @click="changeLanguage('ru'), toggleLocale()"
         :class="{
           active:
             currentLanguage === 'ru' &&
@@ -61,7 +61,7 @@
         Русский
       </button>
       <button @click.stop="updateZindex"
-        @click="changeLanguage('de')"
+        @click="changeLanguage('de'), toggleLocale()"
         :class="{
           active:
             currentLanguage === 'de' &&
@@ -71,7 +71,7 @@
         Deutsch
       </button>
       <button @click.stop="updateZindex"
-        @click="changeLanguage('tr')"
+        @click="changeLanguage('tr'), toggleLocale()"
         :class="{
           active:
             currentLanguage === 'tr' &&
@@ -82,7 +82,7 @@
       </button>
       
       <button @click.stop="updateZindex"
-        @click="changeLanguage('it')"
+        @click="changeLanguage('it'), toggleLocale()"
         :class="{
           active:
             currentLanguage === 'it' &&

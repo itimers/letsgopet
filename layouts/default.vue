@@ -1145,6 +1145,10 @@ nav button {
       fill: white;
     }
   }
+
+  p {
+    color: white;
+  }
 }
 .mid-side {
   height: 100%;

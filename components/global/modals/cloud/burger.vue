@@ -75,23 +75,23 @@
           </button>
         </div>
         <div class="mid-side">
-          <div v-if="page.page === 1" class="midlinks">
-            <LinksClassicHome @click="page.changeSection(1)"/>
-            <LinksClassicAbout @click="page.changeSection(6)"/>
-            <LinksClassicServices @click="page.changeSection(2)"/>
-            <LinksClassicPettransport @click="page.changeSection(5)"/>
+          <div v-if="page.page === 1" class="mid-links">
+            <LinksClassicHome @click="page.changeSection(1)" @click.stop="page.toggleElementVisibility('burger')"/>
+            <LinksClassicAbout @click="page.changeSection(6)" @click.stop="page.toggleElementVisibility('burger')"/>
+            <LinksClassicServices @click="page.changeSection(2)" @click.stop="page.toggleElementVisibility('burger')"/>
+            <LinksClassicPettransport @click="page.changeSection(5)" @click.stop="page.toggleElementVisibility('burger')"/>
             <LinksClassicPetvrtic class="vrtic"/>
-            <LinksClassicPricemenu @click="page.changeSection(4)"/>
-            <LinksClassicContact @click="page.changeSection(7)"/>
+            <LinksClassicPricemenu @click="page.changeSection(4)" @click.stop="page.toggleElementVisibility('burger')"/>
+            <LinksClassicContact @click="page.changeSection(7)" @click.stop="page.toggleElementVisibility('burger')"/>
           </div>
-          <div v-else class="midlinks">
-            <LinksClassicHome @click="page.changeSectionDelay(1)"/>
-            <LinksClassicAbout @click="page.changeSectionDelay(6)"/>
-            <LinksClassicServices @click="page.changeSectionDelay(2)"/>
-            <LinksClassicPettransport @click="page.changeSectionDelay(5)"/>
-            <LinksClassicPetvrtic @click="page.changeSection(1)" class="vrtic"/>
-            <LinksClassicPricemenu @click="page.changeSection(3)"/>
-            <LinksClassicContact @click="page.changeSection(4)"/>
+          <div v-else class="mid-links">
+            <LinksClassicHome @click="page.changeSectionDelay(1)" @click.stop="page.toggleElementVisibility('burger')"/>
+            <LinksClassicAbout @click="page.changeSectionDelay(6)" @click.stop="page.toggleElementVisibility('burger')"/>
+            <LinksClassicServices @click="page.changeSectionDelay(2)" @click.stop="page.toggleElementVisibility('burger')"/>
+            <LinksClassicPettransport @click="page.changeSectionDelay(5)" @click.stop="page.toggleElementVisibility('burger')"/>
+            <LinksClassicPetvrtic @click="page.changeSection(1)" class="vrtic" @click.stop="page.toggleElementVisibility('burger')"/>
+            <LinksClassicPricemenu @click="page.changeSection(3)" @click.stop="page.toggleElementVisibility('burger')"/>
+            <LinksClassicContact @click="page.changeSection(4)" @click.stop="page.toggleElementVisibility('burger')"/>
           </div>
         </div>
         <div class="bottom-side">
