@@ -18,7 +18,7 @@ meta: [
     },
     {
       name: 'keywords',
-      content: "asilo per cani, cura per cani piccoli, trasporto di cani, cura dei pomerania, cura dei maltesi, asilo let's go pet, cura dei cani let's go pet, toelettatura per cani piccoli, socializzazione per cani, feste di compleanno per cani, il mio cane è triste, cosa fare se il mio cane è depresso, consigli di toelettatura, spa per cani, asilo per cani vracar, asilo per cani vozdovac, asilo per cani brace jerkovic, offerte per asilo per cani",
+      content: "asilo per cani, cura per cani piccoli, trasporto di cani, cura dei pomerania, cura dei maltesi, asilo let's go pet, cura dei cani let's go pet, toelettatura per cani piccoli, socializzazione per cani, feste di compleanno per cani, il mio cane è triste, cosa fare se il mio cane è depresso, consigli di toelettatura, spa per cani, asilo per cani vracar, asilo per cani vozdovac, asilo per cani vracar, offerte per asilo per cani",
     },
     {
       name: 'language',

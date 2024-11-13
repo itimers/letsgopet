@@ -18,7 +18,7 @@ meta: [
     },
     {
       name: 'keywords',
-      content: "dog daycare, dog boarding, small dog boarding, dog care, let's go pet daycare, let's go pet dog boarding, dog grooming, small dog grooming, pomeranian grooming, pomeranian care, maltese care, small dog care, dog transport, dog transport to salon, pet boarding, pet transport and boarding, pet care, dog birthdays, how to maintain dog fur, my dog is not feeling well, what to do if my dog is down, dog socialization at daycare, daycare for small dogs, dog daycare vracar, dog daycare vozdovac, dog daycare brace jerkovic, daycare for small dogs brace jerkovic, dog daycare discount",
+      content: "dog daycare, dog boarding, small dog boarding, dog care, let's go pet daycare, let's go pet dog boarding, dog grooming, small dog grooming, pomeranian grooming, pomeranian care, maltese care, small dog care, dog transport, dog transport to salon, pet boarding, pet transport and boarding, pet care, dog birthdays, how to maintain dog fur, my dog is not feeling well, what to do if my dog is down, dog socialization at daycare, daycare for small dogs, dog daycare vracar, dog daycare vozdovac, dog daycare vracar, daycare for small dogs vracar, dog daycare discount",
     },
     {
       name: 'language',
