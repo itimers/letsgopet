@@ -116,7 +116,7 @@ export const usePagesStore = defineStore('pages', {
       "t.rs",
     ],
     phone: '',
-    phoneNumberParts: ["381", "69", "1507", "212"],
+    phoneNumberParts: ["%2B381", "62", "299", "998"],
 
     fbName: '',
     fbNameParts: [

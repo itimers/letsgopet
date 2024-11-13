@@ -10,7 +10,7 @@ useHead({
 meta: [
     {
       name: 'date',
-      content: "2024-09-26",
+      content: "2024-11-13",
     },
     {
       name: 'description',
@@ -18,7 +18,7 @@ meta: [
     },
     {
       name: 'keywords',
-      content: "vrtic za pse, cuvanje pasa, cuvanje malih pasa, odrzavanje pasa, lets go pet vrtic, lets go pet cuvanje pasa, grooming pasa, grooming malih pasa, grooming pomeranca, odrzavanje pomeranca, odrzavanje maltezera, odrzavanje malih pasa, transport pasa, transport pasa do salona, cuvanje kucnih ljubimaca, transport i cuvanje kucnih ljubimaca, cuvanje ljubimaca, rodjendani za pse, kako negovati dlaku psa, pas mi nije raspolozen, sta uraditi ako mi je pas neraspolozen, druzenje pasa u vrticu, vrtic za male pse, vrtic za pse vracar, vrtic za pse vozdovac, vrtic za pse vracar, vrtic za male pse vracar, vrtic za pse akcija",
+      content: "vrtic za pse, cuvanje pasa, cuvanje malih pasa, odrzavanje pasa, lets go pet vrtic, lets go pet cuvanje pasa, grooming pasa, grooming malih pasa, grooming pomeranca, odrzavanje pomeranca, odrzavanje maltezera, odrzavanje malih pasa, transport pasa, transport pasa do salona, cuvanje kucnih ljubimaca, transport i cuvanje kucnih ljubimaca, cuvanje ljubimaca, rodjendani za pse, kako negovati dlaku psa, pas mi nije raspolozen, sta uraditi ako mi je pas neraspolozen, druzenje pasa u vrticu, vrtic za male pse, vrtic za pse vracar, vrtic za male pse vracar, vrtic za pse akcija",
     },
     {
       name: 'language',

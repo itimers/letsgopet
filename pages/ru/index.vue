@@ -10,7 +10,7 @@ useHead({
 meta: [
     {
       name: 'date',
-      content: "2024-09-26",
+      content: "2024-11-13",
     },
     {
       name: 'description',

@@ -18,7 +18,7 @@ meta: [
     },
     {
       name: 'keywords',
-      content: "köpek kreşi, küçük köpek bakımı, köpek taşıma hizmeti, pomeranian bakımı, malta köpeği bakımı, köpekler için kreş hizmetleri, köpek sosyalizasyonu, köpek doğum günü partileri, köpek depresyonu, köpeğim üzgün ne yapmalıyım, köpekler için bakım paketleri, vracar köpek kreşi, vozdovac köpek kreşi, vracar köpek kreşi, küçük köpek bakımı uygun fiyatlı",
+      content: "köpek kreşi, küçük köpek bakımı, köpek taşıma hizmeti, pomeranian bakımı, malta köpeği bakımı, köpekler için kreş hizmetleri, köpek sosyalizasyonu, köpek doğum günü partileri, köpek depresyonu, köpeğim üzgün ne yapmalıyım, köpekler için bakım paketleri, vracar köpek kreşi, küçük köpek bakımı uygun fiyatlı",
     },
     {
       name: 'language',

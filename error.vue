@@ -71,6 +71,18 @@ const handleError = () => {
 onMounted(() => {
   handleError();
 });
+
+
+
+useHead({
+  title: "Oops, Error",
+meta: [
+    {
+      name: 'robots',
+      content: 'noindex, nofollow',
+    },
+  ],
+});
 </script>
 
 <style scoped lang="scss">

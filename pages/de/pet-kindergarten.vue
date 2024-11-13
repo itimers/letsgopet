@@ -10,7 +10,7 @@ useHead({
 meta: [
     {
       name: 'date',
-      content: "2024-09-26",
+      content: "2024-11-13",
     },
     {
       name: 'description',
@@ -18,7 +18,7 @@ meta: [
     },
     {
       name: 'keywords',
-      content: "hundekindergarten, hundebetreuung, kleine hundebetreuung, pflege von hunden, let's go pet kindergarten, hundebetreuung let's go pet, grooming von hunden, grooming von kleinen hunden, pomeranian pflege, malteser pflege, kleine hunde pflege, hundetransport, hundetransport zum salon, tierbetreuung, tiertransport und betreuung, haustierbetreuung, hundegeburtstage, wie man das fell eines hundes pflegt, mein hund ist traurig, was tun, wenn mein hund schlecht gelaunt ist, soziale interaktion für hunde im kindergarten, kindergarten für kleine hunde, hundekindergarten vracar, hundekindergarten vozdovac, hundekindergarten vracar, kindergarten für kleine hunde vracar, hundekindergarten-angebote",
+      content: "hundekindergarten, hundebetreuung, kleine hundebetreuung, pflege von hunden, let's go pet kindergarten, hundebetreuung let's go pet, grooming von hunden, grooming von kleinen hunden, pomeranian pflege, malteser pflege, kleine hunde pflege, hundetransport, hundetransport zum salon, tierbetreuung, tiertransport und betreuung, haustierbetreuung, hundegeburtstage, wie man das fell eines hundes pflegt, mein hund ist traurig, was tun, wenn mein hund schlecht gelaunt ist, soziale interaktion für hunde im kindergarten, kindergarten für kleine hunde, hundekindergarten vracar, kindergarten für kleine hunde vracar, hundekindergarten-angebote",
     },
     {
       name: 'language',
