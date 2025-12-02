@@ -490,7 +490,9 @@ onBeforeUnmount(() => {
         >
           <article>
             <h2>{{ $t("Cenovnik") }}</h2>
-            <h3 style="text-align: center">{{ $t("Placanje iskljucivo karticama") }}</h3>
+            <h3 style="text-align: center">
+              {{ $t("Placanje iskljucivo karticama") }}
+            </h3>
             <figure>
               <figcaption>
                 <div class="box-1 style">
@@ -547,8 +549,13 @@ onBeforeUnmount(() => {
                     <p>{{ $t("Hranjivo pakovanje dlake") }}</p>
                   </div>
                   <ul>
-                    <li>{{ $t("Nahranite dlaku vašem ljubimcu organskim pakovanjem dlake") }}</li>
-                    
+                    <li>
+                      {{
+                        $t(
+                          "Nahranite dlaku vašem ljubimcu organskim pakovanjem dlake"
+                        )
+                      }}
+                    </li>
                   </ul>
 
                   <div class="prices center">
@@ -557,7 +564,6 @@ onBeforeUnmount(() => {
                       <p v-if="page.currentLanguage === 'sr'">1000 RSD</p>
                       <p v-else>8 €</p>
                     </div>
-                    
                   </div>
                 </div>
                 <div class="box-4 style">
@@ -728,10 +734,7 @@ onBeforeUnmount(() => {
               <figcaption>
                 <div class="igpic" ref="image6UrlRef">
                   <div class="overlay">
-                    <NuxtLink
-                      :to="page.igLink"
-                      target="_blank"
-                    ></NuxtLink>
+                    <NuxtLink :to="page.igLink" target="_blank"></NuxtLink>
                     <p>{{ $t("Klikni da odes na Instagram profil") }}</p>
                   </div>
                 </div>
@@ -763,5 +766,14 @@ onBeforeUnmount(() => {
         </section>
       </div>
     </div>
+
+    <noscript>
+      <iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-KRK9TZ2R"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe>
+    </noscript>
   </div>
 </template>

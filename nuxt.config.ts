@@ -1,40 +1,105 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  ssr: false,
+  ssr: true,
+  components: true,
   pages: true,
 
   i18n: {
     vueI18n: './i18n.config.ts',
   },
   nitro: {
-    routeRules: {
-      // Keširaj slike u 'public/img' na 1 godinu
-      '/img/**': { cache: { maxAge: 60 * 60 * 24 * 365, swr: true } },
-      // Keširaj fontove u 'static/fonts' na 1 godinu
-      '/fonts/**': { cache: { maxAge: 60 * 60 * 24 * 365, swr: true } },
-
-      '/_nuxt/**': { cache: { maxAge: 60 * 60 * 24 * 365, swr: true } },
+    prerender: {
+      routes: [
+        '/',
+        '/vrtic-za-pse'
+      ],
+      crawlLinks: false,
+      ignore: ['/en/**', '/ru/**', '/de/**', '/tr/**', '/api/**', '/_nuxt/**'],
     },
-    /*prerender: {
-      crawlLinks: true,
-     /~  routes: [
-        '/', // Početna stranica
-        '/sr', // Samo srpska verzija
-      ], ~/
-      ignore: [
-        '/de',
-        '/en', 
-        '/it',
-        '/ru',
-        '/tr',
-        '/sr',
-        '/qr',
-      ]
-    },*/
+    routeRules: {
+      // Srpske rute - statične (prerender) + Content-Language header
+      '/**': {
+        headers: {
+          'Content-Language': 'sr',
+        },
+      },
+
+      // Srpske rute - statične (prerender)
+      /* '/': { prerender: true },
+      '/o-nama': { prerender: true },
+      '/kontakt': { prerender: true },
+      '/blog': { prerender: true },
+      '/cenovnik': { prerender: true }, */
+
+      // Ostali jezici - client-side only (bez prerendera)
+      /* '/en/**': { ssr: false, prerender: false },
+      '/ru/**': { ssr: false, prerender: false },
+      '/de/**': { ssr: false, prerender: false },
+      '/tr/**': { ssr: false, prerender: false }, */
+
+      '/i18n/**': {
+        headers: {
+          'cache-control': 'public, max-age=3600',
+          'content-type': 'application/json',
+          vary: 'Accept-Encoding',
+        },
+      },
+      '/img/**': {
+        headers: {
+          'cache-control': 'public, max-age=31536000, immutable',
+          vary: 'Accept-Encoding',
+        },
+      },
+      '/_nuxt/**': {
+        headers: {
+          'cache-control': 'public, max-age=31536000, immutable',
+          vary: 'Accept-Encoding',
+        },
+      },
+      '/fonts/**': {
+        headers: {
+          'cache-control': 'public, max-age=31536000, immutable',
+          vary: 'Accept-Encoding',
+        },
+      },
+      '/**/*.{woff,woff2,ttf,otf}': {
+        headers: {
+          'cache-control': 'public, max-age=31536000, immutable',
+        },
+      },
+      '/**/*.{webp,jpg,jpeg,png,svg,ico}': {
+        headers: {
+          'cache-control': 'public, max-age=31536000, immutable',
+        },
+      },
+    },
+    compressPublicAssets: true,
+    experimental: {
+      wasm: true,
+      openAPI: false,
+    },
+
+    publicAssets: [
+      {
+        dir: 'static/img',
+        maxAge: 60 * 60 * 24 * 365,
+      },
+      {
+        dir: 'public/fonts',
+        maxAge: 60 * 60 * 24 * 365,
+      },
+    ],
+    storage: {
+      cache: {
+        driver: 'fs', // ili 'redis', 'memory', ...
+        base: './.data/cache',
+      },
+    },
+    minify: true,
   },
+
   
-  components: true,
 
   typescript: {
     shim: false,
