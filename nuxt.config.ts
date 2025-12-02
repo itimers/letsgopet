@@ -75,10 +75,6 @@ export default defineNuxtConfig({
       },
     },
     compressPublicAssets: true,
-    experimental: {
-      wasm: true,
-      openAPI: false,
-    },
 
     publicAssets: [
       {
@@ -90,12 +86,6 @@ export default defineNuxtConfig({
         maxAge: 60 * 60 * 24 * 365,
       },
     ],
-    storage: {
-      cache: {
-        driver: 'fs', // ili 'redis', 'memory', ...
-        base: './.data/cache',
-      },
-    },
     minify: true,
   },
 
