@@ -25,19 +25,6 @@ export default defineNuxtConfig({
         },
       },
 
-      // Srpske rute - statične (prerender)
-      /* '/': { prerender: true },
-      '/o-nama': { prerender: true },
-      '/kontakt': { prerender: true },
-      '/blog': { prerender: true },
-      '/cenovnik': { prerender: true }, */
-
-      // Ostali jezici - client-side only (bez prerendera)
-      /* '/en/**': { ssr: false, prerender: false },
-      '/ru/**': { ssr: false, prerender: false },
-      '/de/**': { ssr: false, prerender: false },
-      '/tr/**': { ssr: false, prerender: false }, */
-
       '/i18n/**': {
         headers: {
           'cache-control': 'public, max-age=3600',
@@ -74,7 +61,7 @@ export default defineNuxtConfig({
         },
       },
     },
-    compressPublicAssets: true,
+    /* compressPublicAssets: true, */
 
     publicAssets: [
       {
@@ -150,7 +137,7 @@ export default defineNuxtConfig({
     }
   },
 
-  modules: ['@pinia/nuxt', '@nuxtjs/i18n','nuxt-beastcss'],
+  modules: ['@pinia/nuxt', '@nuxtjs/i18n'],
  /*  beastcss: {
     // Options passed directly to beastcss: https://github.com/freddy38510/beastcss/tree/master/packages/beastcss#options
     config: {
