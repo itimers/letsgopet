@@ -19,13 +19,13 @@ const imageRefs = [
   image6UrlRef,
   image7UrlRef,
 ];
-const image1Url = "/img/zaki.webp";
-const image2Url = "/img/milasite.webp";
-const image3Url = "/img/vip.webp";
-const image4Url = "/img/pettransport.webp";
-const image5Url = "/img/8.webp";
-const image6Url = "/img/ig.webp";
-const image7Url = "/img/mapa.webp";
+const image1Url = "img/zaki.webp";
+const image2Url = "img/milasite.webp";
+const image3Url = "img/vip.webp";
+const image4Url = "img/pettransport.webp";
+const image5Url = "img/8.webp";
+const image6Url = "img/ig.webp";
+const image7Url = "img/mapa.webp";
 const imageUrls = [
   image1Url,
   image2Url,
@@ -370,9 +370,9 @@ onBeforeUnmount(() => {
           <div class="boxshadow"></div>
           <aside :class="{ scroll: page.isScrolled }" class="dog">
             <div class="img-dog">
-              <!--  <img src="/public/img/4-short.webp" v-if="page.widthofHtml >= 600" alt="white-dog" fetchpriority="high" width="1000" height="600" placeholder="blur" placeholderSrc="/img/4-blur.png"/>
-                <img src="/public/img/4.webp"  alt="white-dog" v-else-if="page.widthofHtml < 600" fetchpriority="high" width="650" height="600" placeholder="blur" placeholderSrc="/img/4-short-blur.png"/>
-                <img src="/public/img/4.webp"  alt="white-dog" v-else-if="page.widthofHtml <= 450" fetchpriority="high" width="400" height="350" placeholder="blur" placeholderSrc="/img/4-short-blur.png"/> -->
+              <!--  <img src="/public/img/4-short.webp" v-if="page.widthofHtml >= 600" alt="white-dog" fetchpriority="high" width="1000" height="600" placeholder="blur" placeholderSrc="img/4-blur.png"/>
+                <img src="/public/img/4.webp"  alt="white-dog" v-else-if="page.widthofHtml < 600" fetchpriority="high" width="650" height="600" placeholder="blur" placeholderSrc="img/4-short-blur.png"/>
+                <img src="/public/img/4.webp"  alt="white-dog" v-else-if="page.widthofHtml <= 450" fetchpriority="high" width="400" height="350" placeholder="blur" placeholderSrc="img/4-short-blur.png"/> -->
             </div>
           </aside>
         </section>

@@ -743,7 +743,7 @@ header {
   //color: clr(logofill);
   //font-family: "Passion One", sans-serif;
   transition: color ease 0.3s;
-  background-image: url("/img/logo.webp");
+  background-image: url("img/logo.webp");
   width: calc(120px + 2.5vw);
   background-position: center;
   background-repeat: no-repeat;
@@ -2095,7 +2095,7 @@ $section-1-height-boxs: 500px;
         }
         .mappic {
           position: relative;
-          background: url("/img/mapa.webp");
+          background: url("img/mapa.webp");
           width: 100%;
           height: 100%;
           max-height: 600px;

@@ -15,11 +15,11 @@ const imageRefs = [
   image11UrlRef,
   image12UrlRef,
 ];
-const image8Url = "/img/house.webp";
-const image9Url = "/img/welove.webp";
-const image10Url = "/img/vip.webp";
-const image11Url = "/img/ig.webp";
-const image12Url = "/img/mapa.webp";
+const image8Url = "img/house.webp";
+const image9Url = "img/welove.webp";
+const image10Url = "img/vip.webp";
+const image11Url = "img/ig.webp";
+const image12Url = "img/mapa.webp";
 const imageUrls = [
   image8Url,
   image9Url,
