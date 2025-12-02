@@ -1,75 +1,53 @@
-# Nuxt 3 Minimal Starter
+# Let's Go Pet 🐾
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+**[Visit Website](https://itimers.github.io/letsgopet/)** | **[Posetite Sajt](https://itimers.github.io/letsgopet/)**
 
-## Setup
+---
 
-Make sure to install the dependencies:
+## English 🇬🇧
 
-```bash
-# npm
-npm install
+### About
 
-# pnpm
-pnpm install
+**Let's Go Pet** is a comprehensive pet care service website offering premium services for your beloved pets. Our services include:
 
-# yarn
-yarn install
+- 🏨 **Pet Hotel & Boarding** - Safe and comfortable accommodation for your pets
+- 🎓 **Pet Kindergarten** - Daily care and socialization for pets
+- 🚗 **Pet Transportation** - Professional and safe pet transport services
+- 👑 **VIP Services** - Exclusive premium care for your pets
 
-# bun
-bun install
-```
+The website features a modern, responsive design with multi-language support (Serbian, English, German, Italian, Russian, Turkish) and both light and dark themes.
 
-## Development Server
+### Technology Stack
 
-Start the development server on `http://localhost:3000`:
+Built with **Nuxt 3** - The Intuitive Vue Framework
+- ⚡ Vue 3 Composition API
+- 🎨 SCSS for styling
+- 🌍 i18n for internationalization
+- 📱 Fully responsive design
+- 🌓 Light/Dark theme support
 
-```bash
-# npm
-npm run dev
+---
 
-# pnpm
-pnpm run dev
+## Srpski 🇷🇸
 
-# yarn
-yarn dev
+### O Nama
 
-# bun
-bun run dev
-```
+**Let's Go Pet** je kompletan sajt za usluge nege kućnih ljubimaca koji nudi premium usluge za vaše voljene ljubimce. Naše usluge uključuju:
 
-## Production
+- 🏨 **Pansion za Ljubimce** - Sigurno i udobno smeštaj za vaše ljubimce
+- 🎓 **Vrtić za Pse** - Dnevna nega i socijalizacija ljubimaca
+- 🚗 **Transport Ljubimaca** - Profesionalan i bezbedan prevoz ljubimaca
+- 👑 **VIP Usluge** - Ekskluzivna premium nega za vaše ljubimce
 
-Build the application for production:
+Sajt ima moderan, responzivan dizajn sa podrškom za više jezika (srpski, engleski, nemački, italijanski, ruski, turski) i svetlom i tamnom temom.
 
-```bash
-# npm
-npm run build
+### Tehnologije
 
-# pnpm
-pnpm run build
+Izgrađeno sa **Nuxt 3** - Intuitivni Vue Framework
+- ⚡ Vue 3 Composition API
+- 🎨 SCSS za stilizovanje
+- 🌍 i18n za internacionalizaciju
+- 📱 Potpuno responzivan dizajn
+- 🌓 Podrška za svetlu/tamnu temu
 
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+---
