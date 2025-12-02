@@ -84,7 +84,7 @@ export default defineNuxtConfig({
   },
 
   app: {
-    baseURL: import.meta.env.PROD ? '/letsgopet/' : '/',
+    baseURL: process.env.NODE_ENV === 'production' ? '/letsgopet/' : '/',
     pageTransition: { name: 'page', mode: 'out-in' },
     head: {
       charset: 'UTF-8',
