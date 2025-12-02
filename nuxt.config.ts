@@ -1,4 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+const isProd = process.env.NODE_ENV === 'production'
+const base = isProd ? '/letsgopet/' : '/'
+
 export default defineNuxtConfig({
   devtools: { enabled: true },
   ssr: true,
@@ -84,7 +87,7 @@ export default defineNuxtConfig({
   },
 
   app: {
-    baseURL: process.env.NODE_ENV === 'production' ? '/letsgopet/' : '/',
+    baseURL: base,
     pageTransition: { name: 'page', mode: 'out-in' },
     head: {
       charset: 'UTF-8',
@@ -120,7 +123,11 @@ export default defineNuxtConfig({
         { 'http-equiv': 'application-name', content: "Let's Go Pet" },
       ],
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        {
+          rel: 'icon',
+          type: 'image/x-icon',
+          href: `${base}favicon.ico`,
+        },
         /* {
           rel: 'preload',
           href: '/public/img/zaki.webp',
