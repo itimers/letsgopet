@@ -1,12 +1,2 @@
-User-agent: *
-
-Allow: /de/
-Allow: /en/
-Allow: /ru/
-Allow: /sr/
-Allow: /tr/
-Allow: /it/
-Allow: /
-
-# Specify the location of the sitemap
-Sitemap: http://www.letsgopet.rs/sitemap.xml
+User-Agent: *
+Disallow: /
