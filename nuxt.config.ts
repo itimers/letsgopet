@@ -14,8 +14,8 @@ export default defineNuxtConfig({
         '/',
         '/vrtic-za-pse'
       ],
-      crawlLinks: false,
-      ignore: ['/en/**', '/ru/**', '/de/**', '/tr/**', '/api/**', '/_nuxt/**'],
+      /* crawlLinks: false,
+      ignore: ['/en/**', '/ru/**', '/de/**', '/tr/**', '/api/**', '/_nuxt/**'], */
     },
     routeRules: {
       // Srpske rute - statične (prerender) + Content-Language header
