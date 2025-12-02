@@ -26,11 +26,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "22.14.0"
-          cache: "npm"
-          cache-dependency-path: package-lock.json
+          # NEMA cache: npm jer nemamo lock fajl
 
       - name: 📦 Install dependencies
-        run: npm ci
+        run: npm install
 
       - name: 🏗️ Generate static site
         run: npm run generate
@@ -47,6 +46,7 @@ jobs:
             echo "dir=dist" >> "$GITHUB_OUTPUT"
           else
             echo "❌ Build output not found" >&2
+            ls -R
             exit 1
           fi
 
