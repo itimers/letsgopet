@@ -74,6 +74,7 @@ export default defineNuxtConfig({
       },
     ],
     minify: true,
+    preset: 'github-pages',
   },
 
   
@@ -83,6 +84,7 @@ export default defineNuxtConfig({
   },
 
   app: {
+    baseURL: process.env.NODE_ENV === 'production' ? '/letsgopet/' : '/',
     pageTransition: { name: 'page', mode: 'out-in' },
     head: {
       charset: 'UTF-8',
